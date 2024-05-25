@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=8 format=3 uid="uid://rsctaha45ywq"]
 
 [ext_resource type="MeshLibrary" uid="uid://o81thc7oqgcl" path="res://meshLibrary.tres" id="2_rjfq8"]
+[ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/Player_1_Controls.tres" id="3_fammg"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
@@ -37,7 +38,18 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_xipmc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.27466, 3.16168, 8.58822)
-MoveSpeed = 10
-VelocityPower = 1.1
-DeccelerationMultiplier = 0.5
-SprintIncrementAmount = 1.0
+Controls = ExtResource("3_fammg")
+BumpMultiplier = 5
+
+[node name="Player2" parent="." instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.49476, 3.16168, 8.58822)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.606627, 0.794987, 0, -0.794987, 0.606627, 5.06065, 28.7574, 20.2251)
+light_color = Color(0.85, 1, 0.9625, 1)
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 26.68
+shadow_enabled = true
+shadow_bias = 0.631
+shadow_normal_bias = 4.478
+shadow_blur = 0.0
