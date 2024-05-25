@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=2 format=3 uid="uid://rsctaha45ywq"]
+
+[ext_resource type="PackedScene" uid="uid://co0qilyfn6n75" path="res://Assets/Characters/BaseCharacter.gltf" id="1_q2c48"]
 
 [node name="Game" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.503156, 0.864196, 0, -0.864196, 0.503156, 0, 26.205, 26.0701)
+
+[node name="BaseCharacter" parent="." instance=ExtResource("1_q2c48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.63645, 8.53065, 10.3585)
