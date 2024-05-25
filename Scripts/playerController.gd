@@ -6,18 +6,23 @@ const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
 @onready var SprintEmitter2: CPUParticles3D = $"Particle Emitters/CPUParticles3D2"
 @onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
 
+@export_category("Movement")
 @export var MoveSpeed = 30
 @export var VelocityPower = float(1)
 @export var StandardAccelerationMultiplier = float(1)
 @export var DeccelerationMultiplier = float(1)
 @export var Controls: PlayerControls
 
+@export_category("Sprint")
 @export var MaxSprintModifier = 3
 @export var SprintIncrementAmount = float(0.1) # Per Second
 
+@export_category("Bump")
 @export var BumpMomentumThreshold = 10 # Momentum
 @export var BumpDirectionThreshold = 30 # Degrees
 @export var BumpMultiplier = 1
+
+signal CodeSubmitted
 
 var MovementDirection = Vector3.ZERO
 var SprintModifier = float(1)
@@ -29,7 +34,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	update_animation_parameters()	
+	update_animation_parameters()
+	_handle_code_input()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -74,6 +80,17 @@ func _handle_sprint(delta: float) -> void:
 		SprintModifier = 1
 		_end_sprint_particles()
 		
+		
+func _handle_code_input() -> void:
+	if (Input.is_action_just_pressed(Controls.code_up)):
+		CodeSubmitted.emit("UP", Controls.PlayerIndex)
+	elif (Input.is_action_just_pressed(Controls.code_left)):
+		CodeSubmitted.emit("LEFT", Controls.PlayerIndex)
+	elif (Input.is_action_just_pressed(Controls.code_right)):
+		CodeSubmitted.emit("RIGHT", Controls.PlayerIndex)
+	elif (Input.is_action_just_pressed(Controls.code_down)):
+		CodeSubmitted.emit("DOWN", Controls.PlayerIndex)
+		
 func _start_sprint_particles() -> void:
 	SprintEmitter1.restart()
 	SprintEmitter1.emitting = true
@@ -93,14 +110,12 @@ func _on_body_entered(body: RigidBody3D) -> void:
 		return
 		
 	var momentum = linear_velocity.length() * mass
-	print("momentum: ", momentum)
 	
 	if (momentum < BumpMomentumThreshold):
 		return
 		
 	var directionToBody = body.global_position - position
 	var bumpTrueness = rad_to_deg(directionToBody.angle_to(linear_velocity))
-	print("bumpTrueness: ", bumpTrueness)
 		
 	if (bumpTrueness > BumpDirectionThreshold):
 		return
