@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bkrp4ndipcorh"
+path="res://.godot/imported/wallWoodArch.obj-d924656b44eec38d2ae92eb0774bb892.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wallWoodArch.obj-d924656b44eec38d2ae92eb0774bb892.mesh"]
+
+source_file="res://Assets/Environment/OBJs/wallWoodArch.obj"
+dest_files=["res://.godot/imported/wallWoodArch.obj-d924656b44eec38d2ae92eb0774bb892.mesh", "res://.godot/imported/wallWoodArch.obj-d924656b44eec38d2ae92eb0774bb892.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

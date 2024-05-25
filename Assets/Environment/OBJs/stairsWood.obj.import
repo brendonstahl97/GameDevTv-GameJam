@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bn2lqwaq3umud"
+path="res://.godot/imported/stairsWood.obj-0be8b943cd3e3abad792efd5a8144083.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stairsWood.obj-0be8b943cd3e3abad792efd5a8144083.mesh"]
+
+source_file="res://Assets/Environment/OBJs/stairsWood.obj"
+dest_files=["res://.godot/imported/stairsWood.obj-0be8b943cd3e3abad792efd5a8144083.mesh", "res://.godot/imported/stairsWood.obj-0be8b943cd3e3abad792efd5a8144083.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

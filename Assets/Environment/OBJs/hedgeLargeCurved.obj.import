@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://da6dca6u4hehh"
+path="res://.godot/imported/hedgeLargeCurved.obj-8983ce55328ee1f6df4f17f54fee4184.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hedgeLargeCurved.obj-8983ce55328ee1f6df4f17f54fee4184.mesh"]
+
+source_file="res://Assets/Environment/OBJs/hedgeLargeCurved.obj"
+dest_files=["res://.godot/imported/hedgeLargeCurved.obj-8983ce55328ee1f6df4f17f54fee4184.mesh", "res://.godot/imported/hedgeLargeCurved.obj-8983ce55328ee1f6df4f17f54fee4184.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

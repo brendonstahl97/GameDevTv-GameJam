@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dyjle36lhebva"
+path="res://.godot/imported/wallDetailCross.obj-40e65a7133cb2591d033b4f8187f7e2c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wallDetailCross.obj-40e65a7133cb2591d033b4f8187f7e2c.mesh"]
+
+source_file="res://Assets/Environment/OBJs/wallDetailCross.obj"
+dest_files=["res://.godot/imported/wallDetailCross.obj-40e65a7133cb2591d033b4f8187f7e2c.mesh", "res://.godot/imported/wallDetailCross.obj-40e65a7133cb2591d033b4f8187f7e2c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

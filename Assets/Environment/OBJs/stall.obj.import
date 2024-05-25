@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cdg24dylpqt4a"
+path="res://.godot/imported/stall.obj-12dd27b441e93ed7604b7ec4f4edb941.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stall.obj-12dd27b441e93ed7604b7ec4f4edb941.mesh"]
+
+source_file="res://Assets/Environment/OBJs/stall.obj"
+dest_files=["res://.godot/imported/stall.obj-12dd27b441e93ed7604b7ec4f4edb941.mesh", "res://.godot/imported/stall.obj-12dd27b441e93ed7604b7ec4f4edb941.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
