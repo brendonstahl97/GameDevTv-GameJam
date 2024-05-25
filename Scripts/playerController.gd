@@ -2,12 +2,12 @@ extends RigidBody3D
 
 @onready var SprintEmitter1: CPUParticles3D = $"Particle Emitters/CPUParticles3D"
 @onready var SprintEmitter2: CPUParticles3D = $"Particle Emitters/CPUParticles3D2"
+@onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
 
 @export var MoveSpeed = 30
 @export var VelocityPower = float(1)
 @export var StandardAccelerationMultiplier = float(1)
 @export var DeccelerationMultiplier = float(1)
-@onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
 
 @export var MaxSprintModifier = 3
 @export var SprintIncrementAmount = float(0.1)
@@ -22,7 +22,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	print(linear_velocity.length())
 	update_animation_parameters()	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,9 +78,8 @@ func _end_sprint_particles() -> void:
 	SprintEmitter2.emitting = false
 
 
-
 func update_animation_parameters():
-		animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
+	animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
 
 
 
