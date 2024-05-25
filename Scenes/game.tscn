@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://rsctaha45ywq"]
 
-[ext_resource type="PackedScene" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
-[ext_resource type="MeshLibrary" uid="uid://o81thc7oqgcl" path="res://meshLibrary.tres" id="2_rjfq8"]
-[ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/Player_1_Controls.tres" id="3_fammg"]
+[ext_resource type="PackedScene" uid="uid://x3acathmfieg" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
+[ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
+[ext_resource type="Resource" path="res://Resources/Player_1_Controls.tres" id="3_fammg"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
