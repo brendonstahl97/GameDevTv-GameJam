@@ -1,14 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=8 format=3 uid="uid://rsctaha45ywq"]
 
 [ext_resource type="PackedScene" uid="uid://co0qilyfn6n75" path="res://Assets/Characters/BaseCharacter.gltf" id="1_q2c48"]
-[ext_resource type="MeshLibrary" uid="uid://dxdwjmxgx15v4" path="res://meshLibrary.tres" id="2_rjfq8"]
+[ext_resource type="MeshLibrary" uid="uid://o81thc7oqgcl" path="res://meshLibrary.tres" id="2_rjfq8"]
+[ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_l5w3f"]
+sky_material = SubResource("ProceduralSkyMaterial_q7i1j")
+
+[sub_resource type="Environment" id="Environment_bqfud"]
+background_mode = 2
+sky = SubResource("Sky_l5w3f")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j62al"]
 
 [node name="Game" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bqfud")
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.503156, 0.864196, 0, -0.864196, 0.503156, 0, 26.205, 26.0701)
+transform = Transform3D(1, 0, 0, 0, 0.503156, 0.864196, 0, -0.864196, 0.503156, 0, 26.205, 21.0302)
 
 [node name="BaseCharacter" parent="." instance=ExtResource("1_q2c48")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.63645, 8.53065, 10.3585)
@@ -21,3 +38,9 @@ data = {
 "cells": PackedInt32Array(0, 1, 103, 0, 2, 103, 1, 2, 103, 1, 1, 103, 1, 3, 103, 0, 3, 103, 2, 3, 103, 2, 2, 103, 2, 1, 103, 2, 4, 103, 1, 4, 103, 0, 4, 103, 0, 5, 103, 1, 5, 103, 2, 5, 103, 3, 1, 103, 3, 2, 103, 3, 3, 103, 3, 4, 103, 3, 5, 103, 65535, 0, 103, 65535, 1, 103, 65535, 2, 103, 65535, 3, 103, 65535, 4, 103, 65535, 5, 103, 0, 0, 103, 1, 0, 103, 2, 0, 103, 3, 0, 103, 4, 5, 103, 4, 3, 103, 4, 2, 103, 4, 1, 103, 4, 0, 103, 4, 65535, 103, 65535, 65535, 103, 0, 65535, 103, 1, 65535, 103, 2, 65535, 103, 3, 65535, 103, 65535, 6, 103, 0, 6, 103, 0, 7, 103, 1, 7, 103, 2, 7, 103, 3, 7, 103, 1, 6, 103, 2, 6, 103, 3, 6, 103, 4, 6, 103, 4, 7, 103, 5, 7, 103, 5, 6, 103, 5, 5, 103, 5, 2, 103, 6, 1, 103, 6, 0, 103, 5, 0, 103, 5, 65535, 103, 5, 1, 103, 6, 65535, 103, 6, 4, 103, 6, 3, 103, 6, 2, 103, 5, 3, 103, 5, 4, 103, 4, 4, 103, 6, 5, 103, 6, 7, 103, 6, 6, 103, 65535, 7, 103, 131071, 7, 12, 131071, 6, 10, 131071, 5, 10, 131071, 4, 10, 131071, 3, 10, 131071, 2, 10, 131071, 1, 10, 65536, 7, 1048586, 65537, 7, 1048586, 65538, 7, 1048586, 65539, 7, 1048586, 65540, 7, 1048586, 65541, 7, 1048586, 65542, 7, 1048588, 65542, 6, 655370, 65542, 3, 655370, 65542, 2, 655370, 65542, 1, 655370, 65542, 0, 655370, 65541, 65535, 1441802, 65537, 65535, 1441802, 65538, 65535, 1441802, 65536, 65535, 1441802, 131071, 65535, 1441804, 131071, 0, 10, 65542, 65535, 655372, 65540, 65535, 1441802, 65539, 65535, 1441802, 65536, 6, 1441826, 65537, 6, 1441826, 65538, 6, 1441826, 65539, 6, 1441826, 65540, 6, 1441826, 65541, 6, 1441826, 65541, 5, 1441826, 65541, 4, 1441826, 65541, 3, 1441826, 65541, 2, 1441826, 65541, 1, 1441826, 65540, 1, 1441826, 65540, 0, 1441826, 65541, 0, 1441826, 65536, 0, 1441826, 65537, 0, 1441826, 65538, 0, 1441826, 65539, 0, 1441826, 65539, 1, 1441826, 65539, 2, 1441826, 65539, 3, 1441826, 65539, 4, 1441826, 65540, 4, 1441826, 65539, 5, 1441826, 65540, 5, 1441826, 65540, 3, 1441826, 65540, 2, 1441826, 65536, 1, 1441826, 65536, 2, 1441826, 65536, 3, 1441826, 65536, 4, 1441826, 65537, 4, 1441826, 65536, 5, 1441826, 65537, 5, 1441826, 65538, 5, 1441826, 65538, 4, 1441826, 65538, 3, 1441826, 65537, 3, 1441826, 65537, 2, 1441826, 65537, 1, 1441826, 65538, 1, 1441826, 65538, 2, 1441826, 65542, 5, 655370, 65542, 4, 655370)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.27466, 4.29574, 6.28012)
+MoveSpeed = 30
+VelocityPower = 1.1
+DeccelerationMultiplier = 1.1

@@ -1,17 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgsxkbytb4is"]
+[gd_scene load_steps=4 format=3 uid="uid://dgsxkbytb4is"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_kpsi7"]
+[ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_ny06e"]
+[ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_t4hpd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s7rvi"]
-size = Vector3(2.68567, 1.00342, 1.58472)
+size = Vector3(0.989289, 1.00342, 0.986146)
 
 [node name="Player" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+gravity_scale = 0.0
+linear_damp = 2.0
+script = ExtResource("1_ny06e")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.69369, 0, 0, 0, 1, 0, 0, 0, 1.58308, 0, 0, 0)
-mesh = SubResource("BoxMesh_kpsi7")
+[node name="stallGreen2" parent="." instance=ExtResource("1_t4hpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000549316, -0.00170898, -0.00183105)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, -0.00170898, -0.00680506)
 shape = SubResource("BoxShape3D_s7rvi")
