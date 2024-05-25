@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cs33bo7bhte40"
+path="res://.godot/imported/wallDoorwaySquare.obj-6f860ed5b585bc3d1a79f08fd9e08765.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wallDoorwaySquare.obj-6f860ed5b585bc3d1a79f08fd9e08765.mesh"]
+
+source_file="res://Assets/Environment/OBJs/wallDoorwaySquare.obj"
+dest_files=["res://.godot/imported/wallDoorwaySquare.obj-6f860ed5b585bc3d1a79f08fd9e08765.mesh", "res://.godot/imported/wallDoorwaySquare.obj-6f860ed5b585bc3d1a79f08fd9e08765.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

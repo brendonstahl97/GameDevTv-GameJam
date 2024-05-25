@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ctuf1d3toou5q"
+path="res://.godot/imported/fountainEdge.obj-93fb6a776364f4fc234d616c79af2ad1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/fountainEdge.obj-93fb6a776364f4fc234d616c79af2ad1.mesh"]
+
+source_file="res://Assets/Environment/OBJs/fountainEdge.obj"
+dest_files=["res://.godot/imported/fountainEdge.obj-93fb6a776364f4fc234d616c79af2ad1.mesh", "res://.godot/imported/fountainEdge.obj-93fb6a776364f4fc234d616c79af2ad1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

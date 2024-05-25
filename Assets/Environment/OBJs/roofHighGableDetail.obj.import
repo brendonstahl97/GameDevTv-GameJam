@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://2yiflpj44p2a"
+path="res://.godot/imported/roofHighGableDetail.obj-0286323a8bd04590f36c54e0c7a45fff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roofHighGableDetail.obj-0286323a8bd04590f36c54e0c7a45fff.mesh"]
+
+source_file="res://Assets/Environment/OBJs/roofHighGableDetail.obj"
+dest_files=["res://.godot/imported/roofHighGableDetail.obj-0286323a8bd04590f36c54e0c7a45fff.mesh", "res://.godot/imported/roofHighGableDetail.obj-0286323a8bd04590f36c54e0c7a45fff.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

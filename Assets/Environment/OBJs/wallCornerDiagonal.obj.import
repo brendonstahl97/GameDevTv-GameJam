@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b124ef325rhkq"
+path="res://.godot/imported/wallCornerDiagonal.obj-d9358c45c350b216fa8167f11d0831a1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wallCornerDiagonal.obj-d9358c45c350b216fa8167f11d0831a1.mesh"]
+
+source_file="res://Assets/Environment/OBJs/wallCornerDiagonal.obj"
+dest_files=["res://.godot/imported/wallCornerDiagonal.obj-d9358c45c350b216fa8167f11d0831a1.mesh", "res://.godot/imported/wallCornerDiagonal.obj-d9358c45c350b216fa8167f11d0831a1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

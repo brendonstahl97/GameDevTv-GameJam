@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cdtp6criq8wpy"
+path="res://.godot/imported/wallWoodWindowSmall.obj-5c37c62513eb45e7ba2a706bd7fe85fc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wallWoodWindowSmall.obj-5c37c62513eb45e7ba2a706bd7fe85fc.mesh"]
+
+source_file="res://Assets/Environment/OBJs/wallWoodWindowSmall.obj"
+dest_files=["res://.godot/imported/wallWoodWindowSmall.obj-5c37c62513eb45e7ba2a706bd7fe85fc.mesh", "res://.godot/imported/wallWoodWindowSmall.obj-5c37c62513eb45e7ba2a706bd7fe85fc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

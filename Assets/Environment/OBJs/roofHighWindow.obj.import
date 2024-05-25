@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ic750jxhuuwe"
+path="res://.godot/imported/roofHighWindow.obj-8a4709251be36e44ab5e89795e4a88cf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roofHighWindow.obj-8a4709251be36e44ab5e89795e4a88cf.mesh"]
+
+source_file="res://Assets/Environment/OBJs/roofHighWindow.obj"
+dest_files=["res://.godot/imported/roofHighWindow.obj-8a4709251be36e44ab5e89795e4a88cf.mesh", "res://.godot/imported/roofHighWindow.obj-8a4709251be36e44ab5e89795e4a88cf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

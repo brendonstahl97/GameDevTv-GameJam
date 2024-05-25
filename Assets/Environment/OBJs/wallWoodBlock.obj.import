@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://hneunnoc7qvd"
+path="res://.godot/imported/wallWoodBlock.obj-871ae557e22e97d7bf0b6a7f6691d7aa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wallWoodBlock.obj-871ae557e22e97d7bf0b6a7f6691d7aa.mesh"]
+
+source_file="res://Assets/Environment/OBJs/wallWoodBlock.obj"
+dest_files=["res://.godot/imported/wallWoodBlock.obj-871ae557e22e97d7bf0b6a7f6691d7aa.mesh", "res://.godot/imported/wallWoodBlock.obj-871ae557e22e97d7bf0b6a7f6691d7aa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
