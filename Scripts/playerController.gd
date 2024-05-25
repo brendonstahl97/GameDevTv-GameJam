@@ -7,6 +7,7 @@ extends RigidBody3D
 @export var VelocityPower = float(1)
 @export var StandardAccelerationMultiplier = float(1)
 @export var DeccelerationMultiplier = float(1)
+@onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
 
 @export var MaxSprintModifier = 3
 @export var SprintIncrementAmount = float(0.1)
@@ -17,7 +18,12 @@ var IsSprinting = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	animation_tree.active = true
+
+
+func _process(delta: float) -> void:
+	print(linear_velocity.length())
+	update_animation_parameters()	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -26,6 +32,7 @@ func _physics_process(delta: float) -> void:
 	_handle_sprint(delta)
 	_handle_movement()
 	_handle_rotation()
+
 
 func _handle_movement() -> void:
 	var targetVelocity = MovementDirection * MoveSpeed * SprintModifier
@@ -70,3 +77,11 @@ func _start_sprint_particles() -> void:
 func _end_sprint_particles() -> void:
 	SprintEmitter1.emitting = false
 	SprintEmitter2.emitting = false
+
+
+
+func update_animation_parameters():
+		animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
+
+
+
