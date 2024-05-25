@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://dgsxkbytb4is"]
+[gd_scene load_steps=40 format=3 uid="uid://dgsxkbytb4is"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_ny06e"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_t4hpd"]
-[ext_resource type="ArrayMesh" path="res://Assets/Environment/Food/Broccoli.mesh" id="3_mhdtb"]
+[ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/Player_2_Controls.tres" id="2_fgbhi"]
+[ext_resource type="ArrayMesh" uid="uid://b3kxgd7rlxxhn" path="res://Assets/Environment/Food/Broccoli.mesh" id="3_mhdtb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s7rvi"]
 size = Vector3(0.989289, 1.0221, 0.986146)
@@ -4383,11 +4384,24 @@ states/idle_to_walk/node = SubResource("AnimationNodeBlendSpace1D_c1p3b")
 states/idle_to_walk/position = Vector2(372, 163)
 transitions = ["Start", "idle_to_walk", SubResource("AnimationNodeStateMachineTransition_stu7o")]
 
-[node name="Player" type="RigidBody3D"]
+[node name="Player" type="RigidBody3D" groups=["Players"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138367, -0.00869489, -0.026551)
+collision_layer = 3
+collision_mask = 2
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 gravity_scale = 0.0
+max_contacts_reported = 3
+contact_monitor = true
 linear_damp = 2.0
+angular_damp = 2.0
 script = ExtResource("1_ny06e")
+MoveSpeed = 10
+VelocityPower = 1.1
+DeccelerationMultiplier = 0.5
+Controls = ExtResource("2_fgbhi")
+SprintIncrementAmount = 1.0
+BumpMomentumThreshold = 3
 
 [node name="stallGreen2" parent="." instance=ExtResource("1_t4hpd")]
 
@@ -4618,3 +4632,5 @@ autoplay = "Idle"
 tree_root = SubResource("AnimationNodeStateMachine_w0yt8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle_to_walk/blend_position = 0.583029
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
