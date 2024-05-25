@@ -40,7 +40,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.27466, 4.29574, 6.28012)
-MoveSpeed = 30
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.27466, 3.16168, 8.58822)
 VelocityPower = 1.1
-DeccelerationMultiplier = 1.1
+DeccelerationMultiplier = 0.5
+SprintIncrementAmount = 1.0

@@ -1,20 +1,65 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgsxkbytb4is"]
+[gd_scene load_steps=7 format=3 uid="uid://dgsxkbytb4is"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_ny06e"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_t4hpd"]
+[ext_resource type="ArrayMesh" uid="uid://b3kxgd7rlxxhn" path="res://Assets/Environment/Food/Broccoli.mesh" id="3_mhdtb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s7rvi"]
-size = Vector3(0.989289, 1.00342, 0.986146)
+size = Vector3(0.989289, 1.0221, 0.986146)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn8xt"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Gradient" id="Gradient_4kssv"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138367, -0.00869489, -0.026551)
 gravity_scale = 0.0
 linear_damp = 2.0
 script = ExtResource("1_ny06e")
 
 [node name="stallGreen2" parent="." instance=ExtResource("1_t4hpd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, -0.00170898, -0.00680506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.620544, -0.00680506)
 shape = SubResource("BoxShape3D_s7rvi")
+
+[node name="Particle Emitters" type="Node3D" parent="."]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Particle Emitters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20457, -0.00869524, 0.435661)
+material_override = SubResource("StandardMaterial3D_yn8xt")
+emitting = false
+amount = 20
+lifetime = 0.3
+explosiveness = 0.04
+mesh = ExtResource("3_mhdtb")
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, -1)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.3
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+scale_amount_min = 0.5
+color_ramp = SubResource("Gradient_4kssv")
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="Particle Emitters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226524, -0.00869524, 0.435661)
+material_override = SubResource("StandardMaterial3D_yn8xt")
+emitting = false
+amount = 20
+lifetime = 0.3
+explosiveness = 0.04
+mesh = ExtResource("3_mhdtb")
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, -1)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.3
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+scale_amount_min = 0.5
+color_ramp = SubResource("Gradient_4kssv")
