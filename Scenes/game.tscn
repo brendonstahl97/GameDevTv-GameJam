@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=7 format=3 uid="uid://rsctaha45ywq"]
 
-[ext_resource type="PackedScene" uid="uid://co0qilyfn6n75" path="res://Assets/Characters/BaseCharacter.gltf" id="1_q2c48"]
 [ext_resource type="MeshLibrary" uid="uid://o81thc7oqgcl" path="res://meshLibrary.tres" id="2_rjfq8"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 
@@ -25,10 +24,7 @@ glow_enabled = true
 environment = SubResource("Environment_bqfud")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.503156, 0.864196, 0, -0.864196, 0.503156, 0, 26.205, 21.0302)
-
-[node name="BaseCharacter" parent="." instance=ExtResource("1_q2c48")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.63645, 8.53065, 10.3585)
+transform = Transform3D(1, 0, 0, 0, 0.674303, 0.738456, 0, -0.738456, 0.674303, 6.135, 10.16, 16.95)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_rjfq8")
