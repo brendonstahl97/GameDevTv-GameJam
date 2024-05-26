@@ -32,13 +32,13 @@ const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.
 @export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
 @export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
 @export var PassiveStamingaRegen = 20.0 ## The amount of stamina that is passively regenerated every second
+@export var CurrentStamina = 100 ## Defaut starting stamina
 
 signal CodeSubmitted
 
 var MovementDirection = Vector3.ZERO
 var SprintModifier = float(1)
 var IsSprinting = false
-var CurrentStamina = 100.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -59,6 +59,13 @@ func _physics_process(delta: float) -> void:
 	_handle_rotation(currentVelocity)
 	_handle_stamina_regen(delta)
 
+	### Stamina Bar Code ###
+	#var screen_pos = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
+	#var stambar = $StaminaBar
+	# Place the control at screen_pos, but have it be offset by the size of the control
+	#stambar.position = screen_pos - stambar.size / 2
+	# Move it up by the size of the control, plus a little bit
+	#stambar.position.y -= 15
 
 func _handle_movement(currentVelocity: Vector3) -> void:
 	var targetVelocity = MovementDirection * MoveSpeed * SprintModifier
