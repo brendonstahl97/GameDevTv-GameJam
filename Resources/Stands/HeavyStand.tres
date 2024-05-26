@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Stand" load_steps=2 format=3 uid="uid://g5cju32i714j"]
+
+[ext_resource type="Script" path="res://Resources/Stands/Stand.gd" id="1_v04ok"]
+
+[resource]
+script = ExtResource("1_v04ok")
+Mass = 1.5
