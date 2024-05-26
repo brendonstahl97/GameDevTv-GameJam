@@ -57,14 +57,6 @@ func _physics_process(delta: float) -> void:
 	_handle_movement(currentVelocity)
 	_handle_rotation(currentVelocity)
 
-	### Stamina Bar Code ###
-	#var screen_pos = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
-	#var stambar = $StaminaBar
-	# Place the control at screen_pos, but have it be offset by the size of the control
-	#stambar.position = screen_pos - stambar.size / 2
-	# Move it up by the size of the control, plus a little bit
-	#stambar.position.y -= 15
-
 func _handle_movement(currentVelocity: Vector3) -> void:
 	var targetVelocity = MovementDirection * MoveSpeed * SprintModifier
 

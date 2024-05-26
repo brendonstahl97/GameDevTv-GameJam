@@ -10,6 +10,10 @@ extends Area3D
 
 @export_enum("Serf", "Normie", "Royalty", "King") var customerTier: String = "Serf"
 
+@export var ParticleEmitterManager: ParticleEmitterManager
+const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
+
+
 # Nested dictionary of each enum tier, inside each tier is task length, and reward
 var customerTierDataList = {
 	"Serf": {
@@ -135,15 +139,21 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 	# Grab the length of the current player sequence, check the length + 1 element in the correct sequence
 	var nextCorrectDirection : String = correctTaskSequence[currentPlayerSequence.size()]
 	if (direction == nextCorrectDirection):
+		$Control/Panel/HBoxContainer.get_children()[currentPlayerSequence.size()].set_modulate(Color(0,1,0,1))
 		currentPlayerSequence.append(direction)
 		print("Correct")
 		# If the player has completed the sequence, give them the reward
 		if (currentPlayerSequence.size() == correctTaskSequence.size()):
 			completed = true
 			print("Player completed the sequence")
+			
 			# Give the player the reward
 			var reward = customerTierDataList[customerTier]["reward"]
 			print("Player rewarded: " + str(reward))
+			
+			var foodExplosion = FOOD_EXPLOSION.instantiate()
+			foodExplosion.position = global_position
+			get_window().add_child(foodExplosion)
 	else:
 		print("Incorrect")
 		# Reset the player sequence
