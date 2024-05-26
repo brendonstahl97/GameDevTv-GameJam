@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=11 format=3 uid="uid://rsctaha45ywq"]
 
 [ext_resource type="PackedScene" uid="uid://x3acathmfieg" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
 [ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/Player_1_Controls.tres" id="3_fammg"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 [ext_resource type="PackedScene" uid="uid://nu6ykfm6bvyx" path="res://Resources/customer.tscn" id="5_7vqwc"]
+[ext_resource type="Texture2D" uid="uid://but807khkrcm8" path="res://Assets/UI/Cursor/Raster/Outline/Default/arrow_n.png" id="6_lh755"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -63,5 +64,55 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.49476, 3.16168, 8.58822)
 
 [node name="Control" parent="Customer" index="2"]
 anchors_preset = 8
+offset_left = -186.0
+offset_top = -69.0
+offset_right = -7.0
+offset_bottom = -4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Customer/Control/Panel" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_lh755")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_lh755")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_lh755")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_lh755")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_lh755")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="CodeSubmitted" from="Players/0" to="Customer" method="_on_player_code_submitted"]
 
 [editable path="Customer"]
