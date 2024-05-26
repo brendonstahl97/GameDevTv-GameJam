@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=16 format=3 uid="uid://rsctaha45ywq"]
 
 [ext_resource type="PackedScene" uid="uid://x3acathmfieg" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 [ext_resource type="Script" path="res://Scripts/customer.gd" id="5_seixg"]
 [ext_resource type="PackedScene" uid="uid://bpw0fu1a1nyp2" path="res://Assets/Characters/Casual2_Female.gltf" id="6_8ljb7"]
-[ext_resource type="Texture2D" uid="uid://but807khkrcm8" path="res://Assets/UI/Cursor/Raster/Outline/Default/arrow_n.png" id="6_lh755"]
+[ext_resource type="Texture2D" uid="uid://btjrunenwslsb" path="res://Resources/UP.png" id="7_6x44k"]
+[ext_resource type="Texture2D" uid="uid://igvxowctjm3l" path="res://Resources/LEFT.png" id="8_pep66"]
+[ext_resource type="Texture2D" uid="uid://chjl4c5q4mk2w" path="res://Resources/RIGHT.png" id="9_ne5ph"]
+[ext_resource type="Texture2D" uid="uid://dw8su3127rnbl" path="res://Resources/DOWN.png" id="10_131dy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -106,38 +109,46 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+[node name="UPArrow" type="TextureRect" parent="Customer/Control/Panel"]
+visible = false
 layout_mode = 2
+offset_right = 179.0
+offset_bottom = 65.0
 size_flags_horizontal = 3
-texture = ExtResource("6_lh755")
+texture = ExtResource("7_6x44k")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+[node name="LEFTArrow" type="TextureRect" parent="Customer/Control/Panel"]
+visible = false
 layout_mode = 2
+offset_left = 45.0
+offset_right = 87.0
+offset_bottom = 65.0
 size_flags_horizontal = 3
-texture = ExtResource("6_lh755")
+texture = ExtResource("8_pep66")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+[node name="RIGHTArrow" type="TextureRect" parent="Customer/Control/Panel"]
+visible = false
 layout_mode = 2
+offset_left = 91.0
+offset_right = 133.0
+offset_bottom = 65.0
 size_flags_horizontal = 3
-texture = ExtResource("6_lh755")
+texture = ExtResource("9_ne5ph")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect4" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
+[node name="DOWNArrow" type="TextureRect" parent="Customer/Control/Panel"]
+visible = false
 layout_mode = 2
+offset_left = 137.0
+offset_right = 179.0
+offset_bottom = 65.0
 size_flags_horizontal = 3
-texture = ExtResource("6_lh755")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="TextureRect5" type="TextureRect" parent="Customer/Control/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("6_lh755")
+texture = ExtResource("10_131dy")
 expand_mode = 1
 stretch_mode = 5
 
