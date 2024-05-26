@@ -56,12 +56,14 @@ func generateSequence() -> Array:
 				taskSequence.append("LEFT")
 
 	# Update the UI with the new task sequence
-	# var arrowsUI: HBoxContainer = $Control/Panel/HBoxContainer
-	# arrowsUI.get_children().clear()
-	# for direction in taskSequence:
-	# 	var arrow = get_node("Control/Panel/" + direction + "Arrow").duplicate()
-	# 	arrow.get_node("Label").text = direction
-	# 	arrowsUI.add_child(arrow)
+	var arrowsUI: HBoxContainer = $Control/Panel/HBoxContainer
+	arrowsUI.get_children()
+	for child in arrowsUI.get_children():
+		child.queue_free()
+	for direction in taskSequence:
+		var arrow = get_node("Control/Panel/" + direction + "Arrow").duplicate() 
+		arrow.visible = true
+		arrowsUI.add_child(arrow)
 
 	return taskSequence
 
