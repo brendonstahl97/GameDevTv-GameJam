@@ -8,11 +8,15 @@ signal stamina_changed(value: float)
 signal stamina_
 
 var canRegenStamina = true;
-var CurrentStamina = 100:
+var CurrentStamina: float:
 	set(value):
 		CurrentStamina = clampf(value, 0, MaxStamina)
 		stamina_changed.emit(CurrentStamina)
-		
+
+func _ready() -> void:
+	CurrentStamina = MaxStamina
+	stamina_changed.emit(CurrentStamina)
+	
 func _process(delta: float) -> void:
 	_handle_stamina_regen(delta)
 		
