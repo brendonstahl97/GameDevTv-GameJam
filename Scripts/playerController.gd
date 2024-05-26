@@ -1,33 +1,37 @@
 extends RigidBody3D
 
 const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
+const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.tscn")
 
 @onready var SprintEmitter1: CPUParticles3D = $"Particle Emitters/CPUParticles3D"
 @onready var SprintEmitter2: CPUParticles3D = $"Particle Emitters/CPUParticles3D2"
 @onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
 
-@export_category("Movement")
-@export var MoveSpeed = 30
-@export var VelocityPower = 1.0
-@export var StandardAccelerationMultiplier = 1.0
-@export var DeccelerationMultiplier = 1.0
 @export var Controls: PlayerControls
+@export var StandClass: Stand
+
+@export_category("Movement")
+@export var MoveSpeed = 10.0 ## Max walking speed
+@export var VelocityPower = 1.1 ## Affects the intensity that the velocity is changed
+@export var StandardAccelerationMultiplier = 1.0 ## Used to change the intensity of acceleration 
+@export var DeccelerationMultiplier = 0.5 ## Used to change the intensity of deceleration
+@export var DeccelerationThreshold = 150 ## The angle difference between your current velocity and your input direction necessary to be considered deceleration. ( Ex: 180 is completely backwards )
 
 @export_category("Sprint")
-@export var MaxSprintModifier = 3
-@export var SprintIncrementAmount = 0.1 # Per Second
+@export var MaxSprintModifier = 2.5 ## Affects your maximum speed ( Max speed = MoveSpeed x This Value )
+@export var SprintIncrementAmount = 1 ## Affects how quickly you achieve your max sprint speed once you start sprinting
 
 @export_category("Bump")
-@export var BumpMomentumThreshold = 10 # Momentum
-@export var BumpDirectionThreshold = 30 # Degrees
-@export var BumpMultiplier = 1
+@export var BumpMomentumThreshold = 5.0 ## The momentum (Mass x Velocity) threshold for a bump to be triggered when you hit another player
+@export var BumpDirectionThreshold = 30 ## An angle threshold that determines how accurate a player must be for a bump to trigger ( higher is less accurate )
+@export var BumpMultiplier = 3.0 ## Used to multiplicatively adjust the amount of additional force applied to an opponent when a bump is triggered
 
 @export_category("Stamina")
-@export var MaxStamina = 100.0
-@export var SprintStaminaDrain = 15.0 # Per Second
-@export var CodeSubmissionStaminaCost = 5.0 # Each Button Press
-@export var BumpStaminaGainMultiplier = 1.0
-@export var PassiveStamingaRegen = 20.0 # Per Second
+@export var MaxStamina = 100.0 
+@export var SprintStaminaDrain = 15.0 ## Stamina lost per second while sprinting
+@export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
+@export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
+@export var PassiveStamingaRegen = 20.0 ## The amount of stamina that is passively regenerated every second
 
 signal CodeSubmitted
 
@@ -39,6 +43,7 @@ var CurrentStamina = 100.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_tree.active = true
+	mass = StandClass.Mass
 
 func _process(_delta: float) -> void:
 	update_animation_parameters()
@@ -150,6 +155,7 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 		
 	var momentum = linear_velocity.length() * mass
+	print(momentum)
 	
 	if (momentum < BumpMomentumThreshold):
 		return
@@ -167,6 +173,6 @@ func _on_body_entered(body: Node3D) -> void:
 	
 	CurrentStamina += momentum * BumpStaminaGainMultiplier
 	
-	var foodExplosion = FOOD_EXPLOSION.instantiate()
+	var foodExplosion = SECRET_CABBAGE_EXPLOSION.instantiate() if (randi_range(0, 10) == 0) else FOOD_EXPLOSION.instantiate()
 	foodExplosion.position = body.global_position
 	get_window().add_child(foodExplosion)
