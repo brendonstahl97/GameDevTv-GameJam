@@ -4,9 +4,13 @@
 
 [resource]
 script = ExtResource("1_r7j8u")
-PlayerIndex = 0
-move_left = "p1_move_left"
-move_right = "p1_move_right"
-move_up = "p1_move_up"
-move_down = "p1_move_down"
-sprint = "p1_sprint"
+PlayerIndex = 3
+move_left = "p4_move_left"
+move_right = "p4_move_right"
+move_up = "p4_move_up"
+move_down = "p4_move_down"
+sprint = "p4_sprint"
+code_down = "p4_code_down"
+code_left = "p4_code_left"
+code_right = "p4_code_right"
+code_up = "p4_code_up"
