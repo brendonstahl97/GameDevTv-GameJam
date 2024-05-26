@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cobhpwyn12msn"]
 
-[ext_resource type="Script" path="res://Scenes/matchUI.gd" id="1_jdfbc"]
+[ext_resource type="Script" path="res://Scripts/matchUI.gd" id="1_jdfbc"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_vbnnw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7ktf"]

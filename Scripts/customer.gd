@@ -54,6 +54,17 @@ func generateSequence() -> Array:
 				taskSequence.append("DOWN")
 			3:
 				taskSequence.append("LEFT")
+
+	# Update the UI with the new task sequence
+	var arrowsUI: HBoxContainer = $Control/Panel/HBoxContainer
+	arrowsUI.get_children()
+	for child in arrowsUI.get_children():
+		child.queue_free()
+	for direction in taskSequence:
+		var arrow = get_node("Control/Panel/" + direction + "Arrow").duplicate() 
+		arrow.visible = true
+		arrowsUI.add_child(arrow)
+
 	return taskSequence
 
 # Called when the node enters the scene tree for the first time.
