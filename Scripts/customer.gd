@@ -117,9 +117,9 @@ func _on_body_exited(body:Node3D) -> void:
 	# Find all the players in the area, if there are multiple, grab the closest
 	var players = get_overlapping_bodies()
 	# Remove all bodies from players which is not in the Players group with a for loop
-	for player in players:
-		if (!player.is_in_group("Players")):
-			players.erase(player)
+	for i in range(players.size() - 1, -1, -1):
+		if (!players[i].is_in_group("Players")):
+			players.remove_at(i)
 	
 	if players.size() > 0:
 		var closestPlayer = players[0]
