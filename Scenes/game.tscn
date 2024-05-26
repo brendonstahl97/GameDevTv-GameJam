@@ -1,16 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=11 format=3 uid="uid://rsctaha45ywq"]
 
+[ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
 [ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 [ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/Player_2_Controls.tres" id="4_c2eto"]
-[ext_resource type="Script" path="res://Scripts/customer.gd" id="5_seixg"]
 [ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/Player_3_Controls.tres" id="5_w1niv"]
-[ext_resource type="PackedScene" uid="uid://bpw0fu1a1nyp2" path="res://Assets/Characters/Casual2_Female.gltf" id="6_8ljb7"]
-[ext_resource type="Texture2D" uid="uid://btjrunenwslsb" path="res://Resources/UP.png" id="7_6x44k"]
-[ext_resource type="Texture2D" uid="uid://igvxowctjm3l" path="res://Resources/LEFT.png" id="8_pep66"]
-[ext_resource type="Texture2D" uid="uid://chjl4c5q4mk2w" path="res://Resources/RIGHT.png" id="9_ne5ph"]
-[ext_resource type="Texture2D" uid="uid://dw8su3127rnbl" path="res://Resources/DOWN.png" id="10_131dy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,11 +22,8 @@ glow_enabled = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j62al"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_p3twv"]
-height = 3.45676
-radius = 3.75984
-
 [node name="Game" type="Node3D"]
+script = ExtResource("1_f5sun")
 
 [node name="MatchUi" parent="." instance=ExtResource("1_rrj8p")]
 
@@ -83,89 +75,4 @@ Controls = ExtResource("4_c2eto")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67468, 2.70746, -0.026551)
 Controls = ExtResource("5_w1niv")
 
-[node name="Customer" type="Area3D" parent="."]
-transform = Transform3D(0.285, 0, 0, 0, 0.285, 0, 0, 0, 0.285, 8.51715, 0.982682, 9.19469)
-script = ExtResource("5_seixg")
-
-[node name="Casual2_Female" parent="Customer" instance=ExtResource("6_8ljb7")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Customer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44068, 0.261704)
-shape = SubResource("CylinderShape3D_p3twv")
-
-[node name="Control" type="Control" parent="Customer"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -186.0
-offset_top = -69.0
-offset_right = -7.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="Customer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Customer/Control/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="UPArrow" type="TextureRect" parent="Customer/Control/Panel"]
-visible = false
-layout_mode = 2
-offset_right = 179.0
-offset_bottom = 65.0
-size_flags_horizontal = 3
-texture = ExtResource("7_6x44k")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="LEFTArrow" type="TextureRect" parent="Customer/Control/Panel"]
-visible = false
-layout_mode = 2
-offset_left = 45.0
-offset_right = 87.0
-offset_bottom = 65.0
-size_flags_horizontal = 3
-texture = ExtResource("8_pep66")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="RIGHTArrow" type="TextureRect" parent="Customer/Control/Panel"]
-visible = false
-layout_mode = 2
-offset_left = 91.0
-offset_right = 133.0
-offset_bottom = 65.0
-size_flags_horizontal = 3
-texture = ExtResource("9_ne5ph")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="DOWNArrow" type="TextureRect" parent="Customer/Control/Panel"]
-visible = false
-layout_mode = 2
-offset_left = 137.0
-offset_right = 179.0
-offset_bottom = 65.0
-size_flags_horizontal = 3
-texture = ExtResource("10_131dy")
-expand_mode = 1
-stretch_mode = 5
-
-[connection signal="body_entered" from="Customer" to="Customer" method="_on_body_entered"]
-[connection signal="body_exited" from="Customer" to="Customer" method="_on_body_exited"]
+[node name="Customers" type="Node" parent="."]
