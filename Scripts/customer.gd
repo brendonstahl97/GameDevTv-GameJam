@@ -67,6 +67,13 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body:Node3D) -> void:
+	if (completed):
+		return
+		
+	# If this is a descendant of Players
+	if (!body.is_in_group("Players")):
+		return
+
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
 		currentPlayer = body
@@ -76,10 +83,18 @@ func _on_body_entered(body:Node3D) -> void:
 
 
 func _on_body_exited(body:Node3D) -> void:
+	if (completed):
+		return
+
 	currentPlayer = null
 
 	# Find all the players in the area, if there are multiple, grab the closest
 	var players = get_overlapping_bodies()
+	# Remove all bodies from players which is not in the Players group with a for loop
+	for player in players:
+		if (!player.is_in_group("Players")):
+			players.erase(player)
+	
 	if players.size() > 0:
 		var closestPlayer = players[0]
 		for player in players:
