@@ -154,6 +154,9 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 			var foodExplosion = FOOD_EXPLOSION.instantiate()
 			foodExplosion.position = global_position
 			get_window().add_child(foodExplosion)
+
+			# Remove the customer from the game
+			queue_free()
 	else:
 		print("Incorrect")
 		# Reset the player sequence
