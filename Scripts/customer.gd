@@ -73,6 +73,9 @@ func _ready() -> void:
 	correctTaskSequence = generateSequence()
 	print(correctTaskSequence)
 
+	var tmpPlayer = get_node("/root/Game/Players/" + str(0))
+	tmpPlayer.CodeSubmitted.connect(_on_player_code_submitted)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var screen_pos = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
@@ -148,7 +151,6 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 		# Reset the correct sequence
 		correctTaskSequence = generateSequence()
 		print(correctTaskSequence)
-
 
 func _on_player_code_submitted(input: String, playerIndex: int) -> void:
 	if (completed):
