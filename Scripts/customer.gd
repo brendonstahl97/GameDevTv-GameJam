@@ -64,7 +64,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var screen_pos = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
+	var control = $Control
+
+	# Place the control at screen_pos, but have it be offset by the size of the control
+	control.position = screen_pos - control.size / 2
+
+	# Move it up by the size of the control, plus a little bit
+	control.position.y -= control.size.y + 15
+
 
 func _on_body_entered(body:Node3D) -> void:
 	if (completed):

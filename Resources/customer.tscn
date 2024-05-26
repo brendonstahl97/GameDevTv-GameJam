@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3p36wdnkg6n7"]
+[gd_scene load_steps=4 format=3 uid="uid://nu6ykfm6bvyx"]
 
 [ext_resource type="Script" path="res://Scripts/customer.gd" id="1_u7xes"]
 [ext_resource type="PackedScene" uid="uid://bpw0fu1a1nyp2" path="res://Assets/Characters/Casual2_Female.gltf" id="2_qbf4p"]
@@ -16,6 +16,27 @@ script = ExtResource("1_u7xes")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44068, 0.261704)
 shape = SubResource("CylinderShape3D_p3twv")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = -36.0
+offset_right = -7.5
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
