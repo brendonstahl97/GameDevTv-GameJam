@@ -1,9 +1,148 @@
-[gd_scene format=3 uid="uid://dbndwwj3oi2c8"]
+[gd_scene load_steps=10 format=3 uid="uid://dbndwwj3oi2c8"]
 
-[node name="Start" type="Control"]
+[ext_resource type="Texture2D" uid="uid://cl7ete8ccffph" path="res://Assets/Last Stand Standing.png" id="1_hmthl"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_sbync"]
+[ext_resource type="Script" path="res://Scripts/titleScreen.gd" id="1_v46k4"]
+
+[sub_resource type="Theme" id="Theme_bt6ow"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1h8vx"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.682353)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01guc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ee56"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_fhub5"]
+default_font = ExtResource("1_sbync")
+default_font_size = 45
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tam5"]
+bg_color = Color(0.103744, 0.103744, 0.103743, 0.776471)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 0.0980392, 0.603922)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.372549)
+anti_aliasing_size = 0.01
+
+[node name="TitleScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_v46k4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+anchor_left = 0.215278
+anchor_right = 0.784722
+anchor_bottom = 1.01235
+texture = ExtResource("1_hmthl")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -200.0
+offset_right = 192.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_bt6ow")
+theme_override_fonts/font = ExtResource("1_sbync")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_1h8vx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_01guc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1ee56")
+text = "Play!"
+
+[node name="QuitButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 192.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_bt6ow")
+theme_override_fonts/font = ExtResource("1_sbync")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_1h8vx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_01guc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1ee56")
+text = "Quit :("
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 64.0
+offset_right = 211.0
+offset_bottom = 216.0
+grow_horizontal = 2
+theme = SubResource("Theme_fhub5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1tam5")
+bbcode_enabled = true
+text = "[center]Last Stand Standing [/center]"
+
+[connection signal="button_up" from="Panel/PlayButton" to="." method="onPlayPressed"]
+[connection signal="pressed" from="Panel/QuitButton" to="." method="onQuitPressed"]
