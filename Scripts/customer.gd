@@ -30,13 +30,7 @@ var customerTierDataList = {
 	}
 }
 
-# The correct sequence that the player needs to input, generated when the customer is spawned
-var correctTaskSequence : Array = []
-
 var currentPlayer : Node3D = null
-var currentPlayerSequence : Array = [] 
-
-var completed = false
 
 
 # STRUCTURE -------------------------------------------------------------------------------------------
@@ -47,20 +41,21 @@ func generateSequence() -> Array:
 		var randomDirection = randi() % 4
 		match randomDirection:
 			0:
-				taskSequence.append("UP")
+				taskSequence.append("up")
 			1:
-				taskSequence.append("RIGHT")
+				taskSequence.append("right")
 			2:
-				taskSequence.append("DOWN")
+				taskSequence.append("down")
 			3:
-				taskSequence.append("LEFT")
+				taskSequence.append("left")
 	return taskSequence
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Generate the task sequence for the customer
-	correctTaskSequence = generateSequence()
-	print(correctTaskSequence)
+	var taskSequence = generateSequence()
+	print(taskSequence)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -93,42 +88,12 @@ func _on_body_exited(body:Node3D) -> void:
 # Connect to the player controller 
 func playerDirectionalInput(player: Node3D, direction: String) -> void:
 	print(player.name +  ", Input: " + direction)
-	
-	# Is this the correct direction for the next element in the sequence?
-	# Grab the length of the current player sequence, check the length + 1 element in the correct sequence
-	var nextCorrectDirection : String = correctTaskSequence[currentPlayerSequence.size()]
-	if (direction == nextCorrectDirection):
-		currentPlayerSequence.append(direction)
-		print("Correct")
-		# If the player has completed the sequence, give them the reward
-		if (currentPlayerSequence.size() == correctTaskSequence.size()):
-			completed = true
-			print("Player completed the sequence")
-			# Give the player the reward
-			var reward = customerTierDataList[customerTier]["reward"]
-			print("Player rewarded: " + str(reward))
+	if (currentPlayer == player):
+		print("Player is in the area")
+		# Check if the input is correct
+		# If the input is correct, remove the first element from the task sequence
+		# If the input is incorrect, reset the task sequence
+		# If the task sequence is empty, give the player the reward and remove the customer from the map
+		
 	else:
-		print("Incorrect")
-		# Reset the player sequence
-		currentPlayerSequence = []
-		# Reset the correct sequence
-		correctTaskSequence = generateSequence()
-		print(correctTaskSequence)
-
-
-func _on_player_code_submitted(input: String, playerIndex: int) -> void:
-	if (completed):
-		return
-
-	# Find player of name playerIndex
-	var player : Node3D = get_node("/root/Game/" + str(playerIndex))
-	if (player == null):
-		print("No player found with index: " + str(playerIndex))
-		return
-
-	# Is the current player equal to the player that submitted the code
-	if (currentPlayer != player):
-		#print("Player does not have the customer in their area")
-		return
-
-	playerDirectionalInput(player, input)
+		print("Player is not in the area")
