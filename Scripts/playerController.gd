@@ -40,20 +40,21 @@ func _process(_delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	MovementDirection = Vector3(Input.get_axis(Controls.move_left, Controls.move_right), 0, Input.get_axis(Controls.move_up, Controls.move_down)).normalized()
+	var currentVelocity = Vector3(linear_velocity.x, 0, linear_velocity.z)
 	
 	_handle_sprint(delta)
-	_handle_movement()
-	_handle_rotation()
+	_handle_movement(currentVelocity)
+	_handle_rotation(currentVelocity)
 
 
-func _handle_movement() -> void:
+func _handle_movement(currentVelocity: Vector3) -> void:
 	var targetVelocity = MovementDirection * MoveSpeed * SprintModifier
-	
-	var velocityDifference = targetVelocity - linear_velocity
+
+	var velocityDifference = targetVelocity - currentVelocity
 	
 	var accelerationMultiplier = float(0)
 	
-	if (linear_velocity.length() > 0 && rad_to_deg(targetVelocity.angle_to(linear_velocity)) >= 150):
+	if (currentVelocity.length() > 0 && rad_to_deg(targetVelocity.angle_to(currentVelocity)) >= 150):
 		accelerationMultiplier = DeccelerationMultiplier
 	else:
 		accelerationMultiplier = StandardAccelerationMultiplier
@@ -65,9 +66,9 @@ func _handle_movement() -> void:
 	apply_central_force(movementFinal)
 	
 	
-func _handle_rotation() -> void:
-	if (linear_velocity.length() > 0.3 && MovementDirection.length() >= 0.3):
-		look_at_from_position(global_position, global_position + linear_velocity.normalized())
+func _handle_rotation(currentVelocity: Vector3) -> void:
+	if (currentVelocity.length() > 0.3 && MovementDirection.length() >= 0.3):
+		look_at_from_position(global_position, global_position + currentVelocity.normalized())
 		
 func _handle_sprint(delta: float) -> void: 
 	if (Input.is_action_just_pressed(Controls.sprint)):
@@ -105,8 +106,11 @@ func update_animation_parameters():
 	animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
 
 
-func _on_body_entered(body: RigidBody3D) -> void:
+func _on_body_entered(body: Node3D) -> void:
 	if (body.get_groups().any(func(group): group != "Players")):
+		return
+		
+	if (!body is RigidBody3D):
 		return
 		
 	var momentum = linear_velocity.length() * mass
@@ -115,7 +119,8 @@ func _on_body_entered(body: RigidBody3D) -> void:
 		return
 		
 	var directionToBody = body.global_position - position
-	var bumpTrueness = rad_to_deg(directionToBody.angle_to(linear_velocity))
+	var directionToBodyNoY = Vector3(directionToBody.x, 0, directionToBody.z)
+	var bumpTrueness = rad_to_deg(directionToBodyNoY.angle_to(Vector3(linear_velocity.x, 0, linear_velocity.z)))
 		
 	if (bumpTrueness > BumpDirectionThreshold):
 		return
