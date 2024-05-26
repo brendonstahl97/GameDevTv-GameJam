@@ -10,6 +10,9 @@ const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.
 @export var Controls: PlayerControls
 @export var StandClass: Stand
 
+@export var StaminaManager: StaminaManager
+@export var ParticleEmitterManager: ParticleEmitterManager
+
 @export_category("Movement")
 @export var MoveSpeed = 10.0 ## Max walking speed
 @export var VelocityPower = 1.1 ## Affects the intensity that the velocity is changed
@@ -27,18 +30,14 @@ const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.
 @export var BumpMultiplier = 3.0 ## Used to multiplicatively adjust the amount of additional force applied to an opponent when a bump is triggered
 
 @export_category("Stamina")
-@export var MaxStamina = 100.0 
 @export var SprintStaminaDrain = 15.0 ## Stamina lost per second while sprinting
 @export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
 @export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
-@export var PassiveStamingaRegen = 20.0 ## The amount of stamina that is passively regenerated every second
-@export var CurrentStamina = 100 ## Defaut starting stamina
 
 signal CodeSubmitted
 
 var MovementDirection = Vector3.ZERO
-var SprintModifier = float(1)
-var IsSprinting = false
+var SprintModifier = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,7 +56,6 @@ func _physics_process(delta: float) -> void:
 	_handle_sprint(delta)
 	_handle_movement(currentVelocity)
 	_handle_rotation(currentVelocity)
-	_handle_stamina_regen(delta)
 
 	### Stamina Bar Code ###
 	#var screen_pos = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
@@ -91,20 +89,20 @@ func _handle_rotation(currentVelocity: Vector3) -> void:
 		look_at_from_position(global_position, global_position + currentVelocity.normalized())
 		
 func _handle_sprint(delta: float) -> void: 
-	if (CurrentStamina <= 0):
+	if (StaminaManager.CurrentStamina <= 0):
 		# Flash Stamina Bar red
 		return 
 	
 	if (Input.is_action_just_pressed(Controls.sprint)):
-		if (CurrentStamina > 0):
-			_start_sprint_particles()
-			IsSprinting = true
+		if (StaminaManager.CurrentStamina > 0):
+			ParticleEmitterManager.start_sprint_particles()
+			StaminaManager.canRegenStamina = false
 		
 	elif (Input.is_action_pressed(Controls.sprint)):
-		if (CurrentStamina > 1):
-			CurrentStamina -= SprintStaminaDrain * delta
+		if (StaminaManager.CurrentStamina > 1):
+			StaminaManager.drainStamina(SprintStaminaDrain * delta)
 		else:
-			_end_sprint_particles()
+			ParticleEmitterManager.end_sprint_particles()
 			SprintModifier = 1
 		
 		if (SprintModifier < MaxSprintModifier):
@@ -112,13 +110,13 @@ func _handle_sprint(delta: float) -> void:
 		
 		
 	elif (Input.is_action_just_released(Controls.sprint)):
-		IsSprinting = false
+		StaminaManager.canRegenStamina = true
 		SprintModifier = 1
-		_end_sprint_particles()
+		ParticleEmitterManager.end_sprint_particles()
 		
 		
 func _handle_code_input() -> void:
-	if (CurrentStamina < CodeSubmissionStaminaCost):
+	if (StaminaManager.CurrentStamina < CodeSubmissionStaminaCost):
 		# Flash Stamina bar red
 		return
 	
@@ -133,23 +131,7 @@ func _handle_code_input() -> void:
 		
 func _submit_code(codeDirection: String) -> void:
 	CodeSubmitted.emit(codeDirection, Controls.PlayerIndex)
-	CurrentStamina -= CodeSubmissionStaminaCost
-		
-func _handle_stamina_regen(delta) -> void:
-	if (CurrentStamina < MaxStamina && !IsSprinting):
-		CurrentStamina += PassiveStamingaRegen * delta
-	
-	CurrentStamina = clampf(CurrentStamina , 0, MaxStamina)
-	
-func _start_sprint_particles() -> void:
-	SprintEmitter1.restart()
-	SprintEmitter1.emitting = true
-	SprintEmitter2.restart()
-	SprintEmitter2.emitting = true
-	
-func _end_sprint_particles() -> void:
-	SprintEmitter1.emitting = false
-	SprintEmitter2.emitting = false
+	StaminaManager.drainStamina(CodeSubmissionStaminaCost)
 
 func update_animation_parameters():
 	animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
@@ -178,7 +160,7 @@ func _on_body_entered(body: Node3D) -> void:
 	body.apply_torque_impulse(Vector3.UP * momentum * BumpMultiplier * randf_range(-1, 1))
 	linear_velocity = Vector3.ZERO
 	
-	CurrentStamina += momentum * BumpStaminaGainMultiplier
+	StaminaManager.restoreStamina(momentum * BumpStaminaGainMultiplier)
 	
 	var foodExplosion = SECRET_CABBAGE_EXPLOSION.instantiate() if (randi_range(0, 10) == 0) else FOOD_EXPLOSION.instantiate()
 	foodExplosion.position = body.global_position
