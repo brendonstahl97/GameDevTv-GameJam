@@ -10,7 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$P1_Panel/ScoreLabel.text = ("[center]$ " + str(p1Score) + "[/center]")
 	$P2_Panel/ScoreLabel.text = ("[center]$ " + str(p2Score) + "[/center]")
 	$P3_Panel/ScoreLabel.text = ("[center]$ " + str(p3Score) + "[/center]")

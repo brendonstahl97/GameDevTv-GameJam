@@ -105,7 +105,7 @@ func update_animation_parameters():
 	animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
 
 
-func _on_body_entered(body: RigidBody3D) -> void:
+func _on_body_entered(body: Node3D) -> void:
 	if (body.get_groups().any(func(group): group != "Players")):
 		return
 		
