@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=10 format=3 uid="uid://rsctaha45ywq"]
 
-[ext_resource type="PackedScene" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
+[ext_resource type="PackedScene" uid="uid://x3acathmfieg" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
 [ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/Player_1_Controls.tres" id="3_fammg"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
+[ext_resource type="PackedScene" uid="uid://nu6ykfm6bvyx" path="res://Resources/customer.tscn" id="5_7vqwc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -57,3 +58,10 @@ Controls = ExtResource("3_fammg")
 
 [node name="1" parent="Players" instance=ExtResource("3_xipmc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.49476, 3.16168, 8.58822)
+
+[node name="Customer" parent="." instance=ExtResource("5_7vqwc")]
+
+[node name="Control" parent="Customer" index="2"]
+anchors_preset = 8
+
+[editable path="Customer"]

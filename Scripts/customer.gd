@@ -30,7 +30,13 @@ var customerTierDataList = {
 	}
 }
 
+# The correct sequence that the player needs to input, generated when the customer is spawned
+var correctTaskSequence : Array = []
+
 var currentPlayer : Node3D = null
+var currentPlayerSequence : Array = [] 
+
+var completed = false
 
 
 # STRUCTURE -------------------------------------------------------------------------------------------
@@ -41,27 +47,41 @@ func generateSequence() -> Array:
 		var randomDirection = randi() % 4
 		match randomDirection:
 			0:
-				taskSequence.append("up")
+				taskSequence.append("UP")
 			1:
-				taskSequence.append("right")
+				taskSequence.append("RIGHT")
 			2:
-				taskSequence.append("down")
+				taskSequence.append("DOWN")
 			3:
-				taskSequence.append("left")
+				taskSequence.append("LEFT")
 	return taskSequence
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Generate the task sequence for the customer
-	var taskSequence = generateSequence()
-	print(taskSequence)
-
+	correctTaskSequence = generateSequence()
+	print(correctTaskSequence)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var screen_pos = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
+	var control = $Control
+
+	# Place the control at screen_pos, but have it be offset by the size of the control
+	control.position = screen_pos - control.size / 2
+
+	# Move it up by the size of the control, plus a little bit
+	control.position.y -= control.size.y + 15
+
 
 func _on_body_entered(body:Node3D) -> void:
+	if (completed):
+		return
+		
+	# If this is a descendant of Players
+	if (!body.is_in_group("Players")):
+		return
+
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
 		currentPlayer = body
@@ -71,10 +91,18 @@ func _on_body_entered(body:Node3D) -> void:
 
 
 func _on_body_exited(body:Node3D) -> void:
+	if (completed):
+		return
+
 	currentPlayer = null
 
 	# Find all the players in the area, if there are multiple, grab the closest
 	var players = get_overlapping_bodies()
+	# Remove all bodies from players which is not in the Players group with a for loop
+	for player in players:
+		if (!player.is_in_group("Players")):
+			players.erase(player)
+	
 	if players.size() > 0:
 		var closestPlayer = players[0]
 		for player in players:
@@ -88,12 +116,42 @@ func _on_body_exited(body:Node3D) -> void:
 # Connect to the player controller 
 func playerDirectionalInput(player: Node3D, direction: String) -> void:
 	print(player.name +  ", Input: " + direction)
-	if (currentPlayer == player):
-		print("Player is in the area")
-		# Check if the input is correct
-		# If the input is correct, remove the first element from the task sequence
-		# If the input is incorrect, reset the task sequence
-		# If the task sequence is empty, give the player the reward and remove the customer from the map
-		
+	
+	# Is this the correct direction for the next element in the sequence?
+	# Grab the length of the current player sequence, check the length + 1 element in the correct sequence
+	var nextCorrectDirection : String = correctTaskSequence[currentPlayerSequence.size()]
+	if (direction == nextCorrectDirection):
+		currentPlayerSequence.append(direction)
+		print("Correct")
+		# If the player has completed the sequence, give them the reward
+		if (currentPlayerSequence.size() == correctTaskSequence.size()):
+			completed = true
+			print("Player completed the sequence")
+			# Give the player the reward
+			var reward = customerTierDataList[customerTier]["reward"]
+			print("Player rewarded: " + str(reward))
 	else:
-		print("Player is not in the area")
+		print("Incorrect")
+		# Reset the player sequence
+		currentPlayerSequence = []
+		# Reset the correct sequence
+		correctTaskSequence = generateSequence()
+		print(correctTaskSequence)
+
+
+func _on_player_code_submitted(input: String, playerIndex: int) -> void:
+	if (completed):
+		return
+
+	# Find player of name playerIndex
+	var player : Node3D = get_node("/root/Game/Players/" + str(playerIndex))
+	if (player == null):
+		print("No player found with index: " + str(playerIndex))
+		return
+
+	# Is the current player equal to the player that submitted the code
+	if (currentPlayer != player):
+		#print("Player does not have the customer in their area")
+		return
+
+	playerDirectionalInput(player, input)
