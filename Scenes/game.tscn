@@ -1,11 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=15 format=3 uid="uid://rsctaha45ywq"]
 
 [ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
-[ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/Player_2_Controls.tres" id="4_c2eto"]
 [ext_resource type="Script" path="res://Scripts/customer.gd" id="5_seixg"]
-[ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/Player_3_Controls.tres" id="5_w1niv"]
 [ext_resource type="PackedScene" uid="uid://bpw0fu1a1nyp2" path="res://Assets/Characters/Casual2_Female.gltf" id="6_8ljb7"]
 [ext_resource type="Texture2D" uid="uid://btjrunenwslsb" path="res://Resources/UP.png" id="7_6x44k"]
 [ext_resource type="Texture2D" uid="uid://igvxowctjm3l" path="res://Resources/LEFT.png" id="8_pep66"]
@@ -62,14 +60,8 @@ shadow_blur = 0.0
 
 [node name="Players" type="Node" parent="."]
 
-[node name="0" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27466, 3.16168, 8.58822)
-
-[node name="1" parent="Players" instance=ExtResource("3_xipmc")]
-Controls = ExtResource("4_c2eto")
-
-[node name="2" parent="Players" instance=ExtResource("3_xipmc")]
-Controls = ExtResource("5_w1niv")
+[node name="Player" parent="Players" instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138367, 4.9913, 8.97345)
 
 [node name="Customer" type="Area3D" parent="."]
 transform = Transform3D(0.285, 0, 0, 0, 0.285, 0, 0, 0, 0.285, 8.51715, 0.982682, 9.19469)
