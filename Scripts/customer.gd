@@ -151,6 +151,7 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 
 
 func _on_player_code_submitted(input: String, playerIndex: int) -> void:
+	print("Code: ", input, "Player: ", playerIndex + 1)
 	if (completed):
 		return
 
