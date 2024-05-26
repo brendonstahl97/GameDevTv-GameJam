@@ -157,6 +157,5 @@ texture = ExtResource("10_131dy")
 expand_mode = 1
 stretch_mode = 5
 
-[connection signal="CodeSubmitted" from="Players/0" to="Customer" method="_on_player_code_submitted"]
 [connection signal="body_entered" from="Customer" to="Customer" method="_on_body_entered"]
 [connection signal="body_exited" from="Customer" to="Customer" method="_on_body_exited"]

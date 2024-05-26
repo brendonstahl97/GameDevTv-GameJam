@@ -73,8 +73,8 @@ func _ready() -> void:
 	correctTaskSequence = generateSequence()
 	print(correctTaskSequence)
 
-	var tmpPlayer = get_node("/root/Game/Players/" + str(0))
-	tmpPlayer.CodeSubmitted.connect(_on_player_code_submitted)
+	for player in get_node("/root/Game/Players").get_children():
+		player.CodeSubmitted.connect(_on_player_code_submitted)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
