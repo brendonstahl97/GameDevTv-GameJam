@@ -121,7 +121,7 @@ func _on_player_code_submitted(input: String, playerIndex: int) -> void:
 		return
 
 	# Find player of name playerIndex
-	var player : Node3D = get_node("/root/Game/" + str(playerIndex))
+	var player : Node3D = get_node("/root/Game/Players/" + str(playerIndex))
 	if (player == null):
 		print("No player found with index: " + str(playerIndex))
 		return
