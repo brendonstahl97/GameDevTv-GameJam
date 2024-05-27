@@ -136,7 +136,6 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 		
 	var momentum = linear_velocity.length() * mass
-	print(momentum)
 	
 	if (momentum < BumpMomentumThreshold):
 		return
