@@ -8,6 +8,15 @@ var p4Score = 0
 func _ready():
 	pass # Replace with function body.
 
+func updatePlayerMoney(player : String, newAmount : int):
+	if player == "0":
+		p1Score = newAmount
+	elif player == "1":
+		p2Score = newAmount
+	elif player == "2":
+		p3Score = newAmount
+	elif player == "3":
+		p4Score = newAmount
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

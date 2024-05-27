@@ -21,6 +21,26 @@ func _ready() -> void:
 	
 	spawnCustomer()
 
+# A customer's task was completed, reward the player who did it.
+func _on_customer_completed(reward: int, playerIndex: String) -> void:
+	var player : Node3D = get_node("/root/Game/Players/" + playerIndex)
+	if (player != null):
+		var money = player.get_meta("Money")
+		if (money == null):
+			money = 0
+		money += reward
+		player.set_meta("Money", money)
+		print("Player rewarded: " + str(reward))
+		print("Player money: " + str(money))
+		
+		var matchUI = get_node("/root/Game/MatchUi")
+		if (matchUI != null):
+			matchUI.call("updatePlayerMoney", playerIndex, money)
+
+		# player.call_deferred("addMoney", reward)
+		# customersNode.remove_child(customer)
+		# customer.queue_free()
+
 func spawnCustomer() -> void:
 	# Create a new customer
 	var customer = preload("res://Resources/Customer.tscn").instantiate()
@@ -32,6 +52,9 @@ func spawnCustomer() -> void:
 		randf_range(spawnAreaTopLeftPoint.y, spawnAreaBottomRightPoint.y),
 		randf_range(spawnAreaTopLeftPoint.z, spawnAreaBottomRightPoint.z)
 	)
+
+	# Connect to customer completed event
+	customer.CustomerCompleted.connect(_on_customer_completed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

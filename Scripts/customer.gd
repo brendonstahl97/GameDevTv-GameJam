@@ -13,7 +13,6 @@ extends Area3D
 @export var ParticleEmitterManager: ParticleEmitterManager
 const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
 
-
 # Nested dictionary of each enum tier, inside each tier is task length, and reward
 var customerTierDataList = {
 	"Serf": {
@@ -41,6 +40,8 @@ var currentPlayer : Node3D = null
 var currentPlayerSequence : Array = [] 
 
 var completed = false
+
+signal CustomerCompleted
 
 
 # STRUCTURE -------------------------------------------------------------------------------------------
@@ -149,7 +150,10 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 			
 			# Give the player the reward
 			var reward = customerTierDataList[customerTier]["reward"]
-			print("Player rewarded: " + str(reward))
+
+			# Emit the signal to the game controller
+			# Tells the game controller to reward this player this amount.
+			CustomerCompleted.emit(reward, player.name)
 			
 			var foodExplosion = FOOD_EXPLOSION.instantiate()
 			foodExplosion.position = global_position
