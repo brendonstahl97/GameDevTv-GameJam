@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 # Info to establish in this scene:
 # For each Player:
 #	No. of Players
