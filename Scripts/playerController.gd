@@ -83,13 +83,14 @@ func _handle_rotation(currentVelocity: Vector3) -> void:
 		
 func _handle_sprint(delta: float) -> void: 
 	if (StaminaManagerInstance.CurrentStamina <= 0):
-		StaminaConsumptionFailed.emit()
 		return 
 	
 	if (Input.is_action_just_pressed(Controls.sprint)):
 		if (StaminaManagerInstance.CurrentStamina > 0):
 			ParticleManager.start_sprint_particles()
 			StaminaManagerInstance.canRegenStamina = false
+		else:
+			StaminaConsumptionFailed.emit()
 		
 	elif (Input.is_action_pressed(Controls.sprint)):
 		if (StaminaManagerInstance.CurrentStamina > 1):
@@ -97,6 +98,7 @@ func _handle_sprint(delta: float) -> void:
 		else:
 			ParticleManager.end_sprint_particles()
 			SprintModifier = 1
+			StaminaConsumptionFailed.emit()
 		
 		if (SprintModifier < MaxSprintModifier):
 			SprintModifier += SprintIncrementAmount * delta
@@ -109,10 +111,6 @@ func _handle_sprint(delta: float) -> void:
 		
 		
 func _handle_code_input() -> void:
-	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
-		StaminaConsumptionFailed.emit()
-		return
-	
 	if (Input.is_action_just_pressed(Controls.code_up)):
 		_submit_code("UP")
 	elif (Input.is_action_just_pressed(Controls.code_left)):
@@ -123,6 +121,9 @@ func _handle_code_input() -> void:
 		_submit_code("DOWN")
 		
 func _submit_code(codeDirection: String) -> void:
+	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
+		StaminaConsumptionFailed.emit()
+		return
 	CodeSubmitted.emit(codeDirection, Controls.PlayerIndex)
 	StaminaManagerInstance.drainStamina(CodeSubmissionStaminaCost)
 
