@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://twf3vt8h6akg"]
+[gd_scene load_steps=10 format=3 uid="uid://twf3vt8h6akg"]
 
 [ext_resource type="Script" path="res://Scripts/customer.gd" id="1_og21t"]
 [ext_resource type="PackedScene" uid="uid://bpw0fu1a1nyp2" path="res://Assets/Characters/Casual2_Female.gltf" id="2_7bca2"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://igvxowctjm3l" path="res://Resources/LEFT.png" id="4_fqqqe"]
 [ext_resource type="Texture2D" uid="uid://chjl4c5q4mk2w" path="res://Resources/RIGHT.png" id="5_ybvr8"]
 [ext_resource type="Texture2D" uid="uid://dw8su3127rnbl" path="res://Resources/DOWN.png" id="6_sdlyy"]
+[ext_resource type="Texture2D" uid="uid://cfy13ox0ltkff" path="res://Assets/Particles/circle_03.png" id="7_18hne"]
+[ext_resource type="Script" path="res://Scripts/CustomerRange.gd" id="8_wdxcm"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_p3twv"]
 height = 3.45676
-radius = 3.75984
+radius = 5.0
 
 [node name="Customer" type="Area3D"]
 transform = Transform3D(0.285, 0, 0, 0, 0.285, 0, 0, 0, 0.285, 8.51715, 0.982682, 9.19469)
@@ -94,6 +96,18 @@ size_flags_horizontal = 3
 texture = ExtResource("6_sdlyy")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.65747, 0)
+size = Vector3(15, 21.624, 15)
+texture_albedo = ExtResource("7_18hne")
+emission_energy = 8.9
+modulate = Color(0.77, 0.32956, 0.0924, 1)
+upper_fade = 1e-05
+lower_fade = 1.03526e-05
+script = ExtResource("8_wdxcm")
+BreatheSpeedMultiplier = 5.0
+BreatheAmount = 0.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -11,7 +11,7 @@ extends Area3D
 @export_enum("Serf", "Normie", "Royalty", "King") var customerTier: String = "Serf"
 
 @export var ParticleEmitterManager: ParticleEmitterManager
-const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
+const COIN_EXPLOSION = preload("res://Scenes/coin_explosion.tscn")
 
 # Nested dictionary of each enum tier, inside each tier is task length, and reward
 var customerTierDataList = {
@@ -155,9 +155,9 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 			# Tells the game controller to reward this player this amount.
 			CustomerCompleted.emit(reward, player.name)
 			
-			var foodExplosion = FOOD_EXPLOSION.instantiate()
-			foodExplosion.position = global_position
-			get_window().add_child(foodExplosion)
+			var coinExplosion = COIN_EXPLOSION.instantiate()
+			coinExplosion.position = global_position
+			get_window().add_child(coinExplosion)
 
 			# Remove the customer from the game
 			queue_free()
