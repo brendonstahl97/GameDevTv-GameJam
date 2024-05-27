@@ -10,7 +10,6 @@ extends Area3D
 
 @export_enum("Serf", "Normie", "Royalty", "King") var customerTier: String = "Serf"
 
-@export var ParticleEmitterManager: ParticleEmitterManager
 const COIN_EXPLOSION = preload("res://Scenes/coin_explosion.tscn")
 
 # Nested dictionary of each enum tier, inside each tier is task length, and reward
@@ -96,7 +95,7 @@ func _ready() -> void:
 		player.CodeSubmitted.connect(_on_player_code_submitted)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var screen_pos = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
 	var control = $Control
 
@@ -123,7 +122,7 @@ func _on_body_entered(body:Node3D) -> void:
 	print(body.name + " entered")
 
 
-func _on_body_exited(body:Node3D) -> void:
+func _on_body_exited(_body:Node3D) -> void:
 	if (completed):
 		return
 

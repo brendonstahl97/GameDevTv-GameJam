@@ -1,19 +1,19 @@
 extends Camera3D
 
-var Players
+var PlayersInGame
 @export var xPlayerLimits: Vector2 ## how far positive or negative a player can go in the X direction before they are no longer included in the camera position calculations (x = min, y = max)
 @export var yPlayerLimits: Vector2 ## how far positive or negative a player can go in the X direction before they are no longer included in the camera position calculations (x = min, y = max)
 @export var zPlayerLimits: Vector2 ## how far positive or negative a player can go in the Z direction before they are no longer included in the camera position calculations (x = min, y = max)
 @export var lerpSpeed = 1.0
 
 var StartingPosition: Vector3
-var StartingFov: int
+var StartingFov: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	StartingPosition = position
 	StartingFov = fov
-	Players = get_tree().get_nodes_in_group("Players")
+	PlayersInGame = get_tree().get_nodes_in_group("Players")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	var minPos = Vector3.ZERO
 	var numPlayersInCalc = 0
 	
-	for player in Players:
+	for player in PlayersInGame:
 		var playerPos = player.position
 		
 		if (playerPos.x >= xPlayerLimits.x && playerPos.x <= xPlayerLimits.y && playerPos.z >= zPlayerLimits.x && playerPos.z <= zPlayerLimits.y && playerPos.y >= yPlayerLimits.x && playerPos.y <= yPlayerLimits.y):
