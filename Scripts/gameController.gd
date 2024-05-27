@@ -4,6 +4,11 @@ extends Node
 @export var spawnAreaBottomRightPoint: Vector3 = Vector3(10, 1, 10)
 @export var spawnInterval: float = 5.0
 @export var maxSpawnCount: int = 3
+@export_enum("Goal", "Time") var gameMode: String = "Goal"
+@export var moneyGoal: int = 2_000
+@export var timeLimit: float = 120.0
+
+var gameTimeLeft = timeLimit
 
 var timeSinceLastSpawn = 0.0
 
@@ -21,6 +26,9 @@ func _ready() -> void:
 	
 	spawnCustomer()
 
+func gameCompleted(winner: Node3D) -> void:
+	print("Game completed", winner)
+
 # A customer's task was completed, reward the player who did it.
 func _on_customer_completed(reward: int, playerIndex: String) -> void:
 	var player : Node3D = get_node("/root/Game/Players/" + playerIndex)
@@ -36,6 +44,11 @@ func _on_customer_completed(reward: int, playerIndex: String) -> void:
 		var matchUI = get_node("/root/Game/MatchUi")
 		if (matchUI != null):
 			matchUI.call("updatePlayerMoney", playerIndex, money)
+
+		# If the game mode is "Goal" and the player has reached the money goal, end the game
+		if (gameMode == "Goal" and money >= moneyGoal):
+			gameCompleted(player)
+			# get_node("/root/Game").call_deferred("endGame", playerIndex)
 
 		# player.call_deferred("addMoney", reward)
 		# customersNode.remove_child(customer)
@@ -68,3 +81,18 @@ func _process(delta: float) -> void:
 			spawnCustomer()
 			# Reset the timer
 			timeSinceLastSpawn = 0
+
+	if (gameMode == "Time"):
+		gameTimeLeft -= delta
+		if (gameTimeLeft <= 0):
+			# Time is over,
+			# The winner is whoever has the most money
+			var players = get_node("/root/Game/Players").get_children()
+			var winner : Node3D = null
+			var winnerMoney = 0
+			for player in players:
+				var money = player.get_meta("Money")
+				if (money > winnerMoney):
+					winner = player
+					winnerMoney = money
+			gameCompleted(winner)
