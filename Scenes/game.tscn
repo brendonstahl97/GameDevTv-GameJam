@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://rsctaha45ywq"]
+[gd_scene load_steps=12 format=3 uid="uid://rsctaha45ywq"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
 [ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
+[ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="3_qg2mu"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 [ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/Player_2_Controls.tres" id="4_c2eto"]
 [ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/Player_3_Controls.tres" id="5_w1niv"]
@@ -31,7 +32,11 @@ script = ExtResource("1_f5sun")
 environment = SubResource("Environment_bqfud")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.649449, 0.760407, 0, -0.760407, 0.649449, 3.82, 14.36, 16.075)
+transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 3.82, 14.36, 16.075)
+fov = 64.5
+script = ExtResource("3_qg2mu")
+xPlayerLimits = Vector2(-25, 35)
+lerpSpeed = 1.5
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_rjfq8")
@@ -52,14 +57,14 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.606627, 0.794987, 0, -0.794987, 0.606627, 16.8755, 39.607, 31.6159)
-light_color = Color(0.905882, 0.996078, 0.937255, 1)
+transform = Transform3D(1, 0, 0, 0, 0.606627, 0.794987, 0, -0.794987, 0.606627, 8.8755, 39.607, 31.6159)
+light_color = Color(0.846839, 0.981002, 0.976893, 1)
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 shadow_bias = 6.383
 shadow_normal_bias = 4.436
 shadow_transmittance_bias = 6.614
-shadow_blur = 0.01
+shadow_blur = 0.0
 sky_mode = 1
 
 [node name="Players" type="Node" parent="."]
@@ -72,7 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138367, 3.61722, -0.026551
 Controls = ExtResource("4_c2eto")
 
 [node name="2" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67468, 2.70746, -0.026551)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.67468, 2.70746, -0.026551)
 Controls = ExtResource("5_w1niv")
 
 [node name="Customers" type="Node" parent="."]
