@@ -17,19 +17,23 @@ const COIN_EXPLOSION = preload("res://Scenes/coin_explosion.tscn")
 var customerTierDataList = {
 	"Serf": {
 		"taskLength": 4,
-		"reward": 20
+		"reward": 20,
+		"rarity": 1 # 40% chance
 	},
 	"Normie": {
 		"taskLength": 5,
-		"reward": 30
+		"reward": 30,
+		"rarity": .6 # 30% chance
 	},
 	"Royalty": {
 		"taskLength": 6,
-		"reward": 50
+		"reward": 50,
+		"rarity": .3 # 20% chance
 	},
 	"King": {
 		"taskLength": 8,
-		"reward": 100
+		"reward": 100,
+		"rarity": .1 # 10% chance
 	}
 }
 
@@ -74,9 +78,19 @@ func generateSequence() -> Array:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Get a random customer tier based on "rarity".
+	var randomTier = randf()
+	var keys = customerTierDataList.keys()
+	keys.reverse()
+	for tier in keys:
+		print(tier, randomTier, customerTierDataList[tier]["rarity"])
+		if (randomTier < customerTierDataList[tier]["rarity"]):
+			customerTier = tier
+			break
+	print("Customer Tier: " + customerTier, "Rarity: " + str(randomTier))
+
 	# Generate the task sequence for the customer
 	correctTaskSequence = generateSequence()
-	print(correctTaskSequence)
 
 	for player in get_node("/root/Game/Players").get_children():
 		player.CodeSubmitted.connect(_on_player_code_submitted)
