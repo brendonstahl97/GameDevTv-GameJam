@@ -42,6 +42,9 @@ func _process(delta: float) -> void:
 				
 			if (playerPos.z < minPos.z):
 				minPos.z = playerPos.z
+				
+	if (numPlayersInCalc == 0):
+		numPlayersInCalc = 1
 			
 	var avgPosition = positionTotal/numPlayersInCalc
 	var avgPositionNoY = Vector3(avgPosition.x, 0, avgPosition.z)
