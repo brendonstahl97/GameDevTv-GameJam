@@ -1,12 +1,54 @@
-[gd_scene load_steps=17 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=25 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
-[ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
+[ext_resource type="Script" path="res://Scripts/matchUI.gd" id="2_p4kmr"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_6nqrl"]
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="3_qg2mu"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 [ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_c2eto"]
 [ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_w1niv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7ktf"]
+bg_color = Color(0, 0, 0, 0.294118)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_2ur8t"]
+default_font = ExtResource("3_6nqrl")
+default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_ntnyu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkv2o"]
+bg_color = Color(1.2514e-06, 0.665187, 0.8178, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvm0q"]
+bg_color = Color(2.55093e-06, 0.725439, 0.200965, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7le5"]
+bg_color = Color(0.872012, 0.490359, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1418i"]
+bg_color = Color(0.885454, 0.41618, 0.629383, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -40,7 +82,230 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_f5sun")
 
-[node name="MatchUi" parent="." instance=ExtResource("1_rrj8p")]
+[node name="MatchUi" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_p4kmr")
+
+[node name="P1_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 305.0
+offset_bottom = 103.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P1_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 1"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P1_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P1_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkv2o")
+
+[node name="P2_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -304.0
+offset_top = 16.0
+offset_right = -15.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P2_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 2"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P2_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P2_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mvm0q")
+
+[node name="P3_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -104.0
+offset_right = 305.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P3_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 3"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P3_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P3_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7le5")
+
+[node name="P4_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -104.0
+offset_right = -15.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P4_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 4"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P4_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P4_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1418i")
+
+[node name="Goal" type="Panel" parent="MatchUi"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bqfud")
@@ -94,34 +359,34 @@ StaminaManagerInstance = NodePath("StaminaManager")
 ParticleManager = NodePath("Particle Emitters")
 
 [node name="Skeleton3D" parent="Players/0/Casual3_Male/CharacterArmature" index="0"]
-bones/1/position = Vector3(0.265425, 0.0251532, 0.0391465)
-bones/1/rotation = Quaternion(5.29142e-06, 0.689896, 0.723908, 5.23203e-06)
-bones/2/position = Vector3(0.00281903, 0.965916, 0.0703903)
-bones/2/rotation = Quaternion(-0.000377926, 0.00164069, 2.98399e-05, 0.999999)
+bones/1/position = Vector3(0.265425, 0.0750401, -0.0957461)
+bones/1/rotation = Quaternion(5.85955e-06, 0.595434, 0.803404, 4.50493e-06)
+bones/2/position = Vector3(0.00306982, 0.976429, 0.0753713)
+bones/2/rotation = Quaternion(-0.000401907, 0.00199597, 1.6468e-05, 0.999998)
 bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
 bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
-bones/5/rotation = Quaternion(-0.00632997, 0.00622891, -0.00413662, 0.999952)
-bones/6/rotation = Quaternion(-0.0369102, 2.02119e-05, 0.000113514, 0.999319)
+bones/5/rotation = Quaternion(-0.00632996, -0.00513726, 0.00341065, 0.999961)
+bones/6/rotation = Quaternion(-0.035986, 2.09603e-05, 0.000118451, 0.999352)
 bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
-bones/8/position = Vector3(0.141338, 0.14027, 0.0135945)
-bones/9/rotation = Quaternion(-0.368134, -0.254404, -0.758047, 0.474469)
-bones/10/rotation = Quaternion(-0.0178185, 0.206875, -0.164715, 0.964238)
-bones/11/rotation = Quaternion(0.00931802, 0.114447, -0.00766548, 0.993356)
-bones/12/position = Vector3(-0.14413, 0.139982, 0.0134876)
-bones/13/rotation = Quaternion(-0.372806, 0.267908, 0.752752, 0.471811)
-bones/14/rotation = Quaternion(-0.00442139, -0.216844, 0.154741, 0.963854)
+bones/8/position = Vector3(0.138633, 0.14046, 0.0135702)
+bones/9/rotation = Quaternion(-0.369656, -0.251843, -0.757067, 0.476213)
+bones/10/rotation = Quaternion(-0.0187491, 0.208272, -0.163598, 0.964109)
+bones/11/rotation = Quaternion(0.00951678, 0.123434, -0.00810036, 0.992274)
+bones/12/position = Vector3(-0.143912, 0.139997, 0.013497)
+bones/13/rotation = Quaternion(-0.373598, 0.264714, 0.75265, 0.473148)
+bones/14/rotation = Quaternion(-0.00587512, -0.216875, 0.154611, 0.96386)
 bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
-bones/16/position = Vector3(0.253007, -0.0238915, -0.0603389)
-bones/16/rotation = Quaternion(0.982963, 0.00943446, 0.000715724, 0.18356)
+bones/16/position = Vector3(0.253026, -0.0177034, -0.0565386)
+bones/16/rotation = Quaternion(0.991474, 0.00945528, 0.0018708, 0.129946)
 bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
-bones/17/rotation = Quaternion(0.298163, 0.00322528, 0.00928588, 0.954464)
-bones/18/position = Vector3(-0.254712, -0.0219756, -0.0559786)
-bones/18/rotation = Quaternion(0.989892, -0.0105285, 0.00219384, 0.141417)
+bones/17/rotation = Quaternion(0.35987, 0.00382492, 0.00905538, 0.932951)
+bones/18/position = Vector3(-0.254712, -0.0240268, -0.0559998)
+bones/18/rotation = Quaternion(0.987494, -0.0107754, 0.00327865, 0.157257)
 bones/18/scale = Vector3(0.999998, 1, 0.999949)
-bones/19/rotation = Quaternion(0.37931, -0.00401351, -0.00897338, 0.925217)
+bones/19/rotation = Quaternion(0.308932, -0.00332998, -0.00924884, 0.951033)
 bones/19/scale = Vector3(1, 1.00001, 1.00001)
-bones/21/position = Vector3(-0.262802, 0.076791, -0.0885821)
-bones/21/rotation = Quaternion(-6.36615e-06, 0.592558, 0.805528, -4.21257e-06)
+bones/21/position = Vector3(-0.262802, 0.0260187, -0.00710362)
+bones/21/rotation = Quaternion(-5.64979e-06, 0.702868, 0.71132, -4.9966e-06)
 bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
 
 [node name="StaminaDisplay" parent="Players/0/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
@@ -136,34 +401,34 @@ StaminaManagerInstance = NodePath("StaminaManager")
 ParticleManager = NodePath("Particle Emitters")
 
 [node name="Skeleton3D" parent="Players/1/Casual3_Male/CharacterArmature" index="0"]
-bones/1/position = Vector3(0.265425, 0.0251532, 0.0391465)
-bones/1/rotation = Quaternion(5.29142e-06, 0.689896, 0.723908, 5.23203e-06)
-bones/2/position = Vector3(0.00281903, 0.965916, 0.0703903)
-bones/2/rotation = Quaternion(-0.000377926, 0.00164069, 2.98399e-05, 0.999999)
+bones/1/position = Vector3(0.265425, 0.0750401, -0.0957461)
+bones/1/rotation = Quaternion(5.85955e-06, 0.595434, 0.803404, 4.50493e-06)
+bones/2/position = Vector3(0.00306982, 0.976429, 0.0753713)
+bones/2/rotation = Quaternion(-0.000401907, 0.00199597, 1.6468e-05, 0.999998)
 bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
 bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
-bones/5/rotation = Quaternion(-0.00632997, 0.00622891, -0.00413662, 0.999952)
-bones/6/rotation = Quaternion(-0.0369102, 2.02119e-05, 0.000113514, 0.999319)
+bones/5/rotation = Quaternion(-0.00632996, -0.00513726, 0.00341065, 0.999961)
+bones/6/rotation = Quaternion(-0.035986, 2.09603e-05, 0.000118451, 0.999352)
 bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
-bones/8/position = Vector3(0.141338, 0.14027, 0.0135945)
-bones/9/rotation = Quaternion(-0.368134, -0.254404, -0.758047, 0.474469)
-bones/10/rotation = Quaternion(-0.0178185, 0.206875, -0.164715, 0.964238)
-bones/11/rotation = Quaternion(0.00931802, 0.114447, -0.00766548, 0.993356)
-bones/12/position = Vector3(-0.14413, 0.139982, 0.0134876)
-bones/13/rotation = Quaternion(-0.372806, 0.267908, 0.752752, 0.471811)
-bones/14/rotation = Quaternion(-0.00442139, -0.216844, 0.154741, 0.963854)
+bones/8/position = Vector3(0.138633, 0.14046, 0.0135702)
+bones/9/rotation = Quaternion(-0.369656, -0.251843, -0.757067, 0.476213)
+bones/10/rotation = Quaternion(-0.0187491, 0.208272, -0.163598, 0.964109)
+bones/11/rotation = Quaternion(0.00951678, 0.123434, -0.00810036, 0.992274)
+bones/12/position = Vector3(-0.143912, 0.139997, 0.013497)
+bones/13/rotation = Quaternion(-0.373598, 0.264714, 0.75265, 0.473148)
+bones/14/rotation = Quaternion(-0.00587512, -0.216875, 0.154611, 0.96386)
 bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
-bones/16/position = Vector3(0.253007, -0.0238915, -0.0603389)
-bones/16/rotation = Quaternion(0.982963, 0.00943446, 0.000715724, 0.18356)
+bones/16/position = Vector3(0.253026, -0.0177034, -0.0565386)
+bones/16/rotation = Quaternion(0.991474, 0.00945528, 0.0018708, 0.129946)
 bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
-bones/17/rotation = Quaternion(0.298163, 0.00322528, 0.00928588, 0.954464)
-bones/18/position = Vector3(-0.254712, -0.0219756, -0.0559786)
-bones/18/rotation = Quaternion(0.989892, -0.0105285, 0.00219384, 0.141417)
+bones/17/rotation = Quaternion(0.35987, 0.00382492, 0.00905538, 0.932951)
+bones/18/position = Vector3(-0.254712, -0.0240268, -0.0559998)
+bones/18/rotation = Quaternion(0.987494, -0.0107754, 0.00327865, 0.157257)
 bones/18/scale = Vector3(0.999998, 1, 0.999949)
-bones/19/rotation = Quaternion(0.37931, -0.00401351, -0.00897338, 0.925217)
+bones/19/rotation = Quaternion(0.308932, -0.00332998, -0.00924884, 0.951033)
 bones/19/scale = Vector3(1, 1.00001, 1.00001)
-bones/21/position = Vector3(-0.262802, 0.076791, -0.0885821)
-bones/21/rotation = Quaternion(-6.36615e-06, 0.592558, 0.805528, -4.21257e-06)
+bones/21/position = Vector3(-0.262802, 0.0260187, -0.00710362)
+bones/21/rotation = Quaternion(-5.64979e-06, 0.702868, 0.71132, -4.9966e-06)
 bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
 
 [node name="StaminaDisplay" parent="Players/1/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
@@ -178,34 +443,34 @@ StaminaManagerInstance = NodePath("StaminaManager")
 ParticleManager = NodePath("Particle Emitters")
 
 [node name="Skeleton3D" parent="Players/2/Casual3_Male/CharacterArmature" index="0"]
-bones/1/position = Vector3(0.265425, 0.0251532, 0.0391465)
-bones/1/rotation = Quaternion(5.29142e-06, 0.689896, 0.723908, 5.23203e-06)
-bones/2/position = Vector3(0.00281903, 0.965916, 0.0703903)
-bones/2/rotation = Quaternion(-0.000377926, 0.00164069, 2.98399e-05, 0.999999)
+bones/1/position = Vector3(0.265425, 0.0750401, -0.0957461)
+bones/1/rotation = Quaternion(5.85955e-06, 0.595434, 0.803404, 4.50493e-06)
+bones/2/position = Vector3(0.00306982, 0.976429, 0.0753713)
+bones/2/rotation = Quaternion(-0.000401907, 0.00199597, 1.6468e-05, 0.999998)
 bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
 bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
-bones/5/rotation = Quaternion(-0.00632997, 0.00622891, -0.00413662, 0.999952)
-bones/6/rotation = Quaternion(-0.0369102, 2.02119e-05, 0.000113514, 0.999319)
+bones/5/rotation = Quaternion(-0.00632996, -0.00513726, 0.00341065, 0.999961)
+bones/6/rotation = Quaternion(-0.035986, 2.09603e-05, 0.000118451, 0.999352)
 bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
-bones/8/position = Vector3(0.141338, 0.14027, 0.0135945)
-bones/9/rotation = Quaternion(-0.368134, -0.254404, -0.758047, 0.474469)
-bones/10/rotation = Quaternion(-0.0178185, 0.206875, -0.164715, 0.964238)
-bones/11/rotation = Quaternion(0.00931802, 0.114447, -0.00766548, 0.993356)
-bones/12/position = Vector3(-0.14413, 0.139982, 0.0134876)
-bones/13/rotation = Quaternion(-0.372806, 0.267908, 0.752752, 0.471811)
-bones/14/rotation = Quaternion(-0.00442139, -0.216844, 0.154741, 0.963854)
+bones/8/position = Vector3(0.138633, 0.14046, 0.0135702)
+bones/9/rotation = Quaternion(-0.369656, -0.251843, -0.757067, 0.476213)
+bones/10/rotation = Quaternion(-0.0187491, 0.208272, -0.163598, 0.964109)
+bones/11/rotation = Quaternion(0.00951678, 0.123434, -0.00810036, 0.992274)
+bones/12/position = Vector3(-0.143912, 0.139997, 0.013497)
+bones/13/rotation = Quaternion(-0.373598, 0.264714, 0.75265, 0.473148)
+bones/14/rotation = Quaternion(-0.00587512, -0.216875, 0.154611, 0.96386)
 bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
-bones/16/position = Vector3(0.253007, -0.0238915, -0.0603389)
-bones/16/rotation = Quaternion(0.982963, 0.00943446, 0.000715724, 0.18356)
+bones/16/position = Vector3(0.253026, -0.0177034, -0.0565386)
+bones/16/rotation = Quaternion(0.991474, 0.00945528, 0.0018708, 0.129946)
 bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
-bones/17/rotation = Quaternion(0.298163, 0.00322528, 0.00928588, 0.954464)
-bones/18/position = Vector3(-0.254712, -0.0219756, -0.0559786)
-bones/18/rotation = Quaternion(0.989892, -0.0105285, 0.00219384, 0.141417)
+bones/17/rotation = Quaternion(0.35987, 0.00382492, 0.00905538, 0.932951)
+bones/18/position = Vector3(-0.254712, -0.0240268, -0.0559998)
+bones/18/rotation = Quaternion(0.987494, -0.0107754, 0.00327865, 0.157257)
 bones/18/scale = Vector3(0.999998, 1, 0.999949)
-bones/19/rotation = Quaternion(0.37931, -0.00401351, -0.00897338, 0.925217)
+bones/19/rotation = Quaternion(0.308932, -0.00332998, -0.00924884, 0.951033)
 bones/19/scale = Vector3(1, 1.00001, 1.00001)
-bones/21/position = Vector3(-0.262802, 0.076791, -0.0885821)
-bones/21/rotation = Quaternion(-6.36615e-06, 0.592558, 0.805528, -4.21257e-06)
+bones/21/position = Vector3(-0.262802, 0.0260187, -0.00710362)
+bones/21/rotation = Quaternion(-5.64979e-06, 0.702868, 0.71132, -4.9966e-06)
 bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
 
 [node name="StaminaDisplay" parent="Players/2/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
