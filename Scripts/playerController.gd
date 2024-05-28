@@ -47,6 +47,12 @@ const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
 @export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
 @export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
 
+@export_category("Appearance")
+@export var PlayerName : String = "Player"
+@export var PlayerCartType : String = "Normal"
+@export var PlayerColor : Color = Color(.8, .19, 0.01)
+@export var PlayerGuy : String = "Man 1"
+
 signal CodeSubmitted
 signal StaminaConsumptionFailed
 
