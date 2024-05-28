@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=17 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
 [ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
@@ -22,6 +22,15 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j62al"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kb2m0"]
+viewport_path = NodePath("StaminaManager/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ebf00"]
+viewport_path = NodePath("StaminaManager/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tyfn3"]
+viewport_path = NodePath("StaminaManager/SubViewport")
 
 [sub_resource type="BoxMesh" id="BoxMesh_lu4bi"]
 
@@ -80,16 +89,129 @@ sky_mode = 1
 
 [node name="Players" type="Node" parent="."]
 
-[node name="0" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27466, 3.16168, 8.58822)
+[node name="0" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
+StaminaManagerInstance = NodePath("StaminaManager")
+ParticleManager = NodePath("Particle Emitters")
 
-[node name="1" parent="Players" instance=ExtResource("3_xipmc")]
+[node name="Skeleton3D" parent="Players/0/Casual3_Male/CharacterArmature" index="0"]
+bones/1/position = Vector3(0.265425, 0.0251532, 0.0391465)
+bones/1/rotation = Quaternion(5.29142e-06, 0.689896, 0.723908, 5.23203e-06)
+bones/2/position = Vector3(0.00281903, 0.965916, 0.0703903)
+bones/2/rotation = Quaternion(-0.000377926, 0.00164069, 2.98399e-05, 0.999999)
+bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
+bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
+bones/5/rotation = Quaternion(-0.00632997, 0.00622891, -0.00413662, 0.999952)
+bones/6/rotation = Quaternion(-0.0369102, 2.02119e-05, 0.000113514, 0.999319)
+bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
+bones/8/position = Vector3(0.141338, 0.14027, 0.0135945)
+bones/9/rotation = Quaternion(-0.368134, -0.254404, -0.758047, 0.474469)
+bones/10/rotation = Quaternion(-0.0178185, 0.206875, -0.164715, 0.964238)
+bones/11/rotation = Quaternion(0.00931802, 0.114447, -0.00766548, 0.993356)
+bones/12/position = Vector3(-0.14413, 0.139982, 0.0134876)
+bones/13/rotation = Quaternion(-0.372806, 0.267908, 0.752752, 0.471811)
+bones/14/rotation = Quaternion(-0.00442139, -0.216844, 0.154741, 0.963854)
+bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
+bones/16/position = Vector3(0.253007, -0.0238915, -0.0603389)
+bones/16/rotation = Quaternion(0.982963, 0.00943446, 0.000715724, 0.18356)
+bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
+bones/17/rotation = Quaternion(0.298163, 0.00322528, 0.00928588, 0.954464)
+bones/18/position = Vector3(-0.254712, -0.0219756, -0.0559786)
+bones/18/rotation = Quaternion(0.989892, -0.0105285, 0.00219384, 0.141417)
+bones/18/scale = Vector3(0.999998, 1, 0.999949)
+bones/19/rotation = Quaternion(0.37931, -0.00401351, -0.00897338, 0.925217)
+bones/19/scale = Vector3(1, 1.00001, 1.00001)
+bones/21/position = Vector3(-0.262802, 0.076791, -0.0885821)
+bones/21/rotation = Quaternion(-6.36615e-06, 0.592558, 0.805528, -4.21257e-06)
+bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
+
+[node name="StaminaDisplay" parent="Players/0/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.27466, 3.2203, 8.58822)
+texture = SubResource("ViewportTexture_kb2m0")
+StaminaProgressBar = NodePath("../SubViewport/TextureProgressBar")
+
+[node name="1" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138367, 3.61722, 1.97345)
 Controls = ExtResource("4_c2eto")
+StaminaManagerInstance = NodePath("StaminaManager")
+ParticleManager = NodePath("Particle Emitters")
 
-[node name="2" parent="Players" instance=ExtResource("3_xipmc")]
+[node name="Skeleton3D" parent="Players/1/Casual3_Male/CharacterArmature" index="0"]
+bones/1/position = Vector3(0.265425, 0.0251532, 0.0391465)
+bones/1/rotation = Quaternion(5.29142e-06, 0.689896, 0.723908, 5.23203e-06)
+bones/2/position = Vector3(0.00281903, 0.965916, 0.0703903)
+bones/2/rotation = Quaternion(-0.000377926, 0.00164069, 2.98399e-05, 0.999999)
+bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
+bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
+bones/5/rotation = Quaternion(-0.00632997, 0.00622891, -0.00413662, 0.999952)
+bones/6/rotation = Quaternion(-0.0369102, 2.02119e-05, 0.000113514, 0.999319)
+bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
+bones/8/position = Vector3(0.141338, 0.14027, 0.0135945)
+bones/9/rotation = Quaternion(-0.368134, -0.254404, -0.758047, 0.474469)
+bones/10/rotation = Quaternion(-0.0178185, 0.206875, -0.164715, 0.964238)
+bones/11/rotation = Quaternion(0.00931802, 0.114447, -0.00766548, 0.993356)
+bones/12/position = Vector3(-0.14413, 0.139982, 0.0134876)
+bones/13/rotation = Quaternion(-0.372806, 0.267908, 0.752752, 0.471811)
+bones/14/rotation = Quaternion(-0.00442139, -0.216844, 0.154741, 0.963854)
+bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
+bones/16/position = Vector3(0.253007, -0.0238915, -0.0603389)
+bones/16/rotation = Quaternion(0.982963, 0.00943446, 0.000715724, 0.18356)
+bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
+bones/17/rotation = Quaternion(0.298163, 0.00322528, 0.00928588, 0.954464)
+bones/18/position = Vector3(-0.254712, -0.0219756, -0.0559786)
+bones/18/rotation = Quaternion(0.989892, -0.0105285, 0.00219384, 0.141417)
+bones/18/scale = Vector3(0.999998, 1, 0.999949)
+bones/19/rotation = Quaternion(0.37931, -0.00401351, -0.00897338, 0.925217)
+bones/19/scale = Vector3(1, 1.00001, 1.00001)
+bones/21/position = Vector3(-0.262802, 0.076791, -0.0885821)
+bones/21/rotation = Quaternion(-6.36615e-06, 0.592558, 0.805528, -4.21257e-06)
+bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
+
+[node name="StaminaDisplay" parent="Players/1/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.138367, 3.67584, 1.97345)
+texture = SubResource("ViewportTexture_ebf00")
+StaminaProgressBar = NodePath("../SubViewport/TextureProgressBar")
+
+[node name="2" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.67468, 2.70746, -0.026551)
 Controls = ExtResource("5_w1niv")
+StaminaManagerInstance = NodePath("StaminaManager")
+ParticleManager = NodePath("Particle Emitters")
+
+[node name="Skeleton3D" parent="Players/2/Casual3_Male/CharacterArmature" index="0"]
+bones/1/position = Vector3(0.265425, 0.0251532, 0.0391465)
+bones/1/rotation = Quaternion(5.29142e-06, 0.689896, 0.723908, 5.23203e-06)
+bones/2/position = Vector3(0.00281903, 0.965916, 0.0703903)
+bones/2/rotation = Quaternion(-0.000377926, 0.00164069, 2.98399e-05, 0.999999)
+bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
+bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
+bones/5/rotation = Quaternion(-0.00632997, 0.00622891, -0.00413662, 0.999952)
+bones/6/rotation = Quaternion(-0.0369102, 2.02119e-05, 0.000113514, 0.999319)
+bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
+bones/8/position = Vector3(0.141338, 0.14027, 0.0135945)
+bones/9/rotation = Quaternion(-0.368134, -0.254404, -0.758047, 0.474469)
+bones/10/rotation = Quaternion(-0.0178185, 0.206875, -0.164715, 0.964238)
+bones/11/rotation = Quaternion(0.00931802, 0.114447, -0.00766548, 0.993356)
+bones/12/position = Vector3(-0.14413, 0.139982, 0.0134876)
+bones/13/rotation = Quaternion(-0.372806, 0.267908, 0.752752, 0.471811)
+bones/14/rotation = Quaternion(-0.00442139, -0.216844, 0.154741, 0.963854)
+bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
+bones/16/position = Vector3(0.253007, -0.0238915, -0.0603389)
+bones/16/rotation = Quaternion(0.982963, 0.00943446, 0.000715724, 0.18356)
+bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
+bones/17/rotation = Quaternion(0.298163, 0.00322528, 0.00928588, 0.954464)
+bones/18/position = Vector3(-0.254712, -0.0219756, -0.0559786)
+bones/18/rotation = Quaternion(0.989892, -0.0105285, 0.00219384, 0.141417)
+bones/18/scale = Vector3(0.999998, 1, 0.999949)
+bones/19/rotation = Quaternion(0.37931, -0.00401351, -0.00897338, 0.925217)
+bones/19/scale = Vector3(1, 1.00001, 1.00001)
+bones/21/position = Vector3(-0.262802, 0.076791, -0.0885821)
+bones/21/rotation = Quaternion(-6.36615e-06, 0.592558, 0.805528, -4.21257e-06)
+bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
+
+[node name="StaminaDisplay" parent="Players/2/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.67468, 2.76608, -0.026551)
+texture = SubResource("ViewportTexture_tyfn3")
+StaminaProgressBar = NodePath("../SubViewport/TextureProgressBar")
 
 [node name="Customers" type="Node" parent="."]
 
@@ -104,3 +226,7 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_xo4uk")
+
+[editable path="Players/0"]
+[editable path="Players/1"]
+[editable path="Players/2"]
