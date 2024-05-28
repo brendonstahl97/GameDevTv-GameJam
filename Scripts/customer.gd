@@ -116,6 +116,7 @@ func _on_body_entered(body:Node3D) -> void:
 
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
+		$Decal.set_modulate(Color(0, 1, .2))
 		currentPlayer = body
 		# Print the name of the player that entered the area
 
@@ -141,8 +142,10 @@ func _on_body_exited(_body:Node3D) -> void:
 			if player.global_transform.origin.distance_to(global_transform.origin) < closestPlayer.global_transform.origin.distance_to(global_transform.origin):
 				closestPlayer = player
 		currentPlayer = closestPlayer
+		$Decal.set_modulate(Color(0, 1, .2))
 		print("New player assigned: " + currentPlayer.name)
 	else:
+		$Decal.set_modulate(Color(.77, .33, .092))
 		print("No players in area")
 
 # Connect to the player controller 
