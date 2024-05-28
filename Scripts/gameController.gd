@@ -43,7 +43,7 @@ func _on_customer_completed(reward: int, playerIndex: String) -> void:
 
 func spawnCustomer() -> void:
 	# Create a new customer
-	var customer = preload("res://Resources/Customer.tscn").instantiate()
+	var customer = preload("res://Scenes/Customer.tscn").instantiate()
 	# Add the customer to the scene
 	customersNode.add_child(customer)
 	# Set the customer's position to a random point within the spawn area
