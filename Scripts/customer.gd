@@ -142,7 +142,7 @@ func _on_body_exited(_body:Node3D) -> void:
 			if player.global_transform.origin.distance_to(global_transform.origin) < closestPlayer.global_transform.origin.distance_to(global_transform.origin):
 				closestPlayer = player
 		currentPlayer = closestPlayer
-		$Decal.set_modulate(Color(0, 1, .2))
+		$Decal.set_modulate(currentPlayer.PlayerColor)
 		print("New player assigned: " + currentPlayer.name)
 	else:
 		$Decal.set_modulate(Color(.77, .33, .092))

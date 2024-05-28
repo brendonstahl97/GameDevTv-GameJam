@@ -18,6 +18,15 @@ func updatePlayerMoney(player : String, newAmount : int):
 	elif player == "3":
 		p4Score = newAmount
 
+func updateTime(gameTimeLeft: float):
+	var seconds = max(int(gameTimeLeft)%60, 0)
+	var minutes = max((int(gameTimeLeft)/60)%60, 0)
+	var formattedString = "%02d:%02d" % [minutes, seconds]
+	$Goal/Label.text = ("[center]" + formattedString + "[/center]")
+
+func updateGoal(goal : int):
+	$Goal/Label.text = ("[center]$" + str(goal) + "[/center]")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	$P1_Panel/ScoreLabel.text = ("[center]$ " + str(p1Score) + "[/center]")

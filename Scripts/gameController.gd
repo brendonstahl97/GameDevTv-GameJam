@@ -23,6 +23,8 @@ func _ready() -> void:
 		customersNode = Node.new()
 		customersNode.name = "Customers"
 		get_node("/root/Game").add_child(customersNode)
+
+	$MatchUi.call("updateGoal", moneyGoal)
 	
 	spawnCustomer()
 
@@ -84,6 +86,7 @@ func _process(delta: float) -> void:
 
 	if (gameMode == "Time"):
 		gameTimeLeft -= delta
+		$MatchUi.call("updateTime", gameTimeLeft)
 		if (gameTimeLeft <= 0):
 			# Time is over,
 			# The winner is whoever has the most money
@@ -91,7 +94,7 @@ func _process(delta: float) -> void:
 			var winner : Node3D = null
 			var winnerMoney = 0
 			for player in players:
-				var money = player.get_meta("Money")
+				var money = player.get_meta("Money", 0)
 				if (money > winnerMoney):
 					winner = player
 					winnerMoney = money
