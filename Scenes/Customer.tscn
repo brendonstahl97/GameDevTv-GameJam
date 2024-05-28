@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://twf3vt8h6akg"]
+
+[ext_resource type="Script" path="res://Scripts/customer.gd" id="1_og21t"]
+[ext_resource type="PackedScene" uid="uid://bpw0fu1a1nyp2" path="res://Assets/Characters/Casual2_Female.gltf" id="2_7bca2"]
+[ext_resource type="Texture2D" uid="uid://btjrunenwslsb" path="res://Assets/UP.png" id="3_npa8l"]
+[ext_resource type="Texture2D" uid="uid://igvxowctjm3l" path="res://Assets/LEFT.png" id="4_fqqqe"]
+[ext_resource type="Texture2D" uid="uid://chjl4c5q4mk2w" path="res://Assets/RIGHT.png" id="5_ybvr8"]
+[ext_resource type="Texture2D" uid="uid://dw8su3127rnbl" path="res://Assets/DOWN.png" id="6_sdlyy"]
+[ext_resource type="Texture2D" uid="uid://cfy13ox0ltkff" path="res://Assets/Particles/circle_03.png" id="7_18hne"]
+[ext_resource type="Script" path="res://Scripts/CustomerRange.gd" id="8_wdxcm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p3twv"]
+height = 3.45676
+radius = 5.0
+
+[node name="Customer" type="Area3D"]
+transform = Transform3D(0.285, 0, 0, 0, 0.285, 0, 0, 0, 0.285, 8.51715, 0.982682, 9.19469)
+script = ExtResource("1_og21t")
+
+[node name="Casual2_Female" parent="." instance=ExtResource("2_7bca2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44068, 0.261704)
+shape = SubResource("CylinderShape3D_p3twv")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -69.0
+offset_right = -7.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="UPArrow" type="TextureRect" parent="Control/Panel"]
+visible = false
+layout_mode = 2
+offset_right = 179.0
+offset_bottom = 65.0
+size_flags_horizontal = 3
+texture = ExtResource("3_npa8l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LEFTArrow" type="TextureRect" parent="Control/Panel"]
+visible = false
+layout_mode = 2
+offset_left = 45.0
+offset_right = 87.0
+offset_bottom = 65.0
+size_flags_horizontal = 3
+texture = ExtResource("4_fqqqe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RIGHTArrow" type="TextureRect" parent="Control/Panel"]
+visible = false
+layout_mode = 2
+offset_left = 91.0
+offset_right = 133.0
+offset_bottom = 65.0
+size_flags_horizontal = 3
+texture = ExtResource("5_ybvr8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DOWNArrow" type="TextureRect" parent="Control/Panel"]
+visible = false
+layout_mode = 2
+offset_left = 137.0
+offset_right = 179.0
+offset_bottom = 65.0
+size_flags_horizontal = 3
+texture = ExtResource("6_sdlyy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.65747, 0)
+size = Vector3(15, 21.624, 15)
+texture_albedo = ExtResource("7_18hne")
+emission_energy = 8.9
+modulate = Color(0.77, 0.32956, 0.0924, 1)
+upper_fade = 1e-05
+lower_fade = 1.03526e-05
+script = ExtResource("8_wdxcm")
+BreatheSpeedMultiplier = 5.0
+BreatheAmount = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

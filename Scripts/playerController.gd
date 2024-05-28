@@ -2,10 +2,13 @@ extends RigidBody3D
 
 const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
 const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.tscn")
+const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
 
 @onready var SprintEmitter1: CPUParticles3D = $"Particle Emitters/CPUParticles3D"
 @onready var SprintEmitter2: CPUParticles3D = $"Particle Emitters/CPUParticles3D2"
 @onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
+@onready var floor_detection_ray_cast: RayCast3D = $FloorDetectionRayCast
+@onready var AudioPlayer: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 @export var Controls: PlayerControls
 @export var StandClass: Stand
@@ -28,6 +31,15 @@ const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.
 @export var BumpMomentumThreshold = 5.0 ## The momentum (Mass x Velocity) threshold for a bump to be triggered when you hit another player
 @export var BumpDirectionThreshold = 30 ## An angle threshold that determines how accurate a player must be for a bump to trigger ( higher is less accurate )
 @export var BumpMultiplier = 3.0 ## Used to multiplicatively adjust the amount of additional force applied to an opponent when a bump is triggered
+@export var BumpSoundEffect: AudioStream
+@export var CollisionSoundEffects: Array ## Fill with string locations of potential sounds for non-bump collisions
+
+@export_category("Slam")
+@export var InAirDetectionAccuracy = 0.1
+@export var SlamSpeed = 5000.0
+@export var SlamLaunchForceMultiplier = 1.0
+@export var SlamDirectHitForce = 50.0
+@export var SlamImpactShape: Shape3D
 
 @export_category("Stamina")
 @export var SprintStaminaDrain = 15.0 ## Stamina lost per second while sprinting
@@ -39,6 +51,13 @@ signal StaminaConsumptionFailed
 
 var MovementDirection = Vector3.ZERO
 var SprintModifier = 1.0
+var IsGrounded: bool:
+	get:
+		return floor_detection_ray_cast.is_colliding()
+
+var IsSlamming = false
+var ShouldSlamNextPhysicsFrame = false
+var highestYVelocityDuringSlam = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,6 +76,10 @@ func _physics_process(delta: float) -> void:
 	_handle_sprint(delta)
 	_handle_movement(currentVelocity)
 	_handle_rotation(currentVelocity)
+	_handle_slam(delta)
+	
+	if (ShouldSlamNextPhysicsFrame):
+		SlamCast()
 
 func _handle_movement(currentVelocity: Vector3) -> void:
 	var targetVelocity = MovementDirection * MoveSpeed * SprintModifier
@@ -120,6 +143,18 @@ func _handle_code_input() -> void:
 	elif (Input.is_action_just_pressed(Controls.code_down)):
 		_submit_code("DOWN")
 		
+func _handle_slam(delta) -> void:
+		if(Input.is_action_just_pressed(Controls.slam)):
+			if (IsGrounded):
+				position.y = 10 
+			else:
+				IsSlamming = true
+		
+		if (IsSlamming):
+			apply_force(Vector3.DOWN * SlamSpeed * delta)
+			if (abs(linear_velocity.y) > highestYVelocityDuringSlam):
+				highestYVelocityDuringSlam = abs(linear_velocity.y)
+		
 func _submit_code(codeDirection: String) -> void:
 	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
 		StaminaConsumptionFailed.emit()
@@ -129,8 +164,42 @@ func _submit_code(codeDirection: String) -> void:
 
 func update_animation_parameters():
 	animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
+	
+## This MUST only be called in physics process, as the physics space is only accessible then
+func SlamCast() -> void:
+	var spaceState = get_world_3d().direct_space_state
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.shape = SlamImpactShape
+	query.transform = transform
+	var castResults = spaceState.intersect_shape(query)
+	
+	var momentumY = highestYVelocityDuringSlam * mass
+	
+	var slamImpact = SLAM_IMPACT.instantiate()
+	slamImpact.global_position = global_position
+	get_window().add_child(slamImpact)
+	
+	for body in castResults:
+		var collider = body.collider
+		if (!collider is RigidBody3D || !collider.get_groups().has("Players") || collider == self):
+			continue
+			
+		var bodyDirection = collider.global_position - global_position
+		
+		if (collider.global_position.y < global_position.y):
+			collider.apply_impulse(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * SlamDirectHitForce)
+		else:
+			collider.apply_impulse(bodyDirection * momentumY * SlamLaunchForceMultiplier)
+		
+	highestYVelocityDuringSlam = 0
+	ShouldSlamNextPhysicsFrame = false
 
 func _on_body_entered(body: Node3D) -> void:
+	if (IsSlamming):
+		IsSlamming = false
+		ShouldSlamNextPhysicsFrame = true
+		return
+	
 	if (!body.get_groups().has("Players")):
 		return
 		
@@ -140,6 +209,9 @@ func _on_body_entered(body: Node3D) -> void:
 	var momentum = linear_velocity.length() * mass
 	
 	if (momentum < BumpMomentumThreshold):
+		if (!AudioPlayer.playing):
+			AudioPlayer.stream = load(CollisionSoundEffects.pick_random())
+			AudioPlayer.play()
 		return
 		
 	var directionToBody = body.global_position - position
@@ -152,6 +224,9 @@ func _on_body_entered(body: Node3D) -> void:
 	body.apply_impulse(directionToBody * momentum * BumpMultiplier)
 	body.apply_torque_impulse(Vector3.UP * momentum * BumpMultiplier * randf_range(-1, 1))
 	linear_velocity = Vector3.ZERO
+	
+	AudioPlayer.stream = BumpSoundEffect
+	AudioPlayer.play()
 	
 	StaminaManagerInstance.restoreStamina(momentum * BumpStaminaGainMultiplier)
 	
