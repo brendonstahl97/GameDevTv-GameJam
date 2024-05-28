@@ -9,6 +9,7 @@ const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
 @onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
 @onready var floor_detection_ray_cast: RayCast3D = $FloorDetectionRayCast
 @onready var AudioPlayer: AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var scrape_sound_player: AudioStreamPlayer3D = $ScrapeSoundEffect
 
 @export var Controls: PlayerControls
 @export var StandClass: Stand
@@ -112,16 +113,26 @@ func _handle_sprint(delta: float) -> void:
 		if (StaminaManagerInstance.CurrentStamina > 0):
 			ParticleManager.start_sprint_particles()
 			StaminaManagerInstance.canRegenStamina = false
+			if (IsGrounded):
+				scrape_sound_player.play()
 		else:
 			StaminaConsumptionFailed.emit()
 		
 	elif (Input.is_action_pressed(Controls.sprint)):
 		if (StaminaManagerInstance.CurrentStamina > 1):
 			StaminaManagerInstance.drainStamina(SprintStaminaDrain * delta)
+			if (IsGrounded):
+				if (!scrape_sound_player.playing):
+					scrape_sound_player.play()
+			else:
+				if (scrape_sound_player.playing):
+					scrape_sound_player.stop()
 		else:
 			ParticleManager.end_sprint_particles()
 			SprintModifier = 1
 			StaminaConsumptionFailed.emit()
+			if (scrape_sound_player.playing):
+				scrape_sound_player.stop()
 		
 		if (SprintModifier < MaxSprintModifier):
 			SprintModifier += SprintIncrementAmount * delta
@@ -131,6 +142,7 @@ func _handle_sprint(delta: float) -> void:
 		StaminaManagerInstance.canRegenStamina = true
 		SprintModifier = 1
 		ParticleManager.end_sprint_particles()
+		scrape_sound_player.stop()
 		
 		
 func _handle_code_input() -> void:
