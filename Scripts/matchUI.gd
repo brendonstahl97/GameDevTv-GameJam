@@ -18,6 +18,16 @@ func updatePlayerMoney(player : String, newAmount : int):
 	elif player == "3":
 		p4Score = newAmount
 
+func hidePlayerPanel(player: String):
+	if player == "0":
+		$P1_Panel.hide()
+	elif player == "1":
+		$P2_Panel.hide()
+	elif player == "2":
+		$P3_Panel.hide()
+	elif player == "3":
+		$P4_Panel.hide()
+
 func updateTime(gameTimeLeft: float):
 	var seconds = max(int(gameTimeLeft)%60, 0)
 	var minutes = max((int(gameTimeLeft)/60)%60, 0)

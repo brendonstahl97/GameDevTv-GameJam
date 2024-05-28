@@ -28,6 +28,14 @@ func _ready() -> void:
 	
 	spawnCustomer()
 
+	# Spawn in players
+
+	# Hide player panels which dont have a player
+	for i in range(4):
+		var player = get_node("/root/Game/Players/" + str(i))
+		if (player == null):
+			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
+
 func gameCompleted(winner: Node3D) -> void:
 	print("Game completed", winner)
 
