@@ -116,7 +116,7 @@ func _on_body_entered(body:Node3D) -> void:
 
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
-		$Decal.set_modulate(Color(0, 1, .2))
+		$Decal.set_modulate(body.PlayerColor)
 		currentPlayer = body
 		# Print the name of the player that entered the area
 
