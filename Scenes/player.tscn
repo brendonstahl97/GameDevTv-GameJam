@@ -4441,7 +4441,7 @@ _data = {
 "RESET": SubResource("Animation_2yxu5")
 }
 
-[node name="0" type="RigidBody3D" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") groups=["Players"]]
+[node name="0" type="RigidBody3D" groups=["Players"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27466, 3.16168, 8.58822)
 collision_mask = 3
 axis_lock_angular_x = true
@@ -4453,8 +4453,6 @@ angular_damp = 2.0
 script = ExtResource("1_ny06e")
 Controls = ExtResource("2_e2mp6")
 StandClass = ExtResource("3_pop5s")
-StaminaManagerInstance = NodePath("")
-ParticleManager = NodePath("")
 BumpDirectionThreshold = 60
 BumpSoundEffect = ExtResource("4_f8uq3")
 CollisionSoundEffects = ["CollisionSoundEffects", "res://Assets/Audio/Impacts/impactPunch_heavy_001.ogg", "res://Assets/Audio/Impacts/impactPunch_heavy_002.ogg", "res://Assets/Audio/Impacts/impactPunch_heavy_003.ogg", "res://Assets/Audio/Impacts/impactPunch_heavy_004.ogg"]
@@ -4698,12 +4696,11 @@ parameters/idle_to_walk/blend_position = 0.583029
 [node name="StaminaManager" type="Node3D" parent="."]
 script = ExtResource("6_xp10m")
 
-[node name="StaminaDisplay" type="Sprite3D" parent="StaminaManager" node_paths=PackedStringArray("StaminaProgressBar")]
+[node name="StaminaDisplay" type="Sprite3D" parent="StaminaManager"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.27466, 3.2203, 8.58822)
 top_level = true
 texture = SubResource("ViewportTexture_0gf0w")
 script = ExtResource("8_qj3sg")
-StaminaProgressBar = NodePath("")
 
 [node name="SubViewport" type="SubViewport" parent="StaminaManager"]
 disable_3d = true
