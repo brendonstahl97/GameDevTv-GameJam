@@ -1,3 +1,4 @@
+class_name Player
 extends RigidBody3D
 
 const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
@@ -159,6 +160,10 @@ func _handle_code_input() -> void:
 	elif (Input.is_action_just_pressed(Controls.code_down)):
 		_submit_code("DOWN")
 		
+func _handle_parry() -> void:
+	#TODO implement this
+	pass
+		
 func _handle_slam(delta) -> void:
 	if(Input.is_action_just_pressed(Controls.slam)):
 		if (IsGrounded):
@@ -213,8 +218,12 @@ func SlamCast() -> void:
 		
 	highestYVelocityDuringSlam = 0
 	ShouldSlamNextPhysicsFrame = false
+	
+func launch(impulseForce: Vector3, callingPlayer: Player) -> void:
+	apply_impulse(impulseForce)
+	apply_torque_impulse(Vector3.UP * impulseForce.length() * randf_range(-1, 1))
 
-func _on_body_entered(body: Node3D) -> void:
+func _on_body_entered(body: Player) -> void:
 	if (IsSlamming):
 		IsSlamming = false
 		ShouldSlamNextPhysicsFrame = true
@@ -223,7 +232,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if (!body.get_groups().has("Players")):
 		return
 		
-	if (!body is RigidBody3D):
+	if (!body is Player):
 		return
 		
 	var momentum = linear_velocity.length() * mass
@@ -234,6 +243,7 @@ func _on_body_entered(body: Node3D) -> void:
 			AudioPlayer.play()
 		return
 		
+	# TODO Probably normalize this
 	var directionToBody = body.global_position - position
 	var directionToBodyNoY = Vector3(directionToBody.x, 0, directionToBody.z)
 	var bumpTrueness = rad_to_deg(directionToBodyNoY.angle_to(Vector3(linear_velocity.x, 0, linear_velocity.z)))
@@ -241,8 +251,8 @@ func _on_body_entered(body: Node3D) -> void:
 	if (bumpTrueness > BumpDirectionThreshold):
 		return
 	
-	body.apply_impulse(directionToBody * momentum * BumpMultiplier)
-	body.apply_torque_impulse(Vector3.UP * momentum * BumpMultiplier * randf_range(-1, 1))
+	# Call Function on player here
+	body.launch(directionToBody * momentum * BumpMultiplier, self)
 	linear_velocity = Vector3.ZERO
 	
 	AudioPlayer.stream = BumpSoundEffect
