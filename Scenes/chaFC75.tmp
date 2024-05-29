@@ -1,0 +1,1155 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0xijrm26a3ir"]
+
+[ext_resource type="Script" path="res://Scripts/P1Panel.gd" id="1_8kqi3"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="2_wyt1o"]
+[ext_resource type="Script" path="res://Scripts/CharSelNav.gd" id="3_3ccp7"]
+
+[sub_resource type="Theme" id="Theme_82ohg"]
+default_font = ExtResource("2_wyt1o")
+default_font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_maqtr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_5y6gt"]
+font = ExtResource("2_wyt1o")
+font_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8cac"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_f8xwc"]
+
+[node name="CharSelUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharSelPlayerPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="1" type="Panel" parent="CharSelPlayerPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03125
+anchor_top = 0.1
+anchor_right = 0.25625
+anchor_bottom = 0.611111
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("1_8kqi3")
+
+[node name="LineEdit" type="LineEdit" parent="CharSelPlayerPanel/1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 87.0
+grow_horizontal = 2
+focus_neighbor_right = NodePath(".")
+theme = SubResource("Theme_82ohg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maqtr")
+placeholder_text = "Player 1"
+alignment = 1
+
+[node name="StandType" type="TabContainer" parent="CharSelPlayerPanel/1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 104.0
+offset_right = 144.0
+offset_bottom = 175.0
+grow_horizontal = 2
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Color")
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("3_3ccp7")
+
+[node name="Light" type="Label" parent="CharSelPlayerPanel/1/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medium" type="Label" parent="CharSelPlayerPanel/1/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heavy" type="Label" parent="CharSelPlayerPanel/1/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="TabContainer" parent="CharSelPlayerPanel/1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 192.0
+offset_right = 144.0
+offset_bottom = 264.0
+grow_horizontal = 2
+focus_neighbor_right = NodePath(".")
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+script = ExtResource("3_3ccp7")
+
+[node name="Blue" type="Panel" parent="CharSelPlayerPanel/1/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel/1/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f8xwc")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="CharSelPlayerPanel/1/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel/1/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="CharSelPlayerPanel/1/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel/1/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="CharSelPlayerPanel/1/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel/1/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="CharSelPlayerPanel/1/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel/1/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="CharSelPlayerPanel/1/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel/1/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="CharSelPlayerPanel/1/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel/1/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="CharSelPlayerPanel/1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 280.0
+offset_right = 144.0
+offset_bottom = 351.0
+grow_horizontal = 2
+focus_neighbor_right = NodePath(".")
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("3_3ccp7")
+
+[node name="Man 1" type="Label" parent="CharSelPlayerPanel/1/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Man 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Woman 1" type="Label" parent="CharSelPlayerPanel/1/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Woman 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Man 2" type="Label" parent="CharSelPlayerPanel/1/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Man 2"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharSelPlayerPanel2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="2" type="Panel" parent="CharSelPlayerPanel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26875
+anchor_top = 0.1
+anchor_right = 0.49375
+anchor_bottom = 0.611111
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("1_8kqi3")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="CharSelPlayerPanel2/2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 87.0
+grow_horizontal = 2
+theme = SubResource("Theme_82ohg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maqtr")
+placeholder_text = "Player 2"
+alignment = 1
+
+[node name="StandType" type="TabContainer" parent="CharSelPlayerPanel2/2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 104.0
+offset_right = 144.0
+offset_bottom = 175.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath("../Color")
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("3_3ccp7")
+
+[node name="Light" type="Label" parent="CharSelPlayerPanel2/2/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medium" type="Label" parent="CharSelPlayerPanel2/2/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heavy" type="Label" parent="CharSelPlayerPanel2/2/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="TabContainer" parent="CharSelPlayerPanel2/2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 192.0
+offset_right = 144.0
+offset_bottom = 264.0
+grow_horizontal = 2
+focus_mode = 2
+current_tab = 6
+clip_tabs = false
+tabs_visible = false
+script = ExtResource("3_3ccp7")
+
+[node name="Blue" type="Panel" parent="CharSelPlayerPanel2/2/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel2/2/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f8xwc")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="CharSelPlayerPanel2/2/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel2/2/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="CharSelPlayerPanel2/2/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel2/2/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="CharSelPlayerPanel2/2/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel2/2/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="CharSelPlayerPanel2/2/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel2/2/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="CharSelPlayerPanel2/2/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel2/2/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="CharSelPlayerPanel2/2/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel2/2/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="CharSelPlayerPanel2/2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 280.0
+offset_right = 144.0
+offset_bottom = 351.0
+grow_horizontal = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("3_3ccp7")
+
+[node name="Man 1" type="Label" parent="CharSelPlayerPanel2/2/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Man 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Woman 1" type="Label" parent="CharSelPlayerPanel2/2/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Woman 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Man 2" type="Label" parent="CharSelPlayerPanel2/2/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Man 2"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharSelPlayerPanel3" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="3" type="Panel" parent="CharSelPlayerPanel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50625
+anchor_top = 0.1
+anchor_right = 0.73125
+anchor_bottom = 0.611111
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("1_8kqi3")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="CharSelPlayerPanel3/3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 87.0
+grow_horizontal = 2
+theme = SubResource("Theme_82ohg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maqtr")
+placeholder_text = "Player 3"
+alignment = 1
+
+[node name="StandType" type="TabContainer" parent="CharSelPlayerPanel3/3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 104.0
+offset_right = 144.0
+offset_bottom = 175.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath("../Color")
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("3_3ccp7")
+
+[node name="Light" type="Label" parent="CharSelPlayerPanel3/3/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medium" type="Label" parent="CharSelPlayerPanel3/3/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heavy" type="Label" parent="CharSelPlayerPanel3/3/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="TabContainer" parent="CharSelPlayerPanel3/3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 192.0
+offset_right = 144.0
+offset_bottom = 264.0
+grow_horizontal = 2
+focus_mode = 2
+current_tab = 2
+clip_tabs = false
+tabs_visible = false
+script = ExtResource("3_3ccp7")
+
+[node name="Blue" type="Panel" parent="CharSelPlayerPanel3/3/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel3/3/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f8xwc")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="CharSelPlayerPanel3/3/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel3/3/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="CharSelPlayerPanel3/3/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel3/3/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="CharSelPlayerPanel3/3/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel3/3/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="CharSelPlayerPanel3/3/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel3/3/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="CharSelPlayerPanel3/3/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel3/3/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="CharSelPlayerPanel3/3/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel3/3/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="CharSelPlayerPanel3/3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 280.0
+offset_right = 144.0
+offset_bottom = 351.0
+grow_horizontal = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("3_3ccp7")
+
+[node name="Man 1" type="Label" parent="CharSelPlayerPanel3/3/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Man 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Woman 1" type="Label" parent="CharSelPlayerPanel3/3/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Woman 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Man 2" type="Label" parent="CharSelPlayerPanel3/3/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Man 2"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharSelPlayerPanel4" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="4" type="Panel" parent="CharSelPlayerPanel4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74375
+anchor_top = 0.1
+anchor_right = 0.96875
+anchor_bottom = 0.611111
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("1_8kqi3")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="CharSelPlayerPanel4/4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 87.0
+grow_horizontal = 2
+theme = SubResource("Theme_82ohg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maqtr")
+placeholder_text = "Player 4"
+alignment = 1
+
+[node name="StandType" type="TabContainer" parent="CharSelPlayerPanel4/4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 104.0
+offset_right = 144.0
+offset_bottom = 175.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath("../Color")
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("3_3ccp7")
+
+[node name="Light" type="Label" parent="CharSelPlayerPanel4/4/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medium" type="Label" parent="CharSelPlayerPanel4/4/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heavy" type="Label" parent="CharSelPlayerPanel4/4/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="TabContainer" parent="CharSelPlayerPanel4/4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 192.0
+offset_right = 144.0
+offset_bottom = 264.0
+grow_horizontal = 2
+focus_mode = 2
+current_tab = 5
+clip_tabs = false
+tabs_visible = false
+script = ExtResource("3_3ccp7")
+
+[node name="Blue" type="Panel" parent="CharSelPlayerPanel4/4/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel4/4/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f8xwc")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="CharSelPlayerPanel4/4/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel4/4/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="CharSelPlayerPanel4/4/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel4/4/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="CharSelPlayerPanel4/4/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel4/4/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="CharSelPlayerPanel4/4/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel4/4/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="CharSelPlayerPanel4/4/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel4/4/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="CharSelPlayerPanel4/4/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelPlayerPanel4/4/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="CharSelPlayerPanel4/4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 280.0
+offset_right = 144.0
+offset_bottom = 351.0
+grow_horizontal = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("3_3ccp7")
+
+[node name="Man 1" type="Label" parent="CharSelPlayerPanel4/4/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Man 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Woman 1" type="Label" parent="CharSelPlayerPanel4/4/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Woman 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Man 2" type="Label" parent="CharSelPlayerPanel4/4/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Man 2"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
