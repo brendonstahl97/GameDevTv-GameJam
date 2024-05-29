@@ -15,6 +15,7 @@ func _ready():
 		if(child.name != "Joiner"):
 			child.visible = false
 			
+	# Create the styleBox
 	borderStyleBox = navigable_items.get_child(0).get_theme_stylebox("panel").duplicate()
 	borderStyleBox.border_color = Color8(204,204,204,255)
 	borderStyleBox.border_width_bottom = 5
@@ -22,20 +23,16 @@ func _ready():
 	borderStyleBox.border_width_top = 5
 	borderStyleBox.border_width_right = 5
 	
+	# Easy access to the array of children
 	verticalItems = navigable_items.get_children()
 
 func _process(delta: float) -> void:
-	# when the a button is pressed make everything visible and make joiner box invisible
 	if( Input.is_action_just_pressed("p" + name + "_sprint") && !joined ):
+		# when the a button is pressed make everything visible and make joiner box invisible
 		_join_player()
 	
 	if (joined):
-		if(Input.is_action_just_pressed("p" + name + "_code_down")):
-			_navigate_vertically(1)
-		if(Input.is_action_just_pressed("p" + name + "_code_up")):
-			_navigate_vertically(-1)
-		
-		_handle_horizontal_navigation()
+		_handle_navigation()
 
 func _join_player() -> void:
 	joined = true
@@ -48,11 +45,19 @@ func _join_player() -> void:
 
 func _navigate_vertically(steps: int) -> void:
 	var boxRange = verticalItems.size()
-	print("Current Index: ", currentIndex, ", Box Range: ", boxRange, ", Steps:", steps)
 	currentIndex = (currentIndex + boxRange + steps) % boxRange
-	print("New Index: ", currentIndex)
 	selected = verticalItems[currentIndex].name
 	_apply_border_style(verticalItems[currentIndex])
+
+func _handle_navigation() -> void:
+	_handle_vertical_navigation()
+	_handle_horizontal_navigation()
+	
+func _handle_vertical_navigation() -> void:
+	if(Input.is_action_just_pressed("p" + name + "_code_down")):
+		_navigate_vertically(1)
+	if(Input.is_action_just_pressed("p" + name + "_code_up")):
+		_navigate_vertically(-1)
 	
 func _handle_horizontal_navigation() -> void:
 	for child:Control in verticalItems:
