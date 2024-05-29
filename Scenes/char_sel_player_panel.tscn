@@ -63,24 +63,32 @@ alignment = 1
 editable = false
 flat = true
 
-[node name="StandType" type="TabContainer" parent="1"]
+[node name="NavigableItems" type="Control" parent="1"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StandType" type="TabContainer" parent="1/NavigableItems"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = -1
+anchor_left = 3.6
+anchor_top = 3.2875
+anchor_right = 3.6
+anchor_bottom = 3.2875
 offset_left = -144.0
-offset_top = 104.0
+offset_top = -35.5
 offset_right = 144.0
-offset_bottom = 175.0
+offset_bottom = 35.5
 grow_horizontal = 2
-focus_neighbor_bottom = NodePath("../Color")
+grow_vertical = 2
 focus_mode = 2
 clip_tabs = false
 tabs_visible = false
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
 
-[node name="Light" type="Label" parent="1/StandType"]
+[node name="Light" type="Label" parent="1/NavigableItems/StandType"]
 layout_mode = 2
 focus_mode = 2
 text = "Light"
@@ -88,7 +96,7 @@ label_settings = SubResource("LabelSettings_5y6gt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Medium" type="Label" parent="1/StandType"]
+[node name="Medium" type="Label" parent="1/NavigableItems/StandType"]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -97,7 +105,7 @@ label_settings = SubResource("LabelSettings_5y6gt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Heavy" type="Label" parent="1/StandType"]
+[node name="Heavy" type="Label" parent="1/NavigableItems/StandType"]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -106,26 +114,39 @@ label_settings = SubResource("LabelSettings_5y6gt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Color" type="TabContainer" parent="1"]
+[node name="Color" type="TabContainer" parent="1/NavigableItems"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = -1
+anchor_left = 3.6
+anchor_top = 5.6375
+anchor_right = 3.6
+anchor_bottom = 5.6375
 offset_left = -144.0
-offset_top = 192.0
+offset_top = -35.5
 offset_right = 144.0
-offset_bottom = 264.0
+offset_bottom = 35.5
 grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 2
 clip_tabs = false
 tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
 
-[node name="Blue" type="Panel" parent="1/Color"]
+[node name="MarginContainer" type="MarginContainer" parent="1/NavigableItems/Color"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Blue" type="Panel" parent="1/NavigableItems/Color/MarginContainer"]
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
 
-[node name="ColorRect" type="ColorRect" parent="1/Color/Blue"]
+[node name="ColorRect" type="ColorRect" parent="1/NavigableItems/Color/MarginContainer/Blue"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -140,13 +161,13 @@ grow_vertical = 2
 theme = SubResource("Theme_f8xwc")
 color = Color(0, 0.619608, 0.933333, 1)
 
-[node name="Purple" type="Panel" parent="1/Color"]
+[node name="Purple" type="Panel" parent="1/NavigableItems/Color"]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
 
-[node name="ColorRect" type="ColorRect" parent="1/Color/Purple"]
+[node name="ColorRect" type="ColorRect" parent="1/NavigableItems/Color/Purple"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -160,13 +181,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.751635, 0.370664, 1, 1)
 
-[node name="Pink" type="Panel" parent="1/Color"]
+[node name="Pink" type="Panel" parent="1/NavigableItems/Color"]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
 
-[node name="ColorRect" type="ColorRect" parent="1/Color/Pink"]
+[node name="ColorRect" type="ColorRect" parent="1/NavigableItems/Color/Pink"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -180,13 +201,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.983123, 0.252881, 0.572498, 1)
 
-[node name="Red" type="Panel" parent="1/Color"]
+[node name="Red" type="Panel" parent="1/NavigableItems/Color"]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
 
-[node name="ColorRect" type="ColorRect" parent="1/Color/Red"]
+[node name="ColorRect" type="ColorRect" parent="1/NavigableItems/Color/Red"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -200,13 +221,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.954993, 0.300531, 0.169365, 1)
 
-[node name="Orange" type="Panel" parent="1/Color"]
+[node name="Orange" type="Panel" parent="1/NavigableItems/Color"]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
 
-[node name="ColorRect" type="ColorRect" parent="1/Color/Orange"]
+[node name="ColorRect" type="ColorRect" parent="1/NavigableItems/Color/Orange"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -220,14 +241,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.855891, 0.487664, 0.115647, 1)
 
-[node name="Yellow" type="Panel" parent="1/Color"]
+[node name="Yellow" type="Panel" parent="1/NavigableItems/Color"]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
-metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="1/Color/Yellow"]
+[node name="ColorRect" type="ColorRect" parent="1/NavigableItems/Color/Yellow"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -241,14 +261,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.829442, 0.788601, 0.0820354, 1)
 
-[node name="Green" type="Panel" parent="1/Color"]
+[node name="Green" type="Panel" parent="1/NavigableItems/Color"]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
-metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="1/Color/Green"]
+[node name="ColorRect" type="ColorRect" parent="1/NavigableItems/Color/Green"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -262,14 +281,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.263164, 0.85746, 0.229203, 1)
 
-[node name="Guy" type="TabContainer" parent="1"]
+[node name="Guy" type="TabContainer" parent="1/NavigableItems"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -144.0
+offset_left = -20.0
 offset_top = 280.0
-offset_right = 144.0
+offset_right = 268.0
 offset_bottom = 351.0
 grow_horizontal = 2
 focus_mode = 2
@@ -278,7 +297,7 @@ tabs_visible = false
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 
-[node name="Man 1" type="Label" parent="1/Guy"]
+[node name="Man 1" type="Label" parent="1/NavigableItems/Guy"]
 layout_mode = 2
 focus_mode = 2
 text = "Man 1"
@@ -286,7 +305,7 @@ label_settings = SubResource("LabelSettings_5y6gt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Woman 1" type="Label" parent="1/Guy"]
+[node name="Woman 1" type="Label" parent="1/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -295,7 +314,7 @@ label_settings = SubResource("LabelSettings_5y6gt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Man 2" type="Label" parent="1/Guy"]
+[node name="Man 2" type="Label" parent="1/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2

@@ -36,11 +36,10 @@ const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
 @export var CollisionSoundEffects: Array ## Fill with string locations of potential sounds for non-bump collisions
 
 @export_category("Slam")
-@export var InAirDetectionAccuracy = 0.1
-@export var SlamSpeed = 5000.0
-@export var SlamLaunchForceMultiplier = 1.0
-@export var SlamDirectHitForce = 50.0
-@export var SlamImpactShape: Shape3D
+@export var SlamSpeed = 5000.0 ## The speed that you slam
+@export var SlamLaunchForceMultiplier = 1.0 ## A multipler to adjust the force of the launch from the slam
+@export var SlamDirectHitForce = 50.0 ## An impulse force amount that is applied when the slam makes a direct hit with another player
+@export var SlamImpactShape: Shape3D ## A shape used in the shapeCast calculation to determine the area which players are affected by a slam
 
 @export_category("Stamina")
 @export var SprintStaminaDrain = 15.0 ## Stamina lost per second while sprinting
@@ -150,7 +149,6 @@ func _handle_sprint(delta: float) -> void:
 		ParticleManager.end_sprint_particles()
 		scrape_sound_player.stop()
 		
-		
 func _handle_code_input() -> void:
 	if (Input.is_action_just_pressed(Controls.code_up)):
 		_submit_code("UP")
@@ -162,16 +160,20 @@ func _handle_code_input() -> void:
 		_submit_code("DOWN")
 		
 func _handle_slam(delta) -> void:
-		if(Input.is_action_just_pressed(Controls.slam)):
-			if (IsGrounded):
-				position.y = 10 
-			else:
-				IsSlamming = true
-		
-		if (IsSlamming):
-			apply_force(Vector3.DOWN * SlamSpeed * delta)
-			if (abs(linear_velocity.y) > highestYVelocityDuringSlam):
-				highestYVelocityDuringSlam = abs(linear_velocity.y)
+	if(Input.is_action_just_pressed(Controls.slam)):
+		if (IsGrounded):
+			position.y = 10 
+		else:
+			IsSlamming = true
+	
+	if (IsSlamming):
+		apply_force(Vector3.DOWN * SlamSpeed * delta)
+		if (abs(linear_velocity.y) > highestYVelocityDuringSlam):
+			highestYVelocityDuringSlam = abs(linear_velocity.y)
+				
+func _handle_parry() -> void:
+	#TODO Implement This
+	pass
 		
 func _submit_code(codeDirection: String) -> void:
 	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
