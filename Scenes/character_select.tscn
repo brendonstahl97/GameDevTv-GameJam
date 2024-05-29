@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="5_eiq3f"]
 [ext_resource type="PackedScene" uid="uid://co0qilyfn6n75" path="res://Assets/Characters/BaseCharacter.gltf" id="6_5x140"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="6_vhb4b"]
-[ext_resource type="PackedScene" uid="uid://bub3nomrwdlda" path="res://Scenes/character_select_UI.tscn" id="7_t5ujb"]
+[ext_resource type="PackedScene" uid="uid://bub3nomrwdlda" path="res://Scenes/char_sel_player_panel.tscn" id="7_t5ujb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ygf5d"]
 

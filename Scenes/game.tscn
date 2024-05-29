@@ -1,12 +1,57 @@
-[gd_scene load_steps=14 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=26 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
-[ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="1_rrj8p"]
+[ext_resource type="Script" path="res://Scripts/matchUI.gd" id="2_p4kmr"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_6nqrl"]
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="3_qg2mu"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 [ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_c2eto"]
 [ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_w1niv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7ktf"]
+bg_color = Color(0, 0, 0, 0.294118)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_2ur8t"]
+default_font = ExtResource("3_6nqrl")
+default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_ntnyu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkv2o"]
+bg_color = Color(1.2514e-06, 0.665187, 0.8178, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvm0q"]
+bg_color = Color(2.55093e-06, 0.725439, 0.200965, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7le5"]
+bg_color = Color(0.872012, 0.490359, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1418i"]
+bg_color = Color(0.885454, 0.41618, 0.629383, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_al261"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,6 +68,15 @@ glow_enabled = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j62al"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_kb2m0"]
+viewport_path = NodePath("StaminaManager/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ebf00"]
+viewport_path = NodePath("StaminaManager/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tyfn3"]
+viewport_path = NodePath("StaminaManager/SubViewport")
+
 [sub_resource type="BoxMesh" id="BoxMesh_lu4bi"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xo4uk"]
@@ -30,8 +84,251 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_f5sun")
+gameMode = "Time"
 
-[node name="MatchUi" parent="." instance=ExtResource("1_rrj8p")]
+[node name="MatchUi" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_p4kmr")
+
+[node name="P1_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 305.0
+offset_bottom = 103.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P1_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 1"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P1_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P1_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkv2o")
+
+[node name="P2_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -304.0
+offset_top = 16.0
+offset_right = -15.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P2_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 2"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P2_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P2_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mvm0q")
+
+[node name="P3_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -104.0
+offset_right = 305.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P3_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 3"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P3_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P3_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7le5")
+
+[node name="P4_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -104.0
+offset_right = -15.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P4_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 4"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P4_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P4_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1418i")
+
+[node name="Goal" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 70.0
+grow_horizontal = 2
+pivot_offset = Vector2(100, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_al261")
+
+[node name="Label" type="RichTextLabel" parent="MatchUi/Goal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]00:00[/center]"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bqfud")
@@ -80,15 +377,133 @@ sky_mode = 1
 
 [node name="Players" type="Node" parent="."]
 
-[node name="0" parent="Players" instance=ExtResource("3_xipmc")]
+[node name="0" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27466, 4.34343, 8.58822)
+StaminaManagerInstance = NodePath("StaminaManager")
+ParticleManager = NodePath("Particle Emitters")
 
-[node name="1" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138367, 3.61722, 1.97345)
+[node name="Skeleton3D" parent="Players/0/Casual3_Male/CharacterArmature" index="0"]
+bones/1/position = Vector3(0.265425, 0.0302378, -0.106945)
+bones/1/rotation = Quaternion(5.52676e-06, 0.654339, 0.756202, 4.96295e-06)
+bones/2/position = Vector3(0.00276131, 0.971117, 0.0555439)
+bones/2/rotation = Quaternion(-0.000299186, 0.0012412, 1.59613e-05, 0.999999)
+bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
+bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
+bones/5/rotation = Quaternion(-0.0063302, -0.0127892, 0.00849164, 0.999862)
+bones/6/rotation = Quaternion(-0.0399637, 1.77389e-05, 9.71949e-05, 0.999201)
+bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
+bones/8/position = Vector3(0.142248, 0.140206, 0.0136027)
+bones/9/rotation = Quaternion(-0.368654, -0.254108, -0.757208, 0.475561)
+bones/10/rotation = Quaternion(-0.0162578, 0.20834, -0.164078, 0.964058)
+bones/11/rotation = Quaternion(0.00868285, 0.0852006, -0.00621855, 0.996307)
+bones/12/position = Vector3(-0.143564, 0.140021, 0.0134718)
+bones/13/rotation = Quaternion(-0.372841, 0.266519, 0.753316, 0.47167)
+bones/14/rotation = Quaternion(-0.00568457, -0.216871, 0.154628, 0.963859)
+bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
+bones/16/position = Vector3(0.25302, -0.0197434, -0.0577915)
+bones/16/rotation = Quaternion(0.995173, 0.0101868, 0.000228958, 0.0976119)
+bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
+bones/17/rotation = Quaternion(0.280267, 0.00305111, 0.00934455, 0.959872)
+bones/18/position = Vector3(-0.254712, -0.0171591, -0.0559288)
+bones/18/rotation = Quaternion(0.979965, -0.0104016, 0.00241003, 0.198881)
+bones/18/scale = Vector3(0.999998, 1, 0.999949)
+bones/19/rotation = Quaternion(0.292047, -0.00316573, -0.00930634, 0.956353)
+bones/19/scale = Vector3(1, 1.00001, 1.00001)
+bones/21/position = Vector3(-0.262802, 0.0451279, 0.06134)
+bones/21/rotation = Quaternion(-5.53657e-06, 0.717651, 0.696403, -5.11333e-06)
+bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
+
+[node name="StaminaDisplay" parent="Players/0/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.27466, 4.40205, 8.58822)
+texture = SubResource("ViewportTexture_kb2m0")
+StaminaProgressBar = NodePath("../SubViewport/TextureProgressBar")
+
+[node name="1" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138367, 4.47547, 1.97345)
 Controls = ExtResource("4_c2eto")
+StaminaManagerInstance = NodePath("StaminaManager")
+ParticleManager = NodePath("Particle Emitters")
 
-[node name="2" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.67468, 2.70746, -0.026551)
+[node name="CollisionShape3D" parent="Players/1" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.195145)
+
+[node name="Skeleton3D" parent="Players/1/Casual3_Male/CharacterArmature" index="0"]
+bones/1/position = Vector3(0.265425, 0.0302378, -0.106945)
+bones/1/rotation = Quaternion(5.52676e-06, 0.654339, 0.756202, 4.96295e-06)
+bones/2/position = Vector3(0.00276131, 0.971117, 0.0555439)
+bones/2/rotation = Quaternion(-0.000299186, 0.0012412, 1.59613e-05, 0.999999)
+bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
+bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
+bones/5/rotation = Quaternion(-0.0063302, -0.0127892, 0.00849164, 0.999862)
+bones/6/rotation = Quaternion(-0.0399637, 1.77389e-05, 9.71949e-05, 0.999201)
+bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
+bones/8/position = Vector3(0.142248, 0.140206, 0.0136027)
+bones/9/rotation = Quaternion(-0.368654, -0.254108, -0.757208, 0.475561)
+bones/10/rotation = Quaternion(-0.0162578, 0.20834, -0.164078, 0.964058)
+bones/11/rotation = Quaternion(0.00868285, 0.0852006, -0.00621855, 0.996307)
+bones/12/position = Vector3(-0.143564, 0.140021, 0.0134718)
+bones/13/rotation = Quaternion(-0.372841, 0.266519, 0.753316, 0.47167)
+bones/14/rotation = Quaternion(-0.00568457, -0.216871, 0.154628, 0.963859)
+bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
+bones/16/position = Vector3(0.25302, -0.0197434, -0.0577915)
+bones/16/rotation = Quaternion(0.995173, 0.0101868, 0.000228958, 0.0976119)
+bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
+bones/17/rotation = Quaternion(0.280267, 0.00305111, 0.00934455, 0.959872)
+bones/18/position = Vector3(-0.254712, -0.0171591, -0.0559288)
+bones/18/rotation = Quaternion(0.979965, -0.0104016, 0.00241003, 0.198881)
+bones/18/scale = Vector3(0.999998, 1, 0.999949)
+bones/19/rotation = Quaternion(0.292047, -0.00316573, -0.00930634, 0.956353)
+bones/19/scale = Vector3(1, 1.00001, 1.00001)
+bones/21/position = Vector3(-0.262802, 0.0451279, 0.06134)
+bones/21/rotation = Quaternion(-5.53657e-06, 0.717651, 0.696403, -5.11333e-06)
+bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
+
+[node name="StaminaDisplay" parent="Players/1/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.138367, 4.53409, 1.97345)
+texture = SubResource("ViewportTexture_ebf00")
+StaminaProgressBar = NodePath("../SubViewport/TextureProgressBar")
+
+[node name="2" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.67468, 3.51167, -0.026551)
 Controls = ExtResource("5_w1niv")
+StaminaManagerInstance = NodePath("StaminaManager")
+ParticleManager = NodePath("Particle Emitters")
+
+[node name="Skeleton3D" parent="Players/2/Casual3_Male/CharacterArmature" index="0"]
+bones/1/position = Vector3(0.265425, 0.0302378, -0.106945)
+bones/1/rotation = Quaternion(5.52676e-06, 0.654339, 0.756202, 4.96295e-06)
+bones/2/position = Vector3(0.00276131, 0.971117, 0.0555439)
+bones/2/rotation = Quaternion(-0.000299186, 0.0012412, 1.59613e-05, 0.999999)
+bones/3/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.998711)
+bones/4/rotation = Quaternion(0.0746338, 4.36667e-07, 4.60993e-08, 0.997211)
+bones/5/rotation = Quaternion(-0.0063302, -0.0127892, 0.00849164, 0.999862)
+bones/6/rotation = Quaternion(-0.0399637, 1.77389e-05, 9.71949e-05, 0.999201)
+bones/7/rotation = Quaternion(-1.11759e-08, -0.000275475, 1.35106e-11, 1)
+bones/8/position = Vector3(0.142248, 0.140206, 0.0136027)
+bones/9/rotation = Quaternion(-0.368654, -0.254108, -0.757208, 0.475561)
+bones/10/rotation = Quaternion(-0.0162578, 0.20834, -0.164078, 0.964058)
+bones/11/rotation = Quaternion(0.00868285, 0.0852006, -0.00621855, 0.996307)
+bones/12/position = Vector3(-0.143564, 0.140021, 0.0134718)
+bones/13/rotation = Quaternion(-0.372841, 0.266519, 0.753316, 0.47167)
+bones/14/rotation = Quaternion(-0.00568457, -0.216871, 0.154628, 0.963859)
+bones/15/rotation = Quaternion(0.010896, -0.159513, 0.0102235, 0.987083)
+bones/16/position = Vector3(0.25302, -0.0197434, -0.0577915)
+bones/16/rotation = Quaternion(0.995173, 0.0101868, 0.000228958, 0.0976119)
+bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
+bones/17/rotation = Quaternion(0.280267, 0.00305111, 0.00934455, 0.959872)
+bones/18/position = Vector3(-0.254712, -0.0171591, -0.0559288)
+bones/18/rotation = Quaternion(0.979965, -0.0104016, 0.00241003, 0.198881)
+bones/18/scale = Vector3(0.999998, 1, 0.999949)
+bones/19/rotation = Quaternion(0.292047, -0.00316573, -0.00930634, 0.956353)
+bones/19/scale = Vector3(1, 1.00001, 1.00001)
+bones/21/position = Vector3(-0.262802, 0.0451279, 0.06134)
+bones/21/rotation = Quaternion(-5.53657e-06, 0.717651, 0.696403, -5.11333e-06)
+bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.38813e-21, 1)
+
+[node name="StaminaDisplay" parent="Players/2/StaminaManager" index="0" node_paths=PackedStringArray("StaminaProgressBar")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.67468, 3.57029, -0.026551)
+texture = SubResource("ViewportTexture_tyfn3")
+StaminaProgressBar = NodePath("../SubViewport/TextureProgressBar")
 
 [node name="Customers" type="Node" parent="."]
 
@@ -103,3 +518,7 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_xo4uk")
+
+[editable path="Players/0"]
+[editable path="Players/1"]
+[editable path="Players/2"]
