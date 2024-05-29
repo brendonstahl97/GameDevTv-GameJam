@@ -81,7 +81,6 @@ sky_mode = 1
 [node name="Players" type="Node" parent="."]
 
 [node name="0" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27466, 3.16168, 8.58822)
 
 [node name="1" parent="Players" instance=ExtResource("3_xipmc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138367, 3.61722, 1.97345)
