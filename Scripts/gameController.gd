@@ -14,6 +14,13 @@ var timeSinceLastSpawn = 0.0
 
 var customersNode : Node = null
 
+# Set player info from character select screen.
+# ["0"] = {
+# ["PlayerColor"] = Color,
+# ["PlayerCart"] = String ("Heavy"),
+# ["PlayerGuy"] = String ("Guy1"), }
+var playerInfo = {}
+
 
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
