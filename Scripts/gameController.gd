@@ -14,6 +14,9 @@ var timeSinceLastSpawn = 0.0
 
 var customersNode : Node = null
 
+# Fire once the players have been created.
+signal PlayersSpawned
+
 
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
@@ -33,7 +36,19 @@ func _ready() -> void:
 	# and spawn in the selected players.
 	# If there is not, assume we're testing the game (run scene button while in game scene) and leave the base players in.
 	if (global.playerInfo != null):
-		pass
+		# Remove base players.
+		for basePlayer in get_node("/root/Game/Players").get_children():
+			basePlayer.free()
+
+		# Spawn in joined players.
+		for playerKey in global.playerInfo:
+			var thisPlayersInfo = global.playerInfo[playerKey]
+			var playerObject = preload("res://Scenes/Player.tscn").instantiate()
+			playerObject.name = str(int(playerKey)-1)
+			var controlsResource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + playerKey + "_Controls.tres")
+			playerObject.Controls = controlsResource
+
+	PlayersSpawned.emit()
 
 	# Hide player panels which dont have a player
 	for i in range(4): 
