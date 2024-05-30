@@ -12,3 +12,4 @@ extends Resource
 @export var code_right := "p1_code_right"
 @export var code_up := "p1_code_up"
 @export var slam := "p1_slam"
+@export var parry := "p1_parry"
