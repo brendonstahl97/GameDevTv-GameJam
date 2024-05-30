@@ -1,5 +1,6 @@
 extends Panel
 var selected
+var readyUp = false
 var joined = false
 var currentIndex = 0
 var borderStyleBox
@@ -27,7 +28,7 @@ func _ready():
 	verticalItems = navigable_items.get_children()
 
 func _process(delta: float) -> void:
-	if( Input.is_action_just_pressed("p" + name + "_sprint") && !joined ):
+	if( (Input.is_action_just_pressed("p" + name + "_sprint") || Input.is_action_just_pressed("p" + name + "_slam")) && !joined ):
 		# when the a button is pressed make everything visible and make joiner box invisible
 		_join_player()
 	
@@ -39,9 +40,15 @@ func _join_player() -> void:
 	get_child(0).visible = true
 	get_child(1).visible = true
 	get_child(2).visible = false
+	get_child(3).visible = false
 	
 	selected = verticalItems[0].name ## switch focus to first user input element 
 	currentIndex = 0 ## I don't know how else to keep this number (current index in the getChildren array)
+
+func _ready_player() -> void:
+	readyUp = true
+	get_child(3).visible = true
+	joined = false
 
 func _navigate_vertically(steps: int) -> void:
 	var boxRange = verticalItems.size()
@@ -54,23 +61,33 @@ func _handle_navigation() -> void:
 	_handle_horizontal_navigation()
 	
 func _handle_vertical_navigation() -> void:
-	if(Input.is_action_just_pressed("p" + name + "_code_down")):
+	if(Input.is_action_just_pressed("p" + name + "_code_down") || Input.is_action_just_pressed("p" + name + "_move_down") ):
 		_navigate_vertically(1)
-	if(Input.is_action_just_pressed("p" + name + "_code_up")):
+	if(Input.is_action_just_pressed("p" + name + "_code_up") || Input.is_action_just_pressed("p" + name + "_move_up") ):
 		_navigate_vertically(-1)
 	
 func _handle_horizontal_navigation() -> void:
 	for child:Control in verticalItems:
-		if( (child.name.match(selected) ) && (Input.is_action_just_pressed("p" + name + "_code_left") || Input.is_action_just_pressed("p" + name + "_move_left") ) ):
+		if( !(child is Button) && (child.name.match(selected) ) && (Input.is_action_just_pressed("p" + name + "_code_left") || Input.is_action_just_pressed("p" + name + "_move_left") ) ):
 			if(!child.select_previous_available()):
 				child.current_tab = child.get_tab_count()-1
-		if( (child.name.match(selected) ) && (Input.is_action_just_pressed("p" + name + "_code_right") || Input.is_action_just_pressed("p" + name + "_move_right") ) ):
+		if( !(child is Button) && (child.name.match(selected) ) && (Input.is_action_just_pressed("p" + name + "_code_right") || Input.is_action_just_pressed("p" + name + "_move_right") ) ):
 			if( !child.select_next_available() ):
 				child.current_tab = 0
+		if(child.name.match(selected) && child is Button):
+			child.add_theme_stylebox_override("normal", borderStyleBox)
+			_handle_buttons(child)
 		if(child.name.match(selected)):
 			child.add_theme_stylebox_override("panel", borderStyleBox)
 		else:
 			child.remove_theme_stylebox_override("panel")
+			child.remove_theme_stylebox_override("normal")
+	
+func _handle_buttons(child:Button) -> void:
+	if Input.is_action_just_pressed("p" + name + "_sprint"):
+		child.pressed
+		if (child.name.match("ReadyUp")):
+			_ready_player()
 
 func _apply_border_style(selectedItem: Node) -> void:
 		if(selectedItem.name.match(selected)):
