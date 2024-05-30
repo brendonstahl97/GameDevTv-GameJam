@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=21 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
 [ext_resource type="Script" path="res://Scripts/matchUI.gd" id="2_p4kmr"]
@@ -6,8 +6,6 @@
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_6nqrl"]
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="3_qg2mu"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
-[ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_c2eto"]
-[ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_w1niv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7ktf"]
 bg_color = Color(0, 0, 0, 0.294118)
@@ -337,6 +335,11 @@ ParryFocusFov = 40.0
 [node name="ParryFocusTimer" type="Timer" parent="Camera3D"]
 wait_time = 0.3
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 2.82, 1.36, 1)
+top_level = true
+current = true
+
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_rjfq8")
 physics_material = SubResource("PhysicsMaterial_j62al")
@@ -373,18 +376,6 @@ sky_mode = 1
 [node name="Players" type="Node" parent="."]
 
 [node name="0" parent="Players" instance=ExtResource("3_xipmc")]
-
-[node name="1" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.72534, 3.16168, 8.58822)
-Controls = ExtResource("4_c2eto")
-StaminaManagerInstance = NodePath("../0/StaminaManager")
-ParticleManager = NodePath("../0/Particle Emitters")
-
-[node name="2" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.27466, 3.16168, 8.58822)
-Controls = ExtResource("5_w1niv")
-StaminaManagerInstance = NodePath("../0/StaminaManager")
-ParticleManager = NodePath("../0/Particle Emitters")
 
 [node name="Customers" type="Node" parent="."]
 

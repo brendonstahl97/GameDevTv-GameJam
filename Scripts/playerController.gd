@@ -72,6 +72,7 @@ var ShouldSlamNextPhysicsFrame = false
 var highestYVelocityDuringSlam = 0
 
 var IsParrying = false
+var DidSuccesfullyParry = false
 var IsSlamming = false
 var IsGrounded: bool:
 	get:
@@ -240,6 +241,7 @@ func launch(impulseForce: Vector3, callingPlayer: Player, isParryable := true) -
 		Engine.time_scale = ParrySlowTimeAmount
 		parry_slow_timer.start(ParrySlowTimeLength * ParrySlowTimeAmount)
 		
+		DidSuccesfullyParry = true
 		SuccessfulParry.emit(global_position)
 		
 	else:
@@ -291,4 +293,8 @@ func _on_parry_slow_timer_timeout() -> void:
 	Engine.time_scale = 1
 
 func _on_parry_timer_timeout() -> void:
+	if (!DidSuccesfullyParry):
+		StaminaManagerInstance.drainStamina(StaminaManagerInstance.MaxStamina)
+	
 	IsParrying = false
+	DidSuccesfullyParry = false
