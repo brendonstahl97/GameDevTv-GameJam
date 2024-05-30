@@ -14,11 +14,6 @@ var timeSinceLastSpawn = 0.0
 
 var customersNode : Node = null
 
-# Set player info from character select screen.
-# ["0"] = {
-# ["PlayerColor"] = Color,
-# ["PlayerCart"] = String ("Heavy"),
-# ["PlayerGuy"] = String ("Guy1"), }
 
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
@@ -34,18 +29,17 @@ func _ready() -> void:
 	spawnCustomer()
 
 	# Spawn in players
+	# If there is a playerInfo, assume character select was the last scene, delete the base players
+	# and spawn in the selected players.
+	# If there is not, assume we're testing the game (run scene button while in game scene) and leave the base players in.
+	if (global.playerInfo != null):
+		pass
 
 	# Hide player panels which dont have a player
 	for i in range(4): 
 		var player = get_node("/root/Game/Players/" + str(i))
 		if (player == null):
 			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
-
-	# Dispose of the character select screen
-	# var characterSelect = get_node("/root/CharacterSelect")
-	# if (characterSelect != null):
-	# 	print("Disposing character select scene")
-	# 	characterSelect.free()
 
 func gameCompleted(winner: Node3D) -> void:
 	print("Game completed", winner)

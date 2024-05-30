@@ -27,6 +27,7 @@ func _process(delta):
 
 func _switchSceneToGame(playerChoicesDictionary):
 	# Switch and pass the player choices to the game controller
+	# This method was not quite as good as I was hoping.
 	# var gameScene = preload("res://Scenes/game.tscn").instantiate()
 	# get_tree().root.add_child(gameScene)
 
