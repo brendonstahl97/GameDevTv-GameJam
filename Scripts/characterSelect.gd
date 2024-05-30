@@ -23,12 +23,16 @@ func _process(delta):
 				return
 
 		var playerChoicesDictionary = _getPlayerChoices()
-		#_switchSceneToGame(playerChoicesDictionary)
+		_switchSceneToGame(playerChoicesDictionary)
 
 func _switchSceneToGame(playerChoicesDictionary):
 	# Switch and pass the player choices to the game controller
+	# var gameScene = preload("res://Scenes/game.tscn").instantiate()
+	# get_tree().root.add_child(gameScene)
 
-	pass
+	# Set GLOBAL player info for their choices, usable anywhere.
+	global.playerInfo = playerChoicesDictionary
+	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 # Returns a dictionary of each player's choices,
 # give it to gameController when the game starts so we know how to spawn each player.
@@ -47,8 +51,12 @@ func _getPlayerChoices():
 		var navigableItemsPanel = p.get_node("NavigableItems")
 
 		# Get the Player Color
-		#var playerColorPanel = navigableItemsPanel.get_node("Color")
-		playerNestedInfo["PlayerColor"] = "Purple"
+		var playerColorPanel = navigableItemsPanel.get_node("Color")
+		for colorPanel in playerColorPanel.get_children():
+			if (colorPanel.visible):
+				var colorRect : ColorRect = colorPanel.get_node("ColorRect")
+				playerNestedInfo["PlayerColor"] = colorRect.color
+				break
 
 		# Cart Type
 		var cartTypePanel = navigableItemsPanel.get_node("StandType")
@@ -64,7 +72,7 @@ func _getPlayerChoices():
 		# Loop through and see which one is visible
 		for characterModel in characterModelPanel.get_children():
 			if (characterModel.visible):
-				playerNestedInfo["PlayerGuy"] = characterModel.get_name()
+				playerNestedInfo["PlayerGuy"] = str(characterModel.get_name())
 				break
 
 		var playerNumberString = str(playerNumber)

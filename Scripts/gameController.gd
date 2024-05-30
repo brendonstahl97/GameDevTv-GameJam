@@ -19,8 +19,6 @@ var customersNode : Node = null
 # ["PlayerColor"] = Color,
 # ["PlayerCart"] = String ("Heavy"),
 # ["PlayerGuy"] = String ("Guy1"), }
-var playerInfo = {}
-
 
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
@@ -38,10 +36,16 @@ func _ready() -> void:
 	# Spawn in players
 
 	# Hide player panels which dont have a player
-	for i in range(4):
+	for i in range(4): 
 		var player = get_node("/root/Game/Players/" + str(i))
 		if (player == null):
 			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
+
+	# Dispose of the character select screen
+	# var characterSelect = get_node("/root/CharacterSelect")
+	# if (characterSelect != null):
+	# 	print("Disposing character select scene")
+	# 	characterSelect.free()
 
 func gameCompleted(winner: Node3D) -> void:
 	print("Game completed", winner)
