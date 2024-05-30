@@ -31,8 +31,13 @@ func _process(delta: float) -> void:
 	if( (Input.is_action_just_pressed("p" + name + "_sprint") || Input.is_action_just_pressed("p" + name + "_slam")) && !joined ):
 		# when the a button is pressed make everything visible and make joiner box invisible
 		_join_player()
+
+	# Unready
+	if (Input.is_action_just_pressed("p" + name + "_slam") && readyUp):
+		readyUp = false
+		_join_player()
 	
-	if (joined):
+	if (joined and !readyUp):
 		_handle_navigation()
 
 func _join_player() -> void:
@@ -47,8 +52,8 @@ func _join_player() -> void:
 
 func _ready_player() -> void:
 	readyUp = true
+	joined = true
 	get_child(3).visible = true
-	joined = false
 
 func _navigate_vertically(steps: int) -> void:
 	var boxRange = verticalItems.size()

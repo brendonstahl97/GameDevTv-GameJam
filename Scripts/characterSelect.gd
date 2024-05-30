@@ -5,16 +5,23 @@ extends Node3D
 #	Stand Type
 #	Character Model
 #	Player Color
-#	Player Name
+#	Player Nam  
+
+var charSelectUI = null
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	charSelectUI = $CharacterSelectUi 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_select")):
+		# If all players who are joined, are ready, switch to the game scene.
+		for p in charSelectUI.get_children():
+			if (p.joined && !p.readyUp):
+				return
+
 		var playerChoicesDictionary = _getPlayerChoices()
 		#_switchSceneToGame(playerChoicesDictionary)
 
@@ -27,7 +34,11 @@ func _switchSceneToGame(playerChoicesDictionary):
 # give it to gameController when the game starts so we know how to spawn each player.
 func _getPlayerChoices():
 	var playerChoices = {}
-	for p in $CharacterSelectUi.get_children():
+	for p in charSelectUI.get_children():
+		# If the player hasn't joined, skip them
+		if (!p.joined):
+			continue
+
 		#var playerNumber: int = int(p.get_name())
 		#playerNumber -= 1
 		var playerNumber = p.name
