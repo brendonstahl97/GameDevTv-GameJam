@@ -11,6 +11,8 @@ const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
 @onready var floor_detection_ray_cast: RayCast3D = $FloorDetectionRayCast
 @onready var AudioPlayer: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var scrape_sound_player: AudioStreamPlayer3D = $ScrapeSoundEffect
+@onready var parry_timer: Timer = $ParryTimer
+@onready var parry_slow_timer: Timer = $ParrySlowTimer
 
 @export var Controls: PlayerControls
 @export var StandClass: Stand
@@ -47,6 +49,12 @@ const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
 @export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
 @export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
 
+@export_category("Parry")
+@export var ParryForceMultiplier = 1.0 ## A force multiplier applied to the launch 
+@export var ParrySlowTimeAmount =  0.5 ## Intensity of time slowdown 0 = stop time, 1 = full speed
+@export var ParrySlowTimeLength = 1.0 ## How long time should be slowed on a successful parry in seconds
+@export var ParrySoundEffect: AudioStream
+
 @export_category("Appearance")
 @export var PlayerName : String = "Player"
 @export var PlayerCartType : String = "Normal"
@@ -55,16 +63,20 @@ const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
 
 signal CodeSubmitted
 signal StaminaConsumptionFailed
+signal SuccessfulParry(Position: Vector3)
 
 var MovementDirection = Vector3.ZERO
 var SprintModifier = 1.0
+
+var ShouldSlamNextPhysicsFrame = false
+var highestYVelocityDuringSlam = 0
+
+var IsParrying = false
+var IsSlamming = false
 var IsGrounded: bool:
 	get:
 		return floor_detection_ray_cast.is_colliding()
 
-var IsSlamming = false
-var ShouldSlamNextPhysicsFrame = false
-var highestYVelocityDuringSlam = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -84,6 +96,7 @@ func _physics_process(delta: float) -> void:
 	_handle_movement(currentVelocity)
 	_handle_rotation(currentVelocity)
 	_handle_slam(delta)
+	_handle_parry()
 	
 	if (ShouldSlamNextPhysicsFrame):
 		SlamCast()
@@ -161,8 +174,9 @@ func _handle_code_input() -> void:
 		_submit_code("DOWN")
 		
 func _handle_parry() -> void:
-	#TODO implement this
-	pass
+	if (Input.is_action_just_pressed(Controls.parry) && !IsParrying):
+		IsParrying = true
+		parry_timer.start()
 		
 func _handle_slam(delta) -> void:
 	if(Input.is_action_just_pressed(Controls.slam)):
@@ -176,10 +190,7 @@ func _handle_slam(delta) -> void:
 		if (abs(linear_velocity.y) > highestYVelocityDuringSlam):
 			highestYVelocityDuringSlam = abs(linear_velocity.y)
 				
-func _handle_parry() -> void:
-	#TODO Implement This
-	pass
-		
+				
 func _submit_code(codeDirection: String) -> void:
 	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
 		StaminaConsumptionFailed.emit()
@@ -219,11 +230,26 @@ func SlamCast() -> void:
 	highestYVelocityDuringSlam = 0
 	ShouldSlamNextPhysicsFrame = false
 	
-func launch(impulseForce: Vector3, callingPlayer: Player) -> void:
-	apply_impulse(impulseForce)
-	apply_torque_impulse(Vector3.UP * impulseForce.length() * randf_range(-1, 1))
+func launch(impulseForce: Vector3, callingPlayer: Player, isParryable := true) -> void:
+	if (IsParrying && isParryable):
+		callingPlayer.launch((-impulseForce + Vector3.DOWN).normalized() * impulseForce.length() * ParryForceMultiplier, self, false)
+		
+		AudioPlayer.stream = ParrySoundEffect
+		AudioPlayer.play()
+		
+		Engine.time_scale = ParrySlowTimeAmount
+		parry_slow_timer.start(ParrySlowTimeLength * ParrySlowTimeAmount)
+		
+		SuccessfulParry.emit(global_position)
+		
+	else:
+		apply_impulse(impulseForce)
+		if (isParryable):
+			apply_torque_impulse(Vector3.UP * impulseForce.length() * randf_range(-1, 1))
+			AudioPlayer.stream = BumpSoundEffect
+			AudioPlayer.play()
 
-func _on_body_entered(body: Player) -> void:
+func _on_body_entered(body: Node3D) -> void:
 	if (IsSlamming):
 		IsSlamming = false
 		ShouldSlamNextPhysicsFrame = true
@@ -244,7 +270,7 @@ func _on_body_entered(body: Player) -> void:
 		return
 		
 	# TODO Probably normalize this
-	var directionToBody = body.global_position - position
+	var directionToBody = (body.global_position - position).normalized()
 	var directionToBodyNoY = Vector3(directionToBody.x, 0, directionToBody.z)
 	var bumpTrueness = rad_to_deg(directionToBodyNoY.angle_to(Vector3(linear_velocity.x, 0, linear_velocity.z)))
 		
@@ -252,14 +278,17 @@ func _on_body_entered(body: Player) -> void:
 		return
 	
 	# Call Function on player here
-	body.launch(directionToBody * momentum * BumpMultiplier, self)
-	linear_velocity = Vector3.ZERO
-	
-	AudioPlayer.stream = BumpSoundEffect
-	AudioPlayer.play()
+	body.launch(directionToBodyNoY * momentum * BumpMultiplier, self)
 	
 	StaminaManagerInstance.restoreStamina(momentum * BumpStaminaGainMultiplier)
 	
 	var foodExplosion = SECRET_CABBAGE_EXPLOSION.instantiate() if (randi_range(0, 10) == 0) else FOOD_EXPLOSION.instantiate()
 	foodExplosion.position = body.global_position
 	get_window().add_child(foodExplosion)
+
+
+func _on_parry_slow_timer_timeout() -> void:
+	Engine.time_scale = 1
+
+func _on_parry_timer_timeout() -> void:
+	IsParrying = false
