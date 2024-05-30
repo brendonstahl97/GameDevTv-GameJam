@@ -45,8 +45,27 @@ func _ready() -> void:
 			var thisPlayersInfo = global.playerInfo[playerKey]
 			var playerObject = preload("res://Scenes/Player.tscn").instantiate()
 			playerObject.name = str(int(playerKey)-1)
+
 			var controlsResource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + playerKey + "_Controls.tres")
 			playerObject.Controls = controlsResource
+
+			# Set player stand
+			playerObject.get_node("Stands/Light").visible = false
+			playerObject.get_node("Stands/Medium").visible = false
+			playerObject.get_node("Stands/Heavy").visible = false
+			playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
+			# Delete the other stands
+			for stand in playerObject.get_node("Stands").get_children():
+				if (stand.name != thisPlayersInfo["PlayerCart"]):
+					stand.queue_free()
+
+			# Set the guy
+			
+
+			# Set the color
+
+
+			# Place the player
 			playerObject.global_transform.origin = Vector3(
 				randf_range(-20, 20),
 				randf_range(2, 2),
