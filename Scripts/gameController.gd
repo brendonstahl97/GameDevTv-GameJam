@@ -47,6 +47,12 @@ func _ready() -> void:
 			playerObject.name = str(int(playerKey)-1)
 			var controlsResource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + playerKey + "_Controls.tres")
 			playerObject.Controls = controlsResource
+			playerObject.global_transform.origin = Vector3(
+				randf_range(-20, 20),
+				randf_range(2, 2),
+				randf_range(-20, 20)
+			)
+			$Players.add_child(playerObject)
 
 	PlayersSpawned.emit()
 
