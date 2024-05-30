@@ -332,6 +332,10 @@ xPlayerLimits = Vector2(-25, 35)
 yPlayerLimits = Vector2(-10, 30)
 zPlayerLimits = Vector2(-25, 25)
 lerpSpeed = 0.8
+ParryFocusFov = 40.0
+
+[node name="ParryFocusTimer" type="Timer" parent="Camera3D"]
+wait_time = 0.3
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_rjfq8")
@@ -370,11 +374,17 @@ sky_mode = 1
 
 [node name="0" parent="Players" instance=ExtResource("3_xipmc")]
 
-[node name="1" parent="Players" instance=ExtResource("3_xipmc")]
+[node name="1" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.72534, 3.16168, 8.58822)
 Controls = ExtResource("4_c2eto")
+StaminaManagerInstance = NodePath("../0/StaminaManager")
+ParticleManager = NodePath("../0/Particle Emitters")
 
-[node name="2" parent="Players" instance=ExtResource("3_xipmc")]
+[node name="2" parent="Players" node_paths=PackedStringArray("StaminaManagerInstance", "ParticleManager") instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.27466, 3.16168, 8.58822)
 Controls = ExtResource("5_w1niv")
+StaminaManagerInstance = NodePath("../0/StaminaManager")
+ParticleManager = NodePath("../0/Particle Emitters")
 
 [node name="Customers" type="Node" parent="."]
 
@@ -389,3 +399,5 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_xo4uk")
+
+[connection signal="timeout" from="Camera3D/ParryFocusTimer" to="Camera3D" method="_on_parry_focus_timer_timeout"]
