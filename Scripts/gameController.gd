@@ -28,8 +28,6 @@ func _ready() -> void:
 		get_node("/root/Game").add_child(customersNode)
 
 	$MatchUi.call("updateGoal", moneyGoal)
-	
-	spawnCustomer()
 
 	# Spawn in players
 	# If there is a playerInfo, assume character select was the last scene, delete the base players
@@ -84,6 +82,8 @@ func _ready() -> void:
 		var player = get_node("/root/Game/Players/" + str(i))
 		if (player == null):
 			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
+
+	spawnCustomer()
 
 func gameCompleted(winner: Node3D) -> void:
 	print("Game completed", winner)
