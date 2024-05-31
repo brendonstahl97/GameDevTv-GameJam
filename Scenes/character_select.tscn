@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1cq3nv6qiue7"]
+[gd_scene load_steps=8 format=3 uid="uid://b1cq3nv6qiue7"]
 
 [ext_resource type="Script" path="res://Scripts/characterSelect.gd" id="1_318p6"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="1_qgsbj"]
 [ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="3_kydxq"]
 [ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="5_eiq3f"]
 [ext_resource type="PackedScene" uid="uid://co0qilyfn6n75" path="res://Assets/Characters/BaseCharacter.gltf" id="6_5x140"]
-[ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="6_vhb4b"]
 [ext_resource type="PackedScene" uid="uid://bub3nomrwdlda" path="res://Scenes/char_sel_player_panel.tscn" id="7_t5ujb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ygf5d"]
@@ -13,7 +12,7 @@
 [node name="CharacterSelect" type="Node3D"]
 script = ExtResource("1_318p6")
 
-[node name="CharacterSelectUi" parent="." instance=ExtResource("7_t5ujb")]
+[node name="CharSelUI" parent="." instance=ExtResource("7_t5ujb")]
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_qgsbj")
@@ -50,18 +49,6 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.14475, 1.10682, -8.69
 
 [node name="BaseCharacter2" parent="." instance=ExtResource("6_5x140")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 2.30525, 1.10721, -8.69908)
-
-[node name="Player1" parent="." instance=ExtResource("6_vhb4b")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.269, 1.11, -11.415)
-
-[node name="Player2" parent="." instance=ExtResource("6_vhb4b")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.632, 1.11, -11.415)
-
-[node name="Player3" parent="." instance=ExtResource("6_vhb4b")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -7.988, 1.11, -11.415)
-
-[node name="Player4" parent="." instance=ExtResource("6_vhb4b")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -5.331, 1.11, -11.415)
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.632, 0, 0)
