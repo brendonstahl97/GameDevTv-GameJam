@@ -86,9 +86,9 @@ func _process(delta: float) -> void:
 	
 	transform = currentTransform.interpolate_with(lookAtTransform, delta * currentLerpSpeed)
 	
-func _on_successful_parry(position: Vector3) -> void:
+func _on_successful_parry(focusPosition: Vector3) -> void:
 	IsParryFocused = true
-	ParryFocusPosition = position
+	ParryFocusPosition = focusPosition
 	parry_focus_timer.start()
 
 func _on_parry_focus_timer_timeout() -> void:
