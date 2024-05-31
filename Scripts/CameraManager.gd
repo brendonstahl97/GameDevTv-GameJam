@@ -15,18 +15,28 @@ var StartingFov: float
 var IsParryFocused = false
 var ParryFocusPosition = Vector3.ZERO
 
+var active = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Connect to PlayersSpawned event, don't start the camera until the players have been spawned.
+	get_node("/root/Game").PlayersSpawned.connect(_setup)
+	pass
+
+func _setup() -> void:
 	StartingPosition = position
 	StartingFov = fov
 	PlayersInGame = get_tree().get_nodes_in_group("Players")
 	
 	for player: Player in PlayersInGame:
 		player.SuccessfulParry.connect(_on_successful_parry)
+	active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if (!active):
+		return
 	
 	var positionTotal = Vector3.ZERO
 	var maxPos = Vector3.ZERO
@@ -34,6 +44,9 @@ func _process(delta: float) -> void:
 	var numPlayersInCalc = 0
 	
 	for player in PlayersInGame:
+		if (player == null):
+			continue
+		
 		var playerPos = player.position
 		
 		if (playerPos.x >= xPlayerLimits.x && playerPos.x <= xPlayerLimits.y && playerPos.z >= zPlayerLimits.x && playerPos.z <= zPlayerLimits.y && playerPos.y >= yPlayerLimits.x && playerPos.y <= yPlayerLimits.y):

@@ -1,0 +1,445 @@
+[gd_scene load_steps=23 format=3 uid="uid://reurgfcm8s"]
+
+[ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
+[ext_resource type="Script" path="res://Scripts/matchUI.gd" id="2_p4kmr"]
+[ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_6nqrl"]
+[ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="3_qg2mu"]
+[ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
+[ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_c2eto"]
+[ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_w1niv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7ktf"]
+bg_color = Color(0, 0, 0, 0.294118)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_2ur8t"]
+default_font = ExtResource("3_6nqrl")
+default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_ntnyu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkv2o"]
+bg_color = Color(1.2514e-06, 0.665187, 0.8178, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvm0q"]
+bg_color = Color(2.55093e-06, 0.725439, 0.200965, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7le5"]
+bg_color = Color(0.872012, 0.490359, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1418i"]
+bg_color = Color(0.885454, 0.41618, 0.629383, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_al261"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_l5w3f"]
+sky_material = SubResource("ProceduralSkyMaterial_q7i1j")
+
+[sub_resource type="Environment" id="Environment_bqfud"]
+background_mode = 2
+sky = SubResource("Sky_l5w3f")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j62al"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lu4bi"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xo4uk"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_f5sun")
+gameMode = "Time"
+
+[node name="MatchUi" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_p4kmr")
+
+[node name="P1_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 305.0
+offset_bottom = 103.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P1_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 1"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P1_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P1_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkv2o")
+
+[node name="P2_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -304.0
+offset_top = 16.0
+offset_right = -15.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P2_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 2"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P2_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P2_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mvm0q")
+
+[node name="P3_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -104.0
+offset_right = 305.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P3_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 3"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P3_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P3_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7le5")
+
+[node name="P4_Panel" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -104.0
+offset_right = -15.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="MatchUi/P4_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 4"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MatchUi/P4_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="MatchUi/P4_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1418i")
+
+[node name="Goal" type="Panel" parent="MatchUi"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 70.0
+grow_horizontal = 2
+pivot_offset = Vector2(100, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_al261")
+
+[node name="Label" type="RichTextLabel" parent="MatchUi/Goal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_6nqrl")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]00:00[/center]"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bqfud")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 3.82, 14.36, 20)
+fov = 50.0
+script = ExtResource("3_qg2mu")
+xPlayerLimits = Vector2(-25, 35)
+yPlayerLimits = Vector2(-10, 30)
+zPlayerLimits = Vector2(-25, 25)
+lerpSpeed = 0.8
+ParryFocusFov = 40.0
+
+[node name="ParryFocusTimer" type="Timer" parent="Camera3D"]
+wait_time = 0.3
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_rjfq8")
+physics_material = SubResource("PhysicsMaterial_j62al")
+cell_scale = 2.0
+collision_layer = 3
+collision_mask = 3
+data = {
+"cells": PackedInt32Array(65530, 65528, 42, 65531, 65529, 1048857, 65531, 65531, 1048841, 65532, 65528, 42, 65532, 65529, 1048857, 65533, 65528, 42, 65534, 65528, 282, 1, 65535, 205, 1, 0, 655558, 7, 65531, 1048841, 7, 5, 1048841, 131066, 65529, 1048873, 131068, 65529, 1048873, 131064, 65528, 1442074, 131070, 65528, 655642, 131067, 65529, 1048842, 131065, 65529, 1048842, 131069, 65529, 1048842, 65528, 65527, 655626, 131064, 65527, 655657, 131070, 65527, 297, 65534, 65527, 266, 196602, 65529, 1048874, 196603, 65529, 1048902, 65531, 5, 1048841, 65528, 65528, 1048858, 196600, 65528, 229, 196601, 65528, 1048814, 196600, 65527, 238, 196606, 65528, 1048805, 196605, 65528, 1048814, 196606, 65527, 655598, 196604, 65528, 298, 196602, 65528, 655658, 262138, 65528, 1048811, 262140, 65528, 1048813, 262139, 65528, 1048802, 262141, 65527, 1048803, 262137, 65527, 227, 65529, 65529, 1048859, 65530, 65529, 1048857, 65533, 65529, 1048857)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="GridMap2" type="GridMap" parent="."]
+mesh_library = ExtResource("2_rjfq8")
+physics_material = SubResource("PhysicsMaterial_j62al")
+cell_scale = 2.0
+collision_layer = 3
+collision_mask = 3
+data = {
+"cells": PackedInt32Array(65527, 65528, 200, 65527, 65529, 200, 65529, 65529, 200, 65530, 65529, 200, 65531, 65529, 200, 65531, 65531, 202, 65532, 65529, 200, 65534, 65528, 200, 65534, 65529, 200, 65534, 65534, 196, 65535, 65528, 200, 65535, 65529, 200, 4, 65534, 196, 4, 2, 196, 7, 65531, 202, 7, 5, 202, 131066, 65529, 1048873, 131068, 65529, 1048873, 131064, 65528, 1442074, 131070, 65528, 655642, 131067, 65529, 1048842, 131065, 65529, 1048842, 131069, 65529, 1048842, 65528, 65527, 655626, 131064, 65527, 655657, 131070, 65527, 297, 65534, 65527, 266, 196604, 65529, 1048874, 196602, 65529, 1048874, 196603, 65529, 1048902, 65531, 5, 202, 65528, 65528, 200, 65528, 65529, 200, 65535, 65527, 200, 65527, 65527, 200, 1, 0, 655547, 65534, 2, 655556, 65533, 65529, 200)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.606627, 0.794987, 0, -0.794987, 0.606627, 8.8755, 39.607, 31.6159)
+light_color = Color(0.846839, 0.981002, 0.976893, 1)
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_bias = 6.383
+shadow_normal_bias = 4.436
+shadow_transmittance_bias = 6.614
+shadow_blur = 0.0
+sky_mode = 1
+
+[node name="Players" type="Node" parent="."]
+
+[node name="0" parent="Players" instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.44052, 1.63103, 6.98353)
+MoveSpeed = null
+VelocityPower = null
+StandardAccelerationMultiplier = null
+DeccelerationMultiplier = null
+DeccelerationThreshold = null
+MaxSprintModifier = null
+SprintIncrementAmount = null
+BumpMomentumThreshold = null
+BumpMultiplier = null
+SlamSpeed = null
+SlamDirectHitForce = null
+SprintStaminaDrain = null
+PlayerName = null
+PlayerCartType = null
+PlayerGuy = null
+
+[node name="1" parent="Players" instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98122, 1.01, 6.24734)
+Controls = ExtResource("4_c2eto")
+MoveSpeed = null
+VelocityPower = null
+StandardAccelerationMultiplier = null
+DeccelerationMultiplier = null
+DeccelerationThreshold = null
+MaxSprintModifier = null
+SprintIncrementAmount = null
+BumpMomentumThreshold = null
+BumpMultiplier = null
+SlamSpeed = null
+SlamDirectHitForce = null
+SprintStaminaDrain = null
+PlayerName = null
+PlayerCartType = null
+PlayerGuy = null
+
+[node name="2" parent="Players" instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75805, 1.01, 6.01305)
+Controls = ExtResource("5_w1niv")
+MoveSpeed = null
+VelocityPower = null
+StandardAccelerationMultiplier = null
+DeccelerationMultiplier = null
+DeccelerationThreshold = null
+MaxSprintModifier = null
+SprintIncrementAmount = null
+BumpMomentumThreshold = null
+BumpMultiplier = null
+SlamSpeed = null
+SlamDirectHitForce = null
+SprintStaminaDrain = null
+PlayerName = null
+PlayerCartType = null
+PlayerGuy = null
+
+[node name="Customers" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(52, 0, 0, 0, 1, 0, 0, 0, 35.994, 4.1, 0.51, 2.014)
+layers = 3
+mesh = SubResource("BoxMesh_lu4bi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_xo4uk")
+
+[connection signal="timeout" from="Camera3D/ParryFocusTimer" to="Camera3D" method="_on_parry_focus_timer_timeout"]
