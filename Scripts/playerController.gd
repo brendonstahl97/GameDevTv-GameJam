@@ -4,6 +4,7 @@ extends RigidBody3D
 const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
 const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.tscn")
 const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
+const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 
 @onready var SprintEmitter1: CPUParticles3D = $"Particle Emitters/CPUParticles3D"
 @onready var SprintEmitter2: CPUParticles3D = $"Particle Emitters/CPUParticles3D2"
@@ -53,6 +54,7 @@ const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
 @export var ParryForceMultiplier = 1.0 ## A force multiplier applied to the launch 
 @export var ParrySlowTimeAmount =  0.5 ## Intensity of time slowdown 0 = stop time, 1 = full speed
 @export var ParrySlowTimeLength = 1.0 ## How long time should be slowed on a successful parry in seconds
+@export var ParryEffectOffset = Vector3(0, 1, 0)
 @export var ParrySoundEffect: AudioStream
 
 @export_category("Appearance")
@@ -126,9 +128,6 @@ func _handle_rotation(currentVelocity: Vector3) -> void:
 		look_at_from_position(global_position, global_position + currentVelocity.normalized())
 		
 func _handle_sprint(delta: float) -> void: 
-	if (StaminaManagerInstance.CurrentStamina <= 0):
-		return 
-	
 	if (Input.is_action_just_pressed(Controls.sprint)):
 		if (StaminaManagerInstance.CurrentStamina > 0):
 			ParticleManager.start_sprint_particles()
@@ -159,11 +158,12 @@ func _handle_sprint(delta: float) -> void:
 		
 		
 	elif (Input.is_action_just_released(Controls.sprint)):
+		print("Released Sprint")
 		StaminaManagerInstance.canRegenStamina = true
 		SprintModifier = 1
 		ParticleManager.end_sprint_particles()
 		scrape_sound_player.stop()
-		
+
 func _handle_code_input() -> void:
 	if (Input.is_action_just_pressed(Controls.code_up)):
 		_submit_code("UP")
@@ -173,7 +173,7 @@ func _handle_code_input() -> void:
 		_submit_code("RIGHT")
 	elif (Input.is_action_just_pressed(Controls.code_down)):
 		_submit_code("DOWN")
-		
+
 func _handle_parry() -> void:
 	if (Input.is_action_just_pressed(Controls.parry) && !IsParrying):
 		IsParrying = true
@@ -181,17 +181,14 @@ func _handle_parry() -> void:
 		
 func _handle_slam(delta) -> void:
 	if(Input.is_action_just_pressed(Controls.slam)):
-		if (IsGrounded):
-			position.y = 10 
-		else:
+		if (!IsGrounded):
 			IsSlamming = true
 	
 	if (IsSlamming):
 		apply_force(Vector3.DOWN * SlamSpeed * delta)
 		if (abs(linear_velocity.y) > highestYVelocityDuringSlam):
 			highestYVelocityDuringSlam = abs(linear_velocity.y)
-				
-				
+
 func _submit_code(codeDirection: String) -> void:
 	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
 		StaminaConsumptionFailed.emit()
@@ -235,6 +232,14 @@ func launch(impulseForce: Vector3, callingPlayer: Player, isParryable := true) -
 	if (IsParrying && isParryable):
 		callingPlayer.launch((-impulseForce + Vector3.DOWN).normalized() * impulseForce.length() * ParryForceMultiplier, self, false)
 		
+		var parryVisuals = PARRY_EFFECT.instantiate()
+		
+		parryVisuals.scale = Vector3.ONE * 2
+		parryVisuals.position = global_position + ParryEffectOffset + -impulseForce.normalized() * 0.1
+		get_window().add_child(parryVisuals)
+		
+		parryVisuals.look_at(Vector3(callingPlayer.global_position.x, parryVisuals.global_position.y, callingPlayer.global_position.z))
+		
 		AudioPlayer.stream = ParrySoundEffect
 		AudioPlayer.play()
 		
@@ -248,6 +253,11 @@ func launch(impulseForce: Vector3, callingPlayer: Player, isParryable := true) -
 		apply_impulse(impulseForce)
 		if (isParryable):
 			apply_torque_impulse(Vector3.UP * impulseForce.length() * randf_range(-1, 1))
+			
+			var foodExplosion = SECRET_CABBAGE_EXPLOSION.instantiate() if (randi_range(0, 10) == 0) else FOOD_EXPLOSION.instantiate()
+			foodExplosion.position = callingPlayer.global_position
+			get_window().add_child(foodExplosion)
+			
 			AudioPlayer.stream = BumpSoundEffect
 			AudioPlayer.play()
 
@@ -283,10 +293,6 @@ func _on_body_entered(body: Node3D) -> void:
 	body.launch(directionToBodyNoY * momentum * BumpMultiplier, self)
 	
 	StaminaManagerInstance.restoreStamina(momentum * BumpStaminaGainMultiplier)
-	
-	var foodExplosion = SECRET_CABBAGE_EXPLOSION.instantiate() if (randi_range(0, 10) == 0) else FOOD_EXPLOSION.instantiate()
-	foodExplosion.position = body.global_position
-	get_window().add_child(foodExplosion)
 
 
 func _on_parry_slow_timer_timeout() -> void:
