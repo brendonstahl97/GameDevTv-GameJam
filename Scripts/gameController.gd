@@ -58,12 +58,16 @@ func _ready() -> void:
 			for stand in playerObject.get_node("Stands").get_children():
 				if (stand.name != thisPlayersInfo["PlayerCart"]):
 					stand.queue_free()
+			var standTypeResource = ResourceLoader.load("res://Resources/Stands/" + thisPlayersInfo["PlayerCart"] + "Stand.tres")
+			playerObject.StandClass = standTypeResource
 
 			# Set the guy
 			
 
 			# Set the color
-
+			var progressBar : TextureProgressBar = playerObject.get_node("StaminaManager/SubViewport/TextureProgressBar")
+			#var progressBar : TextureProgressBar = playerObject.StaminaManager.SubViewport.TextureProgressBar
+			progressBar.set_tint_progress(thisPlayersInfo["PlayerColor"])
 
 			# Place the player
 			playerObject.global_transform.origin = Vector3(
