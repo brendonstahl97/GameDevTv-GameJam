@@ -9,12 +9,21 @@ var verticalItems
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	selected = get_child(2).name ## initialize focus on the press a to join box
+	
+	if(get_parent().name == "CharSelUI"):
+		selected = get_child(2).name # initialize focus on the press a to join box
+	else:
+		# bypasses joiner box functionality for start screen
+		joined = true 
+		selected = navigable_items.get_child(0).name
+
+	if(get_parent().name != "TitleScreen"):
+		for child:Control in get_children():
+			if(child.name != "Joiner"):
+				child.visible = false
 	get_children()[0].placeholder_text = "Player" + name ## set current player box to current player number
 	#make all ui elements invisible except the joiner box 
-	for child:Control in get_children():
-		if(child.name != "Joiner"):
-			child.visible = false
+	
 			
 	# Create the styleBox
 	borderStyleBox = navigable_items.get_child(0).get_theme_stylebox("panel").duplicate()
@@ -90,7 +99,10 @@ func _handle_horizontal_navigation() -> void:
 	
 func _handle_buttons(child:Button) -> void:
 	if Input.is_action_just_pressed("p" + name + "_sprint"):
-		child.pressed
+		if (child.name == "PlayButton"):
+			onPlayPressed()
+		if (child.name == "QuitButton"):
+			onQuitPressed()
 		if (child.name.match("ReadyUp")):
 			_ready_player()
 
@@ -99,3 +111,9 @@ func _apply_border_style(selectedItem: Node) -> void:
 			selectedItem.add_theme_stylebox_override("tab_focus", borderStyleBox)
 		else:
 			selectedItem.remove_theme_stylebox_override("tab_focus")
+
+func onPlayPressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/character_select.tscn")
+
+func onQuitPressed() -> void:
+	get_tree().quit()

@@ -1,18 +1,1459 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1cq3nv6qiue7"]
+[gd_scene load_steps=15 format=3 uid="uid://b1cq3nv6qiue7"]
 
 [ext_resource type="Script" path="res://Scripts/characterSelect.gd" id="1_318p6"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="1_qgsbj"]
+[ext_resource type="Script" path="res://Scripts/P1Panel.gd" id="2_0g7bt"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_i8lai"]
 [ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="3_kydxq"]
+[ext_resource type="Texture2D" uid="uid://sg0g1e4dba3a" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_a_outline.png" id="4_uq8s4"]
 [ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="5_eiq3f"]
 [ext_resource type="PackedScene" uid="uid://co0qilyfn6n75" path="res://Assets/Characters/BaseCharacter.gltf" id="6_5x140"]
-[ext_resource type="PackedScene" uid="uid://bub3nomrwdlda" path="res://Scenes/char_sel_player_panel.tscn" id="7_t5ujb"]
+
+[sub_resource type="Theme" id="Theme_82ohg"]
+default_font = ExtResource("3_i8lai")
+default_font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_maqtr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_5y6gt"]
+font = ExtResource("3_i8lai")
+font_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8cac"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_f8xwc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ygf5d"]
 
 [node name="CharacterSelect" type="Node3D"]
 script = ExtResource("1_318p6")
 
-[node name="CharSelUI" parent="." instance=ExtResource("7_t5ujb")]
+[node name="CharSelUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="1" type="Panel" parent="CharSelUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03125
+anchor_top = 0.0333333
+anchor_right = 0.25625
+anchor_bottom = 0.622222
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("2_0g7bt")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="CharSelUI/1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme = SubResource("Theme_82ohg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maqtr")
+placeholder_text = "Player 1"
+alignment = 1
+editable = false
+flat = true
+
+[node name="NavigableItems" type="Control" parent="CharSelUI/1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="StandType" type="TabContainer" parent="CharSelUI/1/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.150943
+anchor_right = 1.0
+anchor_bottom = 0.320755
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Light" type="Label" parent="CharSelUI/1/NavigableItems/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medium" type="Label" parent="CharSelUI/1/NavigableItems/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heavy" type="Label" parent="CharSelUI/1/NavigableItems/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="TabContainer" parent="CharSelUI/1/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.358491
+anchor_right = 1.0
+anchor_bottom = 0.540094
+offset_bottom = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Blue" type="Panel" parent="CharSelUI/1/NavigableItems/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/1/NavigableItems/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f8xwc")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="CharSelUI/1/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/1/NavigableItems/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="CharSelUI/1/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/1/NavigableItems/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="CharSelUI/1/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/1/NavigableItems/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="CharSelUI/1/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/1/NavigableItems/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="CharSelUI/1/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/1/NavigableItems/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="CharSelUI/1/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/1/NavigableItems/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="CharSelUI/1/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.584906
+anchor_right = 1.0
+anchor_bottom = 0.752358
+offset_top = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Man 1" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Man 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Woman 1" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Woman 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Man 2" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Man 2"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReadyUp" type="Button" parent="CharSelUI/1/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
+[node name="Joiner" type="Panel" parent="CharSelUI/1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.391
+anchor_right = 1.0
+anchor_bottom = 0.565
+offset_top = -31.888
+offset_bottom = -31.92
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharSelUI/1/Joiner"]
+layout_mode = 0
+anchor_top = -0.122044
+anchor_right = 1.0
+anchor_bottom = 0.96279
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CharSelUI/1/Joiner/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CharSelUI/1/Joiner/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_uq8s4")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="CharSelUI/1/Joiner/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "to join!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Readied" type="Panel" parent="CharSelUI/1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CharSelUI/1/Readied"]
+layout_mode = 2
+anchor_right = 1.03819
+anchor_bottom = 1.0
+offset_right = -11.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "Ready!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="2" type="Panel" parent="CharSelUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26875
+anchor_top = 0.0333333
+anchor_right = 0.49375
+anchor_bottom = 0.622222
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("2_0g7bt")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="CharSelUI/2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme = SubResource("Theme_82ohg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maqtr")
+placeholder_text = "Player 1"
+alignment = 1
+editable = false
+flat = true
+
+[node name="NavigableItems" type="Control" parent="CharSelUI/2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="StandType" type="TabContainer" parent="CharSelUI/2/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.150943
+anchor_right = 1.0
+anchor_bottom = 0.320755
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Light" type="Label" parent="CharSelUI/2/NavigableItems/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medium" type="Label" parent="CharSelUI/2/NavigableItems/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heavy" type="Label" parent="CharSelUI/2/NavigableItems/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="TabContainer" parent="CharSelUI/2/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.358491
+anchor_right = 1.0
+anchor_bottom = 0.540094
+offset_bottom = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Blue" type="Panel" parent="CharSelUI/2/NavigableItems/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/2/NavigableItems/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f8xwc")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="CharSelUI/2/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/2/NavigableItems/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="CharSelUI/2/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/2/NavigableItems/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="CharSelUI/2/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/2/NavigableItems/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="CharSelUI/2/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/2/NavigableItems/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="CharSelUI/2/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/2/NavigableItems/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="CharSelUI/2/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/2/NavigableItems/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="CharSelUI/2/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.584906
+anchor_right = 1.0
+anchor_bottom = 0.752358
+offset_top = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Man 1" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Man 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Woman 1" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Woman 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Man 2" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Man 2"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReadyUp" type="Button" parent="CharSelUI/2/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
+[node name="Joiner" type="Panel" parent="CharSelUI/2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.391
+anchor_right = 1.0
+anchor_bottom = 0.565
+offset_top = -31.888
+offset_bottom = -31.92
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharSelUI/2/Joiner"]
+layout_mode = 0
+anchor_top = -0.122044
+anchor_right = 1.0
+anchor_bottom = 0.96279
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CharSelUI/2/Joiner/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CharSelUI/2/Joiner/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_uq8s4")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="CharSelUI/2/Joiner/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "to join!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Readied" type="Panel" parent="CharSelUI/2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CharSelUI/2/Readied"]
+layout_mode = 2
+anchor_right = 1.03819
+anchor_bottom = 1.0
+offset_right = -11.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "Ready!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="3" type="Panel" parent="CharSelUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50625
+anchor_top = 0.0333333
+anchor_right = 0.73125
+anchor_bottom = 0.622222
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("2_0g7bt")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="CharSelUI/3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme = SubResource("Theme_82ohg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maqtr")
+placeholder_text = "Player 1"
+alignment = 1
+editable = false
+flat = true
+
+[node name="NavigableItems" type="Control" parent="CharSelUI/3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="StandType" type="TabContainer" parent="CharSelUI/3/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.150943
+anchor_right = 1.0
+anchor_bottom = 0.320755
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Light" type="Label" parent="CharSelUI/3/NavigableItems/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medium" type="Label" parent="CharSelUI/3/NavigableItems/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heavy" type="Label" parent="CharSelUI/3/NavigableItems/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="TabContainer" parent="CharSelUI/3/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.358491
+anchor_right = 1.0
+anchor_bottom = 0.540094
+offset_bottom = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Blue" type="Panel" parent="CharSelUI/3/NavigableItems/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/3/NavigableItems/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f8xwc")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="CharSelUI/3/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/3/NavigableItems/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="CharSelUI/3/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/3/NavigableItems/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="CharSelUI/3/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/3/NavigableItems/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="CharSelUI/3/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/3/NavigableItems/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="CharSelUI/3/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/3/NavigableItems/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="CharSelUI/3/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/3/NavigableItems/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="CharSelUI/3/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.584906
+anchor_right = 1.0
+anchor_bottom = 0.752358
+offset_top = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Man 1" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Man 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Woman 1" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Woman 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Man 2" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Man 2"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReadyUp" type="Button" parent="CharSelUI/3/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
+[node name="Joiner" type="Panel" parent="CharSelUI/3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.391
+anchor_right = 1.0
+anchor_bottom = 0.565
+offset_top = -31.888
+offset_bottom = -31.92
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharSelUI/3/Joiner"]
+layout_mode = 0
+anchor_top = -0.122044
+anchor_right = 1.0
+anchor_bottom = 0.96279
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CharSelUI/3/Joiner/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CharSelUI/3/Joiner/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_uq8s4")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="CharSelUI/3/Joiner/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "to join!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Readied" type="Panel" parent="CharSelUI/3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CharSelUI/3/Readied"]
+layout_mode = 2
+anchor_right = 1.03819
+anchor_bottom = 1.0
+offset_right = -11.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "Ready!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="4" type="Panel" parent="CharSelUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74375
+anchor_top = 0.0333333
+anchor_right = 0.96875
+anchor_bottom = 0.622222
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("2_0g7bt")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="CharSelUI/4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme = SubResource("Theme_82ohg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_maqtr")
+placeholder_text = "Player 1"
+alignment = 1
+editable = false
+flat = true
+
+[node name="NavigableItems" type="Control" parent="CharSelUI/4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="StandType" type="TabContainer" parent="CharSelUI/4/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.150943
+anchor_right = 1.0
+anchor_bottom = 0.320755
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Light" type="Label" parent="CharSelUI/4/NavigableItems/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medium" type="Label" parent="CharSelUI/4/NavigableItems/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heavy" type="Label" parent="CharSelUI/4/NavigableItems/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="TabContainer" parent="CharSelUI/4/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.358491
+anchor_right = 1.0
+anchor_bottom = 0.540094
+offset_bottom = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Blue" type="Panel" parent="CharSelUI/4/NavigableItems/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/4/NavigableItems/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f8xwc")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="CharSelUI/4/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/4/NavigableItems/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="CharSelUI/4/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/4/NavigableItems/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="CharSelUI/4/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/4/NavigableItems/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="CharSelUI/4/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/4/NavigableItems/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="CharSelUI/4/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/4/NavigableItems/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="CharSelUI/4/NavigableItems/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8cac")
+
+[node name="ColorRect" type="ColorRect" parent="CharSelUI/4/NavigableItems/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="CharSelUI/4/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.584906
+anchor_right = 1.0
+anchor_bottom = 0.752358
+offset_top = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Man 1" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Man 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Woman 1" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Woman 1"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Man 2" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Man 2"
+label_settings = SubResource("LabelSettings_5y6gt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReadyUp" type="Button" parent="CharSelUI/4/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
+[node name="Joiner" type="Panel" parent="CharSelUI/4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.391
+anchor_right = 1.0
+anchor_bottom = 0.565
+offset_top = -31.888
+offset_bottom = -31.92
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharSelUI/4/Joiner"]
+layout_mode = 0
+anchor_top = -0.122044
+anchor_right = 1.0
+anchor_bottom = 0.96279
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CharSelUI/4/Joiner/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CharSelUI/4/Joiner/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_uq8s4")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="CharSelUI/4/Joiner/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "to join!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Readied" type="Panel" parent="CharSelUI/4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CharSelUI/4/Readied"]
+layout_mode = 2
+anchor_right = 1.03819
+anchor_bottom = 1.0
+offset_right = -11.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 21
+text = "Ready!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_qgsbj")
