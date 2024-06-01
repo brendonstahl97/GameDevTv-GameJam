@@ -14,25 +14,25 @@ func _ready() -> void:
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 500,
 				"PlayerGuy" = "Guy1",
-				"PlayerCart" = "Cart1"
+				"PlayerCart" = "Medium"
 			},
 			"2" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 300,
 				"PlayerGuy" = "Guy1",
-				"PlayerCart" = "Cart1"
+				"PlayerCart" = "Light"
 			},
 			"3" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 800,
 				"PlayerGuy" = "Guy1",
-				"PlayerCart" = "Cart1"
+				"PlayerCart" = "Heavy"
 			},
 			"4" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 5000,
 				"PlayerGuy" = "Guy1",
-				"PlayerCart" = "Cart1"
+				"PlayerCart" = "Light"
 			},
 		}
 
@@ -55,6 +55,7 @@ func _ready() -> void:
 
 		var thisPlayersInfo = global.playerInfo[playerKey]
 		var playerPanel = get_node("/root/EndOfGame/Control/HBoxContainer/" + str(placeNumber))
+		var playerObject = get_node("/root/EndOfGame/" + str(placeNumber))
 
 		# Set the UI (color, name and score)
 		playerPanel.get_node("PlayerIcon").set_modulate(thisPlayersInfo["PlayerColor"])
@@ -64,6 +65,14 @@ func _ready() -> void:
 		# Set the guy
 
 		# Set the cart
+		playerObject.get_node("Stands/Light").visible = false
+		playerObject.get_node("Stands/Medium").visible = false
+		playerObject.get_node("Stands/Heavy").visible = false
+		playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
+		# Delete the other stands
+		for stand in playerObject.get_node("Stands").get_children():
+			if (stand.name != thisPlayersInfo["PlayerCart"]):
+				stand.queue_free()
 
 
 	# Remove the un-used player stuffs
