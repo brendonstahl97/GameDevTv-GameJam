@@ -40,6 +40,9 @@ func _ready() -> void:
 
 		# Spawn in joined players.
 		for playerKey in global.playerInfo:
+			# Init more player info
+			global.playerInfo[playerKey]["Money"] = 0
+
 			var thisPlayersInfo = global.playerInfo[playerKey]
 			var playerObject = preload("res://Scenes/Player.tscn").instantiate()
 			playerObject.name = str(int(playerKey)-1)
@@ -92,11 +95,11 @@ func gameCompleted(winner: Node3D) -> void:
 func _on_customer_completed(reward: int, playerIndex: String) -> void:
 	var player : Node3D = get_node("/root/Game/Players/" + playerIndex)
 	if (player != null):
-		var money = player.get_meta("Money")
+		var money = global.playerInfo[str(int(str(player.name))+1)]["Money"]
 		if (money == null):
 			money = 0
 		money += reward
-		player.set_meta("Money", money)
+		global.playerInfo[str(int(str(player.name))+1)]["Money"] = money
 		print("Player rewarded: " + str(reward))
 		print("Player money: " + str(money))
 		
@@ -151,7 +154,7 @@ func _process(delta: float) -> void:
 			var winner : Node3D = null
 			var winnerMoney = 0
 			for player in players:
-				var money = player.get_meta("Money", 0)
+				var money = global.playerInfo[str(int(str(player.name))+1)]["Money"]
 				if (money > winnerMoney):
 					winner = player
 					winnerMoney = money
