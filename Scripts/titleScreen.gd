@@ -1,6 +1,6 @@
 extends Control
 func onPlayPressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	get_tree().change_scene_to_file("res://Scenes/character_select.tscn")
 
 func onQuitPressed() -> void:
 	get_tree().quit()
