@@ -1,5 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://b17ndi3hywyqw"]
+[gd_scene load_steps=41 format=3 uid="uid://b17ndi3hywyqw"]
 
+[ext_resource type="Script" path="res://Scripts/endOfGameScreen.gd" id="1_4ksru"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_66j5l"]
 [ext_resource type="Script" path="res://Scripts/endOfGameCharacter.gd" id="1_nx0h6"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_ceoml"]
@@ -4386,9 +4387,10 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="EndOfGame" type="Node3D"]
+script = ExtResource("1_4ksru")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(52, 0, 0, 0, 1, 0, 0, 0, 35.994, 4.1, 0.51, 2.014)
+transform = Transform3D(52, 0, 0, 0, 1, 0, 0, 0, 35.994, 4.10274, 0.485061, 2.02621)
 layers = 3
 mesh = SubResource("BoxMesh_sqwu7")
 
