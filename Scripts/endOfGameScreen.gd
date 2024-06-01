@@ -13,25 +13,25 @@ func _ready() -> void:
 			"1" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 500,
-				"PlayerGuy" = "Guy1",
+				"PlayerGuy" = "Chef_Male",
 				"PlayerCart" = "Medium"
 			},
 			"2" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 300,
-				"PlayerGuy" = "Guy1",
+				"PlayerGuy" = "Casual3_Male",
 				"PlayerCart" = "Light"
 			},
 			"3" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 800,
-				"PlayerGuy" = "Guy1",
+				"PlayerGuy" = "Casual3_Male",
 				"PlayerCart" = "Heavy"
 			},
 			"4" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 5000,
-				"PlayerGuy" = "Guy1",
+				"PlayerGuy" = "Casual3_Male",
 				"PlayerCart" = "Light"
 			},
 		}
@@ -63,6 +63,16 @@ func _ready() -> void:
 		playerPanel.get_node("ScoreLabel").set_text("[center]$" + str(playerMoney) + "[/center]")
 
 		# Set the guy
+		# Spawn a new instance of the character asset, switch the "Body" mesh instance.
+		var playerGuy = load("res://Assets/Characters/" + thisPlayersInfo["PlayerGuy"] + ".gltf").instantiate()
+		add_child(playerGuy)
+		var meshInstance = playerGuy.get_node("CharacterArmature/Skeleton3D/Body")
+		var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
+		print(meshInstance.name)
+		meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
+		meshInstance.transform = oldMeshInstance.transform
+		playerGuy.queue_free()
+		oldMeshInstance.queue_free()
 
 		# Set the cart
 		playerObject.get_node("Stands/Light").visible = false
