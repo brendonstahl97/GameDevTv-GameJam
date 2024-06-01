@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_ny06e"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_t4hpd"]
 [ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="2_e2mp6"]
-[ext_resource type="ArrayMesh" path="res://Assets/Environment/Food/Broccoli.mesh" id="3_mhdtb"]
-[ext_resource type="Resource" uid="uid://bcmi4nl5dfrdu" path="res://Resources/Stands/MidStand.tres" id="3_pop5s"]
+[ext_resource type="ArrayMesh" uid="uid://b3kxgd7rlxxhn" path="res://Assets/Environment/Food/Broccoli.mesh" id="3_mhdtb"]
+[ext_resource type="Resource" uid="uid://bcmi4nl5dfrdu" path="res://Resources/Stands/MediumStand.tres" id="3_pop5s"]
 [ext_resource type="AudioStream" uid="uid://35vn83pywt4x" path="res://Assets/Audio/Impacts/CartoonPunch.wav" id="4_f8uq3"]
 [ext_resource type="Script" path="res://Scripts/ParticleEmitterManager.gd" id="5_3xa2g"]
 [ext_resource type="AudioStream" uid="uid://c7rkkw6p8qwpb" path="res://Assets/Audio/AnimeStabSoundEffect.wav" id="5_3283e"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://b181pe8w8d7l7" path="res://Assets/Audio/WoodScrape.wav" id="14_wv2ea"]
 [ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="16_afrog"]
 [ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="17_mnfm4"]
+
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5mrsx"]
 radius = 2.0

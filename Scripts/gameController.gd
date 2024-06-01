@@ -21,6 +21,7 @@ signal PlayersSpawned
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#BackgroundMusic.get_child(2).play()
 	gameTimeLeft = timeLimit
 	
 	customersNode = get_node("/root/Game/Customers")
@@ -91,6 +92,7 @@ func _ready() -> void:
 	spawnCustomer()
 
 func gameCompleted(winner: Node3D) -> void:
+	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(3).stream)
 	get_tree().change_scene_to_file("res://Scenes/endOfGame.tscn")
 
 # A customer's task was completed, reward the player who did it.

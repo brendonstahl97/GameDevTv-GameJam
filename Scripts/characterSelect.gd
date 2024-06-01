@@ -34,7 +34,9 @@ func _switchSceneToGame(playerChoicesDictionary):
 
 	# Set GLOBAL player info for their choices, usable anywhere.
 	global.playerInfo = playerChoicesDictionary
+	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(2).stream)
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	
 
 # Returns a dictionary of each player's choices,
 # give it to gameController when the game starts so we know how to spawn each player.
