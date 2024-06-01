@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=25 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
 [ext_resource type="Script" path="res://Scripts/matchUI.gd" id="2_p4kmr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="3_qg2mu"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 [ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="7_8y4y7"]
+[ext_resource type="Script" path="res://Scenes/Killbox.gd" id="8_rpwpn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7ktf"]
 bg_color = Color(0, 0, 0, 0.294118)
@@ -75,10 +76,12 @@ albedo_color = Color(0.801833, 1, 0.71, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xo4uk"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_cwi0f"]
+size = Vector3(73, 74, 56)
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_f5sun")
 gameMode = "Time"
-timeLimit = 10.0
 
 [node name="MatchUi" type="Control" parent="."]
 layout_mode = 3
@@ -384,7 +387,7 @@ sky_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27466, 3.16168, 8.58822)
 
 [node name="1" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 8.588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -6.412)
 Controls = ExtResource("7_8y4y7")
 
 [node name="Customers" type="Node" parent="."]
@@ -402,4 +405,15 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_xo4uk")
 
+[node name="Killboxes" type="Node" parent="."]
+script = ExtResource("8_rpwpn")
+RespawnPoints = [Vector3(5, 2, 8.5), Vector3(8, 2, 8.5), Vector3(8, 2, -6.5), Vector3(-5, 2, -6.5)]
+
+[node name="Area3D" type="Area3D" parent="Killboxes"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killboxes/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 29.5, 0)
+shape = SubResource("BoxShape3D_cwi0f")
+
 [connection signal="timeout" from="Camera3D/ParryFocusTimer" to="Camera3D" method="_on_parry_focus_timer_timeout"]
+[connection signal="body_exited" from="Killboxes/Area3D" to="Killboxes" method="_on_area_3d_body_exited"]
