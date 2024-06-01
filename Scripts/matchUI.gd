@@ -6,15 +6,7 @@ var p4Score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("/root/Game").connect("PlayersSpawned", updatePlayerIcons)
-
-func updatePlayerIcons():
-	if (!global.playerInfo):
-		return
-
-	for playerKey in global.playerInfo:
-		var playerPanel = get_node("P" + playerKey + "_Panel")
-		playerPanel.get_node("PlayerIcon").set_modulate(global.playerInfo[playerKey].PlayerColor)
+	pass # Replace with function body.
 
 func updatePlayerMoney(player : String, newAmount : int):
 	if player == "0":
