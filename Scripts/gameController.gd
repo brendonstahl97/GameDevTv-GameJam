@@ -14,17 +14,15 @@ var timeSinceLastSpawn = 0.0
 
 var customersNode : Node = null
 
-# Set player info from character select screen.
-# ["0"] = {
-# ["PlayerColor"] = Color,
-# ["PlayerCart"] = String ("Heavy"),
-# ["PlayerGuy"] = String ("Guy1"), }
-var playerInfo = {}
+# Fire once the players have been created.
+signal PlayersSpawned
 
 
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	gameTimeLeft = timeLimit
+	
 	customersNode = get_node("/root/Game/Customers")
 	if (customersNode == null):
 		customersNode = Node.new()
@@ -32,29 +30,78 @@ func _ready() -> void:
 		get_node("/root/Game").add_child(customersNode)
 
 	$MatchUi.call("updateGoal", moneyGoal)
-	
-	spawnCustomer()
 
 	# Spawn in players
+	# If there is a playerInfo, assume character select was the last scene, delete the base players
+	# and spawn in the selected players.
+	# If there is not, assume we're testing the game (run scene button while in game scene) and leave the base players in.
+	if (global.playerInfo != null):
+		# Remove base players.
+		for basePlayer in get_node("/root/Game/Players").get_children():
+			basePlayer.free()
+
+		# Spawn in joined players.
+		for playerKey in global.playerInfo:
+			# Init more player info
+			global.playerInfo[playerKey]["Money"] = 0
+
+			var thisPlayersInfo = global.playerInfo[playerKey]
+			var playerObject = preload("res://Scenes/Player.tscn").instantiate()
+			playerObject.name = str(int(playerKey)-1)
+
+			var controlsResource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + playerKey + "_Controls.tres")
+			playerObject.Controls = controlsResource
+
+			# Set player stand
+			playerObject.get_node("Stands/Light").visible = false
+			playerObject.get_node("Stands/Medium").visible = false
+			playerObject.get_node("Stands/Heavy").visible = false
+			playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
+			# Delete the other stands
+			for stand in playerObject.get_node("Stands").get_children():
+				if (stand.name != thisPlayersInfo["PlayerCart"]):
+					stand.queue_free()
+			var standTypeResource = ResourceLoader.load("res://Resources/Stands/" + thisPlayersInfo["PlayerCart"] + "Stand.tres")
+			playerObject.StandClass = standTypeResource
+
+			# Set the guy
+			
+
+			# Set the color
+			var progressBar : TextureProgressBar = playerObject.get_node("StaminaManager/SubViewport/TextureProgressBar")
+			#var progressBar : TextureProgressBar = playerObject.StaminaManager.SubViewport.TextureProgressBar
+			progressBar.set_tint_progress(thisPlayersInfo["PlayerColor"])
+
+			# Place the player
+			playerObject.global_transform.origin = Vector3(
+				randf_range(-20, 20),
+				randf_range(2, 2),
+				randf_range(-20, 20)
+			)
+			$Players.add_child(playerObject)
+
+	PlayersSpawned.emit()
 
 	# Hide player panels which dont have a player
-	for i in range(4):
+	for i in range(4): 
 		var player = get_node("/root/Game/Players/" + str(i))
 		if (player == null):
 			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
 
+	spawnCustomer()
+
 func gameCompleted(winner: Node3D) -> void:
-	print("Game completed", winner)
+	get_tree().change_scene_to_file("res://Scenes/endOfGame.tscn")
 
 # A customer's task was completed, reward the player who did it.
 func _on_customer_completed(reward: int, playerIndex: String) -> void:
 	var player : Node3D = get_node("/root/Game/Players/" + playerIndex)
 	if (player != null):
-		var money = player.get_meta("Money")
+		var money = global.playerInfo[str(int(str(player.name))+1)]["Money"]
 		if (money == null):
 			money = 0
 		money += reward
-		player.set_meta("Money", money)
+		global.playerInfo[str(int(str(player.name))+1)]["Money"] = money
 		print("Player rewarded: " + str(reward))
 		print("Player money: " + str(money))
 		
@@ -109,7 +156,7 @@ func _process(delta: float) -> void:
 			var winner : Node3D = null
 			var winnerMoney = 0
 			for player in players:
-				var money = player.get_meta("Money", 0)
+				var money = global.playerInfo[str(int(str(player.name))+1)]["Money"]
 				if (money > winnerMoney):
 					winner = player
 					winnerMoney = money

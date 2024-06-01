@@ -82,11 +82,9 @@ func _ready() -> void:
 	var keys = customerTierDataList.keys()
 	keys.reverse()
 	for tier in keys:
-		print(tier, randomTier, customerTierDataList[tier]["rarity"])
 		if (randomTier < customerTierDataList[tier]["rarity"]):
 			customerTier = tier
 			break
-	print("Customer Tier: " + customerTier, "Rarity: " + str(randomTier))
 
 	# Generate the task sequence for the customer
 	correctTaskSequence = generateSequence()
@@ -120,8 +118,6 @@ func _on_body_entered(body:Node3D) -> void:
 		currentPlayer = body
 		# Print the name of the player that entered the area
 
-	print(body.name + " entered")
-
 
 func _on_body_exited(_body:Node3D) -> void:
 	if (completed):
@@ -143,27 +139,20 @@ func _on_body_exited(_body:Node3D) -> void:
 				closestPlayer = player
 		currentPlayer = closestPlayer
 		$Decal.set_modulate(currentPlayer.PlayerColor)
-		print("New player assigned: " + currentPlayer.name)
 	else:
 		$Decal.set_modulate(Color(.77, .33, .092))
-		print("No players in area")
 
 # Connect to the player controller 
-func playerDirectionalInput(player: Node3D, direction: String) -> void:
-	print(player.name +  ", Input: " + direction)
-	
+func playerDirectionalInput(player: Node3D, direction: String) -> void:	
 	# Is this the correct direction for the next element in the sequence?
 	# Grab the length of the current player sequence, check the length + 1 element in the correct sequence
 	var nextCorrectDirection : String = correctTaskSequence[currentPlayerSequence.size()]
 	if (direction == nextCorrectDirection):
 		$Control/Panel/HBoxContainer.get_children()[currentPlayerSequence.size()].set_modulate(Color(0,1,0,1))
 		currentPlayerSequence.append(direction)
-		print("Correct")
 		# If the player has completed the sequence, give them the reward
 		if (currentPlayerSequence.size() == correctTaskSequence.size()):
-			completed = true
-			print("Player completed the sequence")
-			
+			completed = true			
 			# Give the player the reward
 			var reward = customerTierDataList[customerTier]["reward"]
 
@@ -178,27 +167,22 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 			# Remove the customer from the game
 			queue_free()
 	else:
-		print("Incorrect")
 		# Reset the player sequence
 		currentPlayerSequence = []
 		# Reset the correct sequence
 		correctTaskSequence = generateSequence()
-		print(correctTaskSequence)
 
 func _on_player_code_submitted(input: String, playerIndex: int) -> void:
-	print("Code: ", input, "Player: ", playerIndex + 1)
 	if (completed):
 		return
 
 	# Find player of name playerIndex
 	var player : Node3D = get_node("/root/Game/Players/" + str(playerIndex))
 	if (player == null):
-		print("No player found with index: " + str(playerIndex))
 		return
 
 	# Is the current player equal to the player that submitted the code
 	if (currentPlayer != player):
-		#print("Player does not have the customer in their area")
 		return
 
 	playerDirectionalInput(player, input)

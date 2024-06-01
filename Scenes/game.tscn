@@ -78,6 +78,7 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_f5sun")
 gameMode = "Time"
+timeLimit = 10.0
 
 [node name="MatchUi" type="Control" parent="."]
 layout_mode = 3

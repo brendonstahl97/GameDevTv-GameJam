@@ -17,6 +17,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_select")):
+		print("pushed")
 		# If all players who are joined, are ready, switch to the game scene.
 		for p in charSelectUI.get_children():
 			if (p.joined && !p.readyUp):
