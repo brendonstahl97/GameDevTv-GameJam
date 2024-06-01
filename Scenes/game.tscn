@@ -29,6 +29,7 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_f5sun")
 gameMode = "Time"
+timeLimit = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bqfud")
