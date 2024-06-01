@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=13 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="3_qg2mu"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
+[ext_resource type="Resource" path="res://Resources/Stands/MediumStand.tres" id="5_k5mqp"]
 [ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="5_ljud2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
@@ -88,6 +89,7 @@ sky_mode = 1
 [node name="Players" type="Node" parent="."]
 
 [node name="0" parent="Players" instance=ExtResource("3_xipmc")]
+StandClass = ExtResource("5_k5mqp")
 
 [node name="Customers" type="Node" parent="."]
 
