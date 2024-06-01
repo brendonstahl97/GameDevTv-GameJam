@@ -1,23 +1,72 @@
 extends Node
 
 
+func sort_descending(a, b):
+	if a[0] > b[0]:
+		return true
+	return false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Get the player info, and replace each player stuffs with the relevant info.
-	for playerKey in global.playerInfo:
-		# Set the UI (color, name and score)
+	if (global.playerInfo == null):
+		global.playerInfo = {
+			"1" = {
+				"PlayerColor" = Color(.5, .5, .5),
+				"Money" = 500,
+				"PlayerGuy" = "Guy1",
+				"PlayerCart" = "Cart1"
+			},
+			"2" = {
+				"PlayerColor" = Color(.5, .5, .5),
+				"Money" = 300,
+				"PlayerGuy" = "Guy1",
+				"PlayerCart" = "Cart1"
+			},
+			"3" = {
+				"PlayerColor" = Color(.5, .5, .5),
+				"Money" = 800,
+				"PlayerGuy" = "Guy1",
+				"PlayerCart" = "Cart1"
+			},
+			"4" = {
+				"PlayerColor" = Color(.5, .5, .5),
+				"Money" = 5000,
+				"PlayerGuy" = "Guy1",
+				"PlayerCart" = "Cart1"
+			},
+		}
 
+	# Sort players by money
+	var sortedPlayerInfo : Array = []
+	for playerKey in global.playerInfo:
+		var thisPlayersInfo = global.playerInfo[playerKey]
+		sortedPlayerInfo.append([thisPlayersInfo["Money"], playerKey])
+	sortedPlayerInfo.sort_custom(sort_descending)
+
+	print(sortedPlayerInfo)
+
+	# Get the player info, and replace each player stuffs with the relevant info.
+	for n in range(sortedPlayerInfo.size()):
+		var placeNumber = n + 1
+		var playerKey = sortedPlayerInfo[n][1]
+		var playerMoney = sortedPlayerInfo[n][0]
+
+		print(placeNumber, " ", playerKey, " ", playerMoney)
+
+		var thisPlayersInfo = global.playerInfo[playerKey]
+		var playerPanel = get_node("/root/EndOfGame/Control/HBoxContainer/" + str(placeNumber))
+
+		# Set the UI (color, name and score)
+		playerPanel.get_node("PlayerIcon").set_modulate(thisPlayersInfo["PlayerColor"])
+		playerPanel.get_node("PlayerName").set_text("Player " + playerKey)
+		playerPanel.get_node("ScoreLabel").set_text("[center]$" + str(playerMoney) + "[/center]")
 
 		# Set the guy
 
-
 		# Set the cart
 
-		pass
 
 	# Remove the un-used player stuffs
-
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
