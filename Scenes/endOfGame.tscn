@@ -4380,7 +4380,7 @@ default_font_size = 24
 [sub_resource type="Theme" id="Theme_ovdp4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6g7vb"]
-bg_color = Color(1.2514e-06, 0.665187, 0.8178, 1)
+bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
