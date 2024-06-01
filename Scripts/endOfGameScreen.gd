@@ -76,7 +76,14 @@ func _ready() -> void:
 
 
 	# Remove the un-used player stuffs
-
+	var playersMissing = 4 - sortedPlayerInfo.size()
+	for n in range(playersMissing):
+		var placeNumber = 4 - n
+		print(placeNumber, " is missing")
+		var playerPanel = get_node("/root/EndOfGame/Control/HBoxContainer/" + str(placeNumber))
+		var playerObject = get_node("/root/EndOfGame/" + str(placeNumber))
+		playerPanel.visible = false
+		playerObject.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
