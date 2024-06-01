@@ -15,9 +15,9 @@ run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
+[audio]
 
-global="*res://Scripts/global.gd"
+general/3d_panning_strength=1.0
 
 [display]
 

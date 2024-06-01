@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0xijrm26a3ir"]
-
-[ext_resource type="PackedScene" uid="uid://bub3nomrwdlda" path="res://Scenes/char_sel_player_panel.tscn" id="1_avn0v"]
+[gd_scene format=3 uid="uid://b0xijrm26a3ir"]
 
 [node name="CharSelUi" type="Control"]
 layout_mode = 3
@@ -9,10 +7,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="CharSelPlayerPanel" parent="." instance=ExtResource("1_avn0v")]
-layout_mode = 1
-offset_left = -1.0
-offset_top = -1.0
-offset_right = -1.0
-offset_bottom = -1.0
