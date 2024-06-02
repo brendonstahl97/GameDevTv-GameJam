@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b1cq3nv6qiue7"]
+[gd_scene load_steps=18 format=3 uid="uid://b1cq3nv6qiue7"]
 
 [ext_resource type="Script" path="res://Scripts/characterSelect.gd" id="1_318p6"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="1_qgsbj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="3_kydxq"]
 [ext_resource type="Texture2D" uid="uid://sg0g1e4dba3a" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_a_outline.png" id="4_uq8s4"]
 [ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="5_eiq3f"]
+[ext_resource type="Texture2D" uid="uid://civy6x3bdfgo8" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_y_outline.png" id="5_wil4x"]
 [ext_resource type="PackedScene" uid="uid://co0qilyfn6n75" path="res://Assets/Characters/BaseCharacter.gltf" id="6_5x140"]
 
 [sub_resource type="Theme" id="Theme_82ohg"]
@@ -32,6 +33,8 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_6pses"]
 font = ExtResource("3_i8lai")
 font_size = 26
+
+[sub_resource type="Theme" id="Theme_cjwjn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ygf5d"]
 
@@ -892,6 +895,39 @@ text = "Ready!"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharSelUI/1/Readied"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.301887
+anchor_right = 1.0
+anchor_bottom = 0.45283
+theme = SubResource("Theme_cjwjn")
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CharSelUI/1/Readied/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 20
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CharSelUI/1/Readied/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_wil4x")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="CharSelUI/1/Readied/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 20
+text = "to Start!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="2" type="Panel" parent="CharSelUI"]
 layout_mode = 1

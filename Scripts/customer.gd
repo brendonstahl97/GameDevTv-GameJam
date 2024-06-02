@@ -17,22 +17,26 @@ var customerTierDataList = {
 	"Serf": {
 		"taskLength": 4,
 		"reward": 20,
-		"rarity": 1 # 40% chance
+		"rarity": 1, # 40% chance
+		"characters": ["Goblin_Male"],
 	},
 	"Normie": {
 		"taskLength": 5,
 		"reward": 30,
-		"rarity": .6 # 30% chance
+		"rarity": .6, # 30% chance
+		"characters": ["Casual_Female"]
 	},
 	"Royalty": {
 		"taskLength": 6,
 		"reward": 50,
-		"rarity": .3 # 20% chance
+		"rarity": .3, # 20% chance
+		"characters": ["Knight_Male"]
 	},
 	"King": {
 		"taskLength": 8,
 		"reward": 100,
-		"rarity": .1 # 10% chance
+		"rarity": .1, # 10% chance
+		"characters": ["Wizard"]
 	}
 }
 
@@ -86,6 +90,16 @@ func _ready() -> void:
 			customerTier = tier
 			break
 
+	# Spawn the character model
+	var desiredCharacter = load("res://Assets/Characters/" + customerTierDataList[customerTier]["characters"][0] + ".gltf").instantiate()
+	add_child(desiredCharacter)
+	var meshInstance = desiredCharacter.get_node("CharacterArmature/Skeleton3D/Body")
+	var oldMeshInstance = get_node("Casual2_Female/CharacterArmature/Skeleton3D/Body")
+	meshInstance.reparent(get_node("Casual2_Female/CharacterArmature/Skeleton3D"))
+	meshInstance.transform = oldMeshInstance.transform
+	desiredCharacter.queue_free()
+	oldMeshInstance.queue_free()
+
 	# Generate the task sequence for the customer
 	correctTaskSequence = generateSequence()
 
@@ -111,6 +125,8 @@ func _on_body_entered(body:Node3D) -> void:
 	# If this is a descendant of Players
 	if (!body.is_in_group("Players")):
 		return
+		
+	$Control.visible = true
 
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
@@ -142,6 +158,8 @@ func _on_body_exited(_body:Node3D) -> void:
 		if (global.playerInfo != null):
 			$Decal.set_modulate(global.playerInfo[str(int(str(currentPlayer.name))+1)]["PlayerColor"])
 	else:
+		if (currentPlayerSequence.size() == 0):
+			$Control.visible = false
 		$Decal.set_modulate(Color(.77, .33, .092))
 
 # Connect to the player controller 

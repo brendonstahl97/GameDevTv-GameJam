@@ -36,7 +36,8 @@ volumetric_fog_detail_spread = 6.0
 volumetric_fog_ambient_inject = 4.4
 volumetric_fog_sky_affect = 0.653
 adjustment_enabled = true
-adjustment_saturation = 1.47
+adjustment_contrast = 1.1
+adjustment_saturation = 1.15
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j62al"]
 
@@ -63,7 +64,7 @@ gameMode = "Time"
 environment = SubResource("Environment_bkyc4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 3.82, 14.36, 20)
+transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 3.82, 10.5, 20)
 fov = 50.0
 script = ExtResource("3_qg2mu")
 xPlayerLimits = Vector2(-25, 35)

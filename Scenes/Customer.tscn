@@ -24,6 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44068, 0.261704)
 shape = SubResource("CylinderShape3D_p3twv")
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -111,3 +112,5 @@ BreatheAmount = 0.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+
+[editable path="Casual2_Female"]
