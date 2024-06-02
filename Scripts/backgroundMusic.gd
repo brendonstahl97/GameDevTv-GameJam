@@ -30,10 +30,16 @@ func crossfade_to(audio_stream: AudioStream) -> void:
 		_track_2.stream = audio_stream
 		_track_2.play()
 		_anim_player.play("GameToResults")
-		_track_1 = $Results
-		_track_2 = $Start
+		_track_1 = $Start
+		_track_2 = $CharSel
 		
 
+func rematch():
+	get_child(3).stop()
+	get_child(2).volume_db = -18
+	get_child(2).play()
+	_track_1 = $Game
+	_track_2 = $Results
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

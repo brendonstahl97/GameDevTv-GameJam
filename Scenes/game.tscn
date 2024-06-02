@@ -38,6 +38,8 @@ size = Vector3(73, 64, 57)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_f5sun")
+spawnAreaTopLeftPoint = Vector3(-8, 1, -8)
+spawnAreaBottomRightPoint = Vector3(8, 1, 8)
 gameMode = "Time"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
