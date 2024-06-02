@@ -1,5 +1,6 @@
 extends Node
 
+var timeEntered = 0
 
 func sort_descending(a, b):
 	if a[0] > b[0]:
@@ -7,6 +8,8 @@ func sort_descending(a, b):
 	return false
 	
 func rematchClicked():
+	if (Time.get_unix_time_from_system() <= (timeEntered + 3)):
+		return
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 	BackgroundMusic.rematch()
 	
@@ -19,6 +22,7 @@ func mainMenuClicked():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	timeEntered = Time.get_unix_time_from_system()
 	$"Control/HBoxContainer2/Rematch".grab_focus()
 	
 	get_node("Control/HBoxContainer2/Rematch").pressed.connect(rematchClicked)
