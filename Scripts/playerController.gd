@@ -49,13 +49,17 @@ const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 @export var SprintStaminaDrain = 15.0 ## Stamina lost per second while sprinting
 @export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
 @export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
+@export var StaminaConsumptionFailedSoundEffect: AudioStream ## Sound effect played when player attempts to use stamina without having enough for the propmted action
 
 @export_category("Parry")
 @export var ParryForceMultiplier = 1.0 ## A force multiplier applied to the launch 
 @export var ParrySlowTimeAmount =  0.5 ## Intensity of time slowdown 0 = stop time, 1 = full speed
 @export var ParrySlowTimeLength = 1.0 ## How long time should be slowed on a successful parry in seconds
-@export var ParryEffectOffset = Vector3(0, 1, 0)
-@export var ParrySoundEffect: AudioStream
+@export var ParryEffectOffset = Vector3(0, 1, 0) ## Position offset for spawning the parry visual effect
+@export var ParryVisualScaleMultiplier = 2.0 ## A uniform scale multiplier for the parry visual effect
+@export var ParryVisualSpawnDistance = 0.1 ## How far in the spawn direction the parry visual effect should spawn
+@export var ParrySoundEffect: AudioStream ## Parry Success sound effect
+@export var ParryFailSoundEffect: AudioStream ## Parry failure sound effect
 
 @export_category("Appearance")
 @export var PlayerName : String = "Player"
@@ -135,7 +139,7 @@ func _handle_sprint(delta: float) -> void:
 			if (IsGrounded):
 				scrape_sound_player.play()
 		else:
-			StaminaConsumptionFailed.emit()
+			_playStaminaConsumptionFailEffects()
 		
 	elif (Input.is_action_pressed(Controls.sprint)):
 		if (StaminaManagerInstance.CurrentStamina > 1):
@@ -149,7 +153,7 @@ func _handle_sprint(delta: float) -> void:
 		else:
 			ParticleManager.end_sprint_particles()
 			SprintModifier = 1
-			StaminaConsumptionFailed.emit()
+			_playStaminaConsumptionFailEffects()
 			if (scrape_sound_player.playing):
 				scrape_sound_player.stop()
 		
@@ -191,7 +195,7 @@ func _handle_slam(delta) -> void:
 
 func _submit_code(codeDirection: String) -> void:
 	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
-		StaminaConsumptionFailed.emit()
+		_playStaminaConsumptionFailEffects()
 		return
 	CodeSubmitted.emit(codeDirection, Controls.PlayerIndex)
 	StaminaManagerInstance.drainStamina(CodeSubmissionStaminaCost)
@@ -232,16 +236,7 @@ func launch(impulseForce: Vector3, callingPlayer: Player, isParryable := true) -
 	if (IsParrying && isParryable):
 		callingPlayer.launch((-impulseForce + Vector3.DOWN).normalized() * impulseForce.length() * ParryForceMultiplier, self, false)
 		
-		var parryVisuals = PARRY_EFFECT.instantiate()
-		
-		parryVisuals.scale = Vector3.ONE * 2
-		parryVisuals.position = global_position + ParryEffectOffset + -impulseForce.normalized() * 0.1
-		get_window().add_child(parryVisuals)
-		
-		parryVisuals.look_at(Vector3(callingPlayer.global_position.x, parryVisuals.global_position.y, callingPlayer.global_position.z))
-		
-		AudioPlayer.stream = ParrySoundEffect
-		AudioPlayer.play()
+		_parry(-impulseForce.normalized(), callingPlayer.global_position, ParrySoundEffect)
 		
 		Engine.time_scale = ParrySlowTimeAmount
 		parry_slow_timer.start(ParrySlowTimeLength * ParrySlowTimeAmount)
@@ -289,11 +284,27 @@ func _on_body_entered(body: Node3D) -> void:
 	if (bumpTrueness > BumpDirectionThreshold):
 		return
 	
-	# Call Function on player here
 	body.launch(directionToBodyNoY * momentum * BumpMultiplier, self)
 	
 	StaminaManagerInstance.restoreStamina(momentum * BumpStaminaGainMultiplier)
 
+func _parry(spawnDirection: Vector3, lookAtPosition: Vector3, soundEffect: AudioStream) -> void:
+	var parryVisuals = PARRY_EFFECT.instantiate()
+		
+	parryVisuals.scale = Vector3.ONE * ParryVisualScaleMultiplier
+	parryVisuals.position = global_position + ParryEffectOffset + spawnDirection * ParryVisualSpawnDistance
+	get_window().add_child(parryVisuals)
+
+	parryVisuals.look_at(Vector3(lookAtPosition.x, parryVisuals.global_position.y, lookAtPosition.z))
+
+	AudioPlayer.stream = soundEffect
+	AudioPlayer.play()
+	
+func _playStaminaConsumptionFailEffects() -> void:
+	StaminaConsumptionFailed.emit()
+	if (!AudioPlayer.playing):
+		AudioPlayer.stream = StaminaConsumptionFailedSoundEffect
+		AudioPlayer.play()
 
 func _on_parry_slow_timer_timeout() -> void:
 	Engine.time_scale = 1
@@ -301,6 +312,10 @@ func _on_parry_slow_timer_timeout() -> void:
 func _on_parry_timer_timeout() -> void:
 	if (!DidSuccesfullyParry):
 		StaminaManagerInstance.drainStamina(StaminaManagerInstance.MaxStamina)
+		var spawnDir = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized()
+		var lookAtPosition = global_position.direction_to(spawnDir) * 1
+		_parry(spawnDir, lookAtPosition, ParryFailSoundEffect)
+		
 	
 	IsParrying = false
 	DidSuccesfullyParry = false
