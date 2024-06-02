@@ -1202,19 +1202,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.263164, 0.85746, 0.229203, 1)
 
-[node name="ReadyUp" type="Button" parent="CharSelUI/2/NavigableItems"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.792453
-anchor_right = 1.0
-anchor_bottom = 0.959906
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_i8lai")
-theme_override_font_sizes/font_size = 26
-text = "Ready?"
-metadata/_edit_use_anchors_ = true
-
 [node name="Guy" type="TabContainer" parent="CharSelUI/2/NavigableItems"]
 layout_mode = 1
 anchors_preset = -1
@@ -1750,6 +1737,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
+[node name="ReadyUp" type="Button" parent="CharSelUI/2/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
 [node name="Joiner" type="Panel" parent="CharSelUI/2"]
 layout_mode = 1
 anchors_preset = -1
@@ -2047,19 +2047,6 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.263164, 0.85746, 0.229203, 1)
-
-[node name="ReadyUp" type="Button" parent="CharSelUI/3/NavigableItems"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.792453
-anchor_right = 1.0
-anchor_bottom = 0.959906
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_i8lai")
-theme_override_font_sizes/font_size = 26
-text = "Ready?"
-metadata/_edit_use_anchors_ = true
 
 [node name="Guy" type="TabContainer" parent="CharSelUI/3/NavigableItems"]
 layout_mode = 1
@@ -2596,6 +2583,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
+[node name="ReadyUp" type="Button" parent="CharSelUI/3/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
 [node name="Joiner" type="Panel" parent="CharSelUI/3"]
 layout_mode = 1
 anchors_preset = -1
@@ -2893,19 +2893,6 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.263164, 0.85746, 0.229203, 1)
-
-[node name="ReadyUp" type="Button" parent="CharSelUI/4/NavigableItems"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.792453
-anchor_right = 1.0
-anchor_bottom = 0.959906
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_i8lai")
-theme_override_font_sizes/font_size = 26
-text = "Ready?"
-metadata/_edit_use_anchors_ = true
 
 [node name="Guy" type="TabContainer" parent="CharSelUI/4/NavigableItems"]
 layout_mode = 1
@@ -3441,6 +3428,19 @@ label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+
+[node name="ReadyUp" type="Button" parent="CharSelUI/4/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
 
 [node name="Joiner" type="Panel" parent="CharSelUI/4"]
 layout_mode = 1
