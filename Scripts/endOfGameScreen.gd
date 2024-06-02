@@ -5,9 +5,22 @@ func sort_descending(a, b):
 	if a[0] > b[0]:
 		return true
 	return false
+	
+func rematchClicked():
+	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(2).stream)
+	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	
+	
+func mainMenuClicked():
+	global.playerInfo = null
+	BackgroundMusic.get_child(3).stop()
+	get_tree().change_scene_to_file("res://Scenes/Start.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_node("Control/HBoxContainer2/Rematch").pressed.connect(rematchClicked)
+	get_node("Control/HBoxContainer2/MainMenu").pressed.connect(mainMenuClicked)
+	
 	if (global.playerInfo == null):
 		global.playerInfo = {
 			"1" = {
