@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b17ndi3hywyqw"]
+[gd_scene load_steps=52 format=3 uid="uid://b17ndi3hywyqw"]
 
 [ext_resource type="Script" path="res://Scripts/endOfGameScreen.gd" id="1_4ksru"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_66j5l"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="4_b2ho4"]
 [ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="5_l5ern"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="7_k8dji"]
+[ext_resource type="PackedScene" uid="uid://dblahe6smtayo" path="res://Assets/Environment/RTS Pack/glTF/MountainLarge_Single.gltf" id="8_vjfei"]
+[ext_resource type="PackedScene" uid="uid://cbmbon6csuxu0" path="res://Assets/Environment/RTS Pack/glTF/Mountain_Group_1.gltf" id="9_m64ey"]
+[ext_resource type="PackedScene" uid="uid://dv7iagtewvsh0" path="res://Assets/Environment/RTS Pack/glTF/Mountain_Group_2.gltf" id="10_5llpg"]
+[ext_resource type="PackedScene" uid="uid://dum7qyuj55qq8" path="res://Assets/Environment/RTS Pack/glTF/Mountain_Single.gltf" id="11_ja1nm"]
+[ext_resource type="Texture2D" uid="uid://c4s7yucygjxaq" path="res://Assets/Environment/uploads_files_4381654_LightBlueSky_texture.jpg" id="12_7wtfh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s7rvi"]
 size = Vector3(0.989289, 0.977639, 1.39005)
@@ -4351,19 +4356,6 @@ _data = {
 "Walk_Carry": SubResource("Animation_sqmqy")
 }
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7l7yt"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_l5w3f"]
-sky_material = SubResource("ProceduralSkyMaterial_7l7yt")
-
-[sub_resource type="Environment" id="Environment_o7fql"]
-background_mode = 2
-sky = SubResource("Sky_l5w3f")
-tonemap_mode = 2
-glow_enabled = true
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dch4x"]
 bg_color = Color(0, 0, 0, 0.294118)
 corner_radius_top_left = 10
@@ -4399,6 +4391,31 @@ roughness = 0.0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lm45y"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ei21l"]
+panorama = ExtResource("12_7wtfh")
+
+[sub_resource type="Sky" id="Sky_v7pil"]
+sky_material = SubResource("PanoramaSkyMaterial_ei21l")
+
+[sub_resource type="Environment" id="Environment_b3kix"]
+background_mode = 2
+sky = SubResource("Sky_v7pil")
+sky_custom_fov = 84.1
+sky_rotation = Vector3(0, 3.14159, 0)
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.0
+fog_sun_scatter = 0.23
+volumetric_fog_density = 0.005
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_emission_energy = 1.5
+volumetric_fog_anisotropy = 0.05
+volumetric_fog_length = 19.68
+volumetric_fog_detail_spread = 6.0
+volumetric_fog_ambient_inject = 4.4
+volumetric_fog_sky_affect = 0.653
+adjustment_enabled = true
+adjustment_saturation = 1.47
 
 [node name="EndOfGame" type="Node3D"]
 script = ExtResource("1_4ksru")
@@ -5225,20 +5242,6 @@ visible = false
 transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, -0.0570951, -0.0526628)
 visible = false
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_o7fql")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.606627, 0.794987, 0, -0.794987, 0.606627, 8.8755, 39.607, 31.6159)
-light_color = Color(0.846839, 0.981002, 0.976893, 1)
-light_volumetric_fog_energy = 0.0
-shadow_enabled = true
-shadow_bias = 6.383
-shadow_normal_bias = 4.436
-shadow_transmittance_bias = 6.614
-shadow_blur = 0.0
-sky_mode = 1
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -5560,3 +5563,29 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_lm45y")
+
+[node name="MountainLarge_Single2" parent="." instance=ExtResource("8_vjfei")]
+transform = Transform3D(-575.167, 0.46837, 76.7827, 0, 269.2, -3.36098, -117.019, -2.30211, -377.399, 15.537, -511.7, -12.642)
+
+[node name="Mountain_Group_12" parent="." instance=ExtResource("9_m64ey")]
+transform = Transform3D(860.855, 0, 0, 0, 860.855, 0, 0, 0, 860.855, 268.793, -1003.97, -832.657)
+
+[node name="Mountain_Group_22" parent="." instance=ExtResource("10_5llpg")]
+transform = Transform3D(198.91, 0, 0, 0, 198.91, 0, 0, 0, 198.91, 142.977, -285.676, -495.417)
+
+[node name="Mountain_Single2" parent="." instance=ExtResource("11_ja1nm")]
+transform = Transform3D(128.675, 0, 0, 0, 128.675, 0, 0, 0, 128.675, -153.709, -174.581, -163.108)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b3kix")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.606627, 0.794987, 0, -0.794987, 0.606627, 8.8755, 39.607, 31.6159)
+light_color = Color(0.846839, 0.981002, 0.976893, 1)
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_bias = 6.383
+shadow_normal_bias = 4.436
+shadow_transmittance_bias = 6.614
+shadow_blur = 0.0
+sky_mode = 1
