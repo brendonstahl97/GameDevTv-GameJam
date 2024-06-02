@@ -18,6 +18,13 @@ func _ready():
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_select")):
 		print("pushed")
+		var minPlayersJoined = false
+		for p in charSelectUI.get_children():
+			if (p.joined):
+				minPlayersJoined = true
+		if (!minPlayersJoined):
+			return
+		
 		# If all players who are joined, are ready, switch to the game scene.
 		for p in charSelectUI.get_children():
 			if (p.joined && !p.readyUp):
