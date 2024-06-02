@@ -19,6 +19,8 @@ func mainMenuClicked():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$"Control/HBoxContainer2/Rematch".grab_focus()
+	
 	get_node("Control/HBoxContainer2/Rematch").pressed.connect(rematchClicked)
 	get_node("Control/HBoxContainer2/MainMenu").pressed.connect(mainMenuClicked)
 	
