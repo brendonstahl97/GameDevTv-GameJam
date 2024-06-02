@@ -7,8 +7,8 @@ func sort_descending(a, b):
 	return false
 	
 func rematchClicked():
-	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(2).stream)
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(2).stream)
 	
 	
 func mainMenuClicked():
