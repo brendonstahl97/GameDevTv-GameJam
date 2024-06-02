@@ -129,23 +129,41 @@ func _on_customer_completed(reward: int, playerIndex: String) -> void:
 		# customersNode.remove_child(customer)
 		# customer.queue_free()
 
-func spawnCustomer() -> void:
-	# Create a new customer
-	var customer = preload("res://Scenes/Customer.tscn").instantiate()
-	# Add the customer to the scene
-	customersNode.add_child(customer)
-	# Set the customer's position to a random point within the spawn area
+func setCustomerPos(customer):
+	customer.visible = false
 	customer.global_transform.origin = Vector3(
 		randf_range(spawnAreaTopLeftPoint.x, spawnAreaBottomRightPoint.x),
 		randf_range(spawnAreaTopLeftPoint.y, spawnAreaBottomRightPoint.y),
 		randf_range(spawnAreaTopLeftPoint.z, spawnAreaBottomRightPoint.z)
 	)
+	
+	# Is it overlapping anything?
+	var scene_tree = get_tree()
+	await scene_tree.physics_frame
+	await scene_tree.physics_frame
+	var overlaps = customer.get_overlapping_bodies() 
+	for overlap in overlaps:
+		#print(overlap.name)
+		if (overlap.name == "GridMap" || overlap.name == "GridMap2"):
+			print("Colliding")
+			setCustomerPos(customer)
+			break
+	
+	customer.visible = true
+
+func spawnCustomer() -> void:
+	# Create a new customer
+	var customer = preload("res://Scenes/Customer.tscn").instantiate()
+	# Add the customer to the scene
+	customersNode.add_child(customer)
+	
+	# Set the customer's position to a random point within the spawn area
+	setCustomerPos(customer)
 
 	# Connect to customer completed event
 	customer.CustomerCompleted.connect(_on_customer_completed)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Every spawnInterval seconds, spawn a new customer, if the number of customers is less than maxSpawnCount
 	# Has enough time passed to spawn a new customer?
 	timeSinceLastSpawn += delta
@@ -157,6 +175,8 @@ func _process(delta: float) -> void:
 			# Reset the timer
 			timeSinceLastSpawn = 0
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
 	if (gameMode == "Time"):
 		gameTimeLeft -= delta
 		$MatchUi.call("updateTime", gameTimeLeft)
