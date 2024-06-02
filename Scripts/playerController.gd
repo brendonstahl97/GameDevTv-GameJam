@@ -14,6 +14,7 @@ const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 @onready var scrape_sound_player: AudioStreamPlayer3D = $ScrapeSoundEffect
 @onready var parry_timer: Timer = $ParryTimer
 @onready var parry_slow_timer: Timer = $ParrySlowTimer
+@onready var stamina_buzz_player: AudioStreamPlayer3D = $StaminaBuzz
 
 @export var Controls: PlayerControls
 @export var StandClass: Stand
@@ -49,7 +50,6 @@ const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 @export var SprintStaminaDrain = 15.0 ## Stamina lost per second while sprinting
 @export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
 @export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
-@export var StaminaConsumptionFailedSoundEffect: AudioStream ## Sound effect played when player attempts to use stamina without having enough for the propmted action
 
 @export_category("Parry")
 @export var ParryForceMultiplier = 1.0 ## A force multiplier applied to the launch 
@@ -214,8 +214,8 @@ func SlamCast() -> void:
 	var momentumY = highestYVelocityDuringSlam * mass
 	
 	var slamImpact = SLAM_IMPACT.instantiate()
-	slamImpact.global_position = global_position
 	get_window().add_child(slamImpact)
+	slamImpact.global_position = global_position
 	
 	for body in castResults:
 		var collider = body.collider
@@ -302,9 +302,8 @@ func _parry(spawnDirection: Vector3, lookAtPosition: Vector3, soundEffect: Audio
 	
 func _playStaminaConsumptionFailEffects() -> void:
 	StaminaConsumptionFailed.emit()
-	if (!AudioPlayer.playing):
-		AudioPlayer.stream = StaminaConsumptionFailedSoundEffect
-		AudioPlayer.play()
+	if (!stamina_buzz_player.playing):
+		stamina_buzz_player.play()
 
 func _on_parry_slow_timer_timeout() -> void:
 	Engine.time_scale = 1
