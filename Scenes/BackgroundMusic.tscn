@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dtpam1vpr5kgv"]
 
 [ext_resource type="Script" path="res://Scripts/backgroundMusic.gd" id="1_ui5h6"]
-[ext_resource type="AudioStream" uid="uid://d0t5rd760at0e" path="res://Assets/Audio/BGM/title.mp3" id="2_aeda0"]
-[ext_resource type="AudioStream" uid="uid://cln4nrypjegjp" path="res://Assets/Audio/BGM/stand2.mp3" id="3_urkla"]
-[ext_resource type="AudioStream" uid="uid://b451gjmwjdoje" path="res://Assets/Audio/BGM/last stand.mp3" id="4_miqnp"]
-[ext_resource type="AudioStream" uid="uid://dvw0qjvpb6aa1" path="res://Assets/Audio/BGM/results.mp3" id="5_pmc38"]
+[ext_resource type="AudioStream" uid="uid://ba3sskm4kypxk" path="res://Assets/Audio/BGM/titlecard.ogg" id="2_y1yt4"]
+[ext_resource type="AudioStream" uid="uid://dktekb61s37fo" path="res://Assets/Audio/BGM/stand.ogg" id="3_4w644"]
+[ext_resource type="AudioStream" uid="uid://b4ymiqksbfode" path="res://Assets/Audio/BGM/last-stand.ogg" id="4_gajp1"]
+[ext_resource type="AudioStream" uid="uid://dt3yaicvncygq" path="res://Assets/Audio/BGM/results.ogg" id="5_1vcsq"]
 
 [sub_resource type="Animation" id="Animation_oa2dt"]
 resource_name = "CharSelToGame"
@@ -137,19 +137,19 @@ _data = {
 script = ExtResource("1_ui5h6")
 
 [node name="Start" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_aeda0")
+stream = ExtResource("2_y1yt4")
 volume_db = -12.0
 
 [node name="CharSel" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_urkla")
+stream = ExtResource("3_4w644")
 volume_db = -12.0
 
 [node name="Game" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_miqnp")
+stream = ExtResource("4_gajp1")
 volume_db = -80.0
 
 [node name="Results" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_pmc38")
+stream = ExtResource("5_1vcsq")
 volume_db = -80.0
 
 [node name="TrackSwitcher" type="AnimationPlayer" parent="."]
