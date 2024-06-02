@@ -101,7 +101,7 @@ func _ready() -> void:
 
 	spawnCustomer()
 
-func gameCompleted(winner: Node3D) -> void:
+func gameCompleted(_winner: Node3D) -> void:
 	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(3).stream)
 	get_tree().change_scene_to_file("res://Scenes/endOfGame.tscn")
 
