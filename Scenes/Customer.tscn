@@ -112,6 +112,8 @@ script = ExtResource("8_wdxcm")
 BreatheSpeedMultiplier = 5.0
 BreatheAmount = 0.5
 
+[node name="CodeSubmissionSounds" type="AudioStreamPlayer3D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 
