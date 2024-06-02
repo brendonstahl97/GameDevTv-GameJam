@@ -160,16 +160,16 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 
 [node name="SpawnPoints" type="Node" parent="."]
 
-[node name="Node3D" type="Node3D" parent="SpawnPoints"]
+[node name="0" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -7)
 
-[node name="Node3D2" type="Node3D" parent="SpawnPoints"]
+[node name="1" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 13)
 
-[node name="Node3D3" type="Node3D" parent="SpawnPoints"]
+[node name="2" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 13)
 
-[node name="Node3D4" type="Node3D" parent="SpawnPoints"]
+[node name="3" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -5)
 
 [connection signal="timeout" from="Camera3D/ParryFocusTimer" to="Camera3D" method="_on_parry_focus_timer_timeout"]
