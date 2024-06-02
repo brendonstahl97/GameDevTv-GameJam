@@ -8,14 +8,17 @@ extends Node3D
 #	Player Nam  
 
 var charSelectUI = null
-
+var allReadyContainer = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	allReadyContainer = $AllReadyContainer
 	charSelectUI = $CharSelUI 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	_allReadyDisplay()
+
 	if (Input.is_action_just_pressed("ui_select")):
 		print("pushed")
 		var minPlayersJoined = false
@@ -28,6 +31,7 @@ func _process(delta):
 		# If all players who are joined, are ready, switch to the game scene.
 		for p in charSelectUI.get_children():
 			if (p.joined && !p.readyUp):
+
 				return
 
 		var playerChoicesDictionary = _getPlayerChoices()
@@ -91,3 +95,27 @@ func _getPlayerChoices():
 		playerChoices[playerNumberString] = playerNestedInfo
 	print(playerChoices)
 	return playerChoices
+
+# this is more complex than it needs to be
+# Checks if all players that are joined are ready by comparing two arrays
+func _allReadyDisplay():
+	var minPlayersJoined = false
+	var joinedPlayers = [0,0,0,0]
+	var readyPlayers = [0,0,0,0]
+	for p in charSelectUI.get_children():
+		if (p.joined):
+			minPlayersJoined = true
+			joinedPlayers[p.get_index()] = 1
+			print("minPlayers Joined")
+		else:
+			joinedPlayers[p.get_index()] = 0
+	
+	for p in charSelectUI.get_children():
+		if (p.readyUp):
+			readyPlayers[p.get_index()] = 1
+		else:
+			readyPlayers[p.get_index()] = 0
+	if(joinedPlayers == readyPlayers and (minPlayersJoined)):
+		allReadyContainer.visible = true
+	else:
+		allReadyContainer.visible = false
