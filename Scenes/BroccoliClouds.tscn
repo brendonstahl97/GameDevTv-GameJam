@@ -54,7 +54,6 @@ color_ramp = SubResource("Gradient_8uuvp")
 [node name="Broccoli2" type="CPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2brlx")
 transparency = 0.92
-emitting = false
 amount = 100
 lifetime = 120.0
 one_shot = true
@@ -77,3 +76,4 @@ split_scale = true
 scale_curve_x = SubResource("Curve_530lf")
 scale_curve_y = SubResource("Curve_lp23r")
 scale_curve_z = SubResource("Curve_0o7o6")
+color_ramp = SubResource("Gradient_8uuvp")
