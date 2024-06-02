@@ -12,13 +12,42 @@ var allReadyContainer = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if (global.playerInfo == null):
+		global.playerInfo = {
+			"1" = {
+				"PlayerColor" = Color(.5, .5, .5),
+				"Money" = 500,
+				"PlayerGuy" = "Chef_Male",
+				"PlayerCart" = "Medium"
+			},
+			"2" = {
+				"PlayerColor" = Color(.5, .5, .5),
+				"Money" = 300,
+				"PlayerGuy" = "Casual3_Male",
+				"PlayerCart" = "Light"
+			},
+			"3" = {
+				"PlayerColor" = Color(.5, .5, .5),
+				"Money" = 800,
+				"PlayerGuy" = "Casual3_Male",
+				"PlayerCart" = "Heavy"
+			},
+			"4" = {
+				"PlayerColor" = Color(.5, .5, .5),
+				"Money" = 5000,
+				"PlayerGuy" = "Casual3_Male",
+				"PlayerCart" = "Light"
+			},
+		}
 	allReadyContainer = $AllReadyContainer
 	charSelectUI = $CharSelUI 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	var playerChoicesDictionary = _getPlayerChoices()
+	global.playerInfo = playerChoicesDictionary
+	_replace_players()
 	_allReadyDisplay()
-
 	if (Input.is_action_just_pressed("ui_select")):
 		print("pushed")
 		var minPlayersJoined = false
@@ -31,10 +60,9 @@ func _process(_delta):
 		# If all players who are joined, are ready, switch to the game scene.
 		for p in charSelectUI.get_children():
 			if (p.joined && !p.readyUp):
-
 				return
 
-		var playerChoicesDictionary = _getPlayerChoices()
+		#playerChoicesDictionary = _getPlayerChoices()
 		_switchSceneToGame(playerChoicesDictionary)
 
 func _switchSceneToGame(playerChoicesDictionary):
@@ -93,7 +121,6 @@ func _getPlayerChoices():
 		var playerNumberString = str(playerNumber)
 		#var playerInfo = {playerNumberString = playerNestedInfo}
 		playerChoices[playerNumberString] = playerNestedInfo
-	print(playerChoices)
 	return playerChoices
 
 # this is more complex than it needs to be
@@ -119,3 +146,44 @@ func _allReadyDisplay():
 		allReadyContainer.visible = true
 	else:
 		allReadyContainer.visible = false
+
+func _replace_players():	
+		# Get the player info, and replace each player stuffs with the relevant info.
+	for playerKey in global.playerInfo:
+		
+		var thisPlayersInfo = global.playerInfo[playerKey]
+		print(thisPlayersInfo)
+		var playerObject = get_node("/root/CharacterSelect/" + playerKey)
+		print(playerObject)
+		# Set the guy
+		# Spawn a new instance of the character asset, switch the "Body" mesh instance.
+		var playerGuy = load("res://Assets/Characters/" + thisPlayersInfo["PlayerGuy"] + ".gltf").instantiate()
+		add_child(playerGuy)
+		print(playerGuy)
+		var meshInstance = playerGuy.get_node("CharacterArmature/Skeleton3D/Body")
+		print(meshInstance)
+		print(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body"))
+		var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
+		print(meshInstance.name)
+		meshInstance.transform = oldMeshInstance.transform
+		meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
+		playerGuy.queue_free()
+		oldMeshInstance.queue_free()
+
+		# Set the cart
+		playerObject.get_node("Stands/Light").visible = false
+		playerObject.get_node("Stands/Medium").visible = false
+		playerObject.get_node("Stands/Heavy").visible = false
+		playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
+		# Delete the other stands
+		for stand in playerObject.get_node("Stands").get_children():
+			if (stand.name != thisPlayersInfo["PlayerCart"]):
+				stand.queue_free()
+		
+
+	# Remove the un-used player stuffs
+	#var playersMissing = 4 - sortedPlayerInfo.size()
+	#for n in range(playersMissing):
+	#	var placeNumber = 4 - n
+	#	var playerObject = get_node("/root/CharacterSelect/" + str(placeNumber))
+	#	playerObject.visible = false
