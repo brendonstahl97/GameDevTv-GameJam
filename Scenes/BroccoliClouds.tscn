@@ -29,6 +29,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Broccoli" type="CPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2brlx")
 transparency = 0.92
+cast_shadow = 2
 amount = 50
 lifetime = 120.0
 mesh = ExtResource("1_jjjbu")

@@ -36,7 +36,7 @@ func _ready():
 	# Easy access to the array of children
 	verticalItems = navigable_items.get_children()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if( (Input.is_action_just_pressed("p" + name + "_sprint") || Input.is_action_just_pressed("p" + name + "_slam")) && !joined ):
 		# when the a button is pressed make everything visible and make joiner box invisible
 		_join_player()

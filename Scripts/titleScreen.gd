@@ -10,7 +10,3 @@ func onQuitPressed() -> void:
 func _ready():
 	BackgroundMusic.get_child(0).play()
 	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
