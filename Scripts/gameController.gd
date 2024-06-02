@@ -47,7 +47,7 @@ func _ready() -> void:
 			global.playerInfo[playerKey]["Money"] = 0
 
 			var thisPlayersInfo = global.playerInfo[playerKey]
-			var playerObject = preload("res://Scenes/Player.tscn").instantiate()
+			var playerObject = preload("res://Scenes/player.tscn").instantiate()
 			playerObject.name = str(int(playerKey)-1)
 
 			var controlsResource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + playerKey + "_Controls.tres")
