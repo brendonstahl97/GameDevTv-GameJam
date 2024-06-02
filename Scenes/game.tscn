@@ -4,6 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
 [ext_resource type="Script" path="res://Scripts/CameraManager.gd" id="3_qg2mu"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
+[ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="5_aii7y"]
 [ext_resource type="Resource" path="res://Resources/Stands/MediumStand.tres" id="5_k5mqp"]
 [ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="5_ljud2"]
 [ext_resource type="Script" path="res://Scenes/Killbox.gd" id="7_dpmeq"]
@@ -99,8 +100,11 @@ sky_mode = 1
 [node name="Players" type="Node" parent="."]
 
 [node name="0" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27466, 2.16168, 7.58822)
-StandClass = ExtResource("5_k5mqp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.27466, 2.16168, 7.58822)
+
+[node name="1" parent="Players" instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.72534, 2.16168, 8.58822)
+Controls = ExtResource("5_aii7y")
 
 [node name="Customers" type="Node" parent="."]
 
