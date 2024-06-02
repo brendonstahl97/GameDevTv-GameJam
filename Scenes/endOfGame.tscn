@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b17ndi3hywyqw"]
+[gd_scene load_steps=44 format=3 uid="uid://b17ndi3hywyqw"]
 
 [ext_resource type="Script" path="res://Scripts/endOfGameScreen.gd" id="1_4ksru"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_66j5l"]
@@ -4388,6 +4388,10 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="Theme" id="Theme_yi55n"]
+default_font = ExtResource("3_ceoml")
+default_font_size = 50
+
 [node name="EndOfGame" type="Node3D"]
 script = ExtResource("1_4ksru")
 
@@ -5498,3 +5502,29 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]4th [/center]"
 scroll_active = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 199.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Rematch" type="Button" parent="Control/HBoxContainer2"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_yi55n")
+text = "Rematch"
+clip_text = true
+
+[node name="MainMenu" type="Button" parent="Control/HBoxContainer2"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_ceoml")
+theme_override_font_sizes/font_size = 50
+text = "Main Menu"
