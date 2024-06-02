@@ -1,53 +1,79 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc208v5isrh86"]
+[gd_scene load_steps=7 format=3 uid="uid://cc208v5isrh86"]
 
 [ext_resource type="ArrayMesh" uid="uid://b3kxgd7rlxxhn" path="res://Assets/Environment/Food/Broccoli.mesh" id="1_jjjbu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2brlx"]
+transparency = 1
+vertex_color_use_as_albedo = true
 
 [sub_resource type="Curve" id="Curve_530lf"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+max_value = 1.5
+_data = [Vector2(0, 1.34967), 0.0, 0.0, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_lp23r"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 1, 0]
-point_count = 2
+_data = [Vector2(0, 0.84967), 0.0, 15033.0, 0, 1, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_0o7o6"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+max_value = 1.5
+_data = [Vector2(0, 1.34967), 0.0, 0.15033, 0, 1, Vector2(1, 1.5), 0.15033, 0.0, 1, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_k5xrk"]
-curve_x = SubResource("Curve_530lf")
-curve_y = SubResource("Curve_lp23r")
-curve_z = SubResource("Curve_0o7o6")
+[sub_resource type="Gradient" id="Gradient_8uuvp"]
+offsets = PackedFloat32Array(0, 0.220859, 0.742331, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_44s43"]
-particle_flag_rotate_y = true
+[node name="Broccoli Clouds" type="Node3D"]
+
+[node name="Broccoli" type="CPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_2brlx")
+transparency = 0.92
+amount = 50
+lifetime = 120.0
+mesh = ExtResource("1_jjjbu")
 emission_shape = 3
-emission_box_extents = Vector3(40, 10, 1)
-angle_min = -360.0
-angle_max = 360.0
+emission_box_extents = Vector3(400, 50, 1)
+particle_flag_rotate_y = true
 direction = Vector3(0, 0, 1)
 spread = 15.0
 flatness = 0.9
-initial_velocity_min = 0.1
-initial_velocity_max = 3.0
-angular_velocity_min = -10.0
-angular_velocity_max = 10.0
 gravity = Vector3(0, 0, 0)
-scale_min = 10.0
-scale_max = 30.0
-scale_curve = SubResource("CurveXYZTexture_k5xrk")
-turbulence_noise_scale = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 7.5
+angular_velocity_min = -0.01
+angular_velocity_max = 0.01
+scale_amount_min = 30.0
+scale_amount_max = 100.0
+split_scale = true
+scale_curve_x = SubResource("Curve_530lf")
+scale_curve_y = SubResource("Curve_lp23r")
+scale_curve_z = SubResource("Curve_0o7o6")
+color_ramp = SubResource("Gradient_8uuvp")
 
-[node name="Food Explosion" type="Node3D"]
-
-[node name="Broccoli" type="GPUParticles3D" parent="."]
+[node name="Broccoli2" type="CPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2brlx")
 transparency = 0.92
-amount = 5
-lifetime = 60.0
-fixed_fps = 0
-collision_base_size = 0.1
-process_material = SubResource("ParticleProcessMaterial_44s43")
-draw_pass_1 = ExtResource("1_jjjbu")
+emitting = false
+amount = 100
+lifetime = 120.0
+one_shot = true
+explosiveness = 0.5
+mesh = ExtResource("1_jjjbu")
+emission_shape = 3
+emission_box_extents = Vector3(400, 50, 1)
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 1)
+spread = 15.0
+flatness = 0.9
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 7.5
+angular_velocity_min = -0.01
+angular_velocity_max = 0.01
+scale_amount_min = 30.0
+scale_amount_max = 100.0
+split_scale = true
+scale_curve_x = SubResource("Curve_530lf")
+scale_curve_y = SubResource("Curve_lp23r")
+scale_curve_z = SubResource("Curve_0o7o6")
