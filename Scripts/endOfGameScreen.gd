@@ -113,4 +113,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if (Input.is_action_just_pressed("p1_sprint")):
+		var owner = get_viewport().gui_get_focus_owner()
+		if (owner.name == "Rematch"):
+			rematchClicked()
+		elif (owner.name == "MainMenu"):
+			mainMenuClicked()
