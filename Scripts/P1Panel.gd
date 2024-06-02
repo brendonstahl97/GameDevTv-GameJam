@@ -58,6 +58,9 @@ func _join_player() -> void:
 	
 	selected = verticalItems[0].name ## switch focus to first user input element 
 	currentIndex = 0 ## I don't know how else to keep this number (current index in the getChildren array)
+	
+	get_node("/root/CharacterSelect/" + name).visible = true
+	get_node("/root/CharacterSelect")._replace_players()
 
 func _ready_player() -> void:
 	readyUp = true
@@ -83,9 +86,11 @@ func _handle_vertical_navigation() -> void:
 func _handle_horizontal_navigation() -> void:
 	for child:Control in verticalItems:
 		if( !(child is Button) && (child.name.match(selected) ) && (Input.is_action_just_pressed("p" + name + "_code_left") || Input.is_action_just_pressed("p" + name + "_move_left") ) ):
+			get_node("/root/CharacterSelect")._replace_players()
 			if(!child.select_previous_available()):
 				child.current_tab = child.get_tab_count()-1
 		if( !(child is Button) && (child.name.match(selected) ) && (Input.is_action_just_pressed("p" + name + "_code_right") || Input.is_action_just_pressed("p" + name + "_move_right") ) ):
+			get_node("/root/CharacterSelect")._replace_players()
 			if( !child.select_next_available() ):
 				child.current_tab = 0
 		if(child.name.match(selected) && child is Button):

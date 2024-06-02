@@ -46,7 +46,7 @@ func _ready():
 func _process(_delta):
 	var playerChoicesDictionary = _getPlayerChoices()
 	global.playerInfo = playerChoicesDictionary
-	_replace_players()
+	#_replace_players()
 	_allReadyDisplay()
 	if (Input.is_action_just_pressed("ui_select")):
 		print("pushed")
@@ -133,7 +133,7 @@ func _allReadyDisplay():
 		if (p.joined):
 			minPlayersJoined = true
 			joinedPlayers[p.get_index()] = 1
-			print("minPlayers Joined")
+			#print("minPlayers Joined")
 		else:
 			joinedPlayers[p.get_index()] = 0
 	
@@ -148,39 +148,33 @@ func _allReadyDisplay():
 		allReadyContainer.visible = false
 
 func _replace_players():	
+	await get_tree().physics_frame
+	var playerChoicesDictionary = _getPlayerChoices()
+	global.playerInfo = playerChoicesDictionary
+	
 		# Get the player info, and replace each player stuffs with the relevant info.
 	for playerKey in global.playerInfo:
-		
 		var thisPlayersInfo = global.playerInfo[playerKey]
-		print(thisPlayersInfo)
 		var playerObject = get_node("/root/CharacterSelect/" + playerKey)
-		print(playerObject)
 		# Set the guy
 		# Spawn a new instance of the character asset, switch the "Body" mesh instance.
 		var playerGuy = load("res://Assets/Characters/" + thisPlayersInfo["PlayerGuy"] + ".gltf").instantiate()
 		add_child(playerGuy)
-		print(playerGuy)
 		var meshInstance = playerGuy.get_node("CharacterArmature/Skeleton3D/Body")
-		print(meshInstance)
-		print(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body"))
-		var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
-		print(meshInstance.name)
-		meshInstance.transform = oldMeshInstance.transform
-		meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
-		playerGuy.queue_free()
-		oldMeshInstance.queue_free()
+		var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D").get_children()[0]
 
+		meshInstance.name = "Body"
+		meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
+		meshInstance.transform = oldMeshInstance.transform
+		playerGuy.free()
+		oldMeshInstance.free()
+		
 		# Set the cart
 		playerObject.get_node("Stands/Light").visible = false
 		playerObject.get_node("Stands/Medium").visible = false
 		playerObject.get_node("Stands/Heavy").visible = false
 		playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
-		# Delete the other stands
-		for stand in playerObject.get_node("Stands").get_children():
-			if (stand.name != thisPlayersInfo["PlayerCart"]):
-				stand.queue_free()
 		
-
 	# Remove the un-used player stuffs
 	#var playersMissing = 4 - sortedPlayerInfo.size()
 	#for n in range(playersMissing):
