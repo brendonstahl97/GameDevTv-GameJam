@@ -1,4 +1,5 @@
 extends Node
+@onready var spawn_points: Node = $SpawnPoints
 
 @export var spawnAreaTopLeftPoint: Vector3 = Vector3(-10, 1, -10)
 @export var spawnAreaBottomRightPoint: Vector3 = Vector3(10, 1, 10)
@@ -83,11 +84,11 @@ func _ready() -> void:
 			progressBar.set_tint_progress(thisPlayersInfo["PlayerColor"])
 
 			# Place the player
-			playerObject.global_transform.origin = Vector3(
-				randf_range(-20, 20),
-				randf_range(2, 2),
-				randf_range(-20, 20)
-			)
+			var spawnPoint = get_node(str(spawn_points.name, "/", playerObject.name))
+			if (spawnPoint is Node3D):
+				playerObject.global_transform.origin = spawnPoint.global_position
+			else: 
+				push_error("The selected spawn point: ", spawnPoint.name, "is not a Node3D")
 			$Players.add_child(playerObject)
 
 	PlayersSpawned.emit()
