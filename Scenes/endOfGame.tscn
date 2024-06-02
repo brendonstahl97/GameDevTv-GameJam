@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b17ndi3hywyqw"]
+[gd_scene load_steps=47 format=3 uid="uid://b17ndi3hywyqw"]
 
 [ext_resource type="Script" path="res://Scripts/endOfGameScreen.gd" id="1_4ksru"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_66j5l"]
@@ -6,11 +6,7 @@
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_ceoml"]
 [ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="4_b2ho4"]
 [ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="5_l5ern"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_sqwu7"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wfgj7"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+[ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="7_k8dji"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s7rvi"]
 size = Vector3(0.989289, 0.977639, 1.39005)
@@ -4392,21 +4388,20 @@ corner_radius_bottom_left = 10
 default_font = ExtResource("3_ceoml")
 default_font_size = 50
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wb0fj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6d4h3"]
+albedo_color = Color(0.72549, 0.941176, 0.592157, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qiekg"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lm45y"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
 [node name="EndOfGame" type="Node3D"]
 script = ExtResource("1_4ksru")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(52, 0, 0, 0, 1, 0, 0, 0, 35.994, 4.10274, 0.485061, 2.02621)
-layers = 3
-mesh = SubResource("BoxMesh_sqwu7")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.519128, 0)
-shape = SubResource("ConvexPolygonShape3D_wfgj7")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.971648, 0.236431, 0, -0.236431, 0.971648, 0.00279427, 2.26706, 14.1818)
@@ -5528,3 +5523,40 @@ size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("3_ceoml")
 theme_override_font_sizes/font_size = 50
 text = "Main Menu"
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77928, 0, 5.2621)
+mesh_library = ExtResource("7_k8dji")
+physics_material = SubResource("PhysicsMaterial_wb0fj")
+cell_scale = 2.0
+collision_layer = 3
+collision_mask = 3
+data = {
+"cells": PackedInt32Array(65530, 65528, 200, 65531, 65529, 1048857, 65531, 65531, 1048841, 65532, 65528, 200, 65532, 65529, 1048857, 65533, 65528, 200, 65534, 65528, 282, 1, 65535, 205, 1, 0, 655558, 7, 65531, 1048841, 7, 5, 1048841, 131066, 65529, 1048873, 131068, 65529, 1048873, 131064, 65528, 1442074, 131070, 65528, 655642, 131067, 65529, 1048842, 131065, 65529, 1048842, 131069, 65529, 1048842, 65528, 65527, 200, 131064, 65527, 655657, 131070, 65527, 297, 65534, 65527, 200, 196602, 65529, 1048874, 196603, 65529, 1048902, 65531, 5, 1048841, 65528, 65528, 1048858, 196600, 65528, 229, 196601, 65528, 1048814, 196600, 65527, 238, 196606, 65528, 1048805, 196605, 65528, 1048814, 196606, 65527, 655598, 196604, 65528, 298, 196602, 65528, 655658, 262138, 65528, 1048811, 262140, 65528, 1048813, 262139, 65528, 1048802, 262141, 65527, 1048803, 262137, 65527, 227, 65529, 65529, 1048859, 65530, 65529, 1048857, 65533, 65529, 1048857, 65525, 65528, 1048770, 65525, 65529, 655553, 65525, 65530, 655553, 65525, 65531, 655553, 65525, 65532, 655553, 65525, 65533, 655553, 65525, 65534, 655553, 65525, 65535, 655553, 65525, 0, 655553, 65525, 1, 655553, 65525, 2, 655553, 65525, 3, 655553, 65525, 4, 655553, 65525, 5, 655553, 65525, 6, 655553, 65525, 7, 655553, 65525, 8, 655553, 65525, 9, 655554, 65526, 9, 1441985, 65527, 9, 1441985, 65528, 9, 1441985, 65529, 9, 1441985, 65530, 9, 1441985, 65531, 9, 1441985, 65532, 9, 1441985, 65533, 9, 1441985, 65534, 9, 1441985, 65535, 9, 1441985, 0, 9, 1441985, 1, 9, 1441985, 2, 9, 1441985, 3, 9, 1441985, 4, 9, 1441985, 5, 9, 1441985, 6, 9, 1441985, 7, 9, 1441985, 8, 9, 1441985, 9, 9, 1441985, 10, 9, 1441985, 11, 9, 1441985, 12, 9, 1441985, 13, 9, 1441985, 14, 9, 1441986, 14, 8, 193, 14, 7, 193, 14, 6, 193, 14, 5, 193, 14, 4, 193, 14, 3, 193, 14, 2, 193, 14, 1, 193, 14, 0, 193, 14, 65535, 193, 14, 65534, 193, 14, 65533, 193, 14, 65532, 193, 14, 65531, 193, 14, 65530, 193, 14, 65529, 193, 14, 65528, 194, 13, 65528, 1048769, 12, 65528, 1048769, 11, 65528, 1048769, 10, 65528, 1048769, 9, 65528, 1048769, 8, 65528, 1048769, 7, 65528, 1048769, 6, 65528, 1048769, 5, 65528, 1048769, 4, 65528, 1048769, 3, 65528, 1048769, 2, 65528, 1048769, 1, 65528, 1048769, 0, 65528, 1048769, 65526, 65528, 1048769, 65535, 65526, 200, 65531, 65528, 200, 65529, 65528, 200, 65529, 65527, 200, 65530, 65527, 200, 65530, 65526, 200, 65531, 65526, 200, 65532, 65526, 200, 65532, 65527, 200, 65533, 65527, 200, 65534, 65526, 200, 65533, 65526, 200, 65531, 65527, 200, 65529, 65526, 200, 65528, 65526, 200, 65527, 65526, 200, 0, 65527, 655553, 0, 65526, 655553, 65526, 65527, 193, 65526, 65526, 193, 65527, 65525, 1441985, 65528, 65525, 1441985, 65529, 65525, 1441985, 65530, 65525, 1441985, 65532, 65525, 1441985, 65535, 65525, 1441985, 65534, 65525, 1441985, 65533, 65525, 1441985, 65531, 65525, 1441985)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="GridMap2" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77928, 0, 5.2621)
+mesh_library = ExtResource("7_k8dji")
+physics_material = SubResource("PhysicsMaterial_wb0fj")
+cell_scale = 2.0
+collision_layer = 3
+collision_mask = 3
+data = {
+"cells": PackedInt32Array(65527, 65528, 200, 65527, 65529, 200, 65529, 65529, 200, 65530, 65529, 200, 65531, 65529, 200, 65531, 65531, 202, 65532, 65529, 200, 65534, 65528, 200, 65534, 65529, 200, 65534, 65534, 196, 65535, 65528, 200, 65535, 65529, 200, 4, 65534, 196, 4, 2, 196, 7, 65531, 202, 7, 5, 202, 131066, 65529, 1048873, 131068, 65529, 1048873, 131064, 65528, 1442074, 131070, 65528, 655642, 131067, 65529, 1048842, 131065, 65529, 1048842, 131069, 65529, 1048842, 65528, 65527, 655626, 131064, 65527, 655657, 131070, 65527, 297, 65534, 65527, 266, 196604, 65529, 1048874, 196602, 65529, 1048874, 196603, 65529, 1048902, 65531, 5, 202, 65528, 65528, 200, 65528, 65529, 200, 65535, 65527, 200, 65527, 65527, 200, 1, 0, 655547, 65534, 2, 655556, 65533, 65529, 200)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(52, 0, 0, 0, 1, 0, 0, 0, 35.994, 1.32072, 0.51, 7.2761)
+layers = 3
+material_override = SubResource("StandardMaterial3D_6d4h3")
+mesh = SubResource("BoxMesh_qiekg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_lm45y")
