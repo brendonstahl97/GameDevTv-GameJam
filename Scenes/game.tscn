@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=15 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" path="res://Scripts/gameController.gd" id="1_f5sun"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="2_rjfq8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Scenes/player.tscn" id="3_xipmc"]
 [ext_resource type="Resource" uid="uid://bcmi4nl5dfrdu" path="res://Resources/Stands/MediumStand.tres" id="5_k5mqp"]
 [ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://Scenes/matchUI.tscn" id="5_ljud2"]
+[ext_resource type="Script" path="res://Scenes/Killbox.gd" id="7_dpmeq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7i1j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -26,6 +27,9 @@ glow_enabled = true
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xo4uk"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r85bj"]
+size = Vector3(73, 64, 57)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_f5sun")
@@ -89,6 +93,7 @@ sky_mode = 1
 [node name="Players" type="Node" parent="."]
 
 [node name="0" parent="Players" instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27466, 2.16168, 7.58822)
 StandClass = ExtResource("5_k5mqp")
 
 [node name="Customers" type="Node" parent="."]
@@ -107,4 +112,13 @@ shape = SubResource("ConvexPolygonShape3D_xo4uk")
 
 [node name="MatchUi" parent="." instance=ExtResource("5_ljud2")]
 
+[node name="Killbox" type="Area3D" parent="."]
+script = ExtResource("7_dpmeq")
+RespawnPoints = [Vector3(-5.72534, 2.16168, 9.58822), Vector3(-5.72534, 2.16168, -4.41178), Vector3(10.2747, 2.16168, -4.41178), Vector3(10.2747, 2.16168, 7.58822)]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 22.5, -5)
+shape = SubResource("BoxShape3D_r85bj")
+
 [connection signal="timeout" from="Camera3D/ParryFocusTimer" to="Camera3D" method="_on_parry_focus_timer_timeout"]
+[connection signal="body_exited" from="Killbox" to="Killbox" method="_on_body_exited"]
