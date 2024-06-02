@@ -8,6 +8,11 @@
 
 extends Area3D
 
+@onready var code_submission_sounds: AudioStreamPlayer3D = $CodeSubmissionSounds
+
+const CODE_SUMBITTED_CORRECT = preload("res://Assets/Audio/CodeSumbittedCorrect.wav")
+const CODE_SUMBITTED_INCORRECT = preload("res://Assets/Audio/CodeSumbittedIncorrect.wav")
+
 @export_enum("Serf", "Normie", "Royalty", "King") var customerTier: String = "Serf"
 
 const COIN_EXPLOSION = preload("res://Scenes/coin_explosion.tscn")
@@ -170,6 +175,9 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 	if (direction == nextCorrectDirection):
 		$Control/Panel/HBoxContainer.get_children()[currentPlayerSequence.size()].set_modulate(Color(0,1,0,1))
 		currentPlayerSequence.append(direction)
+		# Play correct sound
+		code_submission_sounds.stream = CODE_SUMBITTED_CORRECT
+		code_submission_sounds.play()
 		# If the player has completed the sequence, give them the reward
 		if (currentPlayerSequence.size() == correctTaskSequence.size()):
 			completed = true			
@@ -191,6 +199,9 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 		currentPlayerSequence = []
 		# Reset the correct sequence
 		correctTaskSequence = generateSequence()
+		# Play Incorrect Sound
+		code_submission_sounds.stream = CODE_SUMBITTED_INCORRECT
+		code_submission_sounds.play()
 
 func _on_player_code_submitted(input: String, playerIndex: int) -> void:
 	if (completed):
