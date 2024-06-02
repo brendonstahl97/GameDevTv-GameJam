@@ -1,0 +1,158 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtpam1vpr5kgv"]
+
+[ext_resource type="Script" path="res://Scripts/backgroundMusic.gd" id="1_ui5h6"]
+[ext_resource type="AudioStream" uid="uid://d0t5rd760at0e" path="res://Assets/Audio/BGM/title.mp3" id="2_aeda0"]
+[ext_resource type="AudioStream" uid="uid://cln4nrypjegjp" path="res://Assets/Audio/BGM/stand2.mp3" id="3_urkla"]
+[ext_resource type="AudioStream" uid="uid://b451gjmwjdoje" path="res://Assets/Audio/BGM/last stand.mp3" id="4_miqnp"]
+[ext_resource type="AudioStream" uid="uid://dvw0qjvpb6aa1" path="res://Assets/Audio/BGM/results.mp3" id="5_pmc38"]
+
+[sub_resource type="Animation" id="Animation_oa2dt"]
+resource_name = "CharSelToGame"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharSel:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 0.34151),
+"update": 0,
+"values": [-12.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Game:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 4.14106),
+"update": 0,
+"values": [-80.0, -18.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharSel:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2g7i1"]
+resource_name = "GameToResults"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Game:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 0.34151),
+"update": 0,
+"values": [-18.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Results:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 4.14106),
+"update": 0,
+"values": [-80.0, -18.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Game:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_237ln"]
+resource_name = "StartToCharSel"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 0.34151),
+"update": 0,
+"values": [-12.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharSel:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 4.14106),
+"update": 0,
+"values": [-80.0, -12.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Start:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rl61h"]
+_data = {
+"CharSelToGame": SubResource("Animation_oa2dt"),
+"GameToResults": SubResource("Animation_2g7i1"),
+"StartToCharSel": SubResource("Animation_237ln")
+}
+
+[node name="BackgroundMusic" type="Node"]
+script = ExtResource("1_ui5h6")
+
+[node name="Start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_aeda0")
+volume_db = -12.0
+
+[node name="CharSel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_urkla")
+volume_db = -12.0
+
+[node name="Game" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_miqnp")
+volume_db = -80.0
+
+[node name="Results" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pmc38")
+volume_db = -80.0
+
+[node name="TrackSwitcher" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rl61h")
+}

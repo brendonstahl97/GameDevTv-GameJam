@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1cq3nv6qiue7"]
+[gd_scene load_steps=16 format=3 uid="uid://b1cq3nv6qiue7"]
 
 [ext_resource type="Script" path="res://Scripts/characterSelect.gd" id="1_318p6"]
 [ext_resource type="MeshLibrary" uid="uid://basyfgb3vgpbm" path="res://meshLibrary.tres" id="1_qgsbj"]
@@ -28,6 +28,10 @@ font_size = 26
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="Theme" id="Theme_f8xwc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6pses"]
+font = ExtResource("3_i8lai")
+font_size = 26
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ygf5d"]
 
@@ -294,31 +298,524 @@ drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Man 1" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+[node name="BaseCharacter" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
 layout_mode = 2
 focus_mode = 2
-text = "Man 1"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Base Character"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Woman 1" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+[node name="BlueSoldier_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
-text = "Woman 1"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Blue Soldier Female"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Man 2" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+[node name="BlueSoldier_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
-text = "Man 2"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Blue Soldier Male"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual2_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual2 Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual2_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual2 Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual3_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual3_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Bald" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Bald"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Hat" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Hat"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cow" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cow"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Hair" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Hair"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Female_Old" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Female Old"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Female_Young" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Female Young"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Male_Old" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Male Old"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Male_Young" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Male Young"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Elf" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Elf"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Goblin_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Goblin_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Kimono_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Kimono Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Kimono_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Kimono Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Golden_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Golden Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Golden_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Golden Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Male_Hair" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Male Hair"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Sand" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Sand"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Sand_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Sand Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OldClassy_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OldClassy_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pirate_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pirate_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pug" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pug"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Soldier_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Soldier Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Soldier_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Soldier Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Suit_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Suit Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Suit_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Suit Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VikingHelmet" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Helmet"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Viking_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Viking_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Witch" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Witch"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Wizard" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Wizard"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Worker_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Worker Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Worker_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Worker Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Zombie_Female" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Zombie_Male" type="Label" parent="CharSelUI/1/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="ReadyUp" type="Button" parent="CharSelUI/1/NavigableItems"]
 layout_mode = 1
@@ -631,6 +1128,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.263164, 0.85746, 0.229203, 1)
 
+[node name="ReadyUp" type="Button" parent="CharSelUI/2/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
 [node name="Guy" type="TabContainer" parent="CharSelUI/2/NavigableItems"]
 layout_mode = 1
 anchors_preset = -1
@@ -647,44 +1157,524 @@ drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Man 1" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+[node name="BaseCharacter" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
 layout_mode = 2
 focus_mode = 2
-text = "Man 1"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Base Character"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Woman 1" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+[node name="BlueSoldier_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
-text = "Woman 1"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Blue Soldier Female"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Man 2" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+[node name="BlueSoldier_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
-text = "Man 2"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Blue Soldier Male"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="ReadyUp" type="Button" parent="CharSelUI/2/NavigableItems"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.792453
-anchor_right = 1.0
-anchor_bottom = 0.959906
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_i8lai")
-theme_override_font_sizes/font_size = 26
-text = "Ready?"
-metadata/_edit_use_anchors_ = true
+[node name="Casual2_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual2 Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual2_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual2 Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual3_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual3_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Bald" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Bald"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Hat" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Hat"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cow" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cow"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Hair" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Hair"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Female_Old" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Female Old"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Female_Young" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Female Young"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Male_Old" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Male Old"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Male_Young" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Male Young"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Elf" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Elf"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Goblin_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Goblin_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Kimono_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Kimono Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Kimono_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Kimono Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Golden_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Golden Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Golden_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Golden Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Male_Hair" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Male Hair"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Sand" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Sand"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Sand_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Sand Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OldClassy_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OldClassy_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pirate_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pirate_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pug" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pug"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Soldier_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Soldier Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Soldier_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Soldier Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Suit_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Suit Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Suit_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Suit Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VikingHelmet" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Helmet"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Viking_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Viking_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Witch" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Witch"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Wizard" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Wizard"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Worker_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Worker Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Worker_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Worker Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Zombie_Female" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Zombie_Male" type="Label" parent="CharSelUI/2/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Joiner" type="Panel" parent="CharSelUI/2"]
 layout_mode = 1
@@ -984,6 +1974,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.263164, 0.85746, 0.229203, 1)
 
+[node name="ReadyUp" type="Button" parent="CharSelUI/3/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
 [node name="Guy" type="TabContainer" parent="CharSelUI/3/NavigableItems"]
 layout_mode = 1
 anchors_preset = -1
@@ -1000,44 +2003,524 @@ drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Man 1" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+[node name="BaseCharacter" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
 layout_mode = 2
 focus_mode = 2
-text = "Man 1"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Base Character"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Woman 1" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+[node name="BlueSoldier_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
-text = "Woman 1"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Blue Soldier Female"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Man 2" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+[node name="BlueSoldier_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
-text = "Man 2"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Blue Soldier Male"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="ReadyUp" type="Button" parent="CharSelUI/3/NavigableItems"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.792453
-anchor_right = 1.0
-anchor_bottom = 0.959906
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_i8lai")
-theme_override_font_sizes/font_size = 26
-text = "Ready?"
-metadata/_edit_use_anchors_ = true
+[node name="Casual2_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual2 Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual2_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual2 Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual3_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual3_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Bald" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Bald"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Hat" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Hat"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cow" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cow"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Hair" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Hair"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Female_Old" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Female Old"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Female_Young" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Female Young"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Male_Old" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Male Old"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Male_Young" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Male Young"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Elf" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Elf"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Goblin_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Goblin_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Kimono_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Kimono Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Kimono_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Kimono Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Golden_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Golden Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Golden_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Golden Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Male_Hair" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Male Hair"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Sand" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Sand"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Sand_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Sand Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OldClassy_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OldClassy_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pirate_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pirate_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pug" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pug"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Soldier_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Soldier Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Soldier_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Soldier Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Suit_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Suit Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Suit_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Suit Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VikingHelmet" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Helmet"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Viking_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Viking_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Witch" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Witch"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Wizard" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Wizard"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Worker_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Worker Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Worker_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Worker Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Zombie_Female" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Zombie_Male" type="Label" parent="CharSelUI/3/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Joiner" type="Panel" parent="CharSelUI/3"]
 layout_mode = 1
@@ -1337,6 +2820,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.263164, 0.85746, 0.229203, 1)
 
+[node name="ReadyUp" type="Button" parent="CharSelUI/4/NavigableItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.792453
+anchor_right = 1.0
+anchor_bottom = 0.959906
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_i8lai")
+theme_override_font_sizes/font_size = 26
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
 [node name="Guy" type="TabContainer" parent="CharSelUI/4/NavigableItems"]
 layout_mode = 1
 anchors_preset = -1
@@ -1353,44 +2849,524 @@ drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Man 1" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+[node name="BaseCharacter" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
 layout_mode = 2
 focus_mode = 2
-text = "Man 1"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Base Character"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Woman 1" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+[node name="BlueSoldier_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
-text = "Woman 1"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Blue Soldier Female"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Man 2" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+[node name="BlueSoldier_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
 visible = false
 layout_mode = 2
 focus_mode = 2
-text = "Man 2"
-label_settings = SubResource("LabelSettings_5y6gt")
+text = "Blue Soldier Male"
+label_settings = SubResource("LabelSettings_6pses")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="ReadyUp" type="Button" parent="CharSelUI/4/NavigableItems"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.792453
-anchor_right = 1.0
-anchor_bottom = 0.959906
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_i8lai")
-theme_override_font_sizes/font_size = 26
-text = "Ready?"
-metadata/_edit_use_anchors_ = true
+[node name="Casual2_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual2 Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual2_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual2 Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual3_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual3_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Bald" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Bald"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Casual_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Hat" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Hat"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Chef_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cow" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cow"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Hair" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Hair"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Cowboy_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cowboy Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Female_Old" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Female Old"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Female_Young" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Female Young"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Male_Old" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Male Old"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Doctor_Male_Young" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Doctor Male Young"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Elf" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Elf"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Goblin_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Goblin_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Kimono_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Kimono Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Kimono_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Kimono Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Golden_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Golden Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Golden_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Golden Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Knight_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Male_Hair" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Male Hair"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Sand" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Sand"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Ninja_Sand_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Ninja Sand Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OldClassy_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OldClassy_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pirate_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pirate_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Pug" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pug"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Soldier_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Soldier Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Soldier_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Soldier Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Suit_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Suit Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Suit_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Suit Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VikingHelmet" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Helmet"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Viking_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Viking_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Witch" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Witch"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Wizard" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Wizard"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Worker_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Worker Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Worker_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Worker Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Zombie_Female" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Female"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Zombie_Male" type="Label" parent="CharSelUI/4/NavigableItems/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Male"
+label_settings = SubResource("LabelSettings_6pses")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="Joiner" type="Panel" parent="CharSelUI/4"]
 layout_mode = 1

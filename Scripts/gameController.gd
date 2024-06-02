@@ -21,6 +21,7 @@ signal PlayersSpawned
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#BackgroundMusic.get_child(2).play()
 	gameTimeLeft = timeLimit
 	
 	customersNode = get_node("/root/Game/Customers")
@@ -65,7 +66,16 @@ func _ready() -> void:
 			playerObject.StandClass = standTypeResource
 
 			# Set the guy
-			
+			# Spawn a new instance of the character asset, switch the "Body" mesh instance.
+			var playerGuy = load("res://Assets/Characters/" + thisPlayersInfo["PlayerGuy"] + ".gltf").instantiate()
+			add_child(playerGuy)
+			var meshInstance = playerGuy.get_node("CharacterArmature/Skeleton3D/Body")
+			var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
+			print(meshInstance.name)
+			meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
+			meshInstance.transform = oldMeshInstance.transform
+			playerGuy.queue_free()
+			oldMeshInstance.queue_free()
 
 			# Set the color
 			var progressBar : TextureProgressBar = playerObject.get_node("StaminaManager/SubViewport/TextureProgressBar")
@@ -91,6 +101,7 @@ func _ready() -> void:
 	spawnCustomer()
 
 func gameCompleted(winner: Node3D) -> void:
+	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(3).stream)
 	get_tree().change_scene_to_file("res://Scenes/endOfGame.tscn")
 
 # A customer's task was completed, reward the player who did it.

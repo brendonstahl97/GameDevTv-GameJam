@@ -1,9 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://b17ndi3hywyqw"]
+[gd_scene load_steps=44 format=3 uid="uid://b17ndi3hywyqw"]
 
 [ext_resource type="Script" path="res://Scripts/endOfGameScreen.gd" id="1_4ksru"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_66j5l"]
 [ext_resource type="Script" path="res://Scripts/endOfGameCharacter.gd" id="1_nx0h6"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_ceoml"]
+[ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="4_b2ho4"]
+[ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="5_l5ern"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sqwu7"]
 
@@ -4380,11 +4382,15 @@ default_font_size = 24
 [sub_resource type="Theme" id="Theme_ovdp4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6g7vb"]
-bg_color = Color(1.2514e-06, 0.665187, 0.8178, 1)
+bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_yi55n"]
+default_font = ExtResource("3_ceoml")
+default_font_size = 50
 
 [node name="EndOfGame" type="Node3D"]
 script = ExtResource("1_4ksru")
@@ -4411,9 +4417,6 @@ collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_nx0h6")
-
-[node name="stallGreen2" parent="1" instance=ExtResource("1_66j5l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.144247, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.195145)
@@ -4600,15 +4603,24 @@ autoplay = "Idle"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="1"]
 
+[node name="Stands" type="Node3D" parent="1"]
+transform = Transform3D(0.999618, 0, -0.0276425, 0, 1, 0, 0.0276425, 0, 0.999618, 0, -0.138804, 0)
+
+[node name="Medium" parent="1/Stands" instance=ExtResource("1_66j5l")]
+
+[node name="Light" parent="1/Stands" instance=ExtResource("4_b2ho4")]
+visible = false
+
+[node name="Heavy" parent="1/Stands" instance=ExtResource("5_l5ern")]
+transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, -0.0570951, -0.0526628)
+visible = false
+
 [node name="2" type="StaticBody3D" parent="." groups=["Players"]]
 transform = Transform3D(0.999618, 0, 0.0276425, 0, 1, 0, -0.0276425, 0, 0.999618, -0.395561, 1.10595, 11.1637)
 collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_nx0h6")
-
-[node name="stallGreen2" parent="2" instance=ExtResource("1_66j5l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.144247, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.195145)
@@ -4796,15 +4808,24 @@ speed_scale = 0.2
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="2"]
 
+[node name="Stands" type="Node3D" parent="2"]
+transform = Transform3D(0.998471, 0, -0.0552638, 0, 1, 0, 0.0552638, 0, 0.998471, 0, -0.146252, 0)
+
+[node name="Medium" parent="2/Stands" instance=ExtResource("1_66j5l")]
+
+[node name="Light" parent="2/Stands" instance=ExtResource("4_b2ho4")]
+visible = false
+
+[node name="Heavy" parent="2/Stands" instance=ExtResource("5_l5ern")]
+transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, -0.0570951, -0.0526628)
+visible = false
+
 [node name="3" type="StaticBody3D" parent="." groups=["Players"]]
 transform = Transform3D(0.999618, 0, 0.0276425, 0, 1, 0, -0.0276425, 0, 0.999618, 0.688991, 1.10595, 11.1637)
 collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_nx0h6")
-
-[node name="stallGreen2" parent="3" instance=ExtResource("1_66j5l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.144247, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.195145)
@@ -4992,15 +5013,24 @@ speed_scale = 0.2
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="3"]
 
+[node name="Stands" type="Node3D" parent="3"]
+transform = Transform3D(0.998471, 0, -0.0552638, 0, 1, 0, 0.0552638, 0, 0.998471, 0, -0.138446, 0)
+
+[node name="Medium" parent="3/Stands" instance=ExtResource("1_66j5l")]
+
+[node name="Light" parent="3/Stands" instance=ExtResource("4_b2ho4")]
+visible = false
+
+[node name="Heavy" parent="3/Stands" instance=ExtResource("5_l5ern")]
+transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, -0.0570951, -0.0526628)
+visible = false
+
 [node name="4" type="StaticBody3D" parent="." groups=["Players"]]
 transform = Transform3D(0.999618, 0, 0.0276425, 0, 1, 0, -0.0276425, 0, 0.999618, 1.7853, 1.10595, 11.1637)
 collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_nx0h6")
-
-[node name="stallGreen2" parent="4" instance=ExtResource("1_66j5l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.144247, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.195145)
@@ -5187,6 +5217,18 @@ autoplay = "Idle"
 speed_scale = 0.2
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="4"]
+
+[node name="Stands" type="Node3D" parent="4"]
+transform = Transform3D(0.998471, 0, -0.0552638, 0, 1, 0, 0.0552638, 0, 0.998471, 0, -0.138446, 0)
+
+[node name="Medium" parent="4/Stands" instance=ExtResource("1_66j5l")]
+
+[node name="Light" parent="4/Stands" instance=ExtResource("4_b2ho4")]
+visible = false
+
+[node name="Heavy" parent="4/Stands" instance=ExtResource("5_l5ern")]
+transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, -0.0570951, -0.0526628)
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o7fql")
@@ -5460,3 +5502,29 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]4th [/center]"
 scroll_active = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 199.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Rematch" type="Button" parent="Control/HBoxContainer2"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_yi55n")
+text = "Rematch"
+clip_text = true
+
+[node name="MainMenu" type="Button" parent="Control/HBoxContainer2"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_ceoml")
+theme_override_font_sizes/font_size = 50
+text = "Main Menu"
