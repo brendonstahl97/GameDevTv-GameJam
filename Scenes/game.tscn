@@ -116,8 +116,11 @@ sky_mode = 1
 [node name="Players" type="Node" parent="."]
 
 [node name="0" parent="Players" instance=ExtResource("3_xipmc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27466, 2.16168, 7.58822)
-StandClass = ExtResource("5_k5mqp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.27466, 2.16168, 7.58822)
+
+[node name="1" parent="Players" instance=ExtResource("3_xipmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.72534, 2.16168, 8.58822)
+Controls = ExtResource("5_aii7y")
 
 [node name="Customers" type="Node" parent="."]
 

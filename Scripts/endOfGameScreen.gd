@@ -19,6 +19,8 @@ func mainMenuClicked():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$"Control/HBoxContainer2/Rematch".grab_focus()
+	
 	get_node("Control/HBoxContainer2/Rematch").pressed.connect(rematchClicked)
 	get_node("Control/HBoxContainer2/MainMenu").pressed.connect(mainMenuClicked)
 	
@@ -111,4 +113,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if (Input.is_action_just_pressed("p1_sprint")):
+		var owner = get_viewport().gui_get_focus_owner()
+		if (owner.name == "Rematch"):
+			rematchClicked()
+		elif (owner.name == "MainMenu"):
+			mainMenuClicked()
