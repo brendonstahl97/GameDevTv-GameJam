@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_ny06e"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_t4hpd"]
 [ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="2_e2mp6"]
-[ext_resource type="ArrayMesh" path="res://Assets/Environment/Food/Broccoli.mesh" id="3_mhdtb"]
+[ext_resource type="ArrayMesh" uid="uid://b3kxgd7rlxxhn" path="res://Assets/Environment/Food/Broccoli.mesh" id="3_mhdtb"]
 [ext_resource type="Resource" uid="uid://bcmi4nl5dfrdu" path="res://Resources/Stands/MidStand.tres" id="3_pop5s"]
 [ext_resource type="AudioStream" uid="uid://35vn83pywt4x" path="res://Assets/Audio/Impacts/CartoonPunch.wav" id="4_f8uq3"]
 [ext_resource type="Script" path="res://Scripts/ParticleEmitterManager.gd" id="5_3xa2g"]
