@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://be5fgpwir8o66"
+path="res://.godot/imported/Goblin_Male.obj-1d1e7860b022f9abb5715611a6b6dc4f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Goblin_Male.obj-1d1e7860b022f9abb5715611a6b6dc4f.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Goblin_Male.obj"
+dest_files=["res://.godot/imported/Goblin_Male.obj-1d1e7860b022f9abb5715611a6b6dc4f.mesh", "res://.godot/imported/Goblin_Male.obj-1d1e7860b022f9abb5715611a6b6dc4f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

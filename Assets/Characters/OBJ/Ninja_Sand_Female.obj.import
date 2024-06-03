@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cdi22l1v0wiq1"
+path="res://.godot/imported/Ninja_Sand_Female.obj-ef592e33af77207962c45ce7c6f0047e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Ninja_Sand_Female.obj-ef592e33af77207962c45ce7c6f0047e.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Ninja_Sand_Female.obj"
+dest_files=["res://.godot/imported/Ninja_Sand_Female.obj-ef592e33af77207962c45ce7c6f0047e.mesh", "res://.godot/imported/Ninja_Sand_Female.obj-ef592e33af77207962c45ce7c6f0047e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

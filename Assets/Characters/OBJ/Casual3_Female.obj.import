@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bbxem0xs40fmx"
+path="res://.godot/imported/Casual3_Female.obj-c67f1b445e31f62cbe3c81b6ca714991.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Casual3_Female.obj-c67f1b445e31f62cbe3c81b6ca714991.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Casual3_Female.obj"
+dest_files=["res://.godot/imported/Casual3_Female.obj-c67f1b445e31f62cbe3c81b6ca714991.mesh", "res://.godot/imported/Casual3_Female.obj-c67f1b445e31f62cbe3c81b6ca714991.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
