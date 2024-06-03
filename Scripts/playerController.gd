@@ -214,8 +214,8 @@ func SlamCast() -> void:
 	var momentumY = highestYVelocityDuringSlam * mass
 	
 	var slamImpact = SLAM_IMPACT.instantiate()
-	get_window().add_child(slamImpact)
 	slamImpact.global_position = global_position
+	get_window().add_child(slamImpact)
 	
 	for body in castResults:
 		var collider = body.collider
