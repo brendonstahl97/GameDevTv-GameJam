@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dn7kh1q1hn2f6"
+path="res://.godot/imported/Cowboy_Hair.obj-6e958282dfcdbfad7f7663bb81b3c4ab.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cowboy_Hair.obj-6e958282dfcdbfad7f7663bb81b3c4ab.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Cowboy_Hair.obj"
+dest_files=["res://.godot/imported/Cowboy_Hair.obj-6e958282dfcdbfad7f7663bb81b3c4ab.mesh", "res://.godot/imported/Cowboy_Hair.obj-6e958282dfcdbfad7f7663bb81b3c4ab.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dptlc283ivwnr"
+path="res://.godot/imported/Ninja_Male.obj-c101a9f67e2b050a0c2200803a29f072.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Ninja_Male.obj-c101a9f67e2b050a0c2200803a29f072.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Ninja_Male.obj"
+dest_files=["res://.godot/imported/Ninja_Male.obj-c101a9f67e2b050a0c2200803a29f072.mesh", "res://.godot/imported/Ninja_Male.obj-c101a9f67e2b050a0c2200803a29f072.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

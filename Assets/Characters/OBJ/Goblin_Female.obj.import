@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cexdmfowx1jwe"
+path="res://.godot/imported/Goblin_Female.obj-bec6fa6edab1fd7ed0d1fe8afa5cc050.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Goblin_Female.obj-bec6fa6edab1fd7ed0d1fe8afa5cc050.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Goblin_Female.obj"
+dest_files=["res://.godot/imported/Goblin_Female.obj-bec6fa6edab1fd7ed0d1fe8afa5cc050.mesh", "res://.godot/imported/Goblin_Female.obj-bec6fa6edab1fd7ed0d1fe8afa5cc050.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

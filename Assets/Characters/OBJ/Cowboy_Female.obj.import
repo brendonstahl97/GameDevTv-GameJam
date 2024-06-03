@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cr7lexpbx4pon"
+path="res://.godot/imported/Cowboy_Female.obj-417cc1a19c5c98a73bcb2c8628ec7c7c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cowboy_Female.obj-417cc1a19c5c98a73bcb2c8628ec7c7c.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Cowboy_Female.obj"
+dest_files=["res://.godot/imported/Cowboy_Female.obj-417cc1a19c5c98a73bcb2c8628ec7c7c.mesh", "res://.godot/imported/Cowboy_Female.obj-417cc1a19c5c98a73bcb2c8628ec7c7c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bxovwdkamaqq2"
+path="res://.godot/imported/Casual3_Male.obj-6cfae8d54352cfb5d9cf4f086ea9ef1c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Casual3_Male.obj-6cfae8d54352cfb5d9cf4f086ea9ef1c.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Casual3_Male.obj"
+dest_files=["res://.godot/imported/Casual3_Male.obj-6cfae8d54352cfb5d9cf4f086ea9ef1c.mesh", "res://.godot/imported/Casual3_Male.obj-6cfae8d54352cfb5d9cf4f086ea9ef1c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

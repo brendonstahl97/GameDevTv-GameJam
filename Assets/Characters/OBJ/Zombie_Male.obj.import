@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d185ejqcth8gb"
+path="res://.godot/imported/Zombie_Male.obj-692be4849c88d6ae261fce7495f4285c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Zombie_Male.obj-692be4849c88d6ae261fce7495f4285c.mesh"]
+
+source_file="res://Assets/Characters/OBJ/Zombie_Male.obj"
+dest_files=["res://.godot/imported/Zombie_Male.obj-692be4849c88d6ae261fce7495f4285c.mesh", "res://.godot/imported/Zombie_Male.obj-692be4849c88d6ae261fce7495f4285c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
