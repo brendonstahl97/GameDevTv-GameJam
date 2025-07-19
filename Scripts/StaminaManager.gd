@@ -5,7 +5,6 @@ extends  Node
 @export var PassiveStamingaRegen = 20.0 ## The amount of stamina that is passively regenerated every second
 
 signal stamina_changed(value: float)
-signal stamina_
 
 var canRegenStamina = true;
 var CurrentStamina: float:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dtpam1vpr5kgv"]
 
-[ext_resource type="Script" path="res://Scripts/backgroundMusic.gd" id="1_ui5h6"]
+[ext_resource type="Script" uid="uid://bb8yx8g7u5nn1" path="res://Scripts/backgroundMusic.gd" id="1_ui5h6"]
 [ext_resource type="AudioStream" uid="uid://ba3sskm4kypxk" path="res://Assets/Audio/BGM/titlecard.ogg" id="2_y1yt4"]
 [ext_resource type="AudioStream" uid="uid://dktekb61s37fo" path="res://Assets/Audio/BGM/stand.ogg" id="3_4w644"]
 [ext_resource type="AudioStream" uid="uid://b4ymiqksbfode" path="res://Assets/Audio/BGM/last-stand.ogg" id="4_gajp1"]
@@ -128,9 +128,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rl61h"]
 _data = {
-"CharSelToGame": SubResource("Animation_oa2dt"),
-"GameToResults": SubResource("Animation_2g7i1"),
-"StartToCharSel": SubResource("Animation_237ln")
+&"CharSelToGame": SubResource("Animation_oa2dt"),
+&"GameToResults": SubResource("Animation_2g7i1"),
+&"StartToCharSel": SubResource("Animation_237ln")
 }
 
 [node name="BackgroundMusic" type="Node"]
