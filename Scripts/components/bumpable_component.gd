@@ -6,7 +6,7 @@ signal bumped(bump_force: Vector3, bumping_body: RigidBody3D)
 @export_category("Bump")
 @export var bumpable_group_name = "Bumpable"
 @export var bump_momentum_threshold = 5.0 ## The momentum (Mass x Velocity) threshold for a bump to be triggered when you hit another player
-@export var bump_direction_threshold = 30 ## An angle threshold that determines how accurate a player must be for a bump to trigger ( higher is less accurate )
+@export var bump_direction_threshold = 60 ## An angle threshold that determines how accurate a player must be for a bump to trigger ( higher is less accurate )
 @export var bump_multiplier = 3.0 ## Used to multiplicatively adjust the amount of additional force applied to an opponent when a bump is triggered
 
 # Called when the node enters the scene tree for the first time.
