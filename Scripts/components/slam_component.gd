@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		_slam_cast()
 
 
+# TODO Refactor this component into a ShapeCast3D Node
 ## This MUST only be called in physics process, as the physics space is only accessible then
 func _slam_cast() -> void:
 	var spaceState = target_rigidbody.get_world_3d().direct_space_state
@@ -50,8 +51,8 @@ func _slam_cast() -> void:
 	var momentumY = highest_y_velocity_during_slam * target_rigidbody.mass
 	
 	var slam_impact = SLAM_IMPACT.instantiate()
-	get_window().add_child(slam_impact)
 	slam_impact.global_position = target_rigidbody.global_position
+	get_window().add_child(slam_impact)
 	
 	for body in castResults:
 		var collider = body.collider

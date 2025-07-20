@@ -46,13 +46,13 @@ func try_begin_parry_window() -> bool:
 	return true
 
 
-func try_parry(impulseForce: Vector3, callingPlayer: Player) -> bool:
+func try_parry(impulse_force: Vector3, calling_entity: RigidBody3D) -> bool:
 	if (!is_parrying):
 		return false
 	
-	callingPlayer.launch((-impulseForce + Vector3.DOWN).normalized() * impulseForce.length() * ParryForceMultiplier, get_parent(), false)
+	calling_entity.launch((-impulse_force + Vector3.DOWN).normalized() * impulse_force.length() * ParryForceMultiplier, get_parent(), false)
 		
-	_create_parry_effect(-impulseForce.normalized(), callingPlayer.global_position, true)
+	_create_parry_effect(-impulse_force.normalized(), calling_entity.global_position, true)
 	
 	did_succesfully_parry = true
 	parry_success.emit(get_parent().global_position)

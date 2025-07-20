@@ -5,8 +5,9 @@ signal sprint_start
 signal sprint_end
 
 @export_category("Sprint")
-@export var MaxSprintModifier = 2.5 ## Affects your maximum speed ( Max speed = MoveSpeed x This Value )
-@export var SprintIncrementAmount = 1 ## Affects how quickly you achieve your max sprint speed once you start sprinting
+@export var max_sprint_modifier = 2.5 ## Affects your maximum speed ( Max speed = MoveSpeed x This Value )
+@export var sprint_increment_modifier = 1 ## Affects how quickly you achieve your max sprint speed once you start sprinting
+@export var sprint_stamina_drain = 15 ## Stamina drain per second while sprinting
 
 var sprint_modifier: float = 1.0
 var is_sprinting: bool = false
@@ -31,5 +32,5 @@ func _process(delta: float) -> void:
 		if (!is_sprinting):
 			return
 		
-		if (sprint_modifier < MaxSprintModifier):
-			sprint_modifier += SprintIncrementAmount * delta
+		if (sprint_modifier < max_sprint_modifier):
+			sprint_modifier += sprint_increment_modifier * delta

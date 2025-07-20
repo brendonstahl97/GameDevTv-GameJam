@@ -19,24 +19,15 @@ const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 @onready var parry_component: ParryComponent = %ParryComponent
 @onready var slam_component: SlamComponent = %SlamComponent
 @onready var bumpable_component: BumpableComponent = %BumpableComponent
+@onready var bump_component: BumpComponent = %BumpComponent
 
 @export var Controls: PlayerControls
-@export var StandClass: Stand
+@export var stand_class: Stand
 
-@export var StaminaManagerInstance: StaminaManager
-
-@export_category("Bump")
-@export var BumpMomentumThreshold = 5.0 ## The momentum (Mass x Velocity) threshold for a bump to be triggered when you hit another player
-@export var BumpDirectionThreshold = 30 ## An angle threshold that determines how accurate a player must be for a bump to trigger ( higher is less accurate )
-@export var BumpMultiplier = 3.0 ## Used to multiplicatively adjust the amount of additional force applied to an opponent when a bump is triggered
-@export var BumpSoundEffect: AudioStream
-@export var CollisionSoundEffects: Array ## Fill with string locations of potential sounds for non-bump collisions
-
+@export var stamina_manager_instance: StaminaManager
 
 @export_category("Stamina")
-@export var SprintStaminaDrain = 15.0 ## Stamina lost per second while sprinting
 @export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
-@export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
 
 @export_category("Appearance")
 @export var PlayerName : String = "Player"
@@ -57,7 +48,7 @@ var IsGrounded: bool:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_tree.active = true
-	mass = StandClass.Mass
+	mass = stand_class.Mass
 
 func _process(_delta: float) -> void:
 	update_animation_parameters()
@@ -77,8 +68,8 @@ func _physics_process(delta: float) -> void:
 
 func _handle_sprint_input(delta: float) -> void: 
 	if (Input.is_action_just_pressed(Controls.sprint)):
-		if (StaminaManagerInstance.CurrentStamina > 0):
-			StaminaManagerInstance.canRegenStamina = false
+		if (stamina_manager_instance.current_stamina > 0):
+			stamina_manager_instance.can_regen_stamina = false
 			sprint_component.begin_sprint()
 			# TODO move scrape sound effect into sprint component
 			if (IsGrounded):
@@ -87,8 +78,8 @@ func _handle_sprint_input(delta: float) -> void:
 			_playStaminaConsumptionFailEffects()
 		
 	elif (Input.is_action_pressed(Controls.sprint)):
-		if (StaminaManagerInstance.CurrentStamina > 1):
-			StaminaManagerInstance.drainStamina(SprintStaminaDrain * delta)
+		if (stamina_manager_instance.current_stamina > 1):
+			stamina_manager_instance.drainStamina(sprint_component.sprint_stamina_drain * delta)
 			if (IsGrounded):
 				if (!scrape_sound_player.playing):
 					scrape_sound_player.play()
@@ -103,7 +94,7 @@ func _handle_sprint_input(delta: float) -> void:
 		
 	elif (Input.is_action_just_released(Controls.sprint)):
 		print("Released Sprint")
-		StaminaManagerInstance.canRegenStamina = true
+		stamina_manager_instance.can_regen_stamina = true
 		sprint_component.end_sprint()
 		scrape_sound_player.stop()
 
@@ -129,61 +120,48 @@ func _handle_slam(delta) -> void:
 			
 
 func _submit_code(codeDirection: String) -> void:
-	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
+	if (stamina_manager_instance.current_stamina < CodeSubmissionStaminaCost):
 		_playStaminaConsumptionFailEffects()
 		return
 	CodeSubmitted.emit(codeDirection, Controls.PlayerIndex)
-	StaminaManagerInstance.drainStamina(CodeSubmissionStaminaCost)
+	stamina_manager_instance.drainStamina(CodeSubmissionStaminaCost)
 
 func update_animation_parameters():
 	animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
 	
 	
-# TODO Extract launchable into a component
-func launch(impulseForce: Vector3, callingPlayer: Player, isParryable := true) -> void:
-	if (isParryable and parry_component.try_parry(impulseForce, callingPlayer)):
-		
-		# TODO This should not be handled by the player
-		Engine.time_scale = parry_component.ParrySlowTimeAmount
-		parry_slow_timer.start(parry_component.ParrySlowTimeLength * parry_component.ParrySlowTimeAmount)
-		
-	else:
-		apply_impulse(impulseForce)
-		if (isParryable):
-			apply_torque_impulse(Vector3.UP * impulseForce.length() * randf_range(-1, 1))
+# Duck Typed function that should be present on all launchable rigidbody nodes
+func launch(impulse_force: Vector3, callling_entity: RigidBody3D, is_parriable := true) -> void:
+	if (is_parriable):
+		if (parry_component.try_parry(impulse_force, callling_entity)):
+			# TODO This should not be handled by the player
+			Engine.time_scale = parry_component.ParrySlowTimeAmount
+			parry_slow_timer.start(parry_component.ParrySlowTimeLength * parry_component.ParrySlowTimeAmount)
+		else:
+			apply_impulse(impulse_force)
+			apply_torque_impulse(Vector3.UP * impulse_force.length() * randf_range(-1, 1))
 			
 			var foodExplosion = SECRET_CABBAGE_EXPLOSION.instantiate() if (randi_range(0, 10) == 0) else FOOD_EXPLOSION.instantiate()
-			foodExplosion.position = callingPlayer.global_position
+			foodExplosion.position = callling_entity.global_position
 			get_window().add_child(foodExplosion)
 			
-			AudioPlayer.stream = BumpSoundEffect
+			AudioPlayer.stream = bump_component.bump_sound_effect
 			AudioPlayer.play()
+	else:
+		apply_impulse(impulse_force)
 
 
 func _on_body_entered(body: Node3D) -> void:
 	if (slam_component.is_slamming):
 		slam_component.end_slam()
 		return
-	
-	if (!body.get_groups().has("Bumpable")):
-		return
 		
-	var target_bumpable_component: BumpableComponent = body.find_child("BumpableComponent")
-	if (target_bumpable_component == null):
-		return
-		
-	if (target_bumpable_component.try_bump(self)):
-		StaminaManagerInstance.restoreStamina(linear_velocity.length() * mass * BumpStaminaGainMultiplier)
-	else:
-		if (!AudioPlayer.playing):
-			AudioPlayer.stream = load(CollisionSoundEffects.pick_random())
-			AudioPlayer.play()
-		return
 	
 func _playStaminaConsumptionFailEffects() -> void:
 	StaminaConsumptionFailed.emit()
 	if (!stamina_buzz_player.playing):
 		stamina_buzz_player.play()
+
 
 # TODO This should be handled outside of the player
 func _on_parry_slow_timer_timeout() -> void:
@@ -196,4 +174,4 @@ func _on_parry_component_parry_sound(sound: AudioStream) -> void:
 
 
 func _on_parry_component_parry_failure() -> void:
-	StaminaManagerInstance.drainStamina(StaminaManagerInstance.MaxStamina)
+	stamina_manager_instance.drainStamina(stamina_manager_instance.max_stamina)

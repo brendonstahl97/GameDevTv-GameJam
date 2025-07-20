@@ -108,7 +108,7 @@ color_ramp = SubResource("Gradient_s1u17")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_jh7jl")
+&"": SubResource("AnimationLibrary_jh7jl")
 }
 autoplay = "Play Explosion"
 

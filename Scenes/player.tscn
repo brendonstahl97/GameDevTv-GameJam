@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://dgsxkbytb4is"]
+[gd_scene load_steps=83 format=4 uid="uid://dgsxkbytb4is"]
 
 [ext_resource type="Script" uid="uid://caja2qubvja1l" path="res://Scripts/playerController.gd" id="1_ny06e"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="1_t4hpd"]
@@ -29,9 +29,20 @@
 [ext_resource type="Script" uid="uid://dhn3708afotvc" path="res://Scripts/components/sprint_component.gd" id="26_vfarp"]
 [ext_resource type="Script" uid="uid://o0meho38myt2" path="res://Scripts/components/parry_component.gd" id="27_vfarp"]
 [ext_resource type="Script" uid="uid://c2ruxg3euex6r" path="res://Scripts/components/slam_component.gd" id="29_83xs0"]
+[ext_resource type="Script" uid="uid://w5lr7k7dywgf" path="res://Scripts/components/bump_component.gd" id="29_ypfnu"]
 [ext_resource type="Script" uid="uid://dtwe4w60ugunr" path="res://Scripts/components/bumpable_component.gd" id="30_ypfnu"]
+[ext_resource type="AudioStream" uid="uid://db8ewaa3mlmp7" path="res://Assets/Audio/Impacts/footstep_wood_000.ogg" id="32_8gxox"]
+[ext_resource type="AudioStream" uid="uid://sfysop5m4157" path="res://Assets/Audio/Impacts/footstep_wood_001.ogg" id="33_11gg7"]
+[ext_resource type="AudioStream" uid="uid://m64cjvagcxk4" path="res://Assets/Audio/Impacts/footstep_wood_002.ogg" id="34_qpa8y"]
+[ext_resource type="AudioStream" uid="uid://dt4573qilictj" path="res://Assets/Audio/Impacts/footstep_wood_003.ogg" id="35_sbwqj"]
+[ext_resource type="AudioStream" uid="uid://drprtk5be2dos" path="res://Assets/Audio/Impacts/footstep_wood_004.ogg" id="36_xwi16"]
+[ext_resource type="AudioStream" uid="uid://dg3d3v23f6e1y" path="res://Assets/Audio/Impacts/impactPlank_medium_000.ogg" id="37_sweqm"]
+[ext_resource type="AudioStream" uid="uid://dssba65e57pwo" path="res://Assets/Audio/Impacts/impactPlank_medium_001.ogg" id="38_ph33w"]
+[ext_resource type="AudioStream" uid="uid://cgte77hsag7uu" path="res://Assets/Audio/Impacts/impactPlank_medium_002.ogg" id="39_7ldla"]
+[ext_resource type="AudioStream" uid="uid://cwbeeoxx2akfa" path="res://Assets/Audio/Impacts/impactPlank_medium_003.ogg" id="40_r7t2e"]
+[ext_resource type="AudioStream" uid="uid://dh06x5707mal1" path="res://Assets/Audio/Impacts/impactPlank_medium_004.ogg" id="41_nmr2m"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_s7rvi"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ypfnu"]
 size = Vector3(0.989289, 0.977639, 1.39005)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i61wx"]
@@ -4455,7 +4466,10 @@ points = PackedVector3Array(-0.180608, 6.93889e-18, -0.0712166, 0.323581, 0.1024
 [sub_resource type="SphereShape3D" id="SphereShape3D_83xs0"]
 radius = 1.5
 
-[node name="0" type="RigidBody3D" node_paths=PackedStringArray("StaminaManagerInstance") groups=["Bumpable", "Players"]]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xuaoq"]
+size = Vector3(0.989289, 0.977639, 1.48213)
+
+[node name="0" type="RigidBody3D" node_paths=PackedStringArray("stamina_manager_instance") groups=["Bumpable", "Players"]]
 collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
@@ -4465,18 +4479,14 @@ max_contacts_reported = 3
 angular_damp = 2.0
 script = ExtResource("1_ny06e")
 Controls = ExtResource("2_e2mp6")
-StandClass = ExtResource("3_18lym")
-StaminaManagerInstance = NodePath("StaminaManager")
-BumpDirectionThreshold = 60
-BumpSoundEffect = ExtResource("4_f8uq3")
-CollisionSoundEffects = ["res://Assets/Audio/Impacts/impactPunch_heavy_001.ogg", "res://Assets/Audio/Impacts/impactPunch_heavy_002.ogg", "res://Assets/Audio/Impacts/impactPunch_heavy_003.ogg", "res://Assets/Audio/Impacts/impactPunch_heavy_004.ogg"]
+stand_class = ExtResource("3_18lym")
+stamina_manager_instance = NodePath("StaminaManager")
 CodeSubmissionStaminaCost = 10.0
-BumpStaminaGainMultiplier = 10.0
 PlayerColor = Color(0.25763, 0.523159, 0.218513, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.195145)
-shape = SubResource("BoxShape3D_s7rvi")
+shape = SubResource("BoxShape3D_ypfnu")
 
 [node name="Casual3_Male" type="Node3D" parent="."]
 transform = Transform3D(-0.325, 0, -2.84124e-08, 0, 0.325, 0, 2.84124e-08, 0, -0.325, 0.0277407, 0, 0.723203)
@@ -4495,15 +4505,15 @@ bones/1/name = "Foot.L"
 bones/1/parent = 0
 bones/1/rest = Transform3D(-1, -2.77933e-07, 1.48902e-05, 1.48924e-05, -0.0117173, 0.999932, -1.03443e-07, 0.999932, 0.0117171, 0.265425, 0.0246629, -0.0450554)
 bones/1/enabled = true
-bones/1/position = Vector3(0.265425, 0.0450956, 0.0775032)
-bones/1/rotation = Quaternion(4.96835e-06, 0.734122, 0.679018, 5.58759e-06)
+bones/1/position = Vector3(0.265425, 0.0431736, 0.0806375)
+bones/1/rotation = Quaternion(4.9462e-06, 0.736988, 0.675906, 5.61008e-06)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Body"
 bones/2/parent = 0
 bones/2/rest = Transform3D(1, 9.80371e-08, 2.48606e-07, -1.47056e-07, 0.978637, 0.205599, -2.23138e-07, -0.205599, 0.978637, 0.00215324, 0.646547, -0.388819)
 bones/2/enabled = true
-bones/2/position = Vector3(0.00219016, 0.97392, 0.0454943)
-bones/2/rotation = Quaternion(-0.000232759, 0.000249418, 5.35461e-05, 1)
+bones/2/position = Vector3(0.00297529, 0.94965, 0.0960837)
+bones/2/rotation = Quaternion(-0.000497166, 0.00162359, 9.53156e-05, 0.999999)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Hips"
 bones/3/parent = 2
@@ -4524,14 +4534,14 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(1, 1.44448e-08, -1.66457e-06, 8.32723e-09, 0.999906, 0.0136796, 1.66461e-06, -0.0136796, 0.999907, 3.88243e-11, 0.298579, -8.55152e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(3.88243e-11, 0.298579, -8.55152e-09)
-bones/5/rotation = Quaternion(-0.00633027, 0.0147377, -0.00978652, 0.999823)
+bones/5/rotation = Quaternion(-0.00633027, 0.0147886, -0.00982034, 0.999822)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Neck"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, -4.05998e-08, 1.35468e-06, -4.98829e-08, 0.997771, 0.0667261, -1.35437e-06, -0.0667261, 0.997771, 5.21959e-12, 0.476891, 7.39782e-08)
 bones/6/enabled = true
 bones/6/position = Vector3(5.21959e-12, 0.476891, 7.39782e-08)
-bones/6/rotation = Quaternion(-0.042438, 1.57346e-05, 8.39694e-05, 0.999099)
+bones/6/rotation = Quaternion(-0.0325243, 2.37628e-05, 0.000136946, 0.999471)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Head"
 bones/7/parent = 6
@@ -4544,7 +4554,7 @@ bones/8/name = "Shoulder.L"
 bones/8/parent = 5
 bones/8/rest = Transform3D(0.663951, 0.747776, 2.43634e-06, -0.74611, 0.662471, 0.066724, 0.049893, -0.0443033, 0.997771, 0.133202, 0.140841, 0.0135214)
 bones/8/enabled = true
-bones/8/position = Vector3(0.140063, 0.14036, 0.0135831)
+bones/8/position = Vector3(0.134117, 0.140777, 0.0135297)
 bones/8/rotation = Quaternion(-0.0304479, -0.0136819, -0.40968, 0.911618)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "UpperArm.L"
@@ -4552,27 +4562,27 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(-0.0539795, 0.964737, -0.257622, -0.892192, 0.0692627, 0.446315, 0.44842, 0.25394, 0.856991, -5.9492e-08, 0.259532, -9.51747e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(-5.9492e-08, 0.259532, -9.51747e-09)
-bones/9/rotation = Quaternion(-0.369002, -0.252945, -0.757491, 0.475462)
+bones/9/rotation = Quaternion(-0.369179, -0.252647, -0.757376, 0.475665)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "LowerArm.L"
 bones/10/parent = 9
 bones/10/rest = Transform3D(-0.0135782, 0.908027, 0.418692, -0.806026, 0.237856, -0.541984, -0.591725, -0.344836, 0.728664, -4.56279e-08, 0.528271, 1.29661e-07)
 bones/10/enabled = true
 bones/10/position = Vector3(-4.56279e-08, 0.528271, 1.29661e-07)
-bones/10/rotation = Quaternion(-0.014482, 0.205777, -0.166993, 0.964137)
+bones/10/rotation = Quaternion(-0.0146296, 0.205959, -0.16676, 0.964136)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "Fist.L"
 bones/11/parent = 10
 bones/11/rest = Transform3D(0.406327, -0.134405, 0.903789, 0.35914, 0.933007, -0.022713, -0.840188, 0.333815, 0.427376, 2.94341e-08, 0.425347, 4.20032e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(2.94341e-08, 0.425347, 4.20032e-08)
-bones/11/rotation = Quaternion(0.00826682, 0.0655788, -0.00522046, 0.9978)
+bones/11/rotation = Quaternion(0.0102244, 0.154826, -0.00958332, 0.987842)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Shoulder.R"
 bones/12/parent = 5
 bones/12/rest = Transform3D(0.66395, -0.747776, -1.19209e-06, 0.74611, 0.662471, 0.066724, -0.0498939, -0.0443024, 0.997771, -0.13313, 0.140755, 0.0134613)
 bones/12/enabled = true
-bones/12/position = Vector3(-0.141166, 0.140189, 0.0134645)
+bones/12/position = Vector3(-0.141723, 0.140153, 0.0135788)
 bones/12/rotation = Quaternion(-0.0304476, 0.0136825, 0.40968, 0.911618)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "UpperArm.R"
@@ -4580,14 +4590,14 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(-0.646538, -0.755923, 0.102808, 0.548331, -0.366773, 0.751539, -0.530399, 0.542272, 0.651628, -4.00059e-08, 0.259532, -2.67332e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-4.00059e-08, 0.259532, -2.67332e-08)
-bones/13/rotation = Quaternion(-0.373258, 0.266089, 0.752695, 0.472573)
+bones/13/rotation = Quaternion(-0.373349, 0.265718, 0.752683, 0.472729)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LowerArm.R"
 bones/14/parent = 13
 bones/14/rest = Transform3D(0.893954, -0.35155, -0.277954, 0.363521, 0.931542, -0.00903908, 0.262103, -0.0929615, 0.960552, 2.20161e-09, 0.528271, 1.32196e-07)
 bones/14/enabled = true
 bones/14/position = Vector3(2.20161e-09, 0.528271, 1.32196e-07)
-bones/14/rotation = Quaternion(-0.00114425, -0.216773, 0.155032, 0.963833)
+bones/14/rotation = Quaternion(-0.00151385, -0.216781, 0.154999, 0.963836)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "Fist.R"
 bones/15/parent = 14
@@ -4600,29 +4610,29 @@ bones/16/name = "UpperLeg.L"
 bones/16/parent = 2
 bones/16/rest = Transform3D(0.99987, 0.00513071, 0.0151577, 0.0159931, -0.35363, -0.935214, 0.000561922, 0.93535, -0.353662, 0.253029, -0.016702, -0.0559237)
 bones/16/enabled = true
-bones/16/position = Vector3(0.253014, -0.0217245, -0.0590081)
-bones/16/rotation = Quaternion(0.980355, 0.00989205, -0.00103553, 0.196992)
+bones/16/position = Vector3(0.253013, -0.0218932, -0.0591117)
+bones/16/rotation = Quaternion(0.978306, 0.00913926, 0.000741651, 0.206964)
 bones/16/scale = Vector3(0.999998, 0.999998, 0.99995)
 bones/17/name = "LowerLeg.L"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.999807, -0.000640024, 0.0196487, 0.0196494, 0.0640279, -0.997754, -0.000619462, 0.997975, 0.0640263, -3.26563e-08, 0.453805, -2.0545e-08)
 bones/17/enabled = true
 bones/17/position = Vector3(-3.26563e-08, 0.453805, -2.0545e-08)
-bones/17/rotation = Quaternion(0.257713, 0.00283145, 0.00941344, 0.966172)
+bones/17/rotation = Quaternion(0.322045, 0.00345753, 0.00920192, 0.946673)
 bones/17/scale = Vector3(1, 1.00001, 1.00001)
 bones/18/name = "UpperLeg.R"
 bones/18/parent = 2
 bones/18/rest = Transform3D(0.99987, -0.00513235, -0.0151573, -0.0159934, -0.35363, -0.935214, -0.000560275, 0.93535, -0.353662, -0.254712, -0.016702, -0.0559241)
 bones/18/enabled = true
-bones/18/position = Vector3(-0.254712, -0.0269742, -0.0560302)
-bones/18/rotation = Quaternion(0.996822, -0.0112409, 0.0015468, 0.0788477)
+bones/18/position = Vector3(-0.254712, -0.0267612, -0.056028)
+bones/18/rotation = Quaternion(0.9958, -0.0119694, 0.00277587, 0.0907301)
 bones/18/scale = Vector3(0.999998, 1, 0.999949)
 bones/19/name = "LowerLeg.R"
 bones/19/parent = 18
 bones/19/rest = Transform3D(0.999808, 0.000640102, -0.0196487, -0.0196494, 0.0640278, -0.997754, 0.000619382, 0.997975, 0.0640263, 1.09576e-08, 0.453805, -1.98441e-08)
 bones/19/enabled = true
 bones/19/position = Vector3(1.09576e-08, 0.453805, -1.98441e-08)
-bones/19/rotation = Quaternion(0.257521, -0.00282954, -0.009414, 0.966223)
+bones/19/rotation = Quaternion(0.329554, -0.00353046, -0.00917418, 0.944085)
 bones/19/scale = Vector3(1, 1.00001, 1.00001)
 bones/20/name = "PoleTarget.L"
 bones/20/parent = 0
@@ -4635,8 +4645,8 @@ bones/21/name = "Foot.R"
 bones/21/parent = 0
 bones/21/rest = Transform3D(-1, -8.33797e-07, -1.50613e-05, -1.50505e-05, -0.0117173, 0.999932, -1.01022e-06, 0.999932, 0.0117171, -0.262802, 0.0246629, -0.0450557)
 bones/21/enabled = true
-bones/21/position = Vector3(-0.262802, 0.0295362, -0.122567)
-bones/21/rotation = Quaternion(-5.92486e-06, 0.66505, 0.746799, -4.73246e-06)
+bones/21/position = Vector3(-0.262802, 0.0298562, -0.123453)
+bones/21/rotation = Quaternion(-5.94513e-06, 0.66205, 0.74946, -4.71114e-06)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "PoleTarget.R"
 bones/22/parent = 0
@@ -4923,6 +4933,7 @@ metadata/_custom_type_script = "uid://o0meho38myt2"
 [node name="SlamComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("29_83xs0")
+SlamLaunchForceMultiplier = 2.0
 SlamImpactShape = SubResource("SphereShape3D_83xs0")
 metadata/_custom_type_script = "uid://c2ruxg3euex6r"
 
@@ -4931,6 +4942,17 @@ unique_name_in_owner = true
 script = ExtResource("30_ypfnu")
 bump_direction_threshold = 60
 metadata/_custom_type_script = "uid://dtwe4w60ugunr"
+
+[node name="BumpComponent" type="Area3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("29_ypfnu")
+bump_sound_effect = ExtResource("4_f8uq3")
+collision_sound_effects = Array[AudioStream]([ExtResource("32_8gxox"), ExtResource("33_11gg7"), ExtResource("34_qpa8y"), ExtResource("35_sbwqj"), ExtResource("36_xwi16"), ExtResource("37_sweqm"), ExtResource("38_ph33w"), ExtResource("39_7ldla"), ExtResource("40_r7t2e"), ExtResource("41_nmr2m")])
+metadata/_custom_type_script = "uid://w5lr7k7dywgf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.149103)
+shape = SubResource("BoxShape3D_xuaoq")
 
 [connection signal="StaminaConsumptionFailed" from="." to="StaminaManager/SubViewport/TextureProgressBar" method="_on__stamina_consumption_failed"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
@@ -4942,3 +4964,5 @@ metadata/_custom_type_script = "uid://dtwe4w60ugunr"
 [connection signal="parry_failure" from="ParryComponent" to="." method="_on_parry_component_parry_failure"]
 [connection signal="parry_sound" from="ParryComponent" to="." method="_on_parry_component_parry_sound"]
 [connection signal="bumped" from="BumpableComponent" to="." method="launch"]
+[connection signal="body_entered" from="BumpComponent" to="BumpComponent" method="_on_body_entered"]
+[connection signal="successful_bump" from="BumpComponent" to="StaminaManager" method="restoreStamina"]
