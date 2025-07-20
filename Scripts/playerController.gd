@@ -20,14 +20,12 @@ const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 @onready var slam_component: SlamComponent = %SlamComponent
 @onready var bumpable_component: BumpableComponent = %BumpableComponent
 @onready var bump_component: BumpComponent = %BumpComponent
+@onready var code_submission_component: CodeSubmissionComponent = %CodeSubmissionComponent
 
 @export var Controls: PlayerControls
 @export var stand_class: Stand
-
 @export var stamina_manager_instance: StaminaManager
 
-@export_category("Stamina")
-@export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
 
 @export_category("Appearance")
 @export var PlayerName : String = "Player"
@@ -35,7 +33,6 @@ const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 @export var PlayerColor : Color = Color(.8, .19, 0.01)
 @export var PlayerGuy : String = "Man 1"
 
-signal CodeSubmitted
 signal StaminaConsumptionFailed
 
 var movement_direction = Vector3.ZERO
@@ -62,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	_handle_sprint_input(delta)
 	movement_component.move(movement_direction)
 	rotation_component.look_in_movement_direction()
-	_handle_slam(delta)
+	_handle_slam_input(delta)
 	_handle_parry_input()
 
 
@@ -100,36 +97,38 @@ func _handle_sprint_input(delta: float) -> void:
 
 
 func _handle_code_input() -> void:
+	var code_direction := Global.CodeDirection.NONE
+	
 	if (Input.is_action_just_pressed(Controls.code_up)):
-		_submit_code("UP")
+		code_direction = Global.CodeDirection.UP
 	elif (Input.is_action_just_pressed(Controls.code_left)):
-		_submit_code("LEFT")
+		code_direction = Global.CodeDirection.LEFT
 	elif (Input.is_action_just_pressed(Controls.code_right)):
-		_submit_code("RIGHT")
+		code_direction = Global.CodeDirection.RIGHT
 	elif (Input.is_action_just_pressed(Controls.code_down)):
-		_submit_code("DOWN")
+		code_direction = Global.CodeDirection.DOWN
+		
+	if (code_direction != Global.CodeDirection.NONE):
+		if (stamina_manager_instance.current_stamina >= code_submission_component.code_submission_stamina_cost):
+			code_submission_component.submit_code(code_direction, Controls.PlayerIndex)
+			stamina_manager_instance.drainStamina(code_submission_component.code_submission_stamina_cost)
+		else:
+			_playStaminaConsumptionFailEffects()
 
 func _handle_parry_input() -> void:
 	if (Input.is_action_just_pressed(Controls.parry)):
 		parry_component.try_begin_parry_window()
-		
-# TODO Extract slam into component
-func _handle_slam(delta) -> void:
+
+
+func _handle_slam_input(delta) -> void:
 	if(Input.is_action_just_pressed(Controls.slam) and !IsGrounded):
 		slam_component.begin_slam()
-			
 
-func _submit_code(codeDirection: String) -> void:
-	if (stamina_manager_instance.current_stamina < CodeSubmissionStaminaCost):
-		_playStaminaConsumptionFailEffects()
-		return
-	CodeSubmitted.emit(codeDirection, Controls.PlayerIndex)
-	stamina_manager_instance.drainStamina(CodeSubmissionStaminaCost)
 
 func update_animation_parameters():
 	animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
-	
-	
+
+
 # Duck Typed function that should be present on all launchable rigidbody nodes
 func launch(impulse_force: Vector3, callling_entity: RigidBody3D, is_parriable := true) -> void:
 	if (is_parriable):
@@ -155,8 +154,8 @@ func _on_body_entered(body: Node3D) -> void:
 	if (slam_component.is_slamming):
 		slam_component.end_slam()
 		return
-		
-	
+
+
 func _playStaminaConsumptionFailEffects() -> void:
 	StaminaConsumptionFailed.emit()
 	if (!stamina_buzz_player.playing):

@@ -45,6 +45,7 @@ import/fbx/enabled=false
 [global_group]
 
 Bumpable="Rigidbody that is able to be bumped by a player"
+Code_Submitters=""
 
 [input]
 
