@@ -1,5 +1,5 @@
 class_name Player
-extends RigidBody3D
+extends LaunchableRigidbody3D
 
 const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
 const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.tscn")
