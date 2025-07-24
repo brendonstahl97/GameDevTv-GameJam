@@ -95,7 +95,7 @@ func _ready() -> void:
 
 	# Hide player panels which dont have a player
 	for i in range(4): 
-		var player = get_node("/root/Game/Players/" + str(i))
+		var player = get_node_or_null("/root/Game/Players/" + str(i))
 		if (player == null):
 			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
 

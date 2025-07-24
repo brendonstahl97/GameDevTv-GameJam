@@ -32,11 +32,6 @@ func _ready() -> void:
 	parry_timer.timeout.connect(_on_parry_timer_timeout)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func try_begin_parry_window() -> bool:
 	if (is_parrying):
 		return false
