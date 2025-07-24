@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bub3nomrwdlda"]
 
-[ext_resource type="Script" path="res://Scripts/P1Panel.gd" id="1_7snyk"]
+[ext_resource type="Script" uid="uid://dh3xp61xj1srn" path="res://Scripts/P1Panel.gd" id="1_7snyk"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_cyjhe"]
 [ext_resource type="Texture2D" uid="uid://sg0g1e4dba3a" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_a_outline.png" id="3_nr8ya"]
 

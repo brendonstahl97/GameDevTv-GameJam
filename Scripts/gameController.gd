@@ -48,7 +48,7 @@ func _ready() -> void:
 			global.playerInfo[playerKey]["Money"] = 0
 
 			var thisPlayersInfo = global.playerInfo[playerKey]
-			var playerObject = preload("res://Scenes/player.tscn").instantiate()
+			var playerObject: Player = preload("res://Scenes/player.tscn").instantiate()
 			playerObject.name = str(int(playerKey)-1)
 
 			var controlsResource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + playerKey + "_Controls.tres")
@@ -64,7 +64,7 @@ func _ready() -> void:
 				if (stand.name != thisPlayersInfo["PlayerCart"]):
 					stand.queue_free()
 			var standTypeResource = ResourceLoader.load("res://Resources/Stands/" + thisPlayersInfo["PlayerCart"] + "Stand.tres")
-			playerObject.StandClass = standTypeResource
+			playerObject.stand_class = standTypeResource
 
 			# Set the guy
 			# Spawn a new instance of the character asset, switch the "Body" mesh instance.
@@ -95,7 +95,7 @@ func _ready() -> void:
 
 	# Hide player panels which dont have a player
 	for i in range(4): 
-		var player = get_node("/root/Game/Players/" + str(i))
+		var player = get_node_or_null("/root/Game/Players/" + str(i))
 		if (player == null):
 			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
 

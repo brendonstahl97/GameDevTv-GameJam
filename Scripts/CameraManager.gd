@@ -30,7 +30,7 @@ func _setup() -> void:
 	PlayersInGame = get_tree().get_nodes_in_group("Players")
 	
 	for player: Player in PlayersInGame:
-		player.SuccessfulParry.connect(_on_successful_parry)
+		player.parry_component.parry_success.connect(_on_successful_parry)
 	active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

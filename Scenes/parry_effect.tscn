@@ -97,8 +97,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2l3yi"]
 _data = {
-"Parry": SubResource("Animation_wu27a"),
-"RESET": SubResource("Animation_mdsel")
+&"Parry": SubResource("Animation_wu27a"),
+&"RESET": SubResource("Animation_mdsel")
 }
 
 [node name="Parry Effect" type="Node3D"]

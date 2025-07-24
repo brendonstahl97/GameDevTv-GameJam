@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bsm0lw2r3lkwk"]
 
-[ext_resource type="Script" path="res://LaunchPad.gd" id="1_7day0"]
+[ext_resource type="Script" uid="uid://gs5tql8ed2ua" path="res://LaunchPad.gd" id="1_7day0"]
 [ext_resource type="ArrayMesh" uid="uid://07r5cb20r0y6" path="res://Assets/Environment/LaunchPad.mesh" id="2_33rkb"]
 [ext_resource type="Texture2D" uid="uid://bg87ijsox6ph2" path="res://Assets/Particles/flare_01.png" id="3_bcmsb"]
 [ext_resource type="AudioStream" uid="uid://dtrihom6u5814" path="res://Assets/Audio/Magic.wav" id="4_28u5j"]

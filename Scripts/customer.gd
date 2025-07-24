@@ -57,20 +57,20 @@ signal CustomerCompleted
 
 
 # STRUCTURE -------------------------------------------------------------------------------------------
-func generateSequence() -> Array:
+func generateSequence() -> Array[Global.CodeDirection]:
 	var taskLength = customerTierDataList[customerTier]["taskLength"]
-	var taskSequence = []
+	var taskSequence: Array[Global.CodeDirection] = []
 	for i in range(taskLength):
 		var randomDirection = randi() % 4
 		match randomDirection:
 			0:
-				taskSequence.append("UP")
+				taskSequence.append(Global.CodeDirection.UP)
 			1:
-				taskSequence.append("RIGHT")
+				taskSequence.append(Global.CodeDirection.RIGHT)
 			2:
-				taskSequence.append("DOWN")
+				taskSequence.append(Global.CodeDirection.DOWN)
 			3:
-				taskSequence.append("LEFT")
+				taskSequence.append(Global.CodeDirection.LEFT)
 
 	# Update the UI with the new task sequence
 	var arrowsUI: HBoxContainer = $Control/Panel/HBoxContainer
@@ -78,7 +78,7 @@ func generateSequence() -> Array:
 	for child in arrowsUI.get_children():
 		child.queue_free()
 	for direction in taskSequence:
-		var arrow = get_node("Control/Panel/" + direction + "Arrow").duplicate() 
+		var arrow = get_node("Control/Panel/" + Global.CodeDirection.keys()[direction] + "Arrow").duplicate() 
 		arrow.visible = true
 		arrowsUI.add_child(arrow)
 
@@ -108,8 +108,9 @@ func _ready() -> void:
 	# Generate the task sequence for the customer
 	correctTaskSequence = generateSequence()
 
-	for player in get_node("/root/Game/Players").get_children():
-		player.CodeSubmitted.connect(_on_player_code_submitted)
+	for code_submitter: CodeSubmissionComponent in get_tree().get_nodes_in_group("Code_Submitters"):
+		print("Found a Code Submitter")
+		code_submitter.code_submitted.connect(_on_player_code_submitted)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -168,10 +169,10 @@ func _on_body_exited(_body:Node3D) -> void:
 		$Decal.set_modulate(Color(.77, .33, .092))
 
 # Connect to the player controller 
-func playerDirectionalInput(player: Node3D, direction: String) -> void:	
+func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> void:	
 	# Is this the correct direction for the next element in the sequence?
 	# Grab the length of the current player sequence, check the length + 1 element in the correct sequence
-	var nextCorrectDirection : String = correctTaskSequence[currentPlayerSequence.size()]
+	var nextCorrectDirection : Global.CodeDirection = correctTaskSequence[currentPlayerSequence.size()]
 	if (direction == nextCorrectDirection):
 		$Control/Panel/HBoxContainer.get_children()[currentPlayerSequence.size()].set_modulate(Color(0,1,0,1))
 		currentPlayerSequence.append(direction)
@@ -203,7 +204,7 @@ func playerDirectionalInput(player: Node3D, direction: String) -> void:
 		code_submission_sounds.stream = CODE_SUMBITTED_INCORRECT
 		code_submission_sounds.play()
 
-func _on_player_code_submitted(input: String, playerIndex: int) -> void:
+func _on_player_code_submitted(input: Global.CodeDirection, playerIndex: int) -> void:
 	if (completed):
 		return
 

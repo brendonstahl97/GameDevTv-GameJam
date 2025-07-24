@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cl7ete8ccffph" path="res://Assets/Last Stand Standing.png" id="1_hmthl"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_sbync"]
-[ext_resource type="Script" path="res://Scripts/titleScreen.gd" id="1_v46k4"]
-[ext_resource type="Script" path="res://Scripts/P1Panel.gd" id="2_tpwvn"]
+[ext_resource type="Script" uid="uid://bckbcr7h6aa2m" path="res://Scripts/titleScreen.gd" id="1_v46k4"]
+[ext_resource type="Script" uid="uid://dh3xp61xj1srn" path="res://Scripts/P1Panel.gd" id="2_tpwvn"]
 [ext_resource type="Texture2D" uid="uid://sg0g1e4dba3a" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_a_outline.png" id="5_dut4a"]
 
 [sub_resource type="Theme" id="Theme_w8abl"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerControls" load_steps=2 format=3 uid="uid://bkb8o2ps546oc"]
 
-[ext_resource type="Script" path="res://Resources/PlayerControls/PlayerControls.gd" id="1_nfcnf"]
+[ext_resource type="Script" uid="uid://s5lx6moi64uo" path="res://Resources/PlayerControls/PlayerControls.gd" id="1_nfcnf"]
 
 [resource]
 script = ExtResource("1_nfcnf")
@@ -10,3 +10,9 @@ move_right = "p1_move_right"
 move_up = "p1_move_up"
 move_down = "p1_move_down"
 sprint = "p1_sprint"
+code_down = "p1_code_down"
+code_left = "p1_code_left"
+code_right = "p1_code_right"
+code_up = "p1_code_up"
+slam = "p1_slam"
+parry = "p1_parry"

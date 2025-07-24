@@ -1,65 +1,27 @@
 class_name Player
-extends RigidBody3D
+extends LaunchableRigidbody3D
 
 const FOOD_EXPLOSION = preload("res://Scenes/food_explosion.tscn")
 const SECRET_CABBAGE_EXPLOSION = preload("res://Scenes/secret_cabbage_explosion.tscn")
-const SLAM_IMPACT = preload("res://Scenes/slam_impact.tscn")
-const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 
-@onready var SprintEmitter1: CPUParticles3D = $"Particle Emitters/CPUParticles3D"
-@onready var SprintEmitter2: CPUParticles3D = $"Particle Emitters/CPUParticles3D2"
 @onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
-@onready var floor_detection_ray_cast: RayCast3D = $FloorDetectionRayCast
 @onready var AudioPlayer: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var scrape_sound_player: AudioStreamPlayer3D = $ScrapeSoundEffect
-@onready var parry_timer: Timer = $ParryTimer
 @onready var parry_slow_timer: Timer = $ParrySlowTimer
-@onready var stamina_buzz_player: AudioStreamPlayer3D = $StaminaBuzz
+
+@onready var movement_component: MovementComponent = %MovementComponent
+@onready var rotation_component: RotationComponent = %RotationComponent
+@onready var sprint_component: SprintComponent = %SprintComponent
+@onready var parry_component: ParryComponent = %ParryComponent
+@onready var slam_component: SlamComponent = %SlamComponent
+@onready var bumpable_component: BumpableComponent = %BumpableComponent
+@onready var bump_component: BumpComponent = %BumpComponent
+@onready var code_submission_component: CodeSubmissionComponent = %CodeSubmissionComponent
+@onready var ground_detection_component: GroundDetectionComponent = %GroundDetectionComponent
+@onready var stamina_manager: StaminaManager = %StaminaManager
 
 @export var Controls: PlayerControls
-@export var StandClass: Stand
-
-@export var StaminaManagerInstance: StaminaManager
-@export var ParticleManager: ParticleEmitterManager
-
-@export_category("Movement")
-@export var MoveSpeed = 10.0 ## Max walking speed
-@export var VelocityPower = 1.1 ## Affects the intensity that the velocity is changed
-@export var StandardAccelerationMultiplier = 1.0 ## Used to change the intensity of acceleration 
-@export var DeccelerationMultiplier = 0.5 ## Used to change the intensity of deceleration
-@export var DeccelerationThreshold = 150 ## The angle difference between your current velocity and your input direction necessary to be considered deceleration. ( Ex: 180 is completely backwards )
-
-@export_category("Sprint")
-@export var MaxSprintModifier = 2.5 ## Affects your maximum speed ( Max speed = MoveSpeed x This Value )
-@export var SprintIncrementAmount = 1 ## Affects how quickly you achieve your max sprint speed once you start sprinting
-
-@export_category("Bump")
-@export var BumpMomentumThreshold = 5.0 ## The momentum (Mass x Velocity) threshold for a bump to be triggered when you hit another player
-@export var BumpDirectionThreshold = 30 ## An angle threshold that determines how accurate a player must be for a bump to trigger ( higher is less accurate )
-@export var BumpMultiplier = 3.0 ## Used to multiplicatively adjust the amount of additional force applied to an opponent when a bump is triggered
-@export var BumpSoundEffect: AudioStream
-@export var CollisionSoundEffects: Array ## Fill with string locations of potential sounds for non-bump collisions
-
-@export_category("Slam")
-@export var SlamSpeed = 5000.0 ## The speed that you slam
-@export var SlamLaunchForceMultiplier = 1.0 ## A multipler to adjust the force of the launch from the slam
-@export var SlamDirectHitForce = 50.0 ## An impulse force amount that is applied when the slam makes a direct hit with another player
-@export var SlamImpactShape: Shape3D ## A shape used in the shapeCast calculation to determine the area which players are affected by a slam
-
-@export_category("Stamina")
-@export var SprintStaminaDrain = 15.0 ## Stamina lost per second while sprinting
-@export var CodeSubmissionStaminaCost = 7.5 ## The stamina cost of each code submission button press
-@export var BumpStaminaGainMultiplier = 1.0 ## Used to multiplicatively adjust the amount of stamina gained from bumping another player
-
-@export_category("Parry")
-@export var ParryForceMultiplier = 1.0 ## A force multiplier applied to the launch 
-@export var ParrySlowTimeAmount =  0.5 ## Intensity of time slowdown 0 = stop time, 1 = full speed
-@export var ParrySlowTimeLength = 1.0 ## How long time should be slowed on a successful parry in seconds
-@export var ParryEffectOffset = Vector3(0, 1, 0) ## Position offset for spawning the parry visual effect
-@export var ParryVisualScaleMultiplier = 2.0 ## A uniform scale multiplier for the parry visual effect
-@export var ParryVisualSpawnDistance = 0.1 ## How far in the spawn direction the parry visual effect should spawn
-@export var ParrySoundEffect: AudioStream ## Parry Success sound effect
-@export var ParryFailSoundEffect: AudioStream ## Parry failure sound effect
+@export var stand_class: Stand
 
 @export_category("Appearance")
 @export var PlayerName : String = "Player"
@@ -67,254 +29,119 @@ const PARRY_EFFECT = preload("res://Scenes/parry_effect.tscn")
 @export var PlayerColor : Color = Color(.8, .19, 0.01)
 @export var PlayerGuy : String = "Man 1"
 
-signal CodeSubmitted
-signal StaminaConsumptionFailed
-signal SuccessfulParry(Position: Vector3)
-
-var MovementDirection = Vector3.ZERO
-var SprintModifier = 1.0
-
-var ShouldSlamNextPhysicsFrame = false
-var highestYVelocityDuringSlam = 0
-
-var IsParrying = false
-var DidSuccesfullyParry = false
-var IsSlamming = false
-var IsGrounded: bool:
-	get:
-		return floor_detection_ray_cast.is_colliding()
-
+var movement_direction = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_tree.active = true
-	mass = StandClass.Mass
+	mass = stand_class.Mass
 
 func _process(_delta: float) -> void:
-	update_animation_parameters()
+	_update_animation_parameters()
 	_handle_code_input()
+	_update_scrape_sound_play_status()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	MovementDirection = Vector3(Input.get_axis(Controls.move_left, Controls.move_right), 0, Input.get_axis(Controls.move_up, Controls.move_down)).normalized()
-	var currentVelocity = Vector3(linear_velocity.x, 0, linear_velocity.z)
+	movement_direction = Vector3(Input.get_axis(Controls.move_left, Controls.move_right), 0, Input.get_axis(Controls.move_up, Controls.move_down)).normalized()
 	
-	_handle_sprint(delta)
-	_handle_movement(currentVelocity)
-	_handle_rotation(currentVelocity)
-	_handle_slam(delta)
-	_handle_parry()
-	
-	if (ShouldSlamNextPhysicsFrame):
-		SlamCast()
+	_handle_sprint_input(delta)
+	movement_component.move(movement_direction)
+	rotation_component.look_in_movement_direction()
+	_handle_slam_input()
+	_handle_parry_input()
 
-func _handle_movement(currentVelocity: Vector3) -> void:
-	var targetVelocity = MovementDirection * MoveSpeed * SprintModifier
 
-	var velocityDifference = targetVelocity - currentVelocity
-	
-	var accelerationMultiplier = float(0)
-	
-	if (currentVelocity.length() > 0 && rad_to_deg(targetVelocity.angle_to(currentVelocity)) >= 150):
-		accelerationMultiplier = DeccelerationMultiplier
-	else:
-		accelerationMultiplier = StandardAccelerationMultiplier
-		
-	var movement = pow(velocityDifference.length() * accelerationMultiplier, VelocityPower) * velocityDifference.normalized()
-	
-	var movementFinal = Vector3(movement.x, 0, movement.z)
-	
-	apply_central_force(movementFinal)
-	
-	
-func _handle_rotation(currentVelocity: Vector3) -> void:
-	if (currentVelocity.length() > 0.3 && MovementDirection.length() >= 0.3):
-		look_at_from_position(global_position, global_position + currentVelocity.normalized())
-		
-func _handle_sprint(delta: float) -> void: 
+func _handle_sprint_input(delta: float) -> void: 
 	if (Input.is_action_just_pressed(Controls.sprint)):
-		if (StaminaManagerInstance.CurrentStamina > 0):
-			ParticleManager.start_sprint_particles()
-			StaminaManagerInstance.canRegenStamina = false
-			if (IsGrounded):
-				scrape_sound_player.play()
-		else:
-			_playStaminaConsumptionFailEffects()
-		
+		if (stamina_manager.current_stamina > 0):
+			stamina_manager.can_regen_stamina = false
+			sprint_component.begin_sprint()
+
 	elif (Input.is_action_pressed(Controls.sprint)):
-		if (StaminaManagerInstance.CurrentStamina > 1):
-			StaminaManagerInstance.drainStamina(SprintStaminaDrain * delta)
-			if (IsGrounded):
-				if (!scrape_sound_player.playing):
-					scrape_sound_player.play()
-			else:
-				if (scrape_sound_player.playing):
-					scrape_sound_player.stop()
-		else:
-			ParticleManager.end_sprint_particles()
-			SprintModifier = 1
-			_playStaminaConsumptionFailEffects()
-			if (scrape_sound_player.playing):
-				scrape_sound_player.stop()
-		
-		if (SprintModifier < MaxSprintModifier):
-			SprintModifier += SprintIncrementAmount * delta
-		
-		
+		stamina_manager.try_drain_stamina(sprint_component.sprint_stamina_drain * delta)
+
 	elif (Input.is_action_just_released(Controls.sprint)):
 		print("Released Sprint")
-		StaminaManagerInstance.canRegenStamina = true
-		SprintModifier = 1
-		ParticleManager.end_sprint_particles()
+		stamina_manager.can_regen_stamina = true
+		sprint_component.end_sprint()
 		scrape_sound_player.stop()
 
+
 func _handle_code_input() -> void:
+	var code_direction := Global.CodeDirection.NONE
+	
 	if (Input.is_action_just_pressed(Controls.code_up)):
-		_submit_code("UP")
+		code_direction = Global.CodeDirection.UP
 	elif (Input.is_action_just_pressed(Controls.code_left)):
-		_submit_code("LEFT")
+		code_direction = Global.CodeDirection.LEFT
 	elif (Input.is_action_just_pressed(Controls.code_right)):
-		_submit_code("RIGHT")
+		code_direction = Global.CodeDirection.RIGHT
 	elif (Input.is_action_just_pressed(Controls.code_down)):
-		_submit_code("DOWN")
-
-func _handle_parry() -> void:
-	if (Input.is_action_just_pressed(Controls.parry) && !IsParrying):
-		IsParrying = true
-		parry_timer.start()
+		code_direction = Global.CodeDirection.DOWN
 		
-func _handle_slam(delta) -> void:
-	if(Input.is_action_just_pressed(Controls.slam)):
-		if (!IsGrounded):
-			IsSlamming = true
-	
-	if (IsSlamming):
-		apply_force(Vector3.DOWN * SlamSpeed * delta)
-		if (abs(linear_velocity.y) > highestYVelocityDuringSlam):
-			highestYVelocityDuringSlam = abs(linear_velocity.y)
+	if (code_direction != Global.CodeDirection.NONE):
+		if (stamina_manager.try_drain_stamina(code_submission_component.code_submission_stamina_cost)):
+			code_submission_component.submit_code(code_direction, Controls.PlayerIndex)
 
-func _submit_code(codeDirection: String) -> void:
-	if (StaminaManagerInstance.CurrentStamina < CodeSubmissionStaminaCost):
-		_playStaminaConsumptionFailEffects()
-		return
-	CodeSubmitted.emit(codeDirection, Controls.PlayerIndex)
-	StaminaManagerInstance.drainStamina(CodeSubmissionStaminaCost)
 
-func update_animation_parameters():
+func _handle_parry_input() -> void:
+	if (Input.is_action_just_pressed(Controls.parry)):
+		parry_component.try_begin_parry_window()
+
+
+func _handle_slam_input() -> void:
+	if(Input.is_action_just_pressed(Controls.slam) and !ground_detection_component.is_grounded):
+		slam_component.begin_slam()
+
+
+func _update_animation_parameters():
 	animation_tree["parameters/idle_to_walk/blend_position"] = linear_velocity.length()
-	
-## This MUST only be called in physics process, as the physics space is only accessible then
-func SlamCast() -> void:
-	var spaceState = get_world_3d().direct_space_state
-	var query = PhysicsShapeQueryParameters3D.new()
-	query.shape = SlamImpactShape
-	query.transform = transform
-	var castResults = spaceState.intersect_shape(query)
-	
-	var momentumY = highestYVelocityDuringSlam * mass
-	
-	var slamImpact = SLAM_IMPACT.instantiate()
-	slamImpact.global_position = global_position
-	get_window().add_child(slamImpact)
-	
-	for body in castResults:
-		var collider = body.collider
-		if (!collider is RigidBody3D || !collider.get_groups().has("Players") || collider == self):
-			continue
-			
-		var bodyDirection = collider.global_position - global_position
-		
-		if (collider.global_position.y < global_position.y):
-			collider.apply_impulse(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * SlamDirectHitForce)
-		else:
-			collider.apply_impulse(bodyDirection * momentumY * SlamLaunchForceMultiplier)
-		
-	highestYVelocityDuringSlam = 0
-	ShouldSlamNextPhysicsFrame = false
-	
-func launch(impulseForce: Vector3, callingPlayer: Player, isParryable := true) -> void:
-	if (IsParrying && isParryable):
-		callingPlayer.launch((-impulseForce + Vector3.DOWN).normalized() * impulseForce.length() * ParryForceMultiplier, self, false)
-		
-		_parry(-impulseForce.normalized(), callingPlayer.global_position, ParrySoundEffect)
-		
-		Engine.time_scale = ParrySlowTimeAmount
-		parry_slow_timer.start(ParrySlowTimeLength * ParrySlowTimeAmount)
-		
-		DidSuccesfullyParry = true
-		SuccessfulParry.emit(global_position)
-		
+
+func _update_scrape_sound_play_status():
+	if (ground_detection_component.is_grounded && sprint_component.is_sprinting):
+		if (!scrape_sound_player.playing):
+			scrape_sound_player.play()
 	else:
-		apply_impulse(impulseForce)
-		if (isParryable):
-			apply_torque_impulse(Vector3.UP * impulseForce.length() * randf_range(-1, 1))
+		if (scrape_sound_player.playing):
+			scrape_sound_player.stop()
+
+# Duck Typed function that should be present on all launchable rigidbody nodes
+func launch(impulse_force: Vector3, callling_entity: RigidBody3D, is_parriable := true) -> void:
+	if (is_parriable):
+		if (parry_component.try_parry(impulse_force, callling_entity)):
+			# TODO This should not be handled by the player
+			Engine.time_scale = parry_component.ParrySlowTimeAmount
+			parry_slow_timer.start(parry_component.ParrySlowTimeLength * parry_component.ParrySlowTimeAmount)
+		else:
+			apply_impulse(impulse_force)
+			apply_torque_impulse(Vector3.UP * impulse_force.length() * randf_range(-1, 1))
 			
 			var foodExplosion = SECRET_CABBAGE_EXPLOSION.instantiate() if (randi_range(0, 10) == 0) else FOOD_EXPLOSION.instantiate()
-			foodExplosion.position = callingPlayer.global_position
+			foodExplosion.position = callling_entity.global_position
 			get_window().add_child(foodExplosion)
 			
-			AudioPlayer.stream = BumpSoundEffect
+			AudioPlayer.stream = bump_component.bump_sound_effect
 			AudioPlayer.play()
+	else:
+		apply_impulse(impulse_force)
 
-func _on_body_entered(body: Node3D) -> void:
-	if (IsSlamming):
-		IsSlamming = false
-		ShouldSlamNextPhysicsFrame = true
-		return
-	
-	if (!body.get_groups().has("Players")):
-		return
-		
-	if (!body is Player):
-		return
-		
-	var momentum = linear_velocity.length() * mass
-	
-	if (momentum < BumpMomentumThreshold):
-		if (!AudioPlayer.playing):
-			AudioPlayer.stream = load(CollisionSoundEffects.pick_random())
-			AudioPlayer.play()
-		return
-		
-	# TODO Probably normalize this
-	var directionToBody = (body.global_position - position).normalized()
-	var directionToBodyNoY = Vector3(directionToBody.x, 0, directionToBody.z)
-	var bumpTrueness = rad_to_deg(directionToBodyNoY.angle_to(Vector3(linear_velocity.x, 0, linear_velocity.z)))
-		
-	if (bumpTrueness > BumpDirectionThreshold):
-		return
-	
-	body.launch(directionToBodyNoY * momentum * BumpMultiplier, self)
-	
-	StaminaManagerInstance.restoreStamina(momentum * BumpStaminaGainMultiplier)
 
-func _parry(spawnDirection: Vector3, lookAtPosition: Vector3, soundEffect: AudioStream) -> void:
-	var parryVisuals = PARRY_EFFECT.instantiate()
-		
-	parryVisuals.scale = Vector3.ONE * ParryVisualScaleMultiplier
-	parryVisuals.position = global_position + ParryEffectOffset + spawnDirection * ParryVisualSpawnDistance
-	get_window().add_child(parryVisuals)
+func _on_body_entered(_body: Node3D) -> void:
+	if (slam_component.is_slamming):
+		slam_component.end_slam()
+		return
 
-	parryVisuals.look_at(Vector3(lookAtPosition.x, parryVisuals.global_position.y, lookAtPosition.z))
 
-	AudioPlayer.stream = soundEffect
-	AudioPlayer.play()
-	
-func _playStaminaConsumptionFailEffects() -> void:
-	StaminaConsumptionFailed.emit()
-	if (!stamina_buzz_player.playing):
-		stamina_buzz_player.play()
-
+# TODO This should be handled outside of the player
 func _on_parry_slow_timer_timeout() -> void:
 	Engine.time_scale = 1
 
-func _on_parry_timer_timeout() -> void:
-	if (!DidSuccesfullyParry):
-		StaminaManagerInstance.drainStamina(StaminaManagerInstance.MaxStamina)
-		var spawnDir = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized()
-		var lookAtPosition = global_position.direction_to(spawnDir) * 1
-		_parry(spawnDir, lookAtPosition, ParryFailSoundEffect)
-		
-	
-	IsParrying = false
-	DidSuccesfullyParry = false
+
+func _on_parry_component_parry_sound(sound: AudioStream) -> void:
+	AudioPlayer.stream = sound
+	AudioPlayer.play()
+
+
+func _on_parry_component_parry_failure() -> void:
+	stamina_manager.try_drain_stamina(stamina_manager.max_stamina, false)

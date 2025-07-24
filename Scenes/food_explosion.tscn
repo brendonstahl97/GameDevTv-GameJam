@@ -124,8 +124,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jh7jl"]
 _data = {
-"Play Explosion": SubResource("Animation_fdldf"),
-"RESET": SubResource("Animation_gu4at")
+&"Play Explosion": SubResource("Animation_fdldf"),
+&"RESET": SubResource("Animation_gu4at")
 }
 
 [node name="Food Explosion" type="Node3D"]
