@@ -1,6 +1,8 @@
 class_name Global
 extends Node
 
+signal successful_parry(global_position: Vector3)
+
 # GLOBAL playerInfo dictionary of all player's choices!
 # Info comes from character select screen.
 # ["1"] = {

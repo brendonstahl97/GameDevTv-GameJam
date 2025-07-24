@@ -1,0 +1,292 @@
+[gd_scene load_steps=11 format=3 uid="uid://cobhpwyn12msn"]
+
+[ext_resource type="Script" uid="uid://bwbnuvp5q1etj" path="res://UI/matchUI.gd" id="1_jdfbc"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_vbnnw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7ktf"]
+bg_color = Color(0, 0, 0, 0.294118)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_2ur8t"]
+default_font = ExtResource("1_vbnnw")
+default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_ntnyu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkv2o"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvm0q"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7le5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1418i"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qw8c0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="MatchUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jdfbc")
+
+[node name="P1_Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 305.0
+offset_bottom = 103.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="P1_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("1_vbnnw")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 1"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="P1_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="P1_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkv2o")
+
+[node name="P2_Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -304.0
+offset_top = 16.0
+offset_right = -15.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="P2_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("1_vbnnw")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 2"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="P2_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="P2_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mvm0q")
+
+[node name="P3_Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -104.0
+offset_right = 305.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="P3_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("1_vbnnw")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 3"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="P3_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="P3_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7le5")
+
+[node name="P4_Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -104.0
+offset_right = -15.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7ktf")
+
+[node name="PlayerName" type="RichTextLabel" parent="P4_Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_right = -9.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("1_vbnnw")
+theme_override_font_sizes/normal_font_size = 32
+text = "Player 4"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="P4_Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -40.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_2ur8t")
+theme_override_colors/default_color = Color(1, 0.92549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]$100[/center]"
+text_direction = 1
+
+[node name="PlayerIcon" type="Panel" parent="P4_Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 80.0
+theme = SubResource("Theme_ntnyu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1418i")
+
+[node name="Goal" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 70.0
+grow_horizontal = 2
+pivot_offset = Vector2(100, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qw8c0")
+
+[node name="Label" type="RichTextLabel" parent="Goal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_vbnnw")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]00:00[/center]"

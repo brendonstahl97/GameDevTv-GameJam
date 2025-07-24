@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://c10nh8nqnuvdh"]
+
+[ext_resource type="Script" uid="uid://biibnheml74hb" path="res://Entities/Stamina Manager/StaminaManager.gd" id="1_uhar7"]
+[ext_resource type="Script" uid="uid://cselbrch42wg7" path="res://Entities/Stamina Bar/Stamina Bar.gd" id="2_bhuub"]
+[ext_resource type="Texture2D" uid="uid://d7diw50ew7bx" path="res://Assets/ProgressBarOutline.png" id="3_pq4hc"]
+[ext_resource type="Texture2D" uid="uid://bq17il6on2sdk" path="res://Assets/circle-outline-xxl-280.png" id="4_b5l7s"]
+[ext_resource type="Script" uid="uid://daubcmkpq6kw0" path="res://Entities/Stamina Bar/StaminaProgressBar.gd" id="5_20nyw"]
+[ext_resource type="Script" uid="uid://c1kutjv5mgwn" path="res://Components/NoYMovement.gd" id="6_qyj0q"]
+[ext_resource type="AudioStream" uid="uid://ofxsqnsmc8cs" path="res://Assets/Audio/FailBuzz.mp3" id="7_xhq2h"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0gf0w"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Animation" id="Animation_8w03n"]
+resource_name = "ConsumptionFailure"
+length = 0.6
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.25, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.639216), Color(1, 0, 0, 1), Color(1, 1, 1, 0.639216), Color(1, 0, 0, 1), Color(1, 1, 1, 0.639216)]
+}
+
+[sub_resource type="Animation" id="Animation_2yxu5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.639216)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e5vi6"]
+_data = {
+&"ConsumptionFailure": SubResource("Animation_8w03n"),
+&"RESET": SubResource("Animation_2yxu5")
+}
+
+[node name="StaminaManager" type="Node3D"]
+script = ExtResource("1_uhar7")
+
+[node name="StaminaDisplay" type="Sprite3D" parent="." node_paths=PackedStringArray("StaminaProgressBar")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.05862, 0)
+top_level = true
+texture = SubResource("ViewportTexture_0gf0w")
+script = ExtResource("2_bhuub")
+StaminaProgressBar = NodePath("../SubViewport/TextureProgressBar")
+LerpSpeed = 30
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(280, 280)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="SubViewport"]
+offset_right = 256.0
+offset_bottom = 256.0
+min_value = 1.0
+step = 0.1
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 180.0
+texture_over = ExtResource("3_pq4hc")
+texture_progress = ExtResource("4_b5l7s")
+tint_over = Color(1, 1, 1, 0.639216)
+tint_progress = Color(0, 1, 0.2, 1)
+script = ExtResource("5_20nyw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/TextureProgressBar"]
+libraries = {
+&"": SubResource("AnimationLibrary_e5vi6")
+}
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.05862, 0)
+remote_path = NodePath("../StaminaDisplay")
+update_rotation = false
+script = ExtResource("6_qyj0q")
+YValue = 1.1
+
+[node name="StaminaBuzz" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_xhq2h")
+volume_db = 5.0
+
+[connection signal="stamina_changed" from="." to="StaminaDisplay" method="_on_stamina_manager_stamina_changed"]
+[connection signal="stamina_consumption_failed" from="." to="SubViewport/TextureProgressBar" method="_on__stamina_consumption_failed"]
