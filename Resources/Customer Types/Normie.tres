@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CustomerType" load_steps=3 format=3 uid="uid://bmrqfcgpyr3by"]
+
+[ext_resource type="Script" uid="uid://byuwkqod0c1kv" path="res://Resources/Customer Types/customer_type.gd" id="1_6n5jp"]
+[ext_resource type="PackedScene" uid="uid://dlaag7g3bkprf" path="res://Assets/Characters/Casual_Female.gltf" id="1_fx607"]
+
+[resource]
+script = ExtResource("1_6n5jp")
+name = "Normie"
+task_length = 5
+reward = 30
+character_model = ExtResource("1_fx607")
+metadata/_custom_type_script = "uid://byuwkqod0c1kv"

@@ -8,56 +8,29 @@
 
 extends Area3D
 
-@onready var code_submission_sounds: AudioStreamPlayer3D = $CodeSubmissionSounds
+signal CustomerCompleted
+
+@onready var code_submission_sounds: AudioStreamPlayer3D = %CodeSubmissionSounds
 @onready var coin_effect_spawner: EffectSpawner = %CoinEffectSpawner
 
-const CODE_SUMBITTED_CORRECT = preload("res://Assets/Audio/CodeSumbittedCorrect.wav")
-const CODE_SUMBITTED_INCORRECT = preload("res://Assets/Audio/CodeSumbittedIncorrect.wav")
-
+@export var code_submitted_correct_sound: AudioStream
+@export var code_submitted_incorrect_sound: AudioStream
+@export var customer_type_loot_table: LootTable
+@export var customer_type: CustomerType
 @export_enum("Serf", "Normie", "Royalty", "King") var customerTier: String = "Serf"
-
-# Nested dictionary of each enum tier, inside each tier is task length, and reward
-var customerTierDataList = {
-	"Serf": {
-		"taskLength": 4,
-		"reward": 20,
-		"rarity": 1, # 40% chance
-		"characters": ["Goblin_Male"],
-	},
-	"Normie": {
-		"taskLength": 5,
-		"reward": 30,
-		"rarity": .6, # 30% chance
-		"characters": ["Casual_Female"]
-	},
-	"Royalty": {
-		"taskLength": 6,
-		"reward": 50,
-		"rarity": .3, # 20% chance
-		"characters": ["Knight_Male"]
-	},
-	"King": {
-		"taskLength": 8,
-		"reward": 100,
-		"rarity": .1, # 10% chance
-		"characters": ["Wizard"]
-	}
-}
 
 # The correct sequence that the player needs to input, generated when the customer is spawned
 var correctTaskSequence : Array = []
 
 var currentPlayer : Node3D = null
-var currentPlayerSequence : Array = [] 
+var currentPlayerSequence : Array = []
 
 var completed = false
-
-signal CustomerCompleted
 
 
 # STRUCTURE -------------------------------------------------------------------------------------------
 func generateSequence() -> Array[Global.CodeDirection]:
-	var taskLength = customerTierDataList[customerTier]["taskLength"]
+	var taskLength = customer_type.task_length
 	var taskSequence: Array[Global.CodeDirection] = []
 	for i in range(taskLength):
 		var randomDirection = randi() % 4
@@ -72,7 +45,7 @@ func generateSequence() -> Array[Global.CodeDirection]:
 				taskSequence.append(Global.CodeDirection.LEFT)
 
 	# Update the UI with the new task sequence
-	var arrowsUI: HBoxContainer = $Control/Panel/HBoxContainer
+	var arrowsUI: HBoxContainer = %HBoxContainer
 	arrowsUI.get_children()
 	for child in arrowsUI.get_children():
 		child.queue_free()
@@ -86,16 +59,10 @@ func generateSequence() -> Array[Global.CodeDirection]:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Get a random customer tier based on "rarity".
-	var randomTier = randf()
-	var keys = customerTierDataList.keys()
-	keys.reverse()
-	for tier in keys:
-		if (randomTier < customerTierDataList[tier]["rarity"]):
-			customerTier = tier
-			break
+	customer_type = customer_type_loot_table.get_loot()
 
 	# Spawn the character model
-	var desiredCharacter = load("res://Assets/Characters/" + customerTierDataList[customerTier]["characters"][0] + ".gltf").instantiate()
+	var desiredCharacter = customer_type.character_model.instantiate()
 	add_child(desiredCharacter)
 	var meshInstance = desiredCharacter.get_node("CharacterArmature/Skeleton3D/Body")
 	var oldMeshInstance = get_node("Casual2_Female/CharacterArmature/Skeleton3D/Body")
@@ -166,22 +133,23 @@ func _on_body_exited(_body:Node3D) -> void:
 			$Control.visible = false
 		$Decal.set_modulate(Color(.77, .33, .092))
 
+# TODO Pull this logic into a component
 # Connect to the player controller 
 func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> void:	
 	# Is this the correct direction for the next element in the sequence?
 	# Grab the length of the current player sequence, check the length + 1 element in the correct sequence
 	var nextCorrectDirection : Global.CodeDirection = correctTaskSequence[currentPlayerSequence.size()]
 	if (direction == nextCorrectDirection):
-		$Control/Panel/HBoxContainer.get_children()[currentPlayerSequence.size()].set_modulate(Color(0,1,0,1))
+		%HBoxContainer.get_children()[currentPlayerSequence.size()].set_modulate(Color(0,1,0,1))
 		currentPlayerSequence.append(direction)
 		# Play correct sound
-		code_submission_sounds.stream = CODE_SUMBITTED_CORRECT
+		code_submission_sounds.stream = code_submitted_correct_sound
 		code_submission_sounds.play()
 		# If the player has completed the sequence, give them the reward
 		if (currentPlayerSequence.size() == correctTaskSequence.size()):
 			completed = true			
 			# Give the player the reward
-			var reward = customerTierDataList[customerTier]["reward"]
+			var reward = customer_type.reward
 
 			# Emit the signal to the game controller
 			# Tells the game controller to reward this player this amount.
@@ -197,7 +165,7 @@ func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> 
 		# Reset the correct sequence
 		correctTaskSequence = generateSequence()
 		# Play Incorrect Sound
-		code_submission_sounds.stream = CODE_SUMBITTED_INCORRECT
+		code_submission_sounds.stream = code_submitted_incorrect_sound
 		code_submission_sounds.play()
 
 func _on_player_code_submitted(input: Global.CodeDirection, playerIndex: int) -> void:

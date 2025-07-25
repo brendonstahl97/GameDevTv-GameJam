@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CustomerType" load_steps=3 format=3 uid="uid://b867vbgskq3dh"]
+
+[ext_resource type="Script" uid="uid://byuwkqod0c1kv" path="res://Resources/Customer Types/customer_type.gd" id="1_b0g4j"]
+[ext_resource type="PackedScene" uid="uid://ybp6c67cdbuf" path="res://Assets/Characters/Goblin_Male.gltf" id="1_tny1y"]
+
+[resource]
+script = ExtResource("1_b0g4j")
+name = "Serf"
+task_length = 4
+reward = 20
+character_model = ExtResource("1_tny1y")
+metadata/_custom_type_script = "uid://byuwkqod0c1kv"
