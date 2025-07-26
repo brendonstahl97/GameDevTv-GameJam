@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://btmq676yqmw8b"]
+
+[ext_resource type="Script" uid="uid://dehg6l4px0lmt" path="res://Entities/Game Camera/game_camera.gd" id="1_fq61m"]
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 0, 0, 0)
+current = true
+fov = 50.0
+script = ExtResource("1_fq61m")
+xPlayerLimits = Vector2(-25, 35)
+yPlayerLimits = Vector2(-10, 20)
+zPlayerLimits = Vector2(-25, 25)
+lerpSpeed = 0.8
+ParryFocusFov = 40.0
+
+[node name="ParryFocusTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 2.82, 1.36, 1)
+top_level = true
+current = true
+
+[connection signal="timeout" from="ParryFocusTimer" to="." method="_on_parry_focus_timer_timeout"]

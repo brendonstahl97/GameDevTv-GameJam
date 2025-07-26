@@ -118,7 +118,7 @@ func _apply_border_style(selectedItem: Node) -> void:
 			selectedItem.remove_theme_stylebox_override("tab_focus")
 
 func onPlayPressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Character Select/character_select.tscn")
+	get_tree().change_scene_to_file("res://Game Scenes/Character Select/character_select.tscn")
 	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(1).stream)
 	
 func onQuitPressed() -> void:

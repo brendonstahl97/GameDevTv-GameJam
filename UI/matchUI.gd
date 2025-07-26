@@ -8,6 +8,7 @@ var p4Score = 0
 func _ready():
 	get_node("/root/Game").connect("PlayersSpawned", updatePlayerIcons)
 
+
 func updatePlayerIcons():
 	if (!global.playerInfo):
 		return
@@ -15,6 +16,7 @@ func updatePlayerIcons():
 	for playerKey in global.playerInfo:
 		var playerPanel = get_node("P" + playerKey + "_Panel")
 		playerPanel.get_node("PlayerIcon").set_modulate(global.playerInfo[playerKey].PlayerColor)
+
 
 func updatePlayerMoney(player : String, newAmount : int):
 	if player == "0":
@@ -26,6 +28,7 @@ func updatePlayerMoney(player : String, newAmount : int):
 	elif player == "3":
 		p4Score = newAmount
 
+
 func hidePlayerPanel(player: String):
 	if player == "0":
 		$P1_Panel.hide()
@@ -36,14 +39,6 @@ func hidePlayerPanel(player: String):
 	elif player == "3":
 		$P4_Panel.hide()
 
-func updateTime(gameTimeLeft: float):
-	var seconds = max(int(gameTimeLeft)%60, 0)
-	var minutes = max((int(gameTimeLeft)/60)%60, 0)
-	var formattedString = "%02d:%02d" % [minutes, seconds]
-	$Goal/Label.text = ("[center]" + formattedString + "[/center]")
-
-func updateGoal(goal : int):
-	$Goal/Label.text = ("[center]$" + str(goal) + "[/center]")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

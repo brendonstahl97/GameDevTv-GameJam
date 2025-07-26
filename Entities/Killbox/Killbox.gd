@@ -1,5 +1,7 @@
+class_name Killbox
 extends Area3D
-@onready var spawn_points: Node = $"../SpawnPoints"
+
+@export var spawn_points: Node
 
 func _on_body_exited(body: Player) -> void:
 	if (!body is Player):
@@ -12,6 +14,9 @@ func _on_body_exited(body: Player) -> void:
 		
 		
 func Respawn(body: Player) -> void:
+	if (spawn_points == null):
+		return
+	
 	var selectedSpawn = spawn_points.get_children().pick_random()
 	
 	if (selectedSpawn is Node3D):

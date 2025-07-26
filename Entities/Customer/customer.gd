@@ -9,9 +9,11 @@
 extends Area3D
 
 signal CustomerCompleted
+signal customer_type_assigned(customer_type: CustomerType)
 
 @onready var code_submission_sounds: AudioStreamPlayer3D = %CodeSubmissionSounds
 @onready var coin_effect_spawner: EffectSpawner = %CoinEffectSpawner
+@onready var customer_task_display: CustomerTaskDisplay = %"Customer Task Display"
 
 @export var code_submitted_correct_sound: AudioStream
 @export var code_submitted_incorrect_sound: AudioStream
@@ -45,14 +47,7 @@ func generateSequence() -> Array[Global.CodeDirection]:
 				taskSequence.append(Global.CodeDirection.LEFT)
 
 	# Update the UI with the new task sequence
-	var arrowsUI: HBoxContainer = %HBoxContainer
-	arrowsUI.get_children()
-	for child in arrowsUI.get_children():
-		child.queue_free()
-	for direction in taskSequence:
-		var arrow = get_node("Control/Panel/" + Global.CodeDirection.keys()[direction] + "Arrow").duplicate() 
-		arrow.visible = true
-		arrowsUI.add_child(arrow)
+	customer_task_display.initialize_task_sequence(taskSequence)
 
 	return taskSequence
 
@@ -60,6 +55,7 @@ func generateSequence() -> Array[Global.CodeDirection]:
 func _ready() -> void:
 	# Get a random customer tier based on "rarity".
 	customer_type = customer_type_loot_table.get_loot()
+	customer_type_assigned.emit(customer_type)
 
 	# Spawn the character model
 	var desiredCharacter = customer_type.character_model.instantiate()
@@ -77,17 +73,6 @@ func _ready() -> void:
 	for code_submitter: CodeSubmissionComponent in get_tree().get_nodes_in_group("Code_Submitters"):
 		code_submitter.code_submitted.connect(_on_player_code_submitted)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	var screen_pos = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
-	var control = $Control
-
-	# Place the control at screen_pos, but have it be offset by the size of the control
-	control.position = screen_pos - control.size / 2
-
-	# Move it up by the size of the control, plus a little bit
-	control.position.y -= control.size.y + 15
-
 
 func _on_body_entered(body:Node3D) -> void:
 	if (completed):
@@ -97,7 +82,7 @@ func _on_body_entered(body:Node3D) -> void:
 	if (!body.is_in_group("Players")):
 		return
 		
-	$Control.visible = true
+	customer_task_display.visible = true
 
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
@@ -130,17 +115,17 @@ func _on_body_exited(_body:Node3D) -> void:
 			$Decal.set_modulate(global.playerInfo[str(int(str(currentPlayer.name))+1)]["PlayerColor"])
 	else:
 		if (currentPlayerSequence.size() == 0):
-			$Control.visible = false
+			customer_task_display.visible = false
 		$Decal.set_modulate(Color(.77, .33, .092))
 
-# TODO Pull this logic into a component
+
 # Connect to the player controller 
 func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> void:	
 	# Is this the correct direction for the next element in the sequence?
 	# Grab the length of the current player sequence, check the length + 1 element in the correct sequence
 	var nextCorrectDirection : Global.CodeDirection = correctTaskSequence[currentPlayerSequence.size()]
 	if (direction == nextCorrectDirection):
-		%HBoxContainer.get_children()[currentPlayerSequence.size()].set_modulate(Color(0,1,0,1))
+		customer_task_display.progress_sequence(currentPlayerSequence.size())
 		currentPlayerSequence.append(direction)
 		# Play correct sound
 		code_submission_sounds.stream = code_submitted_correct_sound
@@ -154,6 +139,7 @@ func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> 
 			# Emit the signal to the game controller
 			# Tells the game controller to reward this player this amount.
 			CustomerCompleted.emit(reward, player.name)
+			global.money_rewarded.emit()
 			
 			coin_effect_spawner.create_effect(global_position)
 
