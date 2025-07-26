@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="GameDevTv_Game_Jam_Entry"
-run/main_scene="res://Scenes/Start.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="res://Game Scenes/Start Menu/Start.tscn"
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [audio]
@@ -22,7 +22,7 @@ general/3d_panning_strength=1.0
 [autoload]
 
 global="*res://Scripts/global.gd"
-BackgroundMusic="*res://Scenes/BackgroundMusic.tscn"
+BackgroundMusic="*res://Entities/Background Music Manager/BackgroundMusic.tscn"
 
 [display]
 

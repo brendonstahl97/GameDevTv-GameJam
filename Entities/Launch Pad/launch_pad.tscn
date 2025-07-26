@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsm0lw2r3lkwk"]
+
+[ext_resource type="Script" uid="uid://gs5tql8ed2ua" path="res://Entities/Launch Pad/LaunchPad.gd" id="1_7day0"]
+[ext_resource type="ArrayMesh" uid="uid://07r5cb20r0y6" path="res://Assets/Environment/LaunchPad.mesh" id="2_33rkb"]
+[ext_resource type="Texture2D" uid="uid://bg87ijsox6ph2" path="res://Assets/Particles/flare_01.png" id="3_bcmsb"]
+[ext_resource type="AudioStream" uid="uid://dtrihom6u5814" path="res://Assets/Audio/Magic.wav" id="4_28u5j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7qnc"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_bcmsb")
+emission_enabled = true
+emission = Color(0.85098, 0.435294, 0.701961, 1)
+emission_energy_multiplier = 1.5
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_x8hij"]
+
+[sub_resource type="Gradient" id="Gradient_s8f4r"]
+colors = PackedColorArray(0.85098, 0.435294, 0.701961, 1, 0.85098, 0.435294, 0.701961, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wskmw"]
+size = Vector3(1.47086, 0.388062, 1.39938)
+
+[node name="LaunchPad" type="Node3D"]
+script = ExtResource("1_7day0")
+LaunchForce = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_33rkb")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_u7qnc")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_x8hij")
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.1, 0.5)
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 5, 0)
+initial_velocity_max = 1.0
+color_ramp = SubResource("Gradient_s8f4r")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00412893, 0.234558, 0.00434875)
+shape = SubResource("BoxShape3D_wskmw")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_28u5j")
+volume_db = 5.0
+max_db = 6.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

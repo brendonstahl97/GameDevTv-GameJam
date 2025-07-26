@@ -1,0 +1,146 @@
+[gd_scene load_steps=12 format=3 uid="uid://cynbdysn21c8e"]
+
+[ext_resource type="ArrayMesh" uid="uid://dw0brtuwwbif2" path="res://Assets/Environment/Models/Coin.mesh" id="1_6bq86"]
+[ext_resource type="AudioStream" uid="uid://bquti63oapwbe" path="res://Assets/Audio/Coins.wav" id="2_x412q"]
+
+[sub_resource type="Animation" id="Animation_fdldf"]
+resource_name = "Play Explosion"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coins:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gu4at"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coins:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jh7jl"]
+_data = {
+&"Play Explosion": SubResource("Animation_fdldf"),
+&"RESET": SubResource("Animation_gu4at")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tm1el"]
+albedo_color = Color(1, 1, 0.258824, 1)
+metallic = 0.8
+metallic_specular = 1.0
+roughness = 0.0
+emission = Color(0.740318, 0.74741, 0, 1)
+emission_energy_multiplier = 0.13
+
+[sub_resource type="Curve" id="Curve_spr1k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vtnh2"]
+curve = SubResource("Curve_spr1k")
+
+[sub_resource type="Curve" id="Curve_vtnh2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.630303, 1), -1.18543, -1.18543, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jdvoc"]
+curve = SubResource("Curve_vtnh2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_spr1k"]
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, 0.5, 0)
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 5.0
+initial_velocity_max = 7.0
+angular_velocity_min = -3.00002
+angular_velocity_max = 2.99998
+gravity = Vector3(0, -20, 0)
+scale_curve = SubResource("CurveTexture_jdvoc")
+alpha_curve = SubResource("CurveTexture_vtnh2")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.5
+
+[node name="Coin Explosion" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jh7jl")
+}
+autoplay = "Play Explosion"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_x412q")
+volume_db = -6.0
+
+[node name="Coins" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_tm1el")
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+collision_base_size = 0.1
+process_material = SubResource("ParticleProcessMaterial_spr1k")
+draw_pass_1 = ExtResource("1_6bq86")
+
+[node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="."]
+size = Vector3(4, 3, 4)
+heightfield_mask = 1048574

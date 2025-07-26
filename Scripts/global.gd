@@ -1,6 +1,9 @@
 class_name Global
 extends Node
 
+signal successful_parry(global_position: Vector3)
+signal customer_completed(reward: int, player_name: String)
+
 # GLOBAL playerInfo dictionary of all player's choices!
 # Info comes from character select screen.
 # ["1"] = {
