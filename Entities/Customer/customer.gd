@@ -8,7 +8,6 @@
 
 extends Area3D
 
-signal CustomerCompleted
 signal customer_type_assigned(customer_type: CustomerType)
 
 @onready var code_submission_sounds: AudioStreamPlayer3D = %CodeSubmissionSounds
@@ -71,6 +70,7 @@ func _ready() -> void:
 	correctTaskSequence = generateSequence()
 
 	for code_submitter: CodeSubmissionComponent in get_tree().get_nodes_in_group("Code_Submitters"):
+		print("connected to a code submitter")
 		code_submitter.code_submitted.connect(_on_player_code_submitted)
 
 
@@ -138,8 +138,7 @@ func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> 
 
 			# Emit the signal to the game controller
 			# Tells the game controller to reward this player this amount.
-			CustomerCompleted.emit(reward, player.name)
-			global.money_rewarded.emit()
+			global.customer_completed.emit(reward, player.name)
 			
 			coin_effect_spawner.create_effect(global_position)
 

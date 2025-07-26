@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=13 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" uid="uid://blux4125gnvqt" path="res://Game Scenes/Main Game Scene/gameController.gd" id="1_jnwv1"]
 [ext_resource type="PackedScene" uid="uid://btmq676yqmw8b" path="res://Entities/Game Camera/game_camera.tscn" id="3_jnwv1"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Entities/Player/player.tscn" id="4_4rhit"]
 [ext_resource type="Script" uid="uid://d3np8jn2nqs" path="res://Game Scenes/Main Game Scene/customer_manager.gd" id="4_41dbo"]
 [ext_resource type="PackedScene" uid="uid://cobhpwyn12msn" path="res://UI/matchUI.tscn" id="5_swuax"]
+[ext_resource type="PackedScene" uid="uid://twf3vt8h6akg" path="res://Entities/Customer/Customer.tscn" id="5_tf4o4"]
 [ext_resource type="Script" uid="uid://2mpjksevpep4" path="res://Entities/Killbox/Killbox.gd" id="6_6thhf"]
 [ext_resource type="PackedScene" uid="uid://cc208v5isrh86" path="res://Entities/Cloud Spawner/BroccoliClouds.tscn" id="7_eq00y"]
-[ext_resource type="PackedScene" uid="uid://daivvebyrgfbq" path="res://Game Scenes/Main Game Scene/Maps/Mountaintop Manor/mountaintop_manor.tscn" id="8_n4urr"]
-[ext_resource type="PackedScene" uid="uid://sy12p0cwnfos" path="res://Entities/Game Modes/timer_game_mode.tscn" id="9_n4urr"]
+[ext_resource type="PackedScene" uid="uid://daivvebyrgfbq" path="res://Game Scenes/Main Game Scene/Game Levels/Mountaintop Manor/mountaintop_manor.tscn" id="8_n4urr"]
+[ext_resource type="PackedScene" uid="uid://sy12p0cwnfos" path="res://Entities/Game Modes/Timer Game Mode/timer_game_mode.tscn" id="9_n4urr"]
 [ext_resource type="Script" uid="uid://dclp74r3mee3v" path="res://Entities/Parry Slow Time Effect/parry_slow_time_effect.gd" id="13_43rdh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r85bj"]
@@ -29,6 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27466, 2.16168, 7.58822)
 [node name="Customers" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_41dbo")
+customer_scene = ExtResource("5_tf4o4")
 
 [node name="MatchUi" parent="." instance=ExtResource("5_swuax")]
 unique_name_in_owner = true
@@ -50,5 +52,6 @@ script = ExtResource("13_43rdh")
 
 [node name="Timer Game Mode" parent="." instance=ExtResource("9_n4urr")]
 
+[connection signal="PlayersSpawned" from="." to="Customers" method="_on_game_players_spawned"]
 [connection signal="body_exited" from="Killbox" to="Killbox" method="_on_body_exited"]
 [connection signal="timeout" from="ParrySlowTimeEffect" to="ParrySlowTimeEffect" method="_on_timeout"]

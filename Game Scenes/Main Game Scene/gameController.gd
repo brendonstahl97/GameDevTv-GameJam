@@ -3,23 +3,34 @@ extends Node
 signal PlayersSpawned
 
 @onready var environment: GameLevel = $Environment ## This will change based on the loaded level, however it must be changed manually now
-@onready var customersNode : Node = %Customers
 @onready var match_ui: Control = %MatchUi
 @onready var players_node: Node = %Players
 @onready var game_mode: GameMode = $"Timer Game Mode" ## This will change based on the loaded game mode, however it must be changed manually now
 
-@export_category("Customer Spawn")
-@export var spawnInterval: float = 5.0
-@export var maxSpawnCount: int = 3
-
-var timeSinceLastSpawn = 0.0
-
-
-
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global.customer_completed.connect(_on_customer_completed)
 	game_mode.game_over.connect(_game_over)
+
+	_setup_players()
+
+	# Hide player panels which dont have a player
+	for i in range(4): 
+		var player = get_node_or_null("/root/Game/Players/" + str(i))
+		if (player == null):
+			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
+	
+	game_mode.game_over.connect(_game_over)
+	game_mode.start_game()
+
+
+func game_completed(_winner: Node3D) -> void:
+	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(3).stream)
+	get_tree().change_scene_to_file("res://Game Scenes/Game Over/endOfGame.tscn")
+
+
+func _setup_players() -> void:
 	# Spawn in players
 	# If there is a playerInfo, assume character select was the last scene, delete the base players
 	# and spawn in the selected players.
@@ -31,85 +42,57 @@ func _ready() -> void:
 
 		var player_index = 0
 		# Spawn in joined players.
-		for playerKey in global.playerInfo:
+		for player_key in global.playerInfo:
 			# Init more player info
-			global.playerInfo[playerKey]["Money"] = 0
+			var this_players_info = global.playerInfo[player_key]
+			this_players_info["Money"] = 0
+			
+			var player_object: Player = preload("res://Entities/Player/player.tscn").instantiate()
+			player_object.name = str(int(player_key)-1)
 
-			var thisPlayersInfo = global.playerInfo[playerKey]
-			var playerObject: Player = preload("res://Entities/Player/player.tscn").instantiate()
-			playerObject.name = str(int(playerKey)-1)
-
-			var controlsResource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + playerKey + "_Controls.tres")
-			playerObject.Controls = controlsResource
+			var controls_resource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + player_key + "_Controls.tres")
+			player_object.Controls = controls_resource
 
 			# Set player stand
-			playerObject.get_node("Stands/Light").visible = false
-			playerObject.get_node("Stands/Medium").visible = false
-			playerObject.get_node("Stands/Heavy").visible = false
-			playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
+			player_object.get_node("Stands/Light").visible = false
+			player_object.get_node("Stands/Medium").visible = false
+			player_object.get_node("Stands/Heavy").visible = false
+			player_object.get_node("Stands/" + this_players_info["PlayerCart"]).visible = true
 			# Delete the other stands
-			for stand in playerObject.get_node("Stands").get_children():
-				if (stand.name != thisPlayersInfo["PlayerCart"]):
+			for stand in player_object.get_node("Stands").get_children():
+				if (stand.name != this_players_info["PlayerCart"]):
 					stand.queue_free()
-			var standTypeResource = ResourceLoader.load("res://Resources/Stands/" + thisPlayersInfo["PlayerCart"] + "Stand.tres")
-			playerObject.stand_class = standTypeResource
+			var stand_type_resource = ResourceLoader.load("res://Resources/Stands/" + this_players_info["PlayerCart"] + "Stand.tres")
+			player_object.stand_class = stand_type_resource
 
 			# Set the guy
 			# Spawn a new instance of the character asset, switch the "Body" mesh instance.
-			var playerGuy = load("res://Assets/Characters/" + thisPlayersInfo["PlayerGuy"] + ".gltf").instantiate()
-			add_child(playerGuy)
-			var meshInstance = playerGuy.get_node("CharacterArmature/Skeleton3D/Body")
-			var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
-			print(meshInstance.name)
-			meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
-			meshInstance.transform = oldMeshInstance.transform
-			playerGuy.queue_free()
-			oldMeshInstance.queue_free()
+			var player_guy = load("res://Assets/Characters/" + this_players_info["PlayerGuy"] + ".gltf").instantiate()
+			add_child(player_guy)
+			var mesh_instance = player_guy.get_node("CharacterArmature/Skeleton3D/Body")
+			var old_mesh_instance = player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
+			print(mesh_instance.name)
+			mesh_instance.reparent(player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
+			mesh_instance.transform = old_mesh_instance.transform
+			player_guy.queue_free()
+			old_mesh_instance.queue_free()
 
 			# Set the color
-			var progressBar : TextureProgressBar = playerObject.get_node("StaminaManager/SubViewport/TextureProgressBar")
-			#var progressBar : TextureProgressBar = playerObject.StaminaManager.SubViewport.TextureProgressBar
-			progressBar.set_tint_progress(thisPlayersInfo["PlayerColor"])
+			var progress_bar : TextureProgressBar = player_object.get_node("StaminaManager/SubViewport/TextureProgressBar")
+			progress_bar.set_tint_progress(this_players_info["PlayerColor"])
 
 			# Place the player
-			var spawnPoint = environment.spawn_points.get_children()[player_index]
-			if (spawnPoint is Node3D):
-				playerObject.global_transform.origin = spawnPoint.global_position
+			var spawn_point = environment.spawn_points.get_children()[player_index]
+			if (spawn_point is Node3D):
+				player_object.global_transform.origin = spawn_point.global_position
 			else: 
-				push_error("The selected spawn point: ", spawnPoint.name, "is not a Node3D")
-			$Players.add_child(playerObject)
+				push_error("The selected spawn point: ", spawn_point.name, "is not a Node3D")
+			$Players.add_child(player_object)
 			
 			player_index += 1
 
 	PlayersSpawned.emit()
 
-	# Hide player panels which dont have a player
-	for i in range(4): 
-		var player = get_node_or_null("/root/Game/Players/" + str(i))
-		if (player == null):
-			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
-
-	spawnCustomer()
-	
-	game_mode.game_over.connect(_game_over)
-	game_mode.start_game()
-	
-
-func _physics_process(delta: float) -> void:
-	# Every spawnInterval seconds, spawn a new customer, if the number of customers is less than maxSpawnCount
-	# Has enough time passed to spawn a new customer?
-	timeSinceLastSpawn += delta
-	if timeSinceLastSpawn >= spawnInterval:
-		# Is there room for a new customer?
-		if customersNode.get_children().size() < maxSpawnCount:
-			# Spawn a new customer
-			spawnCustomer()
-			# Reset the timer
-			timeSinceLastSpawn = 0
-
-func gameCompleted(_winner: Node3D) -> void:
-	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(3).stream)
-	get_tree().change_scene_to_file("res://Game Scenes/Game Over/endOfGame.tscn")
 
 # A customer's task was completed, reward the player who did it.
 func _on_customer_completed(reward: int, playerIndex: String) -> void:
@@ -126,44 +109,16 @@ func _on_customer_completed(reward: int, playerIndex: String) -> void:
 			matchUI.call("updatePlayerMoney", playerIndex, money)
 
 
-func setCustomerPos(customer: Area3D):
-	customer.visible = false
-	customer.global_transform.origin = environment.get_customer_spawn_point()
-	
-	# Is it overlapping anything?
-	var scene_tree = get_tree()
-	await scene_tree.physics_frame
-	await scene_tree.physics_frame
-	var overlaps = customer.get_overlapping_bodies() 
-	for overlap in overlaps:
-		#print(overlap.name)
-		if (overlap.is_in_group("Environment")):
-			setCustomerPos(customer)
-			break
-	
-	customer.visible = true
-
-func spawnCustomer() -> void:
-	# Create a new customer
-	var customer = preload("res://Entities/Customer/Customer.tscn").instantiate()
-	# Add the customer to the scene
-	customersNode.add_child(customer)
-	
-	# Set the customer's position to a random point within the spawn area
-	setCustomerPos(customer)
-
-	# Connect to customer completed event
-	customer.CustomerCompleted.connect(_on_customer_completed)
-
-
 func _game_over() -> void:
 	# The winner is whoever has the most money
 	var players = get_node("/root/Game/Players").get_children()
 	var winner : Node3D = null
 	var winnerMoney = 0
+	
 	for player in players:
 		var money = global.playerInfo[str(int(str(player.name))+1)]["Money"]
 		if (money > winnerMoney):
 			winner = player
 			winnerMoney = money
-	gameCompleted(winner)
+			
+	game_completed(winner)

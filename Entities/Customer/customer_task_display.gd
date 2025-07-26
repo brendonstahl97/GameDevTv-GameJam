@@ -9,7 +9,7 @@ extends Control
 var task_sequence_instructions: Array[Node]
 
 # Called when the node enters the scene tree for the first time.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var screen_pos = get_viewport().get_camera_3d().unproject_position(get_parent().global_transform.origin)
 
 	# Place the element at screen_pos, but have it be offset by the size of the control

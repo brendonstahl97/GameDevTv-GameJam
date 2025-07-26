@@ -8,7 +8,7 @@ func _ready() -> void:
 	global.successful_parry.connect(_on_successful_parry)
 
 
-func _on_successful_parry(global_position: Vector3):
+func _on_successful_parry(_global_position: Vector3):
 	print("successful parry")
 	Engine.time_scale = parry_slow_time_amount
 	start(parry_slow_time_length * parry_slow_time_amount)
