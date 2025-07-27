@@ -70,7 +70,6 @@ func _ready() -> void:
 	correctTaskSequence = generateSequence()
 
 	for code_submitter: CodeSubmissionComponent in get_tree().get_nodes_in_group("Code_Submitters"):
-		print("connected to a code submitter")
 		code_submitter.code_submitted.connect(_on_player_code_submitted)
 
 
@@ -89,7 +88,6 @@ func _on_body_entered(body:Node3D) -> void:
 		if (global.playerInfo != null):
 			$Decal.set_modulate(global.playerInfo[str(int(str(body.name))+1)]["PlayerColor"])
 		currentPlayer = body
-		# Print the name of the player that entered the area
 
 
 func _on_body_exited(_body:Node3D) -> void:
