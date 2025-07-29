@@ -157,7 +157,12 @@ func _replace_players():
 		add_child(playerGuy)
 		var meshInstance = playerGuy.get_node("CharacterArmature/Skeleton3D/Body")
 		var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D").get_children()[0]
-
+		
+		# Change player mash color to player color
+		var playerColorMaterial = StandardMaterial3D.new()
+		playerColorMaterial.albedo_color = Color(thisPlayersInfo["PlayerColor"])
+		meshInstance.set_surface_override_material(0, playerColorMaterial)
+		
 		meshInstance.name = "Body"
 		meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
 		meshInstance.transform = oldMeshInstance.transform
@@ -168,8 +173,16 @@ func _replace_players():
 		playerObject.get_node("Stands/Light").visible = false
 		playerObject.get_node("Stands/Medium").visible = false
 		playerObject.get_node("Stands/Heavy").visible = false
-		playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
 		
+		playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
+		match thisPlayersInfo["PlayerCart"]:
+			"Light":
+				playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"] + "/cart").set_surface_override_material(0, playerColorMaterial)
+			"Medium":
+				playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"] + "/stallGreen").set_surface_override_material(1, playerColorMaterial)
+			"Heavy":
+				playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"] + "/Market_SecondAge_Level1").set_surface_override_material(2, playerColorMaterial)
+	
 	# Remove the un-used player stuffs
 	#var playersMissing = 4 - sortedPlayerInfo.size()
 	#for n in range(playersMissing):

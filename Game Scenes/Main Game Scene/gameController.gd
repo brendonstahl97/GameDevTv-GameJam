@@ -52,12 +52,24 @@ func _setup_players() -> void:
 
 			var controls_resource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + player_key + "_Controls.tres")
 			player_object.Controls = controls_resource
-
+			
 			# Set player stand
 			player_object.get_node("Stands/Light").visible = false
 			player_object.get_node("Stands/Medium").visible = false
 			player_object.get_node("Stands/Heavy").visible = false
 			player_object.get_node("Stands/" + this_players_info["PlayerCart"]).visible = true
+			
+			player_object.get_node("Stands/" + this_players_info["PlayerCart"]).visible = true
+			var playerColorMaterial = StandardMaterial3D.new()
+			match this_players_info["PlayerCart"]:
+				"Light":
+					player_object.get_node("Stands/" + this_players_info["PlayerCart"] + "/cart").set_surface_override_material(0, playerColorMaterial)
+				"Medium":
+					player_object.get_node("Stands/" + this_players_info["PlayerCart"] + "/stallGreen").set_surface_override_material(1, playerColorMaterial)
+				"Heavy":
+					player_object.get_node("Stands/" + this_players_info["PlayerCart"] + "/Market_SecondAge_Level1").set_surface_override_material(2, playerColorMaterial)
+
+			
 			# Delete the other stands
 			for stand in player_object.get_node("Stands").get_children():
 				if (stand.name != this_players_info["PlayerCart"]):
@@ -71,11 +83,18 @@ func _setup_players() -> void:
 			add_child(player_guy)
 			var mesh_instance = player_guy.get_node("CharacterArmature/Skeleton3D/Body")
 			var old_mesh_instance = player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
-			print(mesh_instance.name)
+			
+			# Change player mesh color to player color
+			playerColorMaterial.albedo_color = Color(this_players_info["PlayerColor"])
+			mesh_instance.set_surface_override_material(0, playerColorMaterial)
+			
 			mesh_instance.reparent(player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
 			mesh_instance.transform = old_mesh_instance.transform
 			player_guy.queue_free()
 			old_mesh_instance.queue_free()
+
+			#player_object.set_player_color(this_players_info["PlayerColor"])
+
 
 			# Set the color
 			var progress_bar : TextureProgressBar = player_object.get_node("StaminaManager/SubViewport/TextureProgressBar")
