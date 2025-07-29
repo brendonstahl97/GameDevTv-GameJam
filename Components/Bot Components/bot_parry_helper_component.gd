@@ -1,4 +1,4 @@
-class_name BotParryComponent
+class_name BotParryHelperComponent
 extends Node
 
 @export var parry_distance_threshold: float = 1.6

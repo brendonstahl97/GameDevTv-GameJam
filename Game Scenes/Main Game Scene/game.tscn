@@ -18,6 +18,8 @@ size = Vector3(73, 64, 57)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_jnwv1")
+player_scene = ExtResource("4_4rhit")
+bot_scene = ExtResource("12_rjcjm")
 
 [node name="Camera3D" parent="." instance=ExtResource("3_jnwv1")]
 transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 3.82, 10.5, 20)
@@ -52,9 +54,6 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 script = ExtResource("13_43rdh")
 
 [node name="Timer Game Mode" parent="." instance=ExtResource("9_n4urr")]
-
-[node name="0" parent="." instance=ExtResource("12_rjcjm")]
-parry_distance_threshold = 2.5
 
 [connection signal="PlayersSpawned" from="." to="Customers" method="_on_game_players_spawned"]
 [connection signal="body_exited" from="Killbox" to="Killbox" method="_on_body_exited"]

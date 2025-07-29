@@ -32195,6 +32195,7 @@ offset_bottom = -3.05176e-05
 grow_horizontal = 2
 size_flags_horizontal = 4
 script = ExtResource("2_0g7bt")
+debug_is_bot = true
 metadata/_edit_use_anchors_ = true
 
 [node name="LineEdit" type="LineEdit" parent="CharSelUI/4"]

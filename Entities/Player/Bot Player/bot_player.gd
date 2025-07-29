@@ -2,7 +2,8 @@ class_name BotPlayer
 extends Player
 
 @onready var player_detector_component: PlayerDetectorComponent = %PlayerDetectorComponent
-@onready var bot_parry_component: BotParryComponent = %BotParryComponent
+@onready var bot_parry_helper_component: BotParryHelperComponent = %BotParryHelperComponent
+@onready var bot_code_submission_helper_component: BotCodeSubmissionHelperComponent = %BotCodeSubmissionHelperComponent
 
 var closest_player: Player
 
@@ -42,26 +43,17 @@ func _handle_sprint_input(delta: float) -> void:
 		#_end_sprint()
 
 
-## TODO change this override to use AI provided code input
 func _handle_code_input() -> void:
-	var code_direction := Global.CodeDirection.NONE
+	var code_direction := bot_code_submission_helper_component.select_code_input()	
 	
-	#if (Input.is_action_just_pressed(Controls.code_up)):
-		#code_direction = Global.CodeDirection.UP
-	#elif (Input.is_action_just_pressed(Controls.code_left)):
-		#code_direction = Global.CodeDirection.LEFT
-	#elif (Input.is_action_just_pressed(Controls.code_right)):
-		#code_direction = Global.CodeDirection.RIGHT
-	#elif (Input.is_action_just_pressed(Controls.code_down)):
-		#code_direction = Global.CodeDirection.DOWN
-		
 	if (code_direction != Global.CodeDirection.NONE):
 		if (stamina_manager.try_drain_stamina(code_submission_component.code_submission_stamina_cost)):
+			print("submitting code: ", code_direction)
 			code_submission_component.submit_code(code_direction, Controls.PlayerIndex)
 
 
 func _handle_parry_input() -> void:
-	if (bot_parry_component.check_if_should_parry(closest_player)):
+	if (bot_parry_helper_component.check_if_should_parry(closest_player)):
 		parry_component.try_begin_parry_window()
 
 

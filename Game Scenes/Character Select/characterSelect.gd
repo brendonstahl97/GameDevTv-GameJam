@@ -18,25 +18,29 @@ func _ready():
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 500,
 				"PlayerGuy" = "Chef_Male",
-				"PlayerCart" = "Medium"
+				"PlayerCart" = "Medium",
+				"is_bot" = false
 			},
 			"2" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 300,
 				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Light"
+				"PlayerCart" = "Light",
+				"is_bot" = false
 			},
 			"3" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 800,
 				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Heavy"
+				"PlayerCart" = "Heavy",
+				"is_bot" = false
 			},
 			"4" = {
 				"PlayerColor" = Color(.5, .5, .5),
 				"Money" = 5000,
 				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Light"
+				"PlayerCart" = "Light",
+				"is_bot" = false
 			},
 		}
 	allReadyContainer = $AllReadyContainer
@@ -78,14 +82,19 @@ func _getPlayerChoices():
 	var playerChoices = {}
 	for p in charSelectUI.get_children():
 		# If the player hasn't joined, skip them
-		if (!p.joined):
+		if (!p.joined && !p.debug_is_bot):
 			continue
 
 		#var playerNumber: int = int(p.get_name())
 		#playerNumber -= 1
 		var playerNumber = p.name
 		var playerNestedInfo = {}
-
+		
+		if (p.debug_is_bot):
+			playerNestedInfo["is_bot"] = true
+		else: 
+			playerNestedInfo["is_bot"] = false
+		
 		var navigableItemsPanel = p.get_node("NavigableItems")
 
 		# Get the Player Color
