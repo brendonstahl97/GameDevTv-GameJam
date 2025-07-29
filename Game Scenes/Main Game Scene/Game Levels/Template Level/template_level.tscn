@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cut1v6u3e5oqh"]
+[gd_scene load_steps=9 format=3 uid="uid://cut1v6u3e5oqh"]
 
 [ext_resource type="Script" uid="uid://cotkt6ds77muu" path="res://Game Scenes/Main Game Scene/Game Levels/game_level.gd" id="1_njfco"]
 [ext_resource type="Texture2D" uid="uid://c4s7yucygjxaq" path="res://Assets/Environment/uploads_files_4381654_LightBlueSky_texture.jpg" id="2_eyjt6"]
@@ -30,6 +30,8 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.15
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_mld04"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwq0f"]
 size = Vector3(73, 64, 57)
 
@@ -40,6 +42,9 @@ bottom_right_customer_spawn_limit = NodePath("CustomerSpawnBounds/Bottom Right")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kwq0f")
+
+[node name="NavigableMeshes" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_mld04")
 
 [node name="Killbox" type="Area3D" parent="." node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("8_uqptf")
