@@ -1,6 +1,8 @@
 class_name GameLevel
 extends Node
 
+@onready var navigable_meshes: NavigationRegion3D = $"NavigableMeshes"
+
 @onready var spawn_points: Node = %SpawnPoints
 @export var top_left_customer_spawn_limit: Node3D
 @export var bottom_right_customer_spawn_limit: Node3D

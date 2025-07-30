@@ -142,3 +142,7 @@ func _on_parry_component_parry_sound(sound: AudioStream) -> void:
 
 func _on_parry_component_parry_failure() -> void:
 	stamina_manager.try_drain_stamina(stamina_manager.max_stamina, false)
+
+
+func _on_bump_component_successful_bump(restored_stamina_amount: float) -> void:
+	stamina_manager.restoreStamina(restored_stamina_amount)

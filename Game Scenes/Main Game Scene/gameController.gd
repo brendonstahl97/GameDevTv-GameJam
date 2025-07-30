@@ -7,6 +7,9 @@ signal PlayersSpawned
 @onready var players_node: Node = %Players
 @onready var game_mode: GameMode = $"Timer Game Mode" ## This will change based on the loaded game mode, however it must be changed manually now
 
+@export var player_scene: PackedScene
+@export var bot_scene: PackedScene
+
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,7 +50,12 @@ func _setup_players() -> void:
 			var this_players_info = global.playerInfo[player_key]
 			this_players_info["Money"] = 0
 			
-			var player_object: Player = preload("res://Entities/Player/player.tscn").instantiate()
+			var scene_to_spawn = player_scene
+			
+			if (this_players_info["is_bot"]):
+				scene_to_spawn = bot_scene
+				
+			var player_object: Player = scene_to_spawn.instantiate()
 			player_object.name = str(int(player_key)-1)
 
 			var controls_resource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + player_key + "_Controls.tres")

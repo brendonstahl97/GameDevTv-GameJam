@@ -5,7 +5,7 @@
 # The player will need to complete the sequence in order to get the reward.
 # The reward will be money based on what tier of customer they are.
 # The customer will then leave the map and the player will need to find another customer to get more money.
-
+class_name Customer
 extends Area3D
 
 signal customer_type_assigned(customer_type: CustomerType)
@@ -14,11 +14,11 @@ signal customer_type_assigned(customer_type: CustomerType)
 @onready var coin_effect_spawner: EffectSpawner = %CoinEffectSpawner
 @onready var customer_task_display: CustomerTaskDisplay = %"Customer Task Display"
 
+@export var customer_group_name: String = "Customers"
 @export var code_submitted_correct_sound: AudioStream
 @export var code_submitted_incorrect_sound: AudioStream
 @export var customer_type_loot_table: LootTable
 @export var customer_type: CustomerType
-@export_enum("Serf", "Normie", "Royalty", "King") var customerTier: String = "Serf"
 
 # The correct sequence that the player needs to input, generated when the customer is spawned
 var correctTaskSequence : Array = []
@@ -52,6 +52,7 @@ func generateSequence() -> Array[Global.CodeDirection]:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group(customer_group_name)
 	# Get a random customer tier based on "rarity".
 	customer_type = customer_type_loot_table.get_loot()
 	customer_type_assigned.emit(customer_type)
@@ -70,7 +71,6 @@ func _ready() -> void:
 	correctTaskSequence = generateSequence()
 
 	for code_submitter: CodeSubmissionComponent in get_tree().get_nodes_in_group("Code_Submitters"):
-		print("connected to a code submitter")
 		code_submitter.code_submitted.connect(_on_player_code_submitted)
 
 
@@ -89,7 +89,6 @@ func _on_body_entered(body:Node3D) -> void:
 		if (global.playerInfo != null):
 			$Decal.set_modulate(global.playerInfo[str(int(str(body.name))+1)]["PlayerColor"])
 		currentPlayer = body
-		# Print the name of the player that entered the area
 
 
 func _on_body_exited(_body:Node3D) -> void:
@@ -119,12 +118,16 @@ func _on_body_exited(_body:Node3D) -> void:
 		$Decal.set_modulate(Color(.77, .33, .092))
 
 
+func get_next_correct_input() -> global.CodeDirection:
+	return correctTaskSequence[currentPlayerSequence.size()]
+
+
 # Connect to the player controller 
 func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> void:	
 	# Is this the correct direction for the next element in the sequence?
 	# Grab the length of the current player sequence, check the length + 1 element in the correct sequence
-	var nextCorrectDirection : Global.CodeDirection = correctTaskSequence[currentPlayerSequence.size()]
-	if (direction == nextCorrectDirection):
+	var next_correct_direction = get_next_correct_input()
+	if (direction == next_correct_direction):
 		customer_task_display.progress_sequence(currentPlayerSequence.size())
 		currentPlayerSequence.append(direction)
 		# Play correct sound

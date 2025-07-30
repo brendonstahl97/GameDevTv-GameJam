@@ -1,4 +1,6 @@
 extends Panel
+
+@export var debug_is_bot := false
 var selected
 var readyUp = false
 var joined = false
@@ -35,6 +37,10 @@ func _ready():
 	
 	# Easy access to the array of children
 	verticalItems = navigable_items.get_children()
+	
+	if (debug_is_bot):
+		joined = true
+		readyUp = true
 
 func _process(_delta: float) -> void:
 	if( (Input.is_action_just_pressed("p" + name + "_sprint") || Input.is_action_just_pressed("p" + name + "_slam")) && !joined ):

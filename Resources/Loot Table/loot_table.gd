@@ -14,8 +14,6 @@ func get_loot():
 	var current_max = total_weight
 	var value = randi_range(0, current_max)
 	
-	print("Loot Table Value: ", value, ", Current Max: ", current_max)
-	
 	for item in possible_items:
 		if (value <= item.weight):
 			return item.item
