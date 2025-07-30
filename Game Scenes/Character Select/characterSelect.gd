@@ -175,6 +175,7 @@ func _replace_players():
 		playerObject.get_node("Stands/Heavy").visible = false
 		
 		playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
+		
 		match thisPlayersInfo["PlayerCart"]:
 			"Light":
 				playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"] + "/cart").set_surface_override_material(0, playerColorMaterial)

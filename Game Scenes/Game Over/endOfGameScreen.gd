@@ -96,6 +96,10 @@ func _ready() -> void:
 		playerGuy.queue_free()
 		oldMeshInstance.queue_free()
 
+		var playerColorMaterial = StandardMaterial3D.new()
+		playerColorMaterial.albedo_color = Color(thisPlayersInfo["PlayerColor"])
+		meshInstance.set_surface_override_material(0, playerColorMaterial)
+
 		# Set the cart
 		playerObject.get_node("Stands/Light").visible = false
 		playerObject.get_node("Stands/Medium").visible = false
@@ -105,7 +109,14 @@ func _ready() -> void:
 		for stand in playerObject.get_node("Stands").get_children():
 			if (stand.name != thisPlayersInfo["PlayerCart"]):
 				stand.queue_free()
-
+		
+		match thisPlayersInfo["PlayerCart"]:
+			"Light":
+				playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"] + "/cart").set_surface_override_material(0, playerColorMaterial)
+			"Medium":
+				playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"] + "/stallGreen").set_surface_override_material(1, playerColorMaterial)
+			"Heavy":
+				playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"] + "/Market_SecondAge_Level1").set_surface_override_material(2, playerColorMaterial)
 
 	# Remove the un-used player stuffs
 	var playersMissing = 4 - sortedPlayerInfo.size()
