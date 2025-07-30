@@ -60,12 +60,10 @@ func _ready() -> void:
 	# Spawn the character model
 	var desiredCharacter = customer_type.character_model.instantiate()
 	add_child(desiredCharacter)
-	var meshInstance = desiredCharacter.get_node("CharacterArmature/Skeleton3D/Body")
-	var oldMeshInstance = get_node("Casual2_Female/CharacterArmature/Skeleton3D/Body")
-	meshInstance.reparent(get_node("Casual2_Female/CharacterArmature/Skeleton3D"))
-	meshInstance.transform = oldMeshInstance.transform
+	var meshInstance: MeshInstance3D = desiredCharacter.get_node("CharacterArmature/Skeleton3D/Body")
+	var oldMeshInstance: MeshInstance3D = get_node("Casual2_Female/CharacterArmature/Skeleton3D/Body")
+	oldMeshInstance.mesh = meshInstance.mesh
 	desiredCharacter.queue_free()
-	oldMeshInstance.queue_free()
 
 	# Generate the task sequence for the customer
 	correctTaskSequence = generateSequence()
