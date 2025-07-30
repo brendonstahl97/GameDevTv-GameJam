@@ -24,7 +24,7 @@ func end_sprint() -> void:
 	
 
 func _ready() -> void:
-	assert(get_parent() is MovementComponent, "Sprint Component must the the child of a Movement Component")
+	assert(get_parent() is MovementComponent, "Sprint Component must be the child of a Movement Component")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

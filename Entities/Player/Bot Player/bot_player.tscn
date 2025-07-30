@@ -1,6 +1,7 @@
-[gd_scene load_steps=88 format=4 uid="uid://cgfmql12u5ois"]
+[gd_scene load_steps=95 format=4 uid="uid://cgfmql12u5ois"]
 
 [ext_resource type="Script" uid="uid://c1dw83tlo5vch" path="res://Entities/Player/Bot Player/bot_player.gd" id="1_8pl62"]
+[ext_resource type="Script" uid="uid://dtrynnd3djji1" path="res://Components/Bot Components/bot_player_navigation_component.gd" id="3_pu6en"]
 [ext_resource type="Resource" uid="uid://bcmi4nl5dfrdu" path="res://Resources/Stands/MediumStand.tres" id="3_s33x4"]
 [ext_resource type="PackedScene" uid="uid://c10nh8nqnuvdh" path="res://Entities/Stamina Manager/stamina_manager.tscn" id="4_2ndu8"]
 [ext_resource type="AudioStream" uid="uid://b181pe8w8d7l7" path="res://Assets/Audio/WoodScrape.wav" id="5_0vmt5"]
@@ -42,10 +43,16 @@
 [ext_resource type="Script" uid="uid://ba2ongqcafklu" path="res://Components/multi_effect_spawner.gd" id="40_05m3q"]
 [ext_resource type="PackedScene" uid="uid://t2fs6qdu3qwr" path="res://Entities/VFX/food_explosion.tscn" id="41_3ytco"]
 [ext_resource type="Script" uid="uid://bcl745ju8ewk4" path="res://Resources/Loot Table/loot_table_item.gd" id="41_08t2h"]
-[ext_resource type="Script" uid="uid://cvmbxxmeqwih4" path="res://Components/player_detector_component.gd" id="41_rvwgr"]
+[ext_resource type="Script" uid="uid://cvmbxxmeqwih4" path="res://Components/entity_detector_component.gd" id="41_rvwgr"]
 [ext_resource type="Script" uid="uid://bsga6d1v5gwko" path="res://Resources/Loot Table/loot_table.gd" id="42_cfwrb"]
 [ext_resource type="PackedScene" uid="uid://cc0r830syuhw1" path="res://Entities/VFX/secret_cabbage_explosion.tscn" id="42_i1ffr"]
 [ext_resource type="Script" uid="uid://dbvvwmn83pw3x" path="res://Components/Bot Components/bot_parry_helper_component.gd" id="45_i1ffr"]
+[ext_resource type="Script" uid="uid://c1kutjv5mgwn" path="res://Components/NoYMovement.gd" id="48_tqcc7"]
+[ext_resource type="Script" uid="uid://11hw1c2vluq1" path="res://Components/State Machine/state_machine_component.gd" id="48_wi4hb"]
+[ext_resource type="Script" uid="uid://dkokygdhpf6dn" path="res://Entities/Player/Bot Player/Bot States/code_submission_state.gd" id="49_1tj8b"]
+[ext_resource type="Script" uid="uid://bb4i6wytopw5n" path="res://Entities/Player/Bot Player/Bot States/find_closest_customer_state.gd" id="50_afqpm"]
+[ext_resource type="Script" uid="uid://dwpvqudxu8sie" path="res://Entities/Player/Bot Player/Bot States/slam_state.gd" id="52_sa8ii"]
+[ext_resource type="Script" uid="uid://d11vxlcdyt2ol" path="res://Entities/Player/Bot Player/Bot States/bump_player_state.gd" id="53_m7soh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ypfnu"]
 size = Vector3(0.989289, 0.977639, 1.39005)
@@ -4428,7 +4435,7 @@ transitions = ["Start", "idle_to_walk", SubResource("AnimationNodeStateMachineTr
 points = PackedVector3Array(-0.180608, 6.93889e-18, -0.0712166, 0.323581, 0.102453, 0.0157472, 0.305072, 0.0711214, 0.0263213, -0.0446968, 0.121667, 0.701251, -0.263605, 0.103977, -0.194868, 0.0362682, 0.0567778, 0.717511, 0.174139, 0, -0.0854444, 0.113674, 0.103861, -0.303825, -0.295339, 0.0710251, 0.0559487, -0.10166, 0.0266129, -0.239151, -0.180608, -6.93889e-18, 0.1133, 0.186276, 0.000646795, 0.100204, -0.0446968, 0.0567778, 0.701251, 0.0362682, 0.121667, 0.717511, -0.313292, 0.102085, 0.0474009, 0.0362682, 0.121667, 0.392914, 0.267285, 0.103266, -0.18894, 0.108353, 0.0269215, -0.234674, -0.120364, 0.103406, -0.298964, -0.263665, 0.027063, -0.00961535, -0.0670472, -6.93889e-18, -0.170633, 0.264276, 0.0278517, 0.010318, 0.241932, 0.0567778, -0.173614, -0.219698, 0.0269695, -0.144494, 0.273958, 0.101798, 0.16841, -0.322494, 0.103399, -0.0190931, -0.0284905, 0.121667, 0.376756, -0.26912, 0.102277, 0.183293, 0.110542, 0.0720246, -0.289499, -0.255234, 0.0720185, -0.182559, -0.235979, 0.0285726, 0.0996765, -0.069803, 0.00762398, 0.210563)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_83xs0"]
-radius = 1.5
+radius = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xuaoq"]
 size = Vector3(0.989289, 0.977639, 1.48213)
@@ -4484,15 +4491,15 @@ bones/1/name = "Foot.L"
 bones/1/parent = 0
 bones/1/rest = Transform3D(-1, -2.77933e-07, 1.48902e-05, 1.48924e-05, -0.0117173, 0.999932, -1.03443e-07, 0.999932, 0.0117171, 0.265425, 0.0246629, -0.0450554)
 bones/1/enabled = true
-bones/1/position = Vector3(0.26542482, 0.025115626, 0.040694688)
-bones/1/rotation = Quaternion(5.2864593e-06, 0.6905997, 0.7232372, 5.2374207e-06)
+bones/1/position = Vector3(0.265425, 0.032396875, -0.12481086)
+bones/1/rotation = Quaternion(5.541129e-06, 0.65041155, 0.75958204, 4.924001e-06)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Body"
 bones/2/parent = 0
 bones/2/rest = Transform3D(1, 9.80371e-08, 2.48606e-07, -1.47056e-07, 0.978637, 0.205599, -2.23138e-07, -0.205599, 0.978637, 0.00215324, 0.646547, -0.388819)
 bones/2/enabled = true
-bones/2/position = Vector3(0.0027087962, 0.9701248, 0.053351372)
-bones/2/rotation = Quaternion(-0.0002858578, 0.0011818096, 1.3143379e-05, 0.9999993)
+bones/2/position = Vector3(0.002433815, 0.9749743, 0.03644544)
+bones/2/rotation = Quaternion(-0.00027469127, 0.0014316228, -1.1084924e-05, 0.9999989)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Hips"
 bones/3/parent = 2
@@ -4513,14 +4520,14 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(1, 1.44448e-08, -1.66457e-06, 8.32723e-09, 0.999906, 0.0136796, 1.66461e-06, -0.0136796, 0.999907, 3.88243e-11, 0.298579, -8.55152e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(3.88243e-11, 0.298579, -8.55152e-09)
-bones/5/rotation = Quaternion(-0.0063299797, 0.006477828, -0.004301903, 0.9999498)
+bones/5/rotation = Quaternion(-0.0063302857, -0.014710015, 0.009767063, 0.9998241)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Neck"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, -4.05998e-08, 1.35468e-06, -4.98829e-08, 0.997771, 0.0667261, -1.35437e-06, -0.0667261, 0.997771, 5.21959e-12, 0.476891, 7.39782e-08)
 bones/6/enabled = true
 bones/6/position = Vector3(5.21959e-12, 0.476891, 7.39782e-08)
-bones/6/rotation = Quaternion(-0.04046013, 1.7336826e-05, 9.4541814e-05, 0.9991812)
+bones/6/rotation = Quaternion(-0.045767732, 1.3036967e-05, 6.61686e-05, 0.99895215)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Head"
 bones/7/parent = 6
@@ -4533,7 +4540,7 @@ bones/8/name = "Shoulder.L"
 bones/8/parent = 5
 bones/8/rest = Transform3D(0.663951, 0.747776, 2.43634e-06, -0.74611, 0.662471, 0.066724, 0.049893, -0.0443033, 0.997771, 0.133202, 0.140841, 0.0135214)
 bones/8/enabled = true
-bones/8/position = Vector3(0.14212397, 0.14021453, 0.013601584)
+bones/8/position = Vector3(0.1342397, 0.14076826, 0.013530727)
 bones/8/rotation = Quaternion(-0.0304479, -0.0136819, -0.40968, 0.911618)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "UpperArm.L"
@@ -4541,27 +4548,27 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(-0.0539795, 0.964737, -0.257622, -0.892192, 0.0692627, 0.446315, 0.44842, 0.25394, 0.856991, -5.9492e-08, 0.259532, -9.51747e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(-5.9492e-08, 0.259532, -9.51747e-09)
-bones/9/rotation = Quaternion(-0.3681794, -0.2543286, -0.75801826, 0.47452)
+bones/9/rotation = Quaternion(-0.36900026, -0.25366366, -0.75686467, 0.4760771)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "LowerArm.L"
 bones/10/parent = 9
 bones/10/rest = Transform3D(-0.0135782, 0.908027, 0.418692, -0.806026, 0.237856, -0.541984, -0.591725, -0.344836, 0.728664, -4.56279e-08, 0.528271, 1.29661e-07)
 bones/10/enabled = true
 bones/10/position = Vector3(-4.56279e-08, 0.528271, 1.29661e-07)
-bones/10/rotation = Quaternion(-0.017824788, 0.20692629, -0.164652, 0.96423733)
+bones/10/rotation = Quaternion(-0.020402707, 0.20889188, -0.16171625, 0.96425915)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "Fist.L"
 bones/11/parent = 10
 bones/11/rest = Transform3D(0.406327, -0.134405, 0.903789, 0.35914, 0.933007, -0.022713, -0.840188, 0.333815, 0.427376, 2.94341e-08, 0.425347, 4.20032e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(2.94341e-08, 0.425347, 4.20032e-08)
-bones/11/rotation = Quaternion(0.008589252, 0.08081896, -0.005997586, 0.99667376)
+bones/11/rotation = Quaternion(0.0079548815, 0.050607376, -0.004444242, 0.99867713)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Shoulder.R"
 bones/12/parent = 5
 bones/12/rest = Transform3D(0.66395, -0.747776, -1.19209e-06, 0.74611, 0.662471, 0.066724, -0.0498939, -0.0443024, 0.997771, -0.13313, 0.140755, 0.0134613)
 bones/12/enabled = true
-bones/12/position = Vector3(-0.14347756, 0.14002712, 0.013469312)
+bones/12/position = Vector3(-0.13421047, 0.14067937, 0.0134616755)
 bones/12/rotation = Quaternion(-0.0304476, 0.0136825, 0.40968, 0.911618)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "UpperArm.R"
@@ -4569,14 +4576,14 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(-0.646538, -0.755923, 0.102808, 0.548331, -0.366773, 0.751539, -0.530399, 0.542272, 0.651628, -4.00059e-08, 0.259532, -2.67332e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-4.00059e-08, 0.259532, -2.67332e-08)
-bones/13/rotation = Quaternion(-0.37282938, 0.2678144, 0.7527491, 0.47185022)
+bones/13/rotation = Quaternion(-0.37296417, 0.26572058, 0.75343597, 0.47183096)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LowerArm.R"
 bones/14/parent = 13
 bones/14/rest = Transform3D(0.893954, -0.35155, -0.277954, 0.363521, 0.931542, -0.00903908, 0.262103, -0.0929615, 0.960552, 2.20161e-09, 0.528271, 1.32196e-07)
 bones/14/enabled = true
 bones/14/position = Vector3(2.20161e-09, 0.528271, 1.32196e-07)
-bones/14/rotation = Quaternion(-0.0045335577, -0.21684672, 0.15473111, 0.96385443)
+bones/14/rotation = Quaternion(-0.0091491295, -0.21694052, 0.15431492, 0.9638672)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "Fist.R"
 bones/15/parent = 14
@@ -4589,29 +4596,29 @@ bones/16/name = "UpperLeg.L"
 bones/16/parent = 2
 bones/16/rest = Transform3D(0.99987, 0.00513071, 0.0151577, 0.0159931, -0.35363, -0.935214, 0.000561922, 0.93535, -0.353662, 0.253029, -0.016702, -0.0559237)
 bones/16/enabled = true
-bones/16/position = Vector3(0.2530072, -0.02387584, -0.06032923)
-bones/16/rotation = Quaternion(0.9827305, 0.0095670605, 0.00017993245, 0.1847952)
+bones/16/position = Vector3(0.25302884, -0.016749244, -0.05595272)
+bones/16/rotation = Quaternion(0.9978748, 0.01102295, -0.00063689845, 0.0642184)
 bones/16/scale = Vector3(0.999998, 0.9999976, 0.99994963)
 bones/17/name = "LowerLeg.L"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.999807, -0.000640024, 0.0196487, 0.0196494, 0.0640279, -0.997754, -0.000619462, 0.997975, 0.0640263, -3.26563e-08, 0.453805, -2.0545e-08)
 bones/17/enabled = true
 bones/17/position = Vector3(-3.26563e-08, 0.453805, -2.0545e-08)
-bones/17/rotation = Quaternion(0.2826065, 0.003073888, 0.0093370825, 0.9591856)
+bones/17/rotation = Quaternion(0.22228718, 0.002486087, 0.0095104845, 0.9749317)
 bones/17/scale = Vector3(1, 1.00001, 1.00001)
 bones/18/name = "UpperLeg.R"
 bones/18/parent = 2
 bones/18/rest = Transform3D(0.99987, -0.00513235, -0.0151573, -0.0159934, -0.35363, -0.935214, -0.000560275, 0.93535, -0.353662, -0.254712, -0.016702, -0.0559241)
 bones/18/enabled = true
-bones/18/position = Vector3(-0.25471222, -0.022056747, -0.055979405)
-bones/18/rotation = Quaternion(0.989974, -0.0104146665, 0.0017930601, 0.14085384)
+bones/18/position = Vector3(-0.254712, -0.016868535, -0.055925816)
+bones/18/rotation = Quaternion(0.9855937, -0.0101095205, 0.0025808485, 0.1688083)
 bones/18/scale = Vector3(0.999998, 0.9999996, 0.99994904)
 bones/19/name = "LowerLeg.R"
 bones/19/parent = 18
 bones/19/rest = Transform3D(0.999808, 0.000640102, -0.0196487, -0.0196494, 0.0640278, -0.997754, 0.000619382, 0.997975, 0.0640263, 1.09576e-08, 0.453805, -1.98441e-08)
 bones/19/enabled = true
 bones/19/position = Vector3(1.09576e-08, 0.453805, -1.98441e-08)
-bones/19/rotation = Quaternion(0.36397305, -0.0038647072, -0.009038461, 0.9313577)
+bones/19/rotation = Quaternion(0.19947416, -0.0022634182, -0.009565915, 0.97985387)
 bones/19/scale = Vector3(1, 1.0000081, 1.00001)
 bones/20/name = "PoleTarget.L"
 bones/20/parent = 0
@@ -4624,8 +4631,8 @@ bones/21/name = "Foot.R"
 bones/21/parent = 0
 bones/21/rest = Transform3D(-1, -8.33797e-07, -1.50613e-05, -1.50505e-05, -0.0117173, 0.999932, -1.01022e-06, 0.999932, 0.0117171, -0.262802, 0.0246629, -0.0450557)
 bones/21/enabled = true
-bones/21/position = Vector3(-0.262802, 0.07645148, -0.089744076)
-bones/21/rotation = Quaternion(-6.3649813e-06, 0.5929183, 0.80526274, -4.2159622e-06)
+bones/21/position = Vector3(-0.262802, 0.035661273, 0.0845072)
+bones/21/rotation = Quaternion(-5.3903627e-06, 0.7361097, 0.67686224, -5.2472515e-06)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "PoleTarget.R"
 bones/22/parent = 0
@@ -4917,7 +4924,47 @@ metadata/_custom_type_script = "uid://ba2ongqcafklu"
 [node name="PlayerDetectorComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("41_rvwgr")
+entity_group_name = "Players"
 metadata/_custom_type_script = "uid://cvmbxxmeqwih4"
+
+[node name="CustomerDetectorComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("41_rvwgr")
+entity_group_name = "Customers"
+metadata/_custom_type_script = "uid://cvmbxxmeqwih4"
+
+[node name="BotPlayerNavigationComponent" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+path_desired_distance = 0.75
+debug_enabled = true
+script = ExtResource("3_pu6en")
+
+[node name="NoYMovementRemoteTransformComponent" type="RemoteTransform3D" parent="BotPlayerNavigationComponent"]
+remote_path = NodePath("../..")
+script = ExtResource("48_tqcc7")
+YValue = 0.5
+metadata/_custom_type_script = "uid://c1kutjv5mgwn"
+
+[node name="BotBehaviorStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("48_wi4hb")
+initial_state = NodePath("FindClosestCustomerState")
+metadata/_custom_type_script = "uid://11hw1c2vluq1"
+
+[node name="CodeSubmissionState" type="Node" parent="BotBehaviorStateMachine"]
+script = ExtResource("49_1tj8b")
+metadata/_custom_type_script = "uid://dkokygdhpf6dn"
+
+[node name="FindClosestCustomerState" type="Node" parent="BotBehaviorStateMachine"]
+script = ExtResource("50_afqpm")
+metadata/_custom_type_script = "uid://bb4i6wytopw5n"
+
+[node name="SlamState" type="Node" parent="BotBehaviorStateMachine"]
+script = ExtResource("52_sa8ii")
+metadata/_custom_type_script = "uid://dwpvqudxu8sie"
+
+[node name="BumpPlayerState" type="Node" parent="BotBehaviorStateMachine"]
+script = ExtResource("53_m7soh")
+metadata/_custom_type_script = "uid://d11vxlcdyt2ol"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="sprint_end" from="MovementComponent/SprintComponent" to="Particle Emitters" method="end_sprint_particles"]
