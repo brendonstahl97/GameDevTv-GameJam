@@ -1,187 +1,80 @@
 extends Node3D
-# Info to establish in this scene:
-# For each Player:
-#	No. of Players
-#	Stand Type
-#	Character Model
-#	Player Color
-#	Player Nam  
 
-var charSelectUI = null
-var allReadyContainer = null
+
+@onready var character_select_panels: CharacterSelectPanelManager = %"Character Select Panels"
+@onready var all_ready_container: Control = %AllReadyContainer
+
+@export var player_controls: Array[ControlStack]
+@export var min_required_players: int = 1
+
+var can_start_game := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if (global.playerInfo == null):
-		global.playerInfo = {
-			"1" = {
-				"PlayerColor" = Color(.5, .5, .5),
-				"Money" = 500,
-				"PlayerGuy" = "Chef_Male",
-				"PlayerCart" = "Medium",
-				"is_bot" = false
-			},
-			"2" = {
-				"PlayerColor" = Color(.5, .5, .5),
-				"Money" = 300,
-				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Light",
-				"is_bot" = false
-			},
-			"3" = {
-				"PlayerColor" = Color(.5, .5, .5),
-				"Money" = 800,
-				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Heavy",
-				"is_bot" = false
-			},
-			"4" = {
-				"PlayerColor" = Color(.5, .5, .5),
-				"Money" = 5000,
-				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Light",
-				"is_bot" = false
-			},
-		}
-	allReadyContainer = $AllReadyContainer
-	charSelectUI = $CharSelUI 
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	## Connect panel signals
+	for panel: CharacterSelectPanel in character_select_panels.get_children():
+		panel.player_status_changed.connect(_check_player_status)
+
+
 func _process(_delta):
-	var playerChoicesDictionary = _getPlayerChoices()
-	global.playerInfo = playerChoicesDictionary
-	#_replace_players()
-	_allReadyDisplay()
-	if (Input.is_action_just_pressed("ui_select")):
-		print("pushed")
-		var minPlayersJoined = false
-		for p in charSelectUI.get_children():
-			if (p.joined):
-				minPlayersJoined = true
-		if (!minPlayersJoined):
-			return
-		
-		# If all players who are joined, are ready, switch to the game scene.
-		for p in charSelectUI.get_children():
-			if (p.joined && !p.readyUp):
-				return
+	_handle_input_assignment()
+	_handle_add_bots()
+	
+	if (Input.is_action_just_pressed("ui_select") && can_start_game):
+		_start_game(_get_player_choices())
 
-		#playerChoicesDictionary = _getPlayerChoices()
-		_switchSceneToGame(playerChoicesDictionary)
+func _handle_add_bots() -> void:
+	if (!can_start_game):
+		return
+	
+	for control_stack: ControlStack in player_controls:
+		if (Input.is_action_just_pressed(control_stack.player_controls.parry)):
+			character_select_panels.initialize_next_panel(control_stack, true)
 
-func _switchSceneToGame(playerChoicesDictionary):
+func _handle_input_assignment() -> void:
+	for control_stack: ControlStack in player_controls:
+		if (Input.is_action_just_pressed(control_stack.player_controls.sprint)):
+			character_select_panels.initialize_next_panel(control_stack)
+
+
+func _start_game(player_choices_dictionary):
 	# Set GLOBAL player info for their choices, usable anywhere.
-	global.playerInfo = playerChoicesDictionary
+	global.playerInfo = player_choices_dictionary
 	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(2).stream)
 	get_tree().change_scene_to_file("res://Game Scenes/Main Game Scene/game.tscn")
-	
+
 
 # Returns a dictionary of each player's choices,
 # give it to gameController when the game starts so we know how to spawn each player.
-func _getPlayerChoices():
+func _get_player_choices() -> Dictionary:
 	var playerChoices = {}
-	for p in charSelectUI.get_children():
+	for p: CharacterSelectPanel in character_select_panels.get_children():
 		# If the player hasn't joined, skip them
-		if (!p.joined && !p.debug_is_bot):
+		if (!p.is_joined):
 			continue
 
-		#var playerNumber: int = int(p.get_name())
-		#playerNumber -= 1
-		var playerNumber = p.name
-		var playerNestedInfo = {}
-		
-		if (p.debug_is_bot):
-			playerNestedInfo["is_bot"] = true
-		else: 
-			playerNestedInfo["is_bot"] = false
-		
-		var navigableItemsPanel = p.get_node("NavigableItems")
+		var playerNumber: String = p.name
+		var playerNestedInfo = p.player_info
 
-		# Get the Player Color
-		var playerColorPanel = navigableItemsPanel.get_node("Color")
-		for colorPanel in playerColorPanel.get_children():
-			if (colorPanel.visible):
-				var colorRect : ColorRect = colorPanel.get_node("ColorRect")
-				playerNestedInfo["PlayerColor"] = colorRect.color
-				break
-
-		# Cart Type
-		var cartTypePanel = navigableItemsPanel.get_node("StandType")
-		var choice = "Light"
-		if (cartTypePanel.get_node("Heavy").visible):
-			choice = "Heavy"
-		elif (cartTypePanel.get_node("Medium").visible):
-			choice = "Medium"
-		playerNestedInfo["PlayerCart"] = choice
-
-		# Character Model
-		var characterModelPanel = navigableItemsPanel.get_node("Guy")
-		# Loop through and see which one is visible
-		for characterModel in characterModelPanel.get_children():
-			if (characterModel.visible):
-				playerNestedInfo["PlayerGuy"] = str(characterModel.get_name())
-				break
-
-		var playerNumberString = str(playerNumber)
-		#var playerInfo = {playerNumberString = playerNestedInfo}
-		playerChoices[playerNumberString] = playerNestedInfo
+		playerChoices[playerNumber] = playerNestedInfo
 	return playerChoices
 
-# this is more complex than it needs to be
-# Checks if all players that are joined are ready by comparing two arrays
-func _allReadyDisplay():
-	var minPlayersJoined = false
-	var joinedPlayers = [0,0,0,0]
-	var readyPlayers = [0,0,0,0]
-	for p in charSelectUI.get_children():
-		if (p.joined):
-			minPlayersJoined = true
-			joinedPlayers[p.get_index()] = 1
-			#print("minPlayers Joined")
-		else:
-			joinedPlayers[p.get_index()] = 0
+
+# Checks if all players that are joined are ready
+func _check_player_status():
+	var num_players_joined = 0
+	var num_players_ready = 0
 	
-	for p in charSelectUI.get_children():
-		if (p.readyUp):
-			readyPlayers[p.get_index()] = 1
-		else:
-			readyPlayers[p.get_index()] = 0
-	if(joinedPlayers == readyPlayers and (minPlayersJoined)):
-		allReadyContainer.visible = true
+	for p: CharacterSelectPanel in character_select_panels.get_children():
+		if (p.is_joined):
+			num_players_joined += 1
+		
+		if (p.is_ready):
+			num_players_ready += 1
+	
+	if(num_players_joined == num_players_ready and num_players_joined >= min_required_players):
+		all_ready_container.show()
+		can_start_game = true
 	else:
-		allReadyContainer.visible = false
-
-func _replace_players():	
-	await get_tree().physics_frame
-	var playerChoicesDictionary = _getPlayerChoices()
-	global.playerInfo = playerChoicesDictionary
-	
-		# Get the player info, and replace each player stuffs with the relevant info.
-	for playerKey in global.playerInfo:
-		var thisPlayersInfo = global.playerInfo[playerKey]
-		var playerObject = get_node("/root/CharacterSelect/" + playerKey)
-		# Set the guy
-		# Spawn a new instance of the character asset, switch the "Body" mesh instance.
-		var playerGuy = load("res://Assets/Characters/" + thisPlayersInfo["PlayerGuy"] + ".gltf").instantiate()
-		add_child(playerGuy)
-		var meshInstance = playerGuy.get_node("CharacterArmature/Skeleton3D/Body")
-		var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D").get_children()[0]
-
-		meshInstance.name = "Body"
-		meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
-		meshInstance.transform = oldMeshInstance.transform
-		playerGuy.free()
-		oldMeshInstance.free()
-		
-		# Set the cart
-		playerObject.get_node("Stands/Light").visible = false
-		playerObject.get_node("Stands/Medium").visible = false
-		playerObject.get_node("Stands/Heavy").visible = false
-		playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
-		
-	# Remove the un-used player stuffs
-	#var playersMissing = 4 - sortedPlayerInfo.size()
-	#for n in range(playersMissing):
-	#	var placeNumber = 4 - n
-	#	var playerObject = get_node("/root/CharacterSelect/" + str(placeNumber))
-	#	playerObject.visible = false
+		all_ready_container.hide()
+		can_start_game = false
