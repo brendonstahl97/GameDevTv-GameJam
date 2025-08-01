@@ -26,3 +26,10 @@ func _physics_process(_delta: float) -> void:
 func _handle_parry_input() -> void:
 	if (bot_parry_helper_component.check_if_should_parry(closest_player)):
 		parry_component.try_begin_parry_window()
+
+
+## Calls the Duck-typed `apply_difficulty` method on all applicable children
+func apply_difficulty(difficulty: global.BotDifficulty) -> void:
+	for child in get_children():
+		if (child.has_method("apply_difficulty")):
+			child.apply_difficulty(difficulty)

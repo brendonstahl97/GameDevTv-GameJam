@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwqrujkcknl3i"]
 
-[ext_resource type="Script" uid="uid://cdhsnvf5ju4nm" path="res://UI/Character Select Panels/character_select_panels.gd" id="1_46aph"]
-[ext_resource type="PackedScene" uid="uid://ds1asw4j4y68q" path="res://UI/Character Select Panel/character_select_panel.tscn" id="1_tric2"]
+[ext_resource type="Script" uid="uid://cdhsnvf5ju4nm" path="res://Game Scenes/Character Select/Character Select Panels/character_select_panels.gd" id="1_46aph"]
+[ext_resource type="PackedScene" uid="uid://ds1asw4j4y68q" path="res://Game Scenes/Character Select/Character Select Panel/character_select_panel.tscn" id="1_tric2"]
 
 [node name="Character Select Panels" type="HBoxContainer"]
 anchors_preset = -1

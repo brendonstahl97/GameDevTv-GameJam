@@ -19,3 +19,9 @@ enum CodeDirection {
 	RIGHT,
 	NONE
 }
+
+enum BotDifficulty {
+	EASY,
+	MEDIUM,
+	HARD
+}

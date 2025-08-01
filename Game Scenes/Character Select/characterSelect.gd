@@ -1,6 +1,5 @@
 extends Node3D
 
-
 @onready var character_select_panels: CharacterSelectPanelManager = %"Character Select Panels"
 @onready var all_ready_container: Control = %AllReadyContainer
 
@@ -20,8 +19,12 @@ func _process(_delta):
 	_handle_input_assignment()
 	_handle_add_bots()
 	
-	if (Input.is_action_just_pressed("ui_select") && can_start_game):
-		_start_game(_get_player_choices())
+	
+	if (can_start_game):
+		var player_1_control_stack: ControlStack = (character_select_panels.get_child(0) as CharacterSelectPanel).assigned_player_control_stack
+		
+		if (player_1_control_stack.player_controls != null && Input.is_action_just_pressed(player_1_control_stack.player_controls.begin_game)):
+			_start_game(_get_player_choices())
 
 func _handle_add_bots() -> void:
 	if (!can_start_game):
