@@ -12,13 +12,14 @@ signal player_status_changed
 @onready var character_options: VBoxContainer = %"Character Options"
 @onready var ready_button: PanelContainer = %Ready
 @onready var name_display: LineEdit = %LineEdit
+@onready var bot_difficulty_selector: DifficultyTabContainer = %"Bot Difficulty"
 
 @export var player_name: String = "Player 1" ## Display name of the player in-game
 @export var bot_name_modifier: String = "(Bot)" ## string that will be added on to the player name if the player is a bot
-@export var assigned_player_control_stack: ControlStack	##
-@export var initial_focus: Control
-@export var stylebox_override_target: String = "panel"
-@export var highlight_stylebox: StyleBox
+@export var assigned_player_control_stack: ControlStack	## control stack assigned to the current player, should be "pop"-ed when unassigning
+@export var initial_focus: Control ## What selectablle item should be in focus when starting
+@export var stylebox_override_target: String = "panel" ## name of the stylebox that should be overridden for the highlight formatting
+@export var highlight_stylebox: StyleBox ## the stylebox that should be applied when elements are in focus
 
 var current_focus: Control
 var is_joined := false
@@ -31,13 +32,33 @@ var player_info: Dictionary:
 
 
 func initialize(player_control_stack: ControlStack, player_is_bot: bool = false) -> void:
-	name_display.text = player_name
+	name_display.placeholder_text = player_name
 	assigned_player_control_stack = player_control_stack
 	is_bot = player_is_bot
 	
+	# in case this panel was previously a bot:
+	# reset element neighbors
+	guy_selector.focus_neighbor_bottom = guy_selector.get_path_to(ready_button)
+	ready_button.focus_neighbor_top = ready_button.get_path_to(guy_selector)
+	
+	# hide the bot difficulty selector
+	bot_difficulty_selector.hide()
+	
 	if (is_bot):
-		name_display.text += "(Bot)"
-		_join()
+		_init_bot_panel()
+
+
+func _init_bot_panel() -> void:
+	# Set the neighbors to include the bot difficulty selector
+	guy_selector.focus_neighbor_bottom = guy_selector.get_path_to(bot_difficulty_selector)
+	ready_button.focus_neighbor_top = ready_button.get_path_to(bot_difficulty_selector)
+	
+	# Display the bot difficulty selector
+	bot_difficulty_selector.show()
+	
+	# Include the bot name modifier 
+	name_display.placeholder_text += bot_name_modifier
+	_join()
 
 
 func _ready() -> void:
@@ -106,12 +127,17 @@ func _handle_ready_input() -> void:
 
 
 func _get_selected_values() -> Dictionary:
+	var player_controls = assigned_player_control_stack.player_controls if assigned_player_control_stack != null else null
+	
 	var player_choices = {
 		"PlayerColor" = color_selector.selected_color,
+		"is_joined" = is_joined,
 		"Money" = 0,
 		"PlayerGuy" = guy_selector.selected_tab_title,
 		"PlayerCart" = stand_type_selector.selected_tab_title,
-		"is_bot" = is_bot
+		"PlayerControls" = player_controls,
+		"is_bot" = is_bot,
+		"bot_difficulty" = bot_difficulty_selector.selected_tab_difficulty
 	}
 	
 	return player_choices
@@ -137,16 +163,22 @@ func _join() -> void:
 	join_prompt.hide()
 	character_options.show()
 	is_joined = true
+	
 	player_status_changed.emit()
+	player_choices_updated.emit(self.name, player_info)
 
 
 func _unjoin() -> void:
 	join_prompt.show()
 	character_options.hide()
 	is_joined = false
+	
 	player_status_changed.emit()
+	
+	assigned_player_control_stack.stack.pop_back()
+	assigned_player_control_stack = null
+	
+	player_choices_updated.emit(self.name, player_info)
 	
 	if (is_bot):
 		is_bot = false
-		assigned_player_control_stack.stack.pop_back()
-		assigned_player_control_stack = null

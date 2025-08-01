@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://ds1asw4j4y68q"]
+[gd_scene load_steps=16 format=3 uid="uid://ds1asw4j4y68q"]
 
-[ext_resource type="Script" uid="uid://tuhqkfs0pmt4" path="res://UI/Character Select Panel/character_select_panel.gd" id="1_qlqdv"]
-[ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://UI/Character Select Panel/Character_select_highlight_stylebox.tres" id="3_wdw6p"]
+[ext_resource type="Script" uid="uid://tuhqkfs0pmt4" path="res://Game Scenes/Character Select/Character Select Panel/character_select_panel.gd" id="1_qlqdv"]
+[ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://Game Scenes/Character Select/Character Select Panel/Character_select_highlight_stylebox.tres" id="3_wdw6p"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="4_d56o1"]
-[ext_resource type="Script" uid="uid://bu78s2gjf8h8q" path="res://UI/Character Select Panel/title_tab_container.gd" id="5_y6xyc"]
-[ext_resource type="Script" uid="uid://c67pjogyt72ya" path="res://UI/Character Select Panel/color_tab_container.gd" id="6_g2qe6"]
+[ext_resource type="Script" uid="uid://bu78s2gjf8h8q" path="res://UI/Multiplayer Tab Container/title_tab_container.gd" id="5_y6xyc"]
+[ext_resource type="Script" uid="uid://dunwun5rl2m1f" path="res://UI/Multiplayer Tab Container/difficulty_tab_container.gd" id="6_bo8kf"]
+[ext_resource type="Script" uid="uid://c67pjogyt72ya" path="res://UI/Multiplayer Tab Container/color_tab_container.gd" id="6_g2qe6"]
 [ext_resource type="Texture2D" uid="uid://sg0g1e4dba3a" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_a_outline.png" id="7_0oxmf"]
+[ext_resource type="Script" uid="uid://co8511bgqxjw7" path="res://UI/Multiplayer Tab Container/difficulty_tab.gd" id="7_ir45r"]
 
 [sub_resource type="Theme" id="Theme_m78mb"]
 default_font = ExtResource("4_d56o1")
@@ -77,8 +79,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 theme = SubResource("Theme_m78mb")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_placeholder_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_styles/focus = SubResource("StyleBoxFlat_etdqc")
+text = "Player 1"
 placeholder_text = "Player 1"
 alignment = 1
 editable = false
@@ -479,6 +483,59 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 metadata/_tab_index = 15
+
+[node name="Bot Difficulty" type="TabContainer" parent="MarginContainer/Character Options"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Guy")
+focus_neighbor_bottom = NodePath("../Ready")
+focus_mode = 2
+current_tab = 1
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("6_bo8kf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Easy" type="Label" parent="MarginContainer/Character Options/Bot Difficulty"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Easy"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+script = ExtResource("7_ir45r")
+metadata/_tab_index = 0
+
+[node name="Medium" type="Label" parent="MarginContainer/Character Options/Bot Difficulty"]
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+script = ExtResource("7_ir45r")
+difficulty = 1
+metadata/_tab_index = 1
+
+[node name="Hard" type="Label" parent="MarginContainer/Character Options/Bot Difficulty"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Hard"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+script = ExtResource("7_ir45r")
+difficulty = 2
+metadata/_tab_index = 2
 
 [node name="Ready" type="PanelContainer" parent="MarginContainer/Character Options"]
 unique_name_in_owner = true

@@ -26,6 +26,8 @@ var PlayerCartType : String = "Normal"
 var PlayerColor : Color = Color(.8, .19, 0.01)
 var PlayerGuy : String = "Man 1"
 
+var player_index: int = int(name)
+
 var movement_direction = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
@@ -88,7 +90,7 @@ func _handle_code_input() -> void:
 		
 	if (code_direction != Global.CodeDirection.NONE):
 		if (stamina_manager.try_drain_stamina(code_submission_component.code_submission_stamina_cost)):
-			code_submission_component.submit_code(code_direction, Controls.PlayerIndex)
+			code_submission_component.submit_code(code_direction, player_index)
 
 
 func _handle_parry_input() -> void:

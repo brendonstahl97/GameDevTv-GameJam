@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bikjvcakx6fou" path="res://Game Scenes/Character Select/characterSelect.gd" id="1_318p6"]
 [ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="2_3w2a5"]
-[ext_resource type="PackedScene" uid="uid://dwqrujkcknl3i" path="res://UI/Character Select Panels/character_select_panels.tscn" id="2_8plsa"]
+[ext_resource type="PackedScene" uid="uid://dwqrujkcknl3i" path="res://Game Scenes/Character Select/Character Select Panels/character_select_panels.tscn" id="2_8plsa"]
 [ext_resource type="Script" uid="uid://b331n6oerida" path="res://Resources/Control Stack/control_stack.gd" id="2_unei2"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_i8lai"]
 [ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="3_unei2"]
@@ -26450,15 +26450,19 @@ transform = Transform3D(128.675, 0, 0, 0, 128.675, 0, 0, 0, 128.675, -153.709, -
 
 [node name="1" parent="." instance=ExtResource("10_2psxr")]
 transform = Transform3D(0.999618, 0, 0.0276425, 0, 1, 0, -0.0276425, 0, 0.999618, -13.110077, 1.2, -9.5298195)
+visible = false
 
 [node name="2" parent="." instance=ExtResource("10_2psxr")]
 transform = Transform3D(0.999618, 0, 0.0276425, 0, 1, 0, -0.0276425, 0, 0.999618, -10.565873, 1.21, -9.5298195)
+visible = false
 
 [node name="3" parent="." instance=ExtResource("10_2psxr")]
 transform = Transform3D(0.999618, 0, 0.0276425, 0, 1, 0, -0.0276425, 0, 0.999618, -7.826133, 1.21, -9.5298195)
+visible = false
 
 [node name="4" parent="." instance=ExtResource("10_2psxr")]
 transform = Transform3D(0.999618, 0, 0.0276425, 0, 1, 0, -0.0276425, 0, 0.999618, -5.226565, 1.21, -9.5298195)
+visible = false
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = SubResource("MeshLibrary_uryni")

@@ -58,8 +58,10 @@ func _setup_players() -> void:
 			var player_object: Player = scene_to_spawn.instantiate()
 			player_object.name = str(int(player_key)-1)
 
-			var controls_resource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + player_key + "_Controls.tres")
-			player_object.Controls = controls_resource
+			player_object.Controls = this_players_info["PlayerControls"]
+			
+			if (player_object is BotPlayer):
+				player_object.apply_difficulty(this_players_info["bot_difficulty"])
 
 			# Set player stand
 			player_object.get_node("Stands/Light").visible = false
@@ -79,7 +81,6 @@ func _setup_players() -> void:
 			add_child(player_guy)
 			var mesh_instance = player_guy.get_node("CharacterArmature/Skeleton3D/Body")
 			var old_mesh_instance = player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
-			print(mesh_instance.name)
 			mesh_instance.reparent(player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
 			mesh_instance.transform = old_mesh_instance.transform
 			player_guy.queue_free()

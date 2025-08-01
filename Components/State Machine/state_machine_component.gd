@@ -41,3 +41,10 @@ func _on_state_transition(state: State, new_state_name: String) -> void:
 	
 	new_state.enter()
 	current_state = new_state
+
+
+## Calls the Duck-typed `apply_difficulty` method on all applicable children
+func apply_difficulty(difficulty: global.BotDifficulty) -> void:
+	for child in get_children():
+		if (child.has_method("apply_difficulty")):
+			child.apply_difficulty(difficulty)
