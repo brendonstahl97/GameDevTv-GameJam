@@ -5,10 +5,10 @@ extends Node3D
 #	Stand Type
 #	Character Model
 #	Player Color
-#	Player Nam  
+#	Player Name
 
-var charSelectUI = null
-var allReadyContainer = null
+@onready var char_sel_ui: Control = %CharSelUI
+@onready var all_ready_container: Control = %AllReadyContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,35 +43,32 @@ func _ready():
 				"is_bot" = false
 			},
 		}
-	allReadyContainer = $AllReadyContainer
-	charSelectUI = $CharSelUI 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var playerChoicesDictionary = _getPlayerChoices()
-	global.playerInfo = playerChoicesDictionary
+	var player_choices_dictionary = _getPlayerChoices()
+	global.playerInfo = player_choices_dictionary
 	#_replace_players()
 	_allReadyDisplay()
 	if (Input.is_action_just_pressed("ui_select")):
-		print("pushed")
 		var minPlayersJoined = false
-		for p in charSelectUI.get_children():
+		for p in char_sel_ui.get_children():
 			if (p.joined):
 				minPlayersJoined = true
 		if (!minPlayersJoined):
 			return
 		
 		# If all players who are joined, are ready, switch to the game scene.
-		for p in charSelectUI.get_children():
-			if (p.joined && !p.readyUp):
+		for p in char_sel_ui.get_children():
+			if (p.joined && !p.ready_up):
 				return
 
-		#playerChoicesDictionary = _getPlayerChoices()
-		_switchSceneToGame(playerChoicesDictionary)
+		#player_choices_dictionary = _getPlayerChoices()
+		_switchSceneToGame(player_choices_dictionary)
 
-func _switchSceneToGame(playerChoicesDictionary):
+func _switchSceneToGame(player_choices_dictionary):
 	# Set GLOBAL player info for their choices, usable anywhere.
-	global.playerInfo = playerChoicesDictionary
+	global.playerInfo = player_choices_dictionary
 	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(2).stream)
 	get_tree().change_scene_to_file("res://Game Scenes/Main Game Scene/game.tscn")
 	
@@ -80,7 +77,7 @@ func _switchSceneToGame(playerChoicesDictionary):
 # give it to gameController when the game starts so we know how to spawn each player.
 func _getPlayerChoices():
 	var playerChoices = {}
-	for p in charSelectUI.get_children():
+	for p in char_sel_ui.get_children():
 		# If the player hasn't joined, skip them
 		if (!p.joined && !p.debug_is_bot):
 			continue
@@ -133,7 +130,7 @@ func _allReadyDisplay():
 	var minPlayersJoined = false
 	var joinedPlayers = [0,0,0,0]
 	var readyPlayers = [0,0,0,0]
-	for p in charSelectUI.get_children():
+	for p in char_sel_ui.get_children():
 		if (p.joined):
 			minPlayersJoined = true
 			joinedPlayers[p.get_index()] = 1
@@ -141,20 +138,20 @@ func _allReadyDisplay():
 		else:
 			joinedPlayers[p.get_index()] = 0
 	
-	for p in charSelectUI.get_children():
-		if (p.readyUp):
+	for p in char_sel_ui.get_children():
+		if (p.ready_up):
 			readyPlayers[p.get_index()] = 1
 		else:
 			readyPlayers[p.get_index()] = 0
 	if(joinedPlayers == readyPlayers and (minPlayersJoined)):
-		allReadyContainer.visible = true
+		all_ready_container.visible = true
 	else:
-		allReadyContainer.visible = false
+		all_ready_container.visible = false
 
-func _replace_players():	
+func _replace_players():
 	await get_tree().physics_frame
-	var playerChoicesDictionary = _getPlayerChoices()
-	global.playerInfo = playerChoicesDictionary
+	var player_choices_dictionary = _getPlayerChoices()
+	global.playerInfo = player_choices_dictionary
 	
 		# Get the player info, and replace each player stuffs with the relevant info.
 	for playerKey in global.playerInfo:

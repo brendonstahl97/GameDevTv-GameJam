@@ -1,0 +1,562 @@
+[gd_scene load_steps=15 format=3 uid="uid://ds1asw4j4y68q"]
+
+[ext_resource type="Script" uid="uid://tuhqkfs0pmt4" path="res://UI/Character Select Panel/character_select_panel.gd" id="1_qlqdv"]
+[ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="2_0oxmf"]
+[ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://UI/Character Select Panel/Character_select_highlight_stylebox.tres" id="3_wdw6p"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="4_d56o1"]
+[ext_resource type="Script" uid="uid://bu78s2gjf8h8q" path="res://UI/Character Select Panel/title_tab_container.gd" id="5_y6xyc"]
+[ext_resource type="Script" uid="uid://c67pjogyt72ya" path="res://UI/Character Select Panel/color_tab_container.gd" id="6_g2qe6"]
+[ext_resource type="Texture2D" uid="uid://sg0g1e4dba3a" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_a_outline.png" id="7_0oxmf"]
+
+[sub_resource type="Theme" id="Theme_m78mb"]
+default_font = ExtResource("4_d56o1")
+default_font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etdqc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_alpc1"]
+font = ExtResource("4_d56o1")
+font_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lre7q"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_t3hcp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sys1h"]
+font = ExtResource("4_d56o1")
+font_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alpc1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.10196078, 0.10196078, 0.10196078, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Character Select Panel" type="PanelContainer" node_paths=PackedStringArray("initial_focus")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -129.5
+offset_right = 93.0
+offset_bottom = 129.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qlqdv")
+assigned_player_controls = ExtResource("2_0oxmf")
+initial_focus = NodePath("MarginContainer/Character Options/StandType")
+highlight_stylebox = ExtResource("3_wdw6p")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Character Options" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/Character Options"]
+custom_minimum_size = Vector2(350, 75)
+layout_mode = 2
+theme = SubResource("Theme_m78mb")
+theme_override_colors/font_placeholder_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_etdqc")
+placeholder_text = "Player 1"
+alignment = 1
+editable = false
+flat = true
+
+[node name="StandType" type="TabContainer" parent="MarginContainer/Character Options"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Ready")
+focus_neighbor_bottom = NodePath("../Color")
+focus_mode = 2
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("5_y6xyc")
+metadata/_edit_use_anchors_ = true
+
+[node name="Light" type="Label" parent="MarginContainer/Character Options/StandType"]
+layout_mode = 2
+focus_mode = 2
+text = "Light"
+label_settings = SubResource("LabelSettings_alpc1")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_tab_index = 0
+
+[node name="Medium" type="Label" parent="MarginContainer/Character Options/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_alpc1")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_tab_index = 1
+
+[node name="Heavy" type="Label" parent="MarginContainer/Character Options/StandType"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Heavy"
+label_settings = SubResource("LabelSettings_alpc1")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_tab_index = 2
+
+[node name="Color" type="TabContainer" parent="MarginContainer/Character Options"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../StandType")
+focus_neighbor_bottom = NodePath("../Guy")
+focus_mode = 2
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("6_g2qe6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Blue" type="Panel" parent="MarginContainer/Character Options/Color"]
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
+metadata/_tab_index = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Character Options/Color/Blue"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_t3hcp")
+color = Color(0, 0.619608, 0.933333, 1)
+
+[node name="Purple" type="Panel" parent="MarginContainer/Character Options/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
+metadata/_tab_index = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Character Options/Color/Purple"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.751635, 0.370664, 1, 1)
+
+[node name="Pink" type="Panel" parent="MarginContainer/Character Options/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
+metadata/_tab_index = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Character Options/Color/Pink"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.983123, 0.252881, 0.572498, 1)
+
+[node name="Red" type="Panel" parent="MarginContainer/Character Options/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
+metadata/_tab_index = 3
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Character Options/Color/Red"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.954993, 0.300531, 0.169365, 1)
+
+[node name="Orange" type="Panel" parent="MarginContainer/Character Options/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
+metadata/_tab_index = 4
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Character Options/Color/Orange"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.855891, 0.487664, 0.115647, 1)
+
+[node name="Yellow" type="Panel" parent="MarginContainer/Character Options/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
+metadata/_tab_index = 5
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Character Options/Color/Yellow"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.829442, 0.788601, 0.0820354, 1)
+
+[node name="Green" type="Panel" parent="MarginContainer/Character Options/Color"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
+metadata/_tab_index = 6
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Character Options/Color/Green"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.263164, 0.85746, 0.229203, 1)
+
+[node name="Guy" type="TabContainer" parent="MarginContainer/Character Options"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Color")
+focus_neighbor_bottom = NodePath("../Ready")
+focus_mode = 2
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+drag_to_rearrange_enabled = true
+use_hidden_tabs_for_min_size = true
+script = ExtResource("5_y6xyc")
+metadata/_edit_use_anchors_ = true
+
+[node name="BaseCharacter" type="Label" parent="MarginContainer/Character Options/Guy"]
+layout_mode = 2
+focus_mode = 2
+text = "Base Character"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 0
+
+[node name="Casual3_Male" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual3 Male"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 1
+
+[node name="Casual_Female" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Casual Female"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 2
+
+[node name="Chef_Hat" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Chef Hat"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 3
+
+[node name="Cow" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Cow"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 4
+
+[node name="Elf" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Elf"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 5
+
+[node name="Goblin_Male" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Goblin Male"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 6
+
+[node name="Knight_Male" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Knight Male"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 7
+
+[node name="OldClassy_Male" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Old Classy Male"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 8
+
+[node name="Pirate_Female" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pirate Female"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 9
+
+[node name="Pug" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Pug"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 10
+
+[node name="VikingHelmet" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Viking Helmet"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 11
+
+[node name="Witch" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Witch"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 12
+
+[node name="Wizard" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Wizard"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 13
+
+[node name="Zombie_Female" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Female"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 14
+
+[node name="Zombie_Male" type="Label" parent="MarginContainer/Character Options/Guy"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "Zombie Male"
+label_settings = SubResource("LabelSettings_sys1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_tab_index = 15
+
+[node name="Ready" type="PanelContainer" parent="MarginContainer/Character Options"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../Guy")
+focus_neighbor_bottom = NodePath("../StandType")
+
+[node name="ReadyUp" type="Button" parent="MarginContainer/Character Options/Ready"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Guy")
+focus_neighbor_bottom = NodePath("../../StandType")
+theme_override_fonts/font = ExtResource("4_d56o1")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_alpc1")
+text = "Ready?"
+metadata/_edit_use_anchors_ = true
+
+[node name="Join Prompt" type="Panel" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 515)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Join Prompt"]
+custom_minimum_size = Vector2(350, 515)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Join Prompt/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_d56o1")
+theme_override_font_sizes/font_size = 21
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Join Prompt/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_0oxmf")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/Join Prompt/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_d56o1")
+theme_override_font_sizes/font_size = 21
+text = "to join!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ready Indicator" type="Panel" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Ready Indicator"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -24.0
+offset_right = 68.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_d56o1")
+theme_override_font_sizes/font_size = 32
+text = "Ready!"
+horizontal_alignment = 1
+vertical_alignment = 1
