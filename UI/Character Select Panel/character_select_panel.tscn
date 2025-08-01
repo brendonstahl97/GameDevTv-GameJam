@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://ds1asw4j4y68q"]
+[gd_scene load_steps=14 format=3 uid="uid://ds1asw4j4y68q"]
 
 [ext_resource type="Script" uid="uid://tuhqkfs0pmt4" path="res://UI/Character Select Panel/character_select_panel.gd" id="1_qlqdv"]
-[ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="2_0oxmf"]
 [ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://UI/Character Select Panel/Character_select_highlight_stylebox.tres" id="3_wdw6p"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="4_d56o1"]
 [ext_resource type="Script" uid="uid://bu78s2gjf8h8q" path="res://UI/Character Select Panel/title_tab_container.gd" id="5_y6xyc"]
@@ -57,7 +56,6 @@ offset_bottom = 129.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qlqdv")
-assigned_player_controls = ExtResource("2_0oxmf")
 initial_focus = NodePath("MarginContainer/Character Options/StandType")
 highlight_stylebox = ExtResource("3_wdw6p")
 
@@ -75,6 +73,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/Character Options"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 theme = SubResource("Theme_m78mb")

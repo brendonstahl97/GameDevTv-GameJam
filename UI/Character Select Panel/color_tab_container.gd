@@ -1,7 +1,12 @@
 class_name ColorTabContainer
 extends MultiplayerTabContainer
 
-var selected_color: Color = Color(255, 255, 255, 255)
+var selected_color: Color
+
+func _ready() -> void:
+	super()
+	selected_color = _get_current_tab_color()
+
 
 func navigate_left() -> void:
 	super()

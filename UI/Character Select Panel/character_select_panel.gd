@@ -1,6 +1,8 @@
+class_name CharacterSelectPanel
 extends PanelContainer
 
-signal character_choices_updated(player_info: Dictionary)
+signal player_choices_updated(player_name: String, player_info: Dictionary)
+signal player_status_changed
 
 @onready var stand_type_selector: TitleTabContainer = %StandType
 @onready var color_selector: ColorTabContainer = %Color
@@ -9,8 +11,11 @@ signal character_choices_updated(player_info: Dictionary)
 @onready var ready_indicator: Panel = %"Ready Indicator"
 @onready var character_options: VBoxContainer = %"Character Options"
 @onready var ready_button: PanelContainer = %Ready
+@onready var name_display: LineEdit = %LineEdit
 
-@export var assigned_player_controls: PlayerControls
+@export var player_name: String = "Player 1" ## Display name of the player in-game
+@export var bot_name_modifier: String = "(Bot)" ## string that will be added on to the player name if the player is a bot
+@export var assigned_player_control_stack: ControlStack	##
 @export var initial_focus: Control
 @export var stylebox_override_target: String = "panel"
 @export var highlight_stylebox: StyleBox
@@ -20,20 +25,19 @@ var is_joined := false
 var is_ready := false
 var is_bot := false
 
-var player_info: Dictionary = {
-	"PlayerColor" = Color(.5, .5, .5),
-	"Money" = 0,
-	"PlayerGuy" = "Chef_Male",
-	"PlayerCart" = "Medium",
-	"is_bot" = false
-}:
+var player_info: Dictionary:
 	get:
-		return get_selected_values()
+		return _get_selected_values()
 
 
-func initialize(player_controls: PlayerControls, player_is_bot: bool = false) -> void:
-	assigned_player_controls = player_controls
+func initialize(player_control_stack: ControlStack, player_is_bot: bool = false) -> void:
+	name_display.text = player_name
+	assigned_player_control_stack = player_control_stack
 	is_bot = player_is_bot
+	
+	if (is_bot):
+		name_display.text += "(Bot)"
+		_join()
 
 
 func _ready() -> void:
@@ -41,6 +45,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	
+	if (assigned_player_control_stack == null || assigned_player_control_stack.get_current_control() != self):
+		return
 	
 	if (!is_joined):
 		_handle_unjoined_input()
@@ -52,49 +59,62 @@ func _process(_delta: float) -> void:
 		_handle_ready_input()
 
 
-func _handle_ready_input() -> void:
-	if (Input.is_action_just_pressed(assigned_player_controls.slam)):
-		ready_indicator.hide()
-		is_ready = false
+func _handle_unjoined_input() -> void:
+	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.sprint)):
+		_join()
+	
+	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.slam)):
+		assigned_player_control_stack.stack.pop_back()
+		assigned_player_control_stack = null
+		is_bot = false
 
 
 func _handle_joined_input() -> void:
-	if (Input.is_action_just_pressed(assigned_player_controls.code_down)):
+	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_down)):
 		_focus_down()
-	elif (Input.is_action_just_pressed(assigned_player_controls.code_up)):
+	elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_up)):
 		_focus_up()
+	
+	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.slam)):
+		_unjoin()
+		return
 	
 	
 	if (current_focus is MultiplayerTabContainer):
 		
-		if (Input.is_action_just_pressed(assigned_player_controls.code_left)):
+		if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_left)):
 			current_focus.navigate_left()
-			character_choices_updated.emit(player_info)
+			player_choices_updated.emit(self.name, player_info)
 			
-		if (Input.is_action_just_pressed(assigned_player_controls.code_right)):
+		if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_right)):
 			current_focus.navigate_right()
-			character_choices_updated.emit(player_info)
+			player_choices_updated.emit(self.name, player_info)
 			
 	elif (current_focus == ready_button):
-		if (Input.is_action_just_pressed(assigned_player_controls.sprint)):
+		
+		if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.sprint)):
 			ready_indicator.show()
 			is_ready = true
+			player_status_changed.emit()
+
+
+func _handle_ready_input() -> void:
+	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.slam)):
+		ready_indicator.hide()
+		is_ready = false
+		player_status_changed.emit()
+
+
+func _get_selected_values() -> Dictionary:
+	var player_choices = {
+		"PlayerColor" = color_selector.selected_color,
+		"Money" = 0,
+		"PlayerGuy" = guy_selector.selected_tab_title,
+		"PlayerCart" = stand_type_selector.selected_tab_title,
+		"is_bot" = is_bot
+	}
 	
-
-
-func _handle_unjoined_input() -> void:
-	if (Input.is_action_just_pressed(assigned_player_controls.sprint)):
-		join_prompt.hide()
-		character_options.show()
-		is_joined = true
-
-func get_selected_values() -> Dictionary:
-	player_info["PlayerCart"] = stand_type_selector.selected_tab_title
-	player_info["PlayerGuy"] = guy_selector.selected_tab_title
-	player_info["PlayerColor"] = color_selector.selected_color
-	player_info["is_bot"] = is_bot
-	
-	return player_info
+	return player_choices
 
 
 func _focus_down() -> void:
@@ -111,3 +131,22 @@ func _focus_element(element: Control) -> void:
 		
 	current_focus = element
 	current_focus.add_theme_stylebox_override(stylebox_override_target, highlight_stylebox)
+
+
+func _join() -> void:
+	join_prompt.hide()
+	character_options.show()
+	is_joined = true
+	player_status_changed.emit()
+
+
+func _unjoin() -> void:
+	join_prompt.show()
+	character_options.hide()
+	is_joined = false
+	player_status_changed.emit()
+	
+	if (is_bot):
+		is_bot = false
+		assigned_player_control_stack.stack.pop_back()
+		assigned_player_control_stack = null

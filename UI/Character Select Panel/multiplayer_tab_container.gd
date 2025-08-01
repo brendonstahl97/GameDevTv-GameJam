@@ -4,7 +4,7 @@ extends TabContainer
 var num_tabs: int = 0
 
 func _ready() -> void:
-	num_tabs = get_tab_count()
+	num_tabs = get_children().size()
 
 
 func navigate_left() -> void:
