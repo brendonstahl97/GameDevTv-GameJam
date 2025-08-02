@@ -1,7 +1,7 @@
 class_name CodeSubmissionComponent
 extends Node
 
-signal code_submitted(code_direction: Global.CodeDirection, player_index: int)
+signal code_submitted(code_direction: Global.CodeDirection, player: Player)
 
 @export var group_name = "Code_Submitters"
 @export var code_submission_stamina_cost = 7.5 ## The stamina cost of each code submission button press
@@ -9,5 +9,5 @@ signal code_submitted(code_direction: Global.CodeDirection, player_index: int)
 func _ready() -> void:
 	add_to_group(group_name)
 	
-func submit_code(code_direction: Global.CodeDirection, player_index: int) -> void:
-	code_submitted.emit(code_direction, player_index)
+func submit_code(code_direction: Global.CodeDirection, player: Player) -> void:
+	code_submitted.emit(code_direction, player)

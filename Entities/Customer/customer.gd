@@ -153,12 +153,10 @@ func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> 
 		code_submission_sounds.stream = code_submitted_incorrect_sound
 		code_submission_sounds.play()
 
-func _on_player_code_submitted(input: Global.CodeDirection, playerIndex: int) -> void:
+func _on_player_code_submitted(input: Global.CodeDirection, player: Player) -> void:
 	if (completed):
 		return
 
-	# Find player of name playerIndex
-	var player : Node3D = get_node("/root/Game/Players/" + str(playerIndex))
 	if (player == null):
 		return
 
