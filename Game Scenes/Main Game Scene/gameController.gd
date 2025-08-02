@@ -6,6 +6,7 @@ signal PlayersSpawned
 @onready var match_ui: Control = %MatchUi
 @onready var players_node: Node = %Players
 @onready var game_mode: GameMode = $"Timer Game Mode" ## This will change based on the loaded game mode, however it must be changed manually now
+@onready var pause_menu: Control = %PauseMenu
 
 @export var player_scene: PackedScene
 @export var bot_scene: PackedScene
@@ -26,6 +27,11 @@ func _ready() -> void:
 	
 	game_mode.game_over.connect(_game_over)
 	game_mode.start_game()
+
+
+func _process(_delta: float) -> void:
+	if (Input.is_action_just_pressed("ui_cancel")):
+		pause_menu.open()
 
 
 func game_completed(_winner: Node3D) -> void:
