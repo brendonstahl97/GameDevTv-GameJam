@@ -7,6 +7,9 @@ signal PlayersSpawned
 @onready var players_node: Node = %Players
 @onready var game_mode: GameMode = $"Timer Game Mode" ## This will change based on the loaded game mode, however it must be changed manually now
 
+@export var player_scene: PackedScene
+@export var bot_scene: PackedScene
+
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,30 +50,24 @@ func _setup_players() -> void:
 			var this_players_info = global.playerInfo[player_key]
 			this_players_info["Money"] = 0
 			
-			var player_object: Player = preload("res://Entities/Player/player.tscn").instantiate()
+			var scene_to_spawn = player_scene
+			
+			if (this_players_info["is_bot"]):
+				scene_to_spawn = bot_scene
+				
+			var player_object: Player = scene_to_spawn.instantiate()
 			player_object.name = str(int(player_key)-1)
 
-			var controls_resource = ResourceLoader.load("res://Resources/PlayerControls/Player_" + player_key + "_Controls.tres")
-			player_object.Controls = controls_resource
+			player_object.Controls = this_players_info["PlayerControls"]
 			
+			if (player_object is BotPlayer):
+				player_object.apply_difficulty(this_players_info["bot_difficulty"])
+
 			# Set player stand
 			player_object.get_node("Stands/Light").visible = false
 			player_object.get_node("Stands/Medium").visible = false
 			player_object.get_node("Stands/Heavy").visible = false
 			player_object.get_node("Stands/" + this_players_info["PlayerCart"]).visible = true
-			
-			player_object.get_node("Stands/" + this_players_info["PlayerCart"]).visible = true
-			var playerColorMaterial = StandardMaterial3D.new()
-
-			#match this_players_info["PlayerCart"]:
-				#"Light":
-					#player_object.get_node("Stands/" + this_players_info["PlayerCart"] + "/cart").set_surface_override_material(0, playerColorMaterial)
-				#"Medium":
-					#player_object.get_node("Stands/" + this_players_info["PlayerCart"] + "/stallGreen").set_surface_override_material(1, playerColorMaterial)
-				#"Heavy":
-					#player_object.get_node("Stands/" + this_players_info["PlayerCart"] + "/Market_SecondAge_Level1").set_surface_override_material(2, playerColorMaterial)
-
-			
 			# Delete the other stands
 			for stand in player_object.get_node("Stands").get_children():
 				if (stand.name != this_players_info["PlayerCart"]):
@@ -84,12 +81,6 @@ func _setup_players() -> void:
 			add_child(player_guy)
 			var mesh_instance = player_guy.get_node("CharacterArmature/Skeleton3D/Body")
 			var old_mesh_instance = player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
-			
-			# Change player mesh color to player color
-			#playerColorMaterial.albedo_color = Color(this_players_info["PlayerColor"])
-			#mesh_instance.set_surface_override_material(0, playerColorMaterial)
-			player_object.set_player_color_and_cart( this_players_info["PlayerColor"] , this_players_info["PlayerCart"] , mesh_instance)
-			
 			mesh_instance.reparent(player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
 			mesh_instance.transform = old_mesh_instance.transform
 			player_guy.queue_free()

@@ -1,3 +1,4 @@
+class_name NoYMovementRemoteTransformComponent
 extends RemoteTransform3D
 
 @export var YValue = 0.0

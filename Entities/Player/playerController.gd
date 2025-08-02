@@ -26,6 +26,8 @@ var PlayerCartType : String = "Normal"
 var PlayerColor : Color = Color(.8, .19, 0.01)
 var PlayerGuy : String = "Man 1"
 
+var player_index: int = int(name)
+
 var movement_direction = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
@@ -88,7 +90,7 @@ func _handle_code_input() -> void:
 		
 	if (code_direction != Global.CodeDirection.NONE):
 		if (stamina_manager.try_drain_stamina(code_submission_component.code_submission_stamina_cost)):
-			code_submission_component.submit_code(code_direction, Controls.PlayerIndex)
+			code_submission_component.submit_code(code_direction, player_index)
 
 
 func _handle_parry_input() -> void:
@@ -143,16 +145,6 @@ func _on_parry_component_parry_sound(sound: AudioStream) -> void:
 func _on_parry_component_parry_failure() -> void:
 	stamina_manager.try_drain_stamina(stamina_manager.max_stamina, false)
 
-func set_player_color_and_cart( color, cart, mesh ):
-	PlayerColor = color
-	var playerColorMaterial = StandardMaterial3D.new()
-	playerColorMaterial.albedo_color = Color(PlayerColor)
-	mesh.set_surface_override_material(0, playerColorMaterial)
-	
-	match cart:
-		"Light":
-			$Stands/Light/cart.set_surface_override_material(0, playerColorMaterial)
-		"Medium":
-			$Stands/Medium/stallGreen.set_surface_override_material(1, playerColorMaterial)
-		"Heavy":
-			$Stands/Heavy/Market_SecondAge_Level1.set_surface_override_material(2, playerColorMaterial)
+
+func _on_bump_component_successful_bump(restored_stamina_amount: float) -> void:
+	stamina_manager.restoreStamina(restored_stamina_amount)

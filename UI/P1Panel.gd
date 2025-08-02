@@ -1,10 +1,21 @@
 extends Panel
+
+@export var debug_is_bot := false
+
+@onready var navigable_items: Control = $NavigableItems
+
+var player_info: Dictionary = {
+	"PlayerColor" = Color(.5, .5, .5),
+	"Money" = 500,
+	"PlayerGuy" = "Chef_Male",
+	"PlayerCart" = "Medium",
+	"is_bot" = false
+}
 var selected
-var readyUp = false
+var ready_up = false
 var joined = false
 var currentIndex = 0
 var borderStyleBox
-@onready var navigable_items: Control = $NavigableItems
 var verticalItems
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +46,10 @@ func _ready():
 	
 	# Easy access to the array of children
 	verticalItems = navigable_items.get_children()
+	
+	if (debug_is_bot):
+		joined = true
+		ready_up = true
 
 func _process(_delta: float) -> void:
 	if( (Input.is_action_just_pressed("p" + name + "_sprint") || Input.is_action_just_pressed("p" + name + "_slam")) && !joined ):
@@ -42,11 +57,11 @@ func _process(_delta: float) -> void:
 		_join_player()
 
 	# Unready
-	if (Input.is_action_just_pressed("p" + name + "_slam") && readyUp):
-		readyUp = false
+	if (Input.is_action_just_pressed("p" + name + "_slam") && ready_up):
+		ready_up = false
 		_join_player()
 	
-	if (joined and !readyUp):
+	if (joined and !ready_up):
 		_handle_navigation()
 
 func _join_player() -> void:
@@ -63,7 +78,7 @@ func _join_player() -> void:
 	get_node("/root/CharacterSelect")._replace_players()
 
 func _ready_player() -> void:
-	readyUp = true
+	ready_up = true
 	joined = true
 	get_child(3).visible = true
 

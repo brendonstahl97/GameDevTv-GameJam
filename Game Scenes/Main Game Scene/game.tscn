@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=14 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" uid="uid://blux4125gnvqt" path="res://Game Scenes/Main Game Scene/gameController.gd" id="1_jnwv1"]
 [ext_resource type="PackedScene" uid="uid://btmq676yqmw8b" path="res://Entities/Game Camera/game_camera.tscn" id="3_jnwv1"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cc208v5isrh86" path="res://Entities/Cloud Spawner/BroccoliClouds.tscn" id="7_eq00y"]
 [ext_resource type="PackedScene" uid="uid://daivvebyrgfbq" path="res://Game Scenes/Main Game Scene/Game Levels/Mountaintop Manor/mountaintop_manor.tscn" id="8_n4urr"]
 [ext_resource type="PackedScene" uid="uid://sy12p0cwnfos" path="res://Entities/Game Modes/Timer Game Mode/timer_game_mode.tscn" id="9_n4urr"]
+[ext_resource type="PackedScene" uid="uid://cgfmql12u5ois" path="res://Entities/Player/Bot Player/bot_player.tscn" id="12_rjcjm"]
 [ext_resource type="Script" uid="uid://dclp74r3mee3v" path="res://Entities/Parry Slow Time Effect/parry_slow_time_effect.gd" id="13_43rdh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r85bj"]
@@ -17,6 +18,8 @@ size = Vector3(73, 64, 57)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_jnwv1")
+player_scene = ExtResource("4_4rhit")
+bot_scene = ExtResource("12_rjcjm")
 
 [node name="Camera3D" parent="." instance=ExtResource("3_jnwv1")]
 transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 3.82, 10.5, 20)
