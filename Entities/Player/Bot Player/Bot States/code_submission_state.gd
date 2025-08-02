@@ -19,7 +19,7 @@ func update(_delta: float) -> void:
 	
 	if (code_direction != Global.CodeDirection.NONE):
 		if (stamina_manager.try_drain_stamina(code_submission_component.code_submission_stamina_cost)):
-			code_submission_component.submit_code(code_direction, bot_player.Controls.PlayerIndex)
+			code_submission_component.submit_code(code_direction, bot_player)
 		else:
 			is_recharging_stamina = true
 			get_tree().create_timer(stamina_empty_wait_time).timeout.connect(func(): is_recharging_stamina = false)
