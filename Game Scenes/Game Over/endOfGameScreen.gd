@@ -14,12 +14,7 @@ func rematchClicked():
 	BackgroundMusic.rematch()
 	
 func mainMenuClicked():
-	if (Time.get_unix_time_from_system() <= (timeEntered + 2)):
-		return
-	global.playerInfo = null
-	BackgroundMusic.get_child(3).stop()
-	BackgroundMusic.get_child(0).volume_db = -12
-	BackgroundMusic.get_child(0).play()
+	BackgroundMusic.rematch()
 	get_tree().change_scene_to_file("res://Game Scenes/Start Menu/Start.tscn")
 
 # Called when the node enters the scene tree for the first time.
