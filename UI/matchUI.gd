@@ -1,48 +1,41 @@
+class_name ScorePanelManager
 extends Control
-var p1Score = 0
-var p2Score = 0
-var p3Score = 0
-var p4Score = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	get_node("/root/Game").connect("PlayersSpawned", updatePlayerIcons)
+func initialize_score_panels() -> void:
+	assert(global.playerInfo != null, "Global player info not initialized")
 
-
-func updatePlayerIcons():
-	if (!global.playerInfo):
-		return
-
-	for playerKey in global.playerInfo:
-		var playerPanel = get_node("P" + playerKey + "_Panel")
-		playerPanel.get_node("PlayerIcon").set_modulate(global.playerInfo[playerKey].PlayerColor)
+	var player_index = 0
+	for player_key in global.playerInfo:
+		var score_panel: ScorePanel = get_child(player_index)
+		score_panel.initialize_display(player_key, global.playerInfo[player_key]["PlayerColor"])
+		score_panel.update_score(global.playerInfo[player_key]["Money"])
+		player_index += 1
+	
+	_hide_unused_panels()
 
 
-func updatePlayerMoney(player : String, newAmount : int):
-	if player == "0":
-		p1Score = newAmount
-	elif player == "1":
-		p2Score = newAmount
-	elif player == "2":
-		p3Score = newAmount
-	elif player == "3":
-		p4Score = newAmount
+func update_player_score(player_name : String, new_score : int):
+	var panel_to_update = get_panel_for_player(player_name)
+	
+	if (panel_to_update != null):
+		panel_to_update.update_score(new_score)
 
 
-func hidePlayerPanel(player: String):
-	if player == "0":
-		$P1_Panel.hide()
-	elif player == "1":
-		$P2_Panel.hide()
-	elif player == "2":
-		$P3_Panel.hide()
-	elif player == "3":
-		$P4_Panel.hide()
+func _hide_unused_panels():
+	for panel: ScorePanel in get_children():
+		if (panel.player_name == null || panel.player_name.is_empty()):
+			panel.hide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	$P1_Panel/ScoreLabel.text = ("[center]$ " + str(p1Score) + "[/center]")
-	$P2_Panel/ScoreLabel.text = ("[center]$ " + str(p2Score) + "[/center]")
-	$P3_Panel/ScoreLabel.text = ("[center]$ " + str(p3Score) + "[/center]")
-	$P4_Panel/ScoreLabel.text = ("[center]$ " + str(p4Score) + "[/center]")
+func get_panel_for_player(player_name: String) -> ScorePanel:
+	for child: ScorePanel in get_children():
+		if (!child is ScorePanel):
+			continue
+		
+		if (child.player_name == null || child.player_name.is_empty()):
+			continue
+		
+		if (child.player_name == player_name):
+			return child as ScorePanel
+	
+	return null

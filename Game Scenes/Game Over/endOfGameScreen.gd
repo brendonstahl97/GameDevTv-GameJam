@@ -1,122 +1,64 @@
 extends Node
 
+@export var display_player_scene: PackedScene
+
+@onready var display_player_positions: Node3D = %DisplayPlayerPositions
+@onready var score_panels: ScorePanelManager = %HBoxContainer
+
 var timeEntered = 0
 
-func sort_descending(a, b):
-	if a[0] > b[0]:
-		return true
-	return false
-	
 func rematchClicked():
+	# this check fixed a bug, but I can't remember what
 	if (Time.get_unix_time_from_system() <= (timeEntered + 2)):
 		return
 	get_tree().change_scene_to_file("res://Game Scenes/Main Game Scene/game.tscn")
 	BackgroundMusic.rematch()
-	
+
+
 func mainMenuClicked():
 	BackgroundMusic.rematch()
 	get_tree().change_scene_to_file("res://Game Scenes/Start Menu/Start.tscn")
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timeEntered = Time.get_unix_time_from_system()
-	$"Control/HBoxContainer2/Rematch".grab_focus()
+	%Rematch.grab_focus()
 	
-	get_node("Control/HBoxContainer2/Rematch").pressed.connect(rematchClicked)
-	get_node("Control/HBoxContainer2/MainMenu").pressed.connect(mainMenuClicked)
-	
-	if (global.playerInfo == null):
-		global.playerInfo = {
-			"1" = {
-				"PlayerColor" = Color(.5, .5, .5),
-				"Money" = 500,
-				"PlayerGuy" = "Chef_Male",
-				"PlayerCart" = "Medium"
-			},
-			"2" = {
-				"PlayerColor" = Color(.5, .5, .5),
-				"Money" = 300,
-				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Light"
-			},
-			"3" = {
-				"PlayerColor" = Color(.5, .5, .5),
-				"Money" = 800,
-				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Heavy"
-			},
-			"4" = {
-				"PlayerColor" = Color(.5, .5, .5),
-				"Money" = 5000,
-				"PlayerGuy" = "Casual3_Male",
-				"PlayerCart" = "Light"
-			},
-		}
+	score_panels.initialize_score_panels()
 
-	# Sort players by money
-	var sortedPlayerInfo : Array = []
-	for playerKey in global.playerInfo:
-		var thisPlayersInfo = global.playerInfo[playerKey]
-		sortedPlayerInfo.append([thisPlayersInfo["Money"], playerKey])
-	sortedPlayerInfo.sort_custom(sort_descending)
-
-	print(sortedPlayerInfo)
+	var sorted_player_info = global.get_sorted_player_info()
 
 	# Get the player info, and replace each player stuffs with the relevant info.
-	for n in range(sortedPlayerInfo.size()):
-		var placeNumber = n + 1
-		var playerKey = sortedPlayerInfo[n][1]
-		var playerMoney = sortedPlayerInfo[n][0]
-
-		print(placeNumber, " ", playerKey, " ", playerMoney)
-
-		var thisPlayersInfo = global.playerInfo[playerKey]
-		var playerPanel = get_node("/root/EndOfGame/Control/HBoxContainer/" + str(placeNumber))
-		var playerObject = get_node("/root/EndOfGame/" + str(placeNumber))
-
-		# Set the UI (color, name and score)
-		playerPanel.get_node("PlayerIcon").set_modulate(thisPlayersInfo["PlayerColor"])
-		playerPanel.get_node("PlayerName").set_text("Player " + playerKey)
-		playerPanel.get_node("ScoreLabel").set_text("[center]$" + str(playerMoney) + "[/center]")
-
-		# Set the guy
-		# Spawn a new instance of the character asset, switch the "Body" mesh instance.
-		var playerGuy = load("res://Assets/Characters/" + thisPlayersInfo["PlayerGuy"] + ".gltf").instantiate()
-		add_child(playerGuy)
-		var meshInstance = playerGuy.get_node("CharacterArmature/Skeleton3D/Body")
-		var oldMeshInstance = playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")
-		print(meshInstance.name)
-		meshInstance.reparent(playerObject.get_node("Casual3_Male/CharacterArmature/Skeleton3D"))
-		meshInstance.transform = oldMeshInstance.transform
-		playerGuy.queue_free()
-		oldMeshInstance.queue_free()
-
-		# Set the cart
-		playerObject.get_node("Stands/Light").visible = false
-		playerObject.get_node("Stands/Medium").visible = false
-		playerObject.get_node("Stands/Heavy").visible = false
-		playerObject.get_node("Stands/" + thisPlayersInfo["PlayerCart"]).visible = true
-		# Delete the other stands
-		for stand in playerObject.get_node("Stands").get_children():
-			if (stand.name != thisPlayersInfo["PlayerCart"]):
-				stand.queue_free()
+	for i in range(sorted_player_info.size()):
+		var player_name = sorted_player_info[i][0]
+		var thisPlayersInfo = sorted_player_info[i][1]
+		
+		# Move the score panel to the correct position based on their rank
+		var player_panel = score_panels.get_panel_for_player(player_name)
+		score_panels.move_child(player_panel, i)
+		
+		var display_player: DisplayPlayer = display_player_scene.instantiate()
+		var target_position: Node3D = display_player_positions.get_child(i)
+		
+		target_position.add_child(display_player)
+		display_player.global_position = target_position.global_position
+		
+		display_player.name = player_name
+		display_player._update_character_display(player_name, thisPlayersInfo)
+		
+		if (i == 0):
+			display_player.animation_player.play("Victory")
+		else:
+			display_player.animation_player.play("Death")
 
 
-	# Remove the un-used player stuffs
-	var playersMissing = 4 - sortedPlayerInfo.size()
-	for n in range(playersMissing):
-		var placeNumber = 4 - n
-		print(placeNumber, " is missing")
-		var playerPanel = get_node("/root/EndOfGame/Control/HBoxContainer/" + str(placeNumber))
-		var playerObject = get_node("/root/EndOfGame/" + str(placeNumber))
-		playerPanel.visible = false
-		playerObject.visible = false
-
+# TODO check all player's input
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("p1_sprint")):
-		var owner = get_viewport().gui_get_focus_owner()
-		if (owner.name == "Rematch"):
+		var focused_button = get_viewport().gui_get_focus_owner()
+		if (focused_button.name == "Rematch"):
 			rematchClicked()
-		elif (owner.name == "MainMenu"):
+		elif (focused_button.name == "MainMenu"):
 			mainMenuClicked()

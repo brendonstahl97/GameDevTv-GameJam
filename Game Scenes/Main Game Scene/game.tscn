@@ -55,10 +55,12 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 script = ExtResource("13_43rdh")
 
 [node name="Timer Game Mode" parent="." instance=ExtResource("9_n4urr")]
+game_time_length = 15.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("13_3f0mu")]
 unique_name_in_owner = true
 
 [connection signal="PlayersSpawned" from="." to="Customers" method="_on_game_players_spawned"]
+[connection signal="PlayersSpawned" from="." to="MatchUi" method="initialize_score_panels"]
 [connection signal="body_exited" from="Killbox" to="Killbox" method="_on_body_exited"]
 [connection signal="timeout" from="ParrySlowTimeEffect" to="ParrySlowTimeEffect" method="_on_timeout"]

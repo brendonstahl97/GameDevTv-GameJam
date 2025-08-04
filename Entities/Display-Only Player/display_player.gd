@@ -3,6 +3,7 @@ extends StaticBody3D
 
 @onready var stands: Node3D = %Stands
 @onready var body: MeshInstance3D = %Body
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 func _update_character_display(player_name: String, player_info: Dictionary) -> void:
 	

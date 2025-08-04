@@ -56,10 +56,9 @@ func _get_player_choices() -> Dictionary:
 		if (!p.is_joined):
 			continue
 
-		var playerNumber: String = p.name
 		var playerNestedInfo = p.player_info
 
-		playerChoices[playerNumber] = playerNestedInfo
+		playerChoices[p.final_player_name] = playerNestedInfo
 	return playerChoices
 
 

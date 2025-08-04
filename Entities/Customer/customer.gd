@@ -84,7 +84,7 @@ func _on_body_entered(body:Node3D) -> void:
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
 		if (global.playerInfo != null):
-			$Decal.set_modulate(global.playerInfo[str(int(str(body.name))+1)]["PlayerColor"])
+			$Decal.set_modulate(global.playerInfo[body.name]["PlayerColor"])
 		currentPlayer = body
 
 
@@ -108,7 +108,7 @@ func _on_body_exited(_body:Node3D) -> void:
 				closestPlayer = player
 		currentPlayer = closestPlayer
 		if (global.playerInfo != null):
-			$Decal.set_modulate(global.playerInfo[str(int(str(currentPlayer.name))+1)]["PlayerColor"])
+			$Decal.set_modulate(global.playerInfo[currentPlayer.name]["PlayerColor"])
 	else:
 		if (currentPlayerSequence.size() == 0):
 			customer_task_display.visible = false
