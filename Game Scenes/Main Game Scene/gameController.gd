@@ -94,11 +94,11 @@ func _setup_players() -> void:
 
 			# Place the player
 			var spawn_point = environment.spawn_points.get_children()[player_index]
+			$Players.add_child(player_object)
 			if (spawn_point is Node3D):
 				player_object.global_transform.origin = spawn_point.global_position
 			else: 
 				push_error("The selected spawn point: ", spawn_point.name, "is not a Node3D")
-			$Players.add_child(player_object)
 			
 			player_index += 1
 

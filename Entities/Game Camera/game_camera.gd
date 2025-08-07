@@ -6,9 +6,9 @@ var PlayersInGame
 @export var xPlayerLimits: Vector2 ## how far positive or negative a player can go in the X direction before they are no longer included in the camera position calculations (x = min, y = max)
 @export var yPlayerLimits: Vector2 ## how far positive or negative a player can go in the X direction before they are no longer included in the camera position calculations (x = min, y = max)
 @export var zPlayerLimits: Vector2 ## how far positive or negative a player can go in the Z direction before they are no longer included in the camera position calculations (x = min, y = max)
-@export var lerpSpeed = 1.0
-@export var ParryFocusLerpSpeed = 10.0
-@export var ParryFocusFov = 30.0
+@export var lerpSpeed = 1.0 ## how quickly the camera will catch-up the the target focus position
+@export var ParryFocusLerpSpeed = 10.0 ## how quickly the camera will zoom in to the parry location
+@export var ParryFocusFov = 30.0 ## the FOV angle the camera will zoom in to during a parry effect
 
 var StartingPosition: Vector3
 var StartingFov: float
@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 	var avgPositionNoY = Vector3(avgPosition.x, 0, avgPosition.z)
 	var positionRangeNoY = Vector3(maxPos.x, 0, maxPos.y) - Vector3(minPos.x, 0, minPos.y)
 	
-	var targetPos = Vector3(avgPositionNoY.x, position.y, position.z)
+	var targetPos = Vector3(avgPositionNoY.x, StartingPosition.y + avgPosition.y, position.z)
 	position = position.lerp(targetPos, delta * lerpSpeed)
 	
 	var targetFov = StartingFov + positionRangeNoY.length()/2 if (!IsParryFocused) else ParryFocusFov

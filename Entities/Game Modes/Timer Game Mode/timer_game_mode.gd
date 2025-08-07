@@ -15,7 +15,7 @@ func start_game() -> void:
 
 func _format_time(gameTimeLeft: float) -> String:
 	var seconds = max(int(gameTimeLeft)%60, 0)
-	var minutes = max((int(gameTimeLeft)/60)%60, 0)
+	var minutes = max(int(gameTimeLeft/60)%60, 0)
 	var formattedString = "%02d:%02d" % [minutes, seconds]
 	return ("[center]" + formattedString + "[/center]")
 

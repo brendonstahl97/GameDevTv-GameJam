@@ -10,5 +10,4 @@ func _physics_process(_delta: float) -> void:
 	var ground_point: Vector3 = position_ray_cast.get_collision_point()
 	
 	if (ground_point != null):
-		print("found ground point: ", ground_point)
 		global_position.y = ground_point.y + height_offset

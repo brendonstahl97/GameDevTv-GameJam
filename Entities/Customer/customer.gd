@@ -13,6 +13,7 @@ signal customer_type_assigned(customer_type: CustomerType)
 @onready var code_submission_sounds: AudioStreamPlayer3D = %CodeSubmissionSounds
 @onready var coin_effect_spawner: EffectSpawner = %CoinEffectSpawner
 @onready var customer_task_display: CustomerTaskDisplay = %"Customer Task Display"
+@onready var ground_alignment_component: GroundAlignmentComponent = %GroundAlignmentComponent
 
 @export var customer_group_name: String = "Customers"
 @export var code_submitted_correct_sound: AudioStream
@@ -66,6 +67,8 @@ func _ready() -> void:
 
 	# Generate the task sequence for the customer
 	correctTaskSequence = generateSequence()
+	
+	ground_alignment_component.call_deferred("align_to_ground", self)
 
 	for code_submitter: CodeSubmissionComponent in get_tree().get_nodes_in_group("Code_Submitters"):
 		code_submitter.code_submitted.connect(_on_player_code_submitted)

@@ -56,7 +56,7 @@ script = ExtResource("1_uhar7")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 top_level = true
 layers = 3
-render_priority = 1
+render_priority = 2
 texture = SubResource("ViewportTexture_0gf0w")
 script = ExtResource("2_bhuub")
 StaminaProgressBar = NodePath("../SubViewport/TextureProgressBar")
@@ -96,7 +96,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 remote_path = NodePath("../StaminaDisplay")
 update_rotation = false
 script = ExtResource("6_qyj0q")
-height_offset = 0.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 unique_name_in_owner = true

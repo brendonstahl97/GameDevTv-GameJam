@@ -52,7 +52,7 @@ bottom_right_customer_spawn_limit = NodePath("CustomerSpawnBounds/Bottom Right")
 environment = SubResource("Environment_kwq0f")
 
 [node name="FogVolume" type="FogVolume" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.174036, 13.980855)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.174036, -10.394046)
 size = Vector3(150, 30, 73.950195)
 
 [node name="NavigableMeshes" type="NavigationRegion3D" parent="."]
