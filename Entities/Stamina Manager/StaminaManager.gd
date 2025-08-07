@@ -1,5 +1,5 @@
 class_name StaminaManager
-extends  Node
+extends  Node3D
 
 signal stamina_consumption_failed
 
