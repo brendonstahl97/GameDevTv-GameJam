@@ -143,4 +143,4 @@ draw_pass_1 = ExtResource("1_6bq86")
 
 [node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="."]
 size = Vector3(4, 3, 4)
-heightfield_mask = 1048574
+heightfield_mask = 1048573

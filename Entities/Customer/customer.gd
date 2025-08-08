@@ -13,6 +13,7 @@ signal customer_type_assigned(customer_type: CustomerType)
 @onready var code_submission_sounds: AudioStreamPlayer3D = %CodeSubmissionSounds
 @onready var coin_effect_spawner: EffectSpawner = %CoinEffectSpawner
 @onready var customer_task_display: CustomerTaskDisplay = %"Customer Task Display"
+@onready var ground_alignment_component: GroundAlignmentComponent = %GroundAlignmentComponent
 
 @export var customer_group_name: String = "Customers"
 @export var code_submitted_correct_sound: AudioStream
@@ -66,6 +67,8 @@ func _ready() -> void:
 
 	# Generate the task sequence for the customer
 	correctTaskSequence = generateSequence()
+	
+	ground_alignment_component.call_deferred("align_to_ground", self)
 
 	for code_submitter: CodeSubmissionComponent in get_tree().get_nodes_in_group("Code_Submitters"):
 		code_submitter.code_submitted.connect(_on_player_code_submitted)
@@ -84,7 +87,7 @@ func _on_body_entered(body:Node3D) -> void:
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
 		if (global.playerInfo != null):
-			$Decal.set_modulate(global.playerInfo[str(int(str(body.name))+1)]["PlayerColor"])
+			$Decal.set_modulate(global.playerInfo[body.name]["PlayerColor"])
 		currentPlayer = body
 
 
@@ -108,7 +111,7 @@ func _on_body_exited(_body:Node3D) -> void:
 				closestPlayer = player
 		currentPlayer = closestPlayer
 		if (global.playerInfo != null):
-			$Decal.set_modulate(global.playerInfo[str(int(str(currentPlayer.name))+1)]["PlayerColor"])
+			$Decal.set_modulate(global.playerInfo[currentPlayer.name]["PlayerColor"])
 	else:
 		if (currentPlayerSequence.size() == 0):
 			customer_task_display.visible = false

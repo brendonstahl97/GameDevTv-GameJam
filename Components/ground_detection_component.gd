@@ -5,7 +5,7 @@ signal grounded_status_changed(status: bool)
 
 var is_grounded: bool = false
 	
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	var colliding = is_colliding()
 

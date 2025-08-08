@@ -33,9 +33,18 @@ func _recalculate_leader() -> String:
 			is_tied = true	
 			
 	if (highest_score >= score_target):
+		_assign_player_rankings()
 		game_over.emit()
 			
 	if (is_tied):
 		return score_tied_text
 		
 	return "[center]Player " + score_leader + "[/center]"
+
+
+func _assign_player_rankings() -> void:
+	var sorted_player_info = global.get_sorted_player_info()
+	
+	for player_index in range(sorted_player_info.size()):
+		var player_info = sorted_player_info[player_index]
+		global.playerInfo[player_info[0]]["PlayerRank"] = player_index + 1

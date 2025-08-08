@@ -30,6 +30,10 @@ var player_info: Dictionary:
 	get:
 		return _get_selected_values()
 
+var final_player_name: String:
+	get: 
+		return name_display.placeholder_text
+
 
 func initialize(player_control_stack: ControlStack, player_is_bot: bool = false) -> void:
 	name_display.placeholder_text = player_name

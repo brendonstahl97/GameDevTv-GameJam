@@ -23,7 +23,7 @@ colors = PackedColorArray(0.85098, 0.435294, 0.701961, 1, 0.85098, 0.435294, 0.7
 [sub_resource type="BoxShape3D" id="BoxShape3D_wskmw"]
 size = Vector3(1.47086, 0.388062, 1.39938)
 
-[node name="LaunchPad" type="Node3D"]
+[node name="LaunchPad" type="Node3D" groups=["Launchers"]]
 script = ExtResource("1_7day0")
 LaunchForce = 10.0
 

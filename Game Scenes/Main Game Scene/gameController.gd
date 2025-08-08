@@ -15,15 +15,11 @@ signal PlayersSpawned
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	global.customer_completed.connect(_on_customer_completed)
-	game_mode.game_over.connect(_game_over)
 
 	_setup_players()
 
 	# Hide player panels which dont have a player
-	for i in range(4): 
-		var player = get_node_or_null("/root/Game/Players/" + str(i))
-		if (player == null):
-			get_node("/root/Game/MatchUi").hidePlayerPanel(str(i))
+	match_ui.initialize_score_panels()
 	
 	game_mode.game_over.connect(_game_over)
 	game_mode.start_game()
@@ -62,7 +58,7 @@ func _setup_players() -> void:
 				scene_to_spawn = bot_scene
 				
 			var player_object: Player = scene_to_spawn.instantiate()
-			player_object.name = str(int(player_key)-1)
+			player_object.name = player_key
 
 			player_object.Controls = this_players_info["PlayerControls"]
 			
@@ -98,11 +94,11 @@ func _setup_players() -> void:
 
 			# Place the player
 			var spawn_point = environment.spawn_points.get_children()[player_index]
+			$Players.add_child(player_object)
 			if (spawn_point is Node3D):
 				player_object.global_transform.origin = spawn_point.global_position
 			else: 
 				push_error("The selected spawn point: ", spawn_point.name, "is not a Node3D")
-			$Players.add_child(player_object)
 			
 			player_index += 1
 
@@ -110,18 +106,17 @@ func _setup_players() -> void:
 
 
 # A customer's task was completed, reward the player who did it.
-func _on_customer_completed(reward: int, playerIndex: String) -> void:
-	var player : Node3D = get_node("/root/Game/Players/" + playerIndex)
+func _on_customer_completed(reward: int, player_name: String) -> void:
+	var player : Node3D = get_node("/root/Game/Players/" + player_name)
 	if (player != null):
-		var money = global.playerInfo[str(int(str(player.name))+1)]["Money"]
+		var money = global.playerInfo[player.name]["Money"]
 		if (money == null):
 			money = 0
 		money += reward
-		global.playerInfo[str(int(str(player.name))+1)]["Money"] = money
+		global.playerInfo[player_name]["Money"] = money
 		
-		var matchUI = get_node("/root/Game/MatchUi")
-		if (matchUI != null):
-			matchUI.call("updatePlayerMoney", playerIndex, money)
+		if (match_ui != null && match_ui.has_method("update_player_score")):
+			match_ui.update_player_score(player_name, money)
 
 
 func _game_over() -> void:
@@ -131,7 +126,7 @@ func _game_over() -> void:
 	var winnerMoney = 0
 	
 	for player in players:
-		var money = global.playerInfo[str(int(str(player.name))+1)]["Money"]
+		var money = global.playerInfo[player.name]["Money"]
 		if (money > winnerMoney):
 			winner = player
 			winnerMoney = money
