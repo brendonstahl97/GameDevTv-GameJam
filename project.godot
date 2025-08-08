@@ -47,6 +47,7 @@ import/fbx/enabled=false
 Bumpable="Rigidbody that is able to be bumped by a player"
 Code_Submitters=""
 Customers=""
+Launchers="An object that can launch players vertically"
 
 [input]
 

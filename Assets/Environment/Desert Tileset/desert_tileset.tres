@@ -1954,8 +1954,8 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_ur7dn"]
 image = SubResource("Image_wgkk8")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0j7ay"]
-points = PackedVector3Array(1.0158731, 1.065873, 1.0158731, -1.0158731, 1.0341269, -1.0158731, -1.0158731, 1.065873, -1.0158731, 1.0158731, 1.0341269, -1.0158731, -1.0158731, 1.0341269, 1.0158731, -1.0158731, 1.065873, 1.0158731, 1.0158731, 1.065873, -1.0158731, 1.0158731, 1.0341269, 1.0158731)
+[sub_resource type="BoxShape3D" id="BoxShape3D_cw5fs"]
+size = Vector3(2.1, 1, 2.1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nmkyi"]
 _surfaces = [{
@@ -2097,7 +2097,7 @@ item/8/name = "center_a"
 item/8/mesh = SubResource("ArrayMesh_2of8l")
 item/8/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/8/mesh_cast_shadow = 1
-item/8/shapes = [SubResource("ConvexPolygonShape3D_0j7ay"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/8/shapes = [SubResource("BoxShape3D_cw5fs"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)]
 item/8/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/8/navigation_layers = 1
 item/8/preview = SubResource("ImageTexture_ur7dn")

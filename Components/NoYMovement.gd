@@ -7,6 +7,9 @@ extends RemoteTransform3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
+	if (position_ray_cast == null):
+		return
+		
 	var ground_point: Vector3 = position_ray_cast.get_collision_point()
 	
 	if (ground_point != null):

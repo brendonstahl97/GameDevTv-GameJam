@@ -132,6 +132,7 @@ func launch(impulse_force: Vector3, callling_entity: RigidBody3D, is_parriable :
 func _on_body_entered(_body: Node3D) -> void:
 	if (slam_component.is_slamming):
 		slam_component.end_slam()
+		linear_velocity = Vector3.ZERO
 		return
 
 
