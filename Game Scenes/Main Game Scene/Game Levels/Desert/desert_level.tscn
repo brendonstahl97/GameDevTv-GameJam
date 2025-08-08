@@ -1,15 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://by4osre76goju"]
+[gd_scene load_steps=16 format=3 uid="uid://by4osre76goju"]
 
 [ext_resource type="Script" uid="uid://cotkt6ds77muu" path="res://Game Scenes/Main Game Scene/Game Levels/game_level.gd" id="1_swale"]
 [ext_resource type="Texture2D" uid="uid://c4s7yucygjxaq" path="res://Assets/Environment/uploads_files_4381654_LightBlueSky_texture.jpg" id="2_lxy22"]
 [ext_resource type="MeshLibrary" uid="uid://b5fof6mi2gx1e" path="res://Assets/Environment/Desert Tileset/desert_tileset.tres" id="3_lxy22"]
 [ext_resource type="Script" uid="uid://2mpjksevpep4" path="res://Entities/Killbox/Killbox.gd" id="3_r5wdn"]
-[ext_resource type="PackedScene" uid="uid://bsm0lw2r3lkwk" path="res://Entities/Launch Pad/launch_pad.tscn" id="5_28npg"]
 [ext_resource type="PackedScene" uid="uid://bkh4sm2qxttxd" path="res://Assets/Environment/Models/palm-detailed-bend.glb" id="6_8tq3r"]
 [ext_resource type="PackedScene" uid="uid://drmvrg15igp2i" path="res://Assets/Environment/Models/rocks-a.glb" id="7_twvkb"]
 [ext_resource type="PackedScene" uid="uid://50ac2kdr7w4n" path="res://Assets/Environment/Models/rocks-b.glb" id="8_4g0wj"]
 [ext_resource type="PackedScene" uid="uid://ditfqnm3o1nt2" path="res://Assets/Environment/Models/rocks-c.glb" id="9_a4wii"]
-[ext_resource type="PackedScene" uid="uid://dadny4rygg8qh" path="res://Assets/Environment/Models/hole.glb" id="10_78sbh"]
+[ext_resource type="PackedScene" uid="uid://cd3eln3ww581q" path="res://Entities/Geyser/geyser.tscn" id="10_8roev"]
 [ext_resource type="PackedScene" uid="uid://jqjnn0tuotbh" path="res://Assets/Environment/Models/tool-shovel.glb" id="11_rlggo"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c7i63"]
@@ -56,6 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.174036, -10.394046)
 size = Vector3(150, 30, 73.950195)
 
 [node name="NavigableMeshes" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031258583, -0.05092573, 0.026228905)
 navigation_mesh = SubResource("NavigationMesh_mld04")
 
 [node name="GridMap" type="GridMap" parent="NavigableMeshes"]
@@ -118,9 +118,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.529184, 3.4389677, -11.29
 [node name="palm-detailed-bend3" parent="." instance=ExtResource("6_8tq3r")]
 transform = Transform3D(-0.99993664, 0, -0.011257085, 0, 1, 0, 0.011257085, 0, -0.99993664, -4.0707746, 6.210308, -12.390369)
 
-[node name="hole2" parent="." instance=ExtResource("10_78sbh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.11902, 3.6360378, 2.2627735)
-
 [node name="rocks-a3" parent="." instance=ExtResource("7_twvkb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.978873, 5.4132004, -14.656857)
 
@@ -146,19 +143,19 @@ transform = Transform3D(0.2907492, 0.15412946, -0.37644258, 0, 0.4627174, 0.1894
 transform = Transform3D(1, 0, 0, 0, -0.7559106, 0.6546749, 0, -0.6546749, -0.7559106, 0, 8.018461, 0)
 shadow_enabled = true
 
-[node name="LaunchPad2" parent="." instance=ExtResource("5_28npg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.5722623, 2)
+[node name="Geyser" parent="." instance=ExtResource("10_8roev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.133061, 1.5149474, 5.881646)
 
-[node name="LaunchPad4" parent="." instance=ExtResource("5_28npg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.5722623, 7.5)
+[node name="Geyser2" parent="." instance=ExtResource("10_8roev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9678755, 1.5149474, 7.4144144)
 
-[node name="LaunchPad5" parent="." instance=ExtResource("5_28npg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1.5722623, 6)
+[node name="Geyser3" parent="." instance=ExtResource("10_8roev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0402257, 3.534216, 1.8450034)
 
-[node name="LaunchPad6" parent="." instance=ExtResource("5_28npg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4.5722623, -11)
+[node name="Geyser4" parent="." instance=ExtResource("10_8roev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.231467, 4.5436335, -11.181775)
 
-[node name="LaunchPad7" parent="." instance=ExtResource("5_28npg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5722623, -11)
+[node name="Geyser5" parent="." instance=ExtResource("10_8roev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.204961, 4.5436335, -11.1673975)
 
 [connection signal="body_exited" from="Killbox" to="Killbox" method="_on_body_exited"]
