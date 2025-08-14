@@ -26,6 +26,7 @@ func get_sorted_player_info(sorting_function: Callable = _sort_descending) -> Ar
 # ["PlayerCart"] = String ("Heavy"),
 # ["PlayerGuy"] = String ("Guy1"), }
 var playerInfo = null
+var selected_map: Map
 
 enum CodeDirection {
 	UP,

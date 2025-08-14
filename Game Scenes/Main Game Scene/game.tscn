@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://reurgfcm8s"]
+[gd_scene load_steps=14 format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" uid="uid://blux4125gnvqt" path="res://Game Scenes/Main Game Scene/gameController.gd" id="1_jnwv1"]
 [ext_resource type="PackedScene" uid="uid://btmq676yqmw8b" path="res://Entities/Game Camera/game_camera.tscn" id="3_jnwv1"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://2mpjksevpep4" path="res://Entities/Killbox/Killbox.gd" id="6_6thhf"]
 [ext_resource type="PackedScene" uid="uid://cc208v5isrh86" path="res://Entities/Cloud Spawner/BroccoliClouds.tscn" id="7_eq00y"]
 [ext_resource type="PackedScene" uid="uid://sy12p0cwnfos" path="res://Entities/Game Modes/Timer Game Mode/timer_game_mode.tscn" id="9_n4urr"]
-[ext_resource type="PackedScene" uid="uid://by4osre76goju" path="res://Game Scenes/Main Game Scene/Game Levels/Desert/desert_level.tscn" id="10_3f0mu"]
 [ext_resource type="PackedScene" uid="uid://cgfmql12u5ois" path="res://Entities/Player/Bot Player/bot_player.tscn" id="12_rjcjm"]
 [ext_resource type="PackedScene" uid="uid://comhbdb6wxv3p" path="res://UI/Pause Menu/pause_menu.tscn" id="13_3f0mu"]
 [ext_resource type="Script" uid="uid://dclp74r3mee3v" path="res://Entities/Parry Slow Time Effect/parry_slow_time_effect.gd" id="13_43rdh"]
@@ -45,8 +44,6 @@ shape = SubResource("BoxShape3D_r85bj")
 
 [node name="Broccoli Clouds" parent="." instance=ExtResource("7_eq00y")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 289, -35, -286)
-
-[node name="Environment" parent="." instance=ExtResource("10_3f0mu")]
 
 [node name="ParrySlowTimeEffect" type="Timer" parent="."]
 script = ExtResource("13_43rdh")

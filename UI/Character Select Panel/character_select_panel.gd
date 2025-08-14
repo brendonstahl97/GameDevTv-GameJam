@@ -22,6 +22,7 @@ signal player_status_changed
 @export var highlight_stylebox: StyleBox ## the stylebox that should be applied when elements are in focus
 
 var current_focus: Control
+var is_active := true
 var is_joined := false
 var is_ready := false
 var is_bot := false
@@ -70,8 +71,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	
-	if (assigned_player_control_stack == null || assigned_player_control_stack.get_current_control() != self):
+	if (!is_active || assigned_player_control_stack == null || assigned_player_control_stack.get_current_control() != self):
 		return
 	
 	if (!is_joined):

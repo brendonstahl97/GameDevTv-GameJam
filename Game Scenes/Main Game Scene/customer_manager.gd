@@ -1,6 +1,6 @@
 extends Node
 
-@onready var environment: GameLevel = $"../Environment"
+@onready var environment: GameLevel
 
 @export var customer_scene: PackedScene
 @export var spawn_interval: float = 5.0
@@ -55,5 +55,6 @@ func spawn_customer() -> void:
 
 
 func _on_game_players_spawned() -> void:
+	environment = $"../Environment"
 	can_begin_spawning = true
 	spawn_customer()

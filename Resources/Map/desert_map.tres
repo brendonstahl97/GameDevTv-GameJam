@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Map" load_steps=4 format=3 uid="uid://dd68v46xf71ih"]
+
+[ext_resource type="PackedScene" uid="uid://by4osre76goju" path="res://Game Scenes/Main Game Scene/Game Levels/Desert/desert_level.tscn" id="1_knxyc"]
+[ext_resource type="Script" uid="uid://s1u3s8mbh5k4" path="res://Resources/Map/map_resource.gd" id="1_n2781"]
+[ext_resource type="Texture2D" uid="uid://b2jxtov4ny6eu" path="res://Assets/map thumbnails/desert.png" id="2_jq1c6"]
+
+[resource]
+script = ExtResource("1_n2781")
+map_name = "Desert"
+map_thumbnail = ExtResource("2_jq1c6")
+map_scene = ExtResource("1_knxyc")
+metadata/_custom_type_script = "uid://s1u3s8mbh5k4"
