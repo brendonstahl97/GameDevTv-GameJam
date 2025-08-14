@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://c733ctr40umod"]
+
+[ext_resource type="Script" uid="uid://ycu5nbbigrqf" path="res://UI/Map Selection/map_selection.gd" id="1_ctb0f"]
+[ext_resource type="PackedScene" uid="uid://cs547ftw8k07j" path="res://UI/Map Selection/map_element/map_element.tscn" id="1_qgtln"]
+[ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://UI/highlight_stylebox.tres" id="2_7nsj6"]
+[ext_resource type="Script" uid="uid://s5lx6moi64uo" path="res://Resources/PlayerControls/PlayerControls.gd" id="2_v58th"]
+[ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="3_rywcu"]
+[ext_resource type="Resource" uid="uid://bs715mfdkato8" path="res://Resources/Map/mountaintop_manor_map.tres" id="4_2cvoj"]
+[ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_st3cb"]
+[ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_olmxg"]
+[ext_resource type="Resource" uid="uid://2tmli3c0va8o" path="res://Resources/PlayerControls/Player_4_Controls.tres" id="6_pbqtw"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="10_st3cb"]
+[ext_resource type="Texture2D" uid="uid://civy6x3bdfgo8" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_y_outline.png" id="11_olmxg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbqtw"]
+bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 0.501961)
+border_blend = true
+
+[sub_resource type="Theme" id="Theme_3hq2b"]
+
+[node name="Map Selection" type="Control" node_paths=PackedStringArray("initial_focus")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ctb0f")
+input_resources = Array[ExtResource("2_v58th")]([ExtResource("3_rywcu"), ExtResource("4_st3cb"), ExtResource("5_olmxg"), ExtResource("6_pbqtw")])
+focused_stylebox = ExtResource("2_7nsj6")
+initial_focus = NodePath("MarginContainer/GridContainer/MapElement")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 5
+
+[node name="MapElement" parent="MarginContainer/GridContainer" instance=ExtResource("1_qgtln")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../MapElement2")
+focus_neighbor_right = NodePath("../MapElement2")
+
+[node name="MapElement2" parent="MarginContainer/GridContainer" instance=ExtResource("1_qgtln")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../MapElement")
+focus_neighbor_right = NodePath("../MapElement")
+map_resource = ExtResource("4_2cvoj")
+
+[node name="StartGameContainer" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="Panel" parent="StartGameContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbqtw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartGameContainer/panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -32.0
+offset_right = 196.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3hq2b")
+alignment = 1
+
+[node name="Label" type="Label" parent="StartGameContainer/panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("10_st3cb")
+theme_override_font_sizes/font_size = 20
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="StartGameContainer/panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_olmxg")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="StartGameContainer/panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("10_st3cb")
+theme_override_font_sizes/font_size = 20
+text = "to Start!"
+horizontal_alignment = 1
+vertical_alignment = 1

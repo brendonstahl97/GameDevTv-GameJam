@@ -2,7 +2,6 @@ extends Node
 # Fire once the players have been created.
 signal PlayersSpawned
 
-@onready var environment: GameLevel = $Environment ## This will change based on the loaded level, however it must be changed manually now
 @onready var match_ui: Control = %MatchUi
 @onready var players_node: Node = %Players
 @onready var game_mode: GameMode = $"Timer Game Mode" ## This will change based on the loaded game mode, however it must be changed manually now
@@ -11,9 +10,19 @@ signal PlayersSpawned
 @export var player_scene: PackedScene
 @export var bot_scene: PackedScene
 
+var environment: GameLevel
+
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Delete existing level if necessary
+	if (get_node_or_null("$Environment")):
+		$Environment.queue_free()
+		
+	environment = global.selected_map.map_scene.instantiate()
+	environment.name = "Environment"
+	add_child(environment)
+	
 	global.customer_completed.connect(_on_customer_completed)
 
 	_setup_players()
