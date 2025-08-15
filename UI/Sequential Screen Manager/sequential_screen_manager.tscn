@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckpswdfltdjrd"]
+
+[ext_resource type="Script" uid="uid://c2paq455qop0x" path="res://sequential_screen_manager.gd" id="1_uqd0f"]
+
+[sub_resource type="Curve" id="Curve_uqd0f"]
+_limits = [-0.15, 1.25, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, -1.0, 0, 0, Vector2(0.5, 0.5), 4.487018, 4.487018, 0, 0, Vector2(1, 1), -1.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="SequentialScreenManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uqd0f")
+transition_curve = SubResource("Curve_uqd0f")

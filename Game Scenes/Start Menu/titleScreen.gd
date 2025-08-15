@@ -1,11 +1,10 @@
 extends Control
 
-@export var character_select_screen: PackedScene
 @onready var play_button: Button = %PlayButton
 
 func onPlayPressed() -> void:
 	BackgroundMusic.crossfade_to(BackgroundMusic.get_child(1).stream)
-	get_tree().change_scene_to_packed(character_select_screen)
+	get_tree().change_scene_to_file("res://Game Scenes/Game Settings/game_settings.tscn")
 
 func onQuitPressed() -> void:
 	get_tree().quit()

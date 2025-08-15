@@ -70,7 +70,7 @@ func _ready() -> void:
 	_focus_element(initial_focus)
 
 
-func _process(_delta: float) -> void:
+func update(_delta: float) -> void:
 	if (!is_active || assigned_player_control_stack == null || assigned_player_control_stack.get_current_control() != self):
 		return
 	

@@ -1,5 +1,5 @@
 class_name MapSelection
-extends CharSelectScreen
+extends SequentialScreen
 
 @onready var grid_container: GridContainer = %GridContainer
 @onready var start_game_container: Control = %StartGameContainer
@@ -9,7 +9,7 @@ extends CharSelectScreen
 @export var initial_focus: MapElement
 
 var focused_element: MapElement
-var is_active := false
+#var is_active := false
 
 var is_map_selected := false
 
@@ -17,10 +17,22 @@ var is_map_selected := false
 func _ready() -> void:
 	_focus_element(initial_focus)
 
+#func _process(_delta: float) -> void:
+	#update(_delta)
 
-func _process(_delta: float) -> void:
-	if (!is_active):
-		return
+
+func _focus_element(element: MapElement) -> void:
+	if (focused_element != null && focused_element.has_theme_stylebox_override("panel")):
+		focused_element.remove_theme_stylebox_override("panel")
+	
+	focused_element = element
+	
+	focused_element.add_theme_stylebox_override("panel", focused_stylebox)
+
+
+func update(_delta: float) -> void:
+	#if (!is_active):
+		#return
 	
 	if (is_map_selected):
 		for player_input in input_resources:
@@ -37,17 +49,8 @@ func _process(_delta: float) -> void:
 			elif (Input.is_action_just_pressed(player_input.code_right)):
 				_focus_element(focused_element.get_node(focused_element.focus_neighbor_right))
 			elif (Input.is_action_just_pressed(player_input.slam)):
-				is_active = false
+				#is_active = false
 				previous_screen.emit()
 			elif (Input.is_action_just_pressed(player_input.sprint)):
 				is_map_selected = true
 				start_game_container.show()
-
-
-func _focus_element(element: MapElement) -> void:
-	if (focused_element != null && focused_element.has_theme_stylebox_override("panel")):
-		focused_element.remove_theme_stylebox_override("panel")
-	
-	focused_element = element
-	
-	focused_element.add_theme_stylebox_override("panel", focused_stylebox)

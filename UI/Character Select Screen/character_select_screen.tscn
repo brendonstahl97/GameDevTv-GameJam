@@ -1,0 +1,181 @@
+[gd_scene load_steps=17 format=3 uid="uid://ob5oocyspwul"]
+
+[ext_resource type="Script" uid="uid://b4m867odvo8e8" path="res://UI/Character Select Screen/character_select_screen.gd" id="1_3rqlq"]
+[ext_resource type="Script" uid="uid://b331n6oerida" path="res://Resources/Control Stack/control_stack.gd" id="2_koq1q"]
+[ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="3_1t1q8"]
+[ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_q13x0"]
+[ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_5h0cm"]
+[ext_resource type="Resource" uid="uid://2tmli3c0va8o" path="res://Resources/PlayerControls/Player_4_Controls.tres" id="6_ntse2"]
+[ext_resource type="PackedScene" uid="uid://dwqrujkcknl3i" path="res://UI/Character Select Panels/character_select_panels.tscn" id="7_xi6yu"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="8_j0aec"]
+[ext_resource type="Texture2D" uid="uid://civy6x3bdfgo8" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_y_outline.png" id="9_opvcb"]
+[ext_resource type="Texture2D" uid="uid://ch15a8sa2xe13" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_rb.png" id="10_frqc5"]
+
+[sub_resource type="Resource" id="Resource_dyydw"]
+script = ExtResource("2_koq1q")
+player_controls = ExtResource("3_1t1q8")
+metadata/_custom_type_script = "uid://b331n6oerida"
+
+[sub_resource type="Resource" id="Resource_dg6w8"]
+script = ExtResource("2_koq1q")
+player_controls = ExtResource("4_q13x0")
+metadata/_custom_type_script = "uid://b331n6oerida"
+
+[sub_resource type="Resource" id="Resource_bycn3"]
+script = ExtResource("2_koq1q")
+player_controls = ExtResource("5_5h0cm")
+metadata/_custom_type_script = "uid://b331n6oerida"
+
+[sub_resource type="Resource" id="Resource_13s4n"]
+script = ExtResource("2_koq1q")
+player_controls = ExtResource("6_ntse2")
+metadata/_custom_type_script = "uid://b331n6oerida"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36dw6"]
+bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 0.501961)
+border_blend = true
+
+[sub_resource type="Theme" id="Theme_cjwjn"]
+
+[node name="Character Select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3rqlq")
+player_controls = Array[ExtResource("2_koq1q")]([SubResource("Resource_dyydw"), SubResource("Resource_dg6w8"), SubResource("Resource_bycn3"), SubResource("Resource_13s4n")])
+
+[node name="Character Select Panels" parent="." instance=ExtResource("7_xi6yu")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -875.0
+offset_right = 875.0
+
+[node name="AllReadyContainer" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AllReadied" type="Panel" parent="AllReadyContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36dw6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AllReadyContainer/AllReadied"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -32.0
+offset_right = 241.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_cjwjn")
+alignment = 1
+
+[node name="Label" type="Label" parent="AllReadyContainer/AllReadied/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("8_j0aec")
+theme_override_font_sizes/font_size = 20
+text = "Player 1, Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="AllReadyContainer/AllReadied/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_opvcb")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="AllReadyContainer/AllReadied/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("8_j0aec")
+theme_override_font_sizes/font_size = 20
+text = "to select a map!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Add Bot" type="Panel" parent="AllReadyContainer/AllReadied"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 440.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_36dw6")
+
+[node name="MarginContainer" type="MarginContainer" parent="AllReadyContainer/AllReadied/Add Bot"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -297.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AllReadyContainer/AllReadied/Add Bot/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_cjwjn")
+alignment = 1
+
+[node name="Label" type="Label" parent="AllReadyContainer/AllReadied/Add Bot/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("8_j0aec")
+theme_override_font_sizes/font_size = 20
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="AllReadyContainer/AllReadied/Add Bot/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_frqc5")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="AllReadyContainer/AllReadied/Add Bot/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("8_j0aec")
+theme_override_font_sizes/font_size = 20
+text = "to Add A bot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="player_choices_updated" from="Character Select Panels" to="." method="_on_character_select_panels_player_choices_updated"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbndwwj3oi2c8"]
+[gd_scene load_steps=8 format=3 uid="uid://dbndwwj3oi2c8"]
 
 [ext_resource type="Texture2D" uid="uid://cl7ete8ccffph" path="res://Assets/Last Stand Standing.png" id="1_hmthl"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_sbync"]
 [ext_resource type="Script" uid="uid://bckbcr7h6aa2m" path="res://Game Scenes/Start Menu/titleScreen.gd" id="1_v46k4"]
-[ext_resource type="PackedScene" uid="uid://b1cq3nv6qiue7" path="res://Game Scenes/Character Select/character_select.tscn" id="2_tlea4"]
 
 [sub_resource type="Theme" id="Theme_bt6ow"]
 
@@ -55,7 +54,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v46k4")
-character_select_screen = ExtResource("2_tlea4")
 
 [node name="1" type="Panel" parent="."]
 layout_mode = 1

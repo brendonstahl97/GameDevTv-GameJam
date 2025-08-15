@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://comhbdb6wxv3p"]
+[gd_scene load_steps=8 format=3 uid="uid://comhbdb6wxv3p"]
 
 [ext_resource type="Script" uid="uid://cxkiikwl1jfxd" path="res://UI/Pause Menu/pause_menu.gd" id="1_8siy5"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_e11wt"]
-[ext_resource type="PackedScene" uid="uid://dbndwwj3oi2c8" path="res://Game Scenes/Start Menu/Start.tscn" id="2_3ol4c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e11wt"]
 content_margin_left = 0.0
@@ -92,7 +91,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8siy5")
-main_menu_scene = ExtResource("2_3ol4c")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
