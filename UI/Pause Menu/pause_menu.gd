@@ -2,8 +2,6 @@ extends Control
 
 @onready var resume: Button = %Resume
 
-@export var main_menu_scene: PackedScene
-
 func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("ui_accept")):
 		var focused_element = get_viewport().gui_get_focus_owner();
@@ -31,7 +29,7 @@ func _on_main_menu_pressed() -> void:
 	BackgroundMusic.get_child(0).volume_db = -12
 	BackgroundMusic.get_child(0).play()
 	close()
-	get_tree().change_scene_to_packed(main_menu_scene)
+	get_tree().change_scene_to_file("res://Game Scenes/Start Menu/Start.tscn")
 
 
 func _on_resume_pressed() -> void:
