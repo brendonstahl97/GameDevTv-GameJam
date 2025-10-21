@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GameModeResource" load_steps=3 format=3 uid="uid://cviuqk62f0g6f"]
+
+[ext_resource type="Script" uid="uid://c4ck1hrieways" path="res://Resources/Game Mode/game_mode_resource.gd" id="1_kdnks"]
+[ext_resource type="PackedScene" uid="uid://sy12p0cwnfos" path="res://Entities/Game Modes/Timer Game Mode/timer_game_mode.tscn" id="1_oks8v"]
+
+[resource]
+script = ExtResource("1_kdnks")
+game_mode_name = "Fire Sale"
+game_mode_scene = ExtResource("1_oks8v")
+game_mode_description = "The stand with the highest score after the time expires wins!"
+metadata/_custom_type_script = "uid://c4ck1hrieways"

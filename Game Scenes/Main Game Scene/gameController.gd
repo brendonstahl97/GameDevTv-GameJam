@@ -4,13 +4,13 @@ signal PlayersSpawned
 
 @onready var match_ui: Control = %MatchUi
 @onready var players_node: Node = %Players
-@onready var game_mode: GameMode = $"Timer Game Mode" ## This will change based on the loaded game mode, however it must be changed manually now
 @onready var pause_menu: Control = %PauseMenu
 
 @export var player_scene: PackedScene
 @export var bot_scene: PackedScene
 
 var environment: GameLevel
+var game_mode: GameMode
 
 # STRUCTURE --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
@@ -19,9 +19,8 @@ func _ready() -> void:
 	if (get_node_or_null("$Environment")):
 		$Environment.queue_free()
 		
-	environment = global.selected_map.map_scene.instantiate()
-	environment.name = "Environment"
-	add_child(environment)
+	_init_map()
+	_init_game_mode()
 	
 	global.customer_completed.connect(_on_customer_completed)
 
@@ -32,6 +31,18 @@ func _ready() -> void:
 	
 	game_mode.game_over.connect(_game_over)
 	game_mode.start_game()
+
+
+func _init_map() -> void:
+	environment = global.selected_map.map_scene.instantiate()
+	environment.name = "Environment"
+	add_child(environment)
+
+
+func _init_game_mode() -> void:
+	game_mode = global.selected_game_mode.game_mode_scene.instantiate()
+	game_mode.name = "GameMode"
+	add_child(game_mode)
 
 
 func _process(_delta: float) -> void:
