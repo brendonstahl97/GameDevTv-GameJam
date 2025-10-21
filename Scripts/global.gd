@@ -1,6 +1,7 @@
 class_name Global
 extends Node
 
+# Should these be global?
 signal successful_parry(global_position: Vector3)
 signal customer_completed(reward: int, player_name: String)
 
@@ -27,6 +28,7 @@ func get_sorted_player_info(sorting_function: Callable = _sort_descending) -> Ar
 # ["PlayerGuy"] = String ("Guy1"), }
 var playerInfo = null
 var selected_map: Map
+var selected_game_mode: GameModeResource
 
 enum CodeDirection {
 	UP,

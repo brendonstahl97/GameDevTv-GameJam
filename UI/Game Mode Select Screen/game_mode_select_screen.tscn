@@ -1,0 +1,130 @@
+[gd_scene load_steps=15 format=3 uid="uid://bo4432c40s3ov"]
+
+[ext_resource type="Script" uid="uid://b1rl3huei1hpx" path="res://UI/Game Mode Select Screen/game_mode_select_screen.gd" id="1_v8u5h"]
+[ext_resource type="Script" uid="uid://s5lx6moi64uo" path="res://Resources/PlayerControls/PlayerControls.gd" id="2_okap2"]
+[ext_resource type="PackedScene" uid="uid://b0bs15i8wpasg" path="res://UI/Game Mode Select Screen/game_mode_element/game_mode_element.tscn" id="2_y4ccr"]
+[ext_resource type="Resource" uid="uid://cviuqk62f0g6f" path="res://Resources/Game Mode/timer.tres" id="3_ej4go"]
+[ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="3_stvcp"]
+[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="4_6ndkv"]
+[ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_nleja"]
+[ext_resource type="Resource" uid="uid://d3iltk323leo4" path="res://Resources/Game Mode/score.tres" id="4_q4oso"]
+[ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_8114a"]
+[ext_resource type="Texture2D" uid="uid://civy6x3bdfgo8" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_y_outline.png" id="5_t3h7f"]
+[ext_resource type="Resource" uid="uid://2tmli3c0va8o" path="res://Resources/PlayerControls/Player_4_Controls.tres" id="6_ulnys"]
+[ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://UI/highlight_stylebox.tres" id="7_stvcp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcac3"]
+bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 0.501961)
+border_blend = true
+
+[sub_resource type="Theme" id="Theme_okap2"]
+
+[node name="GameModeSelectScreen" type="Control" node_paths=PackedStringArray("initial_focus")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v8u5h")
+input_resources = Array[ExtResource("2_okap2")]([ExtResource("3_stvcp"), ExtResource("4_nleja"), ExtResource("5_8114a"), ExtResource("6_ulnys")])
+focused_stylebox = ExtResource("7_stvcp")
+initial_focus = NodePath("MarginContainer/GridContainer/GameModeElement")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+
+[node name="GameModeElement" parent="MarginContainer/GridContainer" instance=ExtResource("2_y4ccr")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../GameModeElement2")
+focus_neighbor_bottom = NodePath("../GameModeElement2")
+game_mode_resource = ExtResource("3_ej4go")
+
+[node name="GameModeElement2" parent="MarginContainer/GridContainer" instance=ExtResource("2_y4ccr")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../GameModeElement")
+focus_neighbor_bottom = NodePath("../GameModeElement")
+game_mode_resource = ExtResource("4_q4oso")
+
+[node name="StartGameContainer" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="Panel" parent="StartGameContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wcac3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartGameContainer/panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -32.0
+offset_right = 196.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_okap2")
+alignment = 1
+
+[node name="Label" type="Label" parent="StartGameContainer/panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_6ndkv")
+theme_override_font_sizes/font_size = 20
+text = "Press"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="StartGameContainer/panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_t3h7f")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="StartGameContainer/panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_6ndkv")
+theme_override_font_sizes/font_size = 20
+text = "to start!"
+horizontal_alignment = 1
+vertical_alignment = 1

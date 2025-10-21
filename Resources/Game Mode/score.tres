@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GameModeResource" load_steps=3 format=3 uid="uid://d3iltk323leo4"]
+
+[ext_resource type="PackedScene" uid="uid://q88x7qm2y13b" path="res://Entities/Game Modes/Goal Game Mode/goal_game_mode.tscn" id="1_5kk3o"]
+[ext_resource type="Script" uid="uid://c4ck1hrieways" path="res://Resources/Game Mode/game_mode_resource.gd" id="1_u103w"]
+
+[resource]
+script = ExtResource("1_u103w")
+game_mode_name = "Feed 'em all"
+game_mode_scene = ExtResource("1_5kk3o")
+game_mode_description = "Be the first stand to reach the target score"
+metadata/_custom_type_script = "uid://c4ck1hrieways"

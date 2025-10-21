@@ -115,7 +115,7 @@ func _on_body_exited(_body:Node3D) -> void:
 	else:
 		if (currentPlayerSequence.size() == 0):
 			customer_task_display.visible = false
-		$Decal.set_modulate(Color(.77, .33, .092))
+		$Decal.set_modulate(Color(.8, .8, .8))
 
 
 func get_next_correct_input() -> global.CodeDirection:
