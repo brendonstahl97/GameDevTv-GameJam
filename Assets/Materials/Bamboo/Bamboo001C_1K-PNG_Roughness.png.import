@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2hantyqnr3cx"
-path.s3tc="res://.godot/imported/circle_05.png-396a8a1b6751adddb5af2d1945224cb6.s3tc.ctex"
+uid="uid://ccou02jhkotf8"
+path.s3tc="res://.godot/imported/Bamboo001C_1K-PNG_Roughness.png-18019dc48aa50a30fdac85584ad7f30b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Particles/circle_05.png"
-dest_files=["res://.godot/imported/circle_05.png-396a8a1b6751adddb5af2d1945224cb6.s3tc.ctex"]
+source_file="res://Assets/Materials/Bamboo/Bamboo001C_1K-PNG_Roughness.png"
+dest_files=["res://.godot/imported/Bamboo001C_1K-PNG_Roughness.png-18019dc48aa50a30fdac85584ad7f30b.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://caov6sc8wlnot"]
+
+[ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
+[ext_resource type="PackedScene" uid="uid://srpk4wkg14dc" path="res://Entities/Skewer/skewer.tscn" id="2_ia1lp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hn0n"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljoqb"]
+size = Vector3(10, 1, 10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_4hn0n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_ljoqb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.96104974, 0.27637547, 0, -0.27637547, 0.96104974, 0, 3.9333472, 6.3307343)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.755922, 0.65466166, 0, -0.65466166, 0.755922, 0, 3.926616, 3.727194)
+
+[node name="0" parent="." instance=ExtResource("1_uhqqe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422091, 0.6148584, 0.63885355)
+
+[node name="Skewer" parent="." instance=ExtResource("2_ia1lp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.857, 0.5, 0.009)

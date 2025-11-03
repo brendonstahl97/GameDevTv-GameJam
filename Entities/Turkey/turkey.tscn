@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyv6i67m65snm"]
+
+[ext_resource type="Script" uid="uid://broblucbx11o8" path="res://Entities/Turkey/turkey.gd" id="1_lbsdc"]
+[ext_resource type="ArrayMesh" uid="uid://bayaywx6mln8b" path="res://Assets/Environment/Food/turkey_body.tres" id="1_yjsww"]
+[ext_resource type="ArrayMesh" uid="uid://vbuwgxlmbqjo" path="res://Assets/Environment/Food/turkey_leg.tres" id="2_lbsdc"]
+[ext_resource type="Script" uid="uid://dtwe4w60ugunr" path="res://Components/bumpable_component.gd" id="3_303ay"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbsdc"]
+size = Vector3(0.5991211, 0.4086914, 0.5)
+
+[node name="Turkey" type="RigidBody3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_lbsdc")
+metadata/_custom_type_script = "uid://doylhbsg6shpe"
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = ExtResource("1_yjsww")
+
+[node name="Mesh" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1.0503452, 0, 0.58032346, 0, 1.2, 0, -0.58032346, 0, 1.0503452, -0.17202735, -0.016663006, -0.18977317)
+mesh = ExtResource("2_lbsdc")
+
+[node name="Mesh2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1.072046, 0, -0.5391824, 0, 1.2, 0, 0.5391824, 0, 1.072046, -0.1725655, -0.016666671, 0.19001155)
+mesh = ExtResource("2_lbsdc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.1322856, 0.33961222, 0)
+shape = SubResource("BoxShape3D_lbsdc")
+
+[node name="BumpableComponent" type="Node" parent="."]
+script = ExtResource("3_303ay")
+metadata/_custom_type_script = "uid://dtwe4w60ugunr"
+
+[connection signal="bumped" from="BumpableComponent" to="." method="_on_bumpable_component_bumped"]
