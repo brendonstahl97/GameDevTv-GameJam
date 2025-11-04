@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2hantyqnr3cx"
-path.s3tc="res://.godot/imported/circle_05.png-396a8a1b6751adddb5af2d1945224cb6.s3tc.ctex"
+uid="uid://dkqt7dyipqmml"
+path.bptc="res://.godot/imported/Bamboo001C_1K-PNG_Color.png-6a7a201281c2c2331dd15b0b1273f0f6.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,13 +11,13 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Particles/circle_05.png"
-dest_files=["res://.godot/imported/circle_05.png-396a8a1b6751adddb5af2d1945224cb6.s3tc.ctex"]
+source_file="res://Assets/Materials/Bamboo/Bamboo001C_1K-PNG_Color.png"
+dest_files=["res://.godot/imported/Bamboo001C_1K-PNG_Color.png-6a7a201281c2c2331dd15b0b1273f0f6.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

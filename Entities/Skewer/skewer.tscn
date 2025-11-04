@@ -1,0 +1,576 @@
+[gd_scene load_steps=29 format=4 uid="uid://srpk4wkg14dc"]
+
+[ext_resource type="Script" uid="uid://w5lr7k7dywgf" path="res://Components/bump_component.gd" id="1_d74w6"]
+[ext_resource type="Script" uid="uid://dp3lfbq5ly5cw" path="res://Entities/Skewer/skewer.gd" id="1_l17sy"]
+[ext_resource type="Script" uid="uid://cvmbxxmeqwih4" path="res://Components/entity_detector_component.gd" id="3_shk6t"]
+[ext_resource type="Script" uid="uid://b02dexygwwdjs" path="res://Components/rotation_component.gd" id="4_f6n2u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ugf6"]
+resource_name = "brownLight"
+albedo_color = Color(0.990566, 0.8227516, 0.6401299, 1)
+metallic = 1.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_d7bny"]
+_surfaces = [{
+"aabb": AABB(-0.29835, 0.04833523, -0.019999996, 0.5967, 0.011000004, 0.030000001),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMABAACAAEAAQAFAAQAAwAFAAEABAAFAAMAAgAEAAYAAwAGAAQAAgAHAAAABgAHAAIAAwAAAAgABwAIAAAAAwAJAAYACAAJAAMACQAKAAYACgAJAAgABwAGAAoACAALAAoACgALAAcABwALAAgA"),
+"name": "brownLight",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AAD/////AAAAAP//AAAAADEv//8AAAAAAAAAAP//AAAxLwAAAAAAAAAAAAAAAAAAezMAAFRVAAB7M///VFUAAP/////+/wAA//8AAP7/AAD//wAAVFUAAP////9UVQAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dq51v"]
+resource_name = "skewerVegetables_Mesh skewerVegetables"
+_surfaces = [{
+"aabb": AABB(-0.29835, 0.04833523, -0.019999996, 0.5967, 0.011000004, 0.030000001),
+"attribute_data": PackedByteArray("AAD//wAAhZMxL4WTezOut////v///663//9LBf//ES0AABEtAABLBf//SwX//xEtzdARLc3QSwWDzEsFg8wRLQAAES0AAEsFSYQRLbV7ES21e0sFSYRLBTS/SwU0vxEtIrkRLSK5SwXN0IWT//+Fk/////+DzK63AAD+/wAArrdqd0sFSYRLBUmEES1qdxEt"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAwAEAAAAAwAFAAQABgAHAAgACAAJAAYACgALAAwADAANAAoADgAPABAAEAARAA4AEgATABQAFAAVABIAFgAXABgAGAAZABYAGgAbABwAHAAdABoAHAAeAB0AHgAfAB0AIAAhACIAIgAjACAA"),
+"material": SubResource("StandardMaterial3D_4ugf6"),
+"name": "brownLight",
+"primitive": 3,
+"uv_scale": Vector4(23.492126, 2.7874022, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAD//////78AAP//AAD/vzEv//8AAP+/ezP//1RV/7///////v//v/////9UVf+///////7/AID//wAA/v8AgAAAAAD//wCAAAD/////AIAAAP//AAD//wAAAAAAAP//MS8AAAAA/+8xL///AAD/73sz//9UVf/vezMAAFRV/+///wAAVFX///////9UVf////8AAFRV/7///wAA/v//v//////+//+//////1RV/78xL///AAD/7zEvAAAAAP/vezMAAFRV/+97M///VFX/7zEvAAAAAP//AAAAAAAA//8AAAAA/////3szAABUVf////8AAP7//////wAAVFX//wAA//8AAP+/AAD//////78AAAAA////vwAAAAAAAP+/////f////3////9/////f////3////9//3////9/////f////3////9/////f////38AAP9/AAD/fwAA/38AAP9/////f////38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f/8//3//P/9//z//f/8//3//P/9//z//f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_d7bny")
+metadata/extras = {
+"targetNames": []
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smoxi"]
+resource_name = "brownDark"
+albedo_color = Color(0.7924529, 0.4986147, 0.37006047, 1)
+metallic = 1.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t4nxi"]
+_surfaces = [{
+"aabb": AABB(-0.042, 0, -0.028169014, 0.084, 0.072746135, 0.056338027),
+"format": 34896613377,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAwABAAAAAgAEAAAAAwAFAAIABgAFAAMAAgAFAAcABwAEAAIABQAGAAgACAAHAAUAAwAJAAYACAAGAAkAAAAKAAMACQADAAoABAALAAAACgAAAAsABAAMAAsACwANAAoADQALAAwACgAOAAkACQAOAAgADgAKAA0ADwAMAAQABAAHAA8ADAAPAA0ADwAHAAgACAAQAA8ADgAQAAgADQAPABAADgARABAAEAARAA0ADQARAA4A"),
+"name": "brownDark",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("bNv/f///AAC2rZIk//8AAEhSkiT//wAA/78AAP9/AACSJP9///8AAP8/AAD/fwAASFKSJAAAAAAAAP9//38AAJIk/38AAAAAtq2SJAAAAAD///9//38AALatbNv//wAASFJs2///AAD/v////38AAGzb/38AAAAA/z////9/AABIUmzbAAAAALatbNsAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_i3iu1"]
+resource_name = "skewerVegetables_Mesh meat"
+_surfaces = [{
+"aabb": AABB(-0.042, 0, -0.028169014, 0.084, 0.072746135, 0.056338027),
+"attribute_data": PackedByteArray("///9Wf+/+7P/P/uzAAD9Wf+/AAD/PwAA///9Wf+/+7P/P/uzAAD9Wf+/AAD/PwAA/7/6b5jZ+tdmJvrX/z/6b2e8fqfEOX6n4VzWGHzVmUFmJsOAmNnDgP+/wuj/P8LofNXTj+FclbjEOe0pZ7ztKZdD7Sk6xu0pHaOVuIIq048do9YYOsZ+p5dDfqeCKplBxDntKWe87Sl81dOP4VyVuJjZ+tdmJvrX/z/6b/+/+m8do5W4girTj5dD7Sk6xu0pOsZ+p5dDfqeCKplBHaPWGP8/wuhmJsOAmNnDgP+/wujhXNYYfNWZQWe8fqfEOX6n"),
+"format": 34896613399,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAwAEAAAAAwAFAAQABgAHAAgACAAJAAYACQAKAAYACQALAAoADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwAMAAxADIAMgAzADAANAA1ADYANgA3ADQAOAA5ADoAOgA7ADgA"),
+"material": SubResource("StandardMaterial3D_smoxi"),
+"name": "brownDark",
+"primitive": 3,
+"uv_scale": Vector4(2.3622048, 2.9097505, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("bNv/f///AIC2rZIk//8AgEhSkiT//wCAkiT/f///AIC2rWzb//8AgEhSbNv//wCAkiT/fwAA//9IUpIkAAD//7atkiQAAP//bNv/fwAA//9IUmzbAAD//7atbNsAAP//SFKSJAAAge//PwAA/3+B7/+/AAD/f4Hvtq2SJAAAge9s2/9/AABn0P///3//f2fQ/7////9/g9y2rWzbAACD3P+/////f4Hv/z////9/ge9IUmzbAACB77atbNsAAIHvtq2SJAAAg9z/vwAA/3+D3P///3//f2fQbNv/fwAAZ9CSJP9/AABn0AAA/3//f2fQ/z8AAP9/g9xIUpIkAACD3P8/////f4PcAAD/f/9/Z9CSJP9/AABn0EhSbNsAAIPcAAD/f/9/lq+SJP9///+Wr0hSkiT//4S2/z8AAP9/hLb/vwAA/3/3sP8/AAD/f/ewSFKSJP//97C2rZIk///3sP+/AAD/f4S2tq2SJP//hLZs2/9///+Wr////3//f5av////f/9/lq9s2/9///+Wr7atbNv//4S2/7////9/hLZIUmzb///3sP8/////f/ew/7////9/97C2rWzb///3sP8/////f4S2SFJs2///hLaSJP9///+WrwAA/3//f5av/3////9/////f////3////9/////f////3////9/////f////3////9/////f///2rcN9dq3DfXwito38IraN/9/AAD/fwAAd7mKGXe5ihkkSPEKDnUkyA51JMgkSPEKdWZ4OXVmeDn/fwAA/38AAP9/////f///h0Z05odGdOaJmYbG/3////9///+JmYbG/3////9////jMifV4zIn1aMeSE62MaOetjGjnqMeSE4oVRxNKFUcTf9/AAD/fwAA/38AAP9/AAAbzdcqG83XKlvhtrFb4baxSM5bYUjOW2HWquKy1qrisv9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_t4nxi")
+metadata/extras = {
+"targetNames": []
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4gee"]
+resource_name = "green"
+albedo_color = Color(0.41709685, 0.85849065, 0.696792, 1)
+metallic = 1.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_a60yu"]
+_surfaces = [{
+"aabb": AABB(-0.011000001, 0, -0.046622682, 0.022000002, 0.10767046, 0.093245365),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAAAAMAAQAAAAQAAwAFAAQABgACAAEABwAFAAMABAAFAAcAAwACAAcABAAIAAEABwAIAAQAAQAJAAYACAAJAAEAAgAGAAoAAgAKAAcACgAGAAkACAAHAAoACQALAAoACgALAAgACAALAAkA"),
+"name": "green",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AAD/v///AAAAAP///38AAP7/////fwAA////v/7/AAAAAP8///8AAP///z/+/wAA/v//vwAAAAD+/wAA/38AAAAAAAD/fwAAAAD/vwAAAAD+//8/AAAAAAAA/z8AAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cudc0"]
+resource_name = "skewerVegetables_Mesh vegetables"
+_surfaces = [{
+"aabb": AABB(-0.011000001, 0, -0.046622682, 0.022000002, 0.10767046, 0.093245365),
+"attribute_data": PackedByteArray("zGGEp8xhwlMynsJTMp6Ep/9/hKcAAKN9AADhKf9/AAD//6N9///hKcxhwlMynsJTMp6Ep8xhhKf/fwAA///hKf//o33/f4SnAADhKQAAo30ynsJTMp6Ep8xhhKfMYcJTMp7hKTKeo33MYaN9zGHhKTKehKfMYYSnzGHCUzKewlMynuEpMp6jfcxho33MYeEp"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQABwAIAAQABwAJAAgACgALAAwADAANAAoADgAPABAAEAARAA4AEQASAA4AEQATABIAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAA"),
+"material": SubResource("StandardMaterial3D_k4gee"),
+"name": "green",
+"primitive": 3,
+"uv_scale": Vector4(3.6710773, 6.477989, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAD/v///VJUAAP///3//v/7/////f/+/////v/7/VJX+/wAA/3//v////z/+//+/////v/7//7/+/////3//v/7//z8AAP+//v//vwAA/7/+//8/AAD//wAA/z8AAP//AAAAAP9////+/wAA/3///wAA////f/+/AAD/v////78AAP8/////vwAAAAD/f/+/AAD/vwAA/78AAP8/AAD/vwAA////f///AAD/vwAA///+//+/AAD///7/////f///AAD/vwAA//8AAP8/AAD///7//z8AAP///v//vwAA///+/wAA/3//vwAAAAD/f/+/AAD/P///VJX///8//v9Ulf///7/+/1SV////P/7/VJUAAP8///9UlQAA/7///1SV////f////3////9/////f/9/AAD/fwAA/38AAP9/AAD/fwAA/38AAPJk///yZP///3//P/9//z//f////3////9/////f////3////9/////f/+//3/y5P9/8uT/f/+//3/y5PJk///yZP///3/y5AAA/38AAP9/AAD/fwAA/3////9/AAD/fwAA/3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_a60yu")
+metadata/extras = {
+"targetNames": []
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysexi"]
+resource_name = "red"
+albedo_color = Color(0.909804, 0.33333334, 0.32549018, 1)
+metallic = 1.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_52p0n"]
+_surfaces = [{
+"aabb": AABB(-0.011000001, 0, -0.046622682, 0.022000002, 0.10767046, 0.093245365),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAwABAAAAAgABAAMAAgAEAAAAAwAAAAUABQAAAAQABgAEAAIABAAGAAUABwAFAAYABgACAAgAAwAIAAIABgAJAAcACQAGAAgABQAHAAoACgADAAUACgAHAAkACAADAAoACQALAAoACgALAAgACAALAAkA"),
+"name": "red",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AAD/vwAAAAAAAP8/AAAAAP7//z8AAAAAAAAAAP9/AAD+//+/AAAAAAAA////fwAA/v////9/AAAAAP+///8AAP7/AAD/fwAA////v/7/AAAAAP8///8AAP///z/+/wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jberr"]
+resource_name = "skewerVegetables_Mesh vegetables2"
+_surfaces = [{
+"aabb": AABB(-0.011000001, 0, -0.046622682, 0.022000002, 0.10767046, 0.093245365),
+"attribute_data": PackedByteArray("Mp7hKTKeo33MYaN9zGHhKf9/hKcAAKN9AADhKf9/AAD//6N9///hKcxhhKfMYcJTMp7CUzKehKcynuEpMp6jfcxho33MYeEpMp6Ep8xhhKfMYcJTMp7CU8xhwlMynsJTMp6Ep8xhhKcynsJTMp6Ep8xhhKfMYcJT/38AAP//4Sn//6N9/3+EpwAA4SkAAKN9"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQABwAIAAQABwAJAAgACgALAAwADAANAAoADgAPABAAEAARAA4AEgATABQAFAAVABIAFgAXABgAGAAZABYAGgAbABwAHAAdABoAHgAfACAAIAAhAB4AIQAiAB4AIQAjACIA"),
+"material": SubResource("StandardMaterial3D_ysexi"),
+"name": "red",
+"primitive": 3,
+"uv_scale": Vector4(3.6710773, 6.477989, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAD/vwAA//8AAP8/AAD///7//z8AAP///v//vwAA///+/wAA/3//v////z/+//+/////v/7//7/+/////3//v/7//z8AAP+//v//vwAA/78AAP+///9UlQAA////f/+//v////9//7////+//v9Ulf///7/+/1SV////P/7/VJUAAP8///9UlQAA/7///1SV/v8AAP9//78AAAAA/3//vwAA/z///1SV////P/7/VJX+//8/AAD//wAA/z8AAP//AAAAAP9////+/wAA/3///wAA////f///AAD/vwAA///+//+/AAD///7/////f///AAD///9//78AAP+/////vwAA/z////+/AAAAAP9//78AAP+/AAD/vwAA/z8AAP+//3/y5PJk///yZP///3/y5P9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP///3////9/////f////3////9/AAD/fwAA/3////9/AAD/fwAA/38AAP9/AAD/f/Jk///yZP///3//P/9//z//f/+//3/y5P9/8uT/f/+//3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_52p0n")
+metadata/extras = {
+"targetNames": []
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vuh75"]
+size = Vector3(0.572583, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yawni"]
+size = Vector3(0.61850584, 0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_f6n2u"]
+_data = [Vector2(0, 0.20224726), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2h6bj"]
+curve = SubResource("Curve_f6n2u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ptby1"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+angle_min = 90.000015
+angle_max = 90.000015
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 0.59999996
+initial_velocity_max = 0.59999996
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = -2.2351742e-05
+gravity = Vector3(9.8, 0, 0)
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = -2.2351742e-06
+color = Color(1, 1, 1, 0.30980393)
+alpha_curve = SubResource("CurveTexture_2h6bj")
+
+[sub_resource type="Curve" id="Curve_2h6bj"]
+_data = [Vector2(0, 0.3275863), 0.0, 1.4, 0, 0, Vector2(1, 0), -0.1532568, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6n2u"]
+transparency = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+use_particle_trails = true
+stencil_flags = 2
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_yvpd3"]
+material = SubResource("StandardMaterial3D_f6n2u")
+flip_faces = true
+size = 0.045
+curve = SubResource("Curve_2h6bj")
+
+[sub_resource type="Animation" id="Animation_f6n2u"]
+resource_name = "deflect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("skewerVegetables:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.14444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("skewerVegetables/meat:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.15, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("skewerVegetables/meat2:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.15555556, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("skewerVegetables/meat3:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.15555556, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("skewerVegetables/vegetables:transparency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.15, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("skewerVegetables/vegetables2:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.14444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2h6bj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("skewerVegetables:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("skewerVegetables/meat:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("skewerVegetables/meat2:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("skewerVegetables/meat3:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("skewerVegetables/vegetables:transparency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("skewerVegetables/vegetables2:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_yvpd3"]
+resource_name = "bump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("skewerVegetables:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.04444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("skewerVegetables/meat:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.04444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.29)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("skewerVegetables/meat2:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.04444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.29)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("skewerVegetables/meat3:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.04444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.29)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("skewerVegetables/vegetables:transparency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.04444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.29)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("skewerVegetables/vegetables2:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.04444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.29)
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvpd3"]
+_data = {
+&"RESET": SubResource("Animation_2h6bj"),
+&"bump": SubResource("Animation_yvpd3"),
+&"deflect": SubResource("Animation_f6n2u")
+}
+
+[node name="Skewer" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_l17sy")
+metadata/_custom_type_script = "uid://doylhbsg6shpe"
+
+[node name="skewerVegetables" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -0.013007781, 0, 0.013690582)
+mesh = SubResource("ArrayMesh_dq51v")
+skeleton = NodePath("")
+
+[node name="meat" type="MeshInstance3D" parent="skewerVegetables"]
+transform = Transform3D(7.702112e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 9.858704e-08, -0.05055, 0.006833956, 2.0442326e-09)
+mesh = SubResource("ArrayMesh_i3iu1")
+skeleton = NodePath("")
+
+[node name="meat2" type="MeshInstance3D" parent="skewerVegetables"]
+transform = Transform3D(7.702112e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 9.858704e-08, 0.086633995, 0.006833956, 0)
+mesh = SubResource("ArrayMesh_i3iu1")
+skeleton = NodePath("")
+
+[node name="meat3" type="MeshInstance3D" parent="skewerVegetables"]
+transform = Transform3D(7.702112e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 9.858704e-08, 0.223818, 0.006833956, -2.0442326e-09)
+mesh = SubResource("ArrayMesh_i3iu1")
+skeleton = NodePath("")
+
+[node name="vegetables" type="MeshInstance3D" parent="skewerVegetables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.155226, 0, -1.0221175e-09)
+mesh = SubResource("ArrayMesh_cudc0")
+skeleton = NodePath("")
+
+[node name="vegetables2" type="MeshInstance3D" parent="skewerVegetables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018042, 0, -1.0221175e-09)
+mesh = SubResource("ArrayMesh_jberr")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -0.015109945, 0.11283548, 0.023443285)
+shape = SubResource("BoxShape3D_vuh75")
+
+[node name="BumpComponent" type="Area3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.013007781, 0, 0.013690582)
+collision_layer = 2
+script = ExtResource("1_d74w6")
+metadata/_custom_type_script = "uid://w5lr7k7dywgf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpComponent"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.034283962, 0.11283548, 2.7939677e-09)
+shape = SubResource("BoxShape3D_yawni")
+debug_color = Color(0.8920837, 0.14451979, 0.709596, 0.41960785)
+
+[node name="EntityDetectorComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_shk6t")
+entity_group_name = "Bumpable"
+metadata/_custom_type_script = "uid://cvmbxxmeqwih4"
+
+[node name="RotationComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_f6n2u")
+metadata/_custom_type_script = "uid://b02dexygwwdjs"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.3711392e-08, 0, -1.0000001, 0, 0.9999999, 0, 1.0000001, 0, -4.3711392e-08, 0, 0.113, -0.6645124)
+amount = 100
+lifetime = 0.5
+fixed_fps = 60
+local_coords = true
+trail_enabled = true
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_ptby1")
+draw_pass_1 = SubResource("RibbonTrailMesh_yvpd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_yvpd3")
+}
+
+[connection signal="body_entered" from="BumpComponent" to="BumpComponent" method="_on_body_entered"]
+[connection signal="successful_bump" from="BumpComponent" to="." method="_on_bump_component_successful_bump"]

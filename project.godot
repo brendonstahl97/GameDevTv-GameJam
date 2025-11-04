@@ -23,6 +23,7 @@ general/3d_panning_strength=1.0
 
 global="*res://Scripts/global.gd"
 BackgroundMusic="*res://Entities/Background Music Manager/BackgroundMusic.tscn"
+SignalBus="*res://Scripts/singletons/signal_bus.gd"
 
 [display]
 

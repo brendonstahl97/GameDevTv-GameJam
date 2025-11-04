@@ -27,25 +27,31 @@ var PlayerColor : Color = Color(.8, .19, 0.01)
 var PlayerGuy : String = "Man 1"
 
 var movement_direction = Vector3.ZERO
+var player_controls_enabled := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_tree.active = true
 	mass = stand_class.Mass
+	_connect_dialog_signals()
 
 func _process(_delta: float) -> void:
 	_update_animation_parameters()
-	_handle_code_input()
 	_update_scrape_sound_play_status()
+	if (player_controls_enabled):
+		_handle_code_input()
+	else:
+		_handle_dialog_input()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	_update_movement_direction()
-	_handle_sprint_input(delta)
-	movement_component.move(movement_direction)
-	rotation_component.look_in_movement_direction()
-	_handle_slam_input()
-	_handle_parry_input()
+	if (player_controls_enabled):
+		_handle_sprint_input(delta)
+		movement_component.move(movement_direction)
+		rotation_component.look_in_movement_direction()
+		_handle_slam_input()
+		_handle_parry_input()
 
 func _update_movement_direction() -> void:
 	movement_direction = Vector3(Input.get_axis(Controls.move_left, Controls.move_right), 0, Input.get_axis(Controls.move_up, Controls.move_down)).normalized()
@@ -96,6 +102,12 @@ func _handle_parry_input() -> void:
 		parry_component.try_begin_parry_window()
 
 
+func _handle_dialog_input() -> void:
+	if (Input.is_action_just_pressed(Controls.sprint)):
+		# Must emit with an empty string so that dialog progresses if currently displayed
+		SignalBus.display_dialog.emit("")
+
+
 func _handle_slam_input() -> void:
 	if(Input.is_action_just_pressed(Controls.slam) and !ground_detection_component.is_grounded):
 		slam_component.begin_slam()
@@ -128,6 +140,10 @@ func launch(impulse_force: Vector3, callling_entity: RigidBody3D, is_parriable :
 	else:
 		apply_impulse(impulse_force)
 
+
+func _connect_dialog_signals() -> void:
+	SignalBus.display_dialog.connect(func(_text_key: String): player_controls_enabled = false)
+	SignalBus.dialog_completed.connect(func(): player_controls_enabled = true)
 
 func _on_body_entered(_body: Node3D) -> void:
 	if (slam_component.is_slamming):

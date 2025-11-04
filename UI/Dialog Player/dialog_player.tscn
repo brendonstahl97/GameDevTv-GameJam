@@ -1,0 +1,109 @@
+[gd_scene load_steps=18 format=3 uid="uid://ytur78asltc"]
+
+[ext_resource type="Script" uid="uid://b62bylo381wgn" path="res://UI/Dialog Player/dialog_player.gd" id="1_826ql"]
+[ext_resource type="AudioStream" uid="uid://8vtnk1uypsmj" path="res://Assets/Audio/Dialogue/speach_1.wav" id="2_1v3ye"]
+[ext_resource type="Theme" uid="uid://cftuabnvjxfdf" path="res://UI/BlockTheme.tres" id="2_q247q"]
+[ext_resource type="AudioStream" uid="uid://sa6jrlm76rpp" path="res://Assets/Audio/Dialogue/speach_2.wav" id="3_a1fbr"]
+[ext_resource type="PackedScene" uid="uid://74evlbvrqp8c" path="res://Assets/Characters/Chef_Hat.gltf" id="3_q247q"]
+[ext_resource type="AudioStream" uid="uid://c1au2vmg7083s" path="res://Assets/Audio/Dialogue/speach_3.wav" id="4_ihn56"]
+[ext_resource type="Script" uid="uid://bpyu64v2nxvn" path="res://Assets/Characters/dialogue_chef.gd" id="4_wtkn2"]
+[ext_resource type="AudioStream" uid="uid://bhg7kucprbla8" path="res://Assets/Audio/Dialogue/speach_4.wav" id="5_ssxck"]
+[ext_resource type="AudioStream" uid="uid://c27suhfjwfw82" path="res://Assets/Audio/Dialogue/speach_5.wav" id="6_2dvh0"]
+[ext_resource type="AudioStream" uid="uid://byaj0u78f7htt" path="res://Assets/Audio/Dialogue/speach_6.wav" id="7_cgfnh"]
+[ext_resource type="AudioStream" uid="uid://ryeou37mumux" path="res://Assets/Audio/Dialogue/speach_7.wav" id="8_4itmy"]
+[ext_resource type="AudioStream" uid="uid://c77y4wmottirc" path="res://Assets/Audio/Dialogue/speach_8.wav" id="9_wbec8"]
+[ext_resource type="AudioStream" uid="uid://hn1e45roro0a" path="res://Assets/Audio/Dialogue/speach_9.wav" id="10_v3s3p"]
+[ext_resource type="AudioStream" uid="uid://dgtld3qyjsxhd" path="res://Assets/Audio/Dialogue/speach_10.wav" id="11_e8g3c"]
+[ext_resource type="AudioStream" uid="uid://bhfyv8nwslhp5" path="res://Assets/Audio/Dialogue/speach_11.wav" id="12_blixx"]
+[ext_resource type="AudioStream" uid="uid://cpg8gomofvhfd" path="res://Assets/Audio/Dialogue/speach_12.wav" id="13_5ijvp"]
+[ext_resource type="AudioStream" uid="uid://b4t86jo4nc7ap" path="res://Assets/Audio/Dialogue/speach_13.wav" id="14_kswmg"]
+
+[node name="Dialog Player" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_826ql")
+scene_dialogue_file = "res://Assets/Data/Dialogue/tutorial.json"
+dialogue_sound_effects = Array[AudioStream]([ExtResource("2_1v3ye"), ExtResource("3_a1fbr"), ExtResource("4_ihn56"), ExtResource("5_ssxck"), ExtResource("6_2dvh0"), ExtResource("7_cgfnh"), ExtResource("8_4itmy"), ExtResource("9_wbec8"), ExtResource("10_v3s3p"), ExtResource("11_e8g3c"), ExtResource("12_blixx"), ExtResource("13_5ijvp"), ExtResource("14_kswmg")])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -961.0
+offset_top = 2.0
+offset_right = 959.0
+offset_bottom = 202.0
+grow_horizontal = 2
+color = Color(0.019607844, 0.019607844, 0.019607844, 0.627451)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -200.0
+offset_right = 960.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.019607844, 0.019607844, 0.019607844, 0.627451)
+
+[node name="Text" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -750.0
+offset_top = -190.0
+offset_right = 750.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_q247q")
+theme_override_font_sizes/font_size = 24
+text = "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -172.0
+offset_right = 418.0
+offset_bottom = 340.0
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Chef_Hat" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_q247q")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3195.9312, 0, 0)
+script = ExtResource("4_wtkn2")
+possible_anmiations = Array[StringName]([&"RecieveHit", &"Jump", &"Victory", &"Shoot_OneHanded"])
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3195.8108, 3.163704, 2.8557398)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

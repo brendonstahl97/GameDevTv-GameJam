@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://caov6sc8wlnot"]
+
+[ext_resource type="Script" uid="uid://cvtvlwcjd0tiw" path="res://test_scene.gd" id="1_coq8p"]
+[ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
+[ext_resource type="PackedScene" uid="uid://ytur78asltc" path="res://UI/Dialog Player/dialog_player.tscn" id="4_2nij2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hn0n"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljoqb"]
+size = Vector3(10, 1, 10)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_coq8p")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_4hn0n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_ljoqb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.96104974, 0.27637547, 0, -0.27637547, 0.96104974, 0, 3.9333472, 6.3307343)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.755922, 0.65466166, 0, -0.65466166, 0.755922, 0, 3.926616, 3.727194)
+
+[node name="0" parent="." instance=ExtResource("1_uhqqe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422091, 0.6148584, 0.63885355)
+
+[node name="Dialog Player" parent="." instance=ExtResource("4_2nij2")]
+visible = false

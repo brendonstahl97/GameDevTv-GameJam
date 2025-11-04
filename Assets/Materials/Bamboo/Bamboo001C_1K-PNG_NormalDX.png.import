@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2hantyqnr3cx"
-path.s3tc="res://.godot/imported/circle_05.png-396a8a1b6751adddb5af2d1945224cb6.s3tc.ctex"
+uid="uid://dgabsfkee4srm"
+path.s3tc="res://.godot/imported/Bamboo001C_1K-PNG_NormalDX.png-6a81f61143948389c61af1ef12c2caa6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Particles/circle_05.png"
-dest_files=["res://.godot/imported/circle_05.png-396a8a1b6751adddb5af2d1945224cb6.s3tc.ctex"]
+source_file="res://Assets/Materials/Bamboo/Bamboo001C_1K-PNG_NormalDX.png"
+dest_files=["res://.godot/imported/Bamboo001C_1K-PNG_NormalDX.png-6a81f61143948389c61af1ef12c2caa6.s3tc.ctex"]
 
 [params]
 
@@ -22,12 +22,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Assets/Materials/Bamboo/Bamboo001C_1K-PNG_NormalDX.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
