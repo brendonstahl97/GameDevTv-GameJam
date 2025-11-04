@@ -32,4 +32,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422091, 0.6148584, 0.63885
 
 [node name="Dialog Player" parent="." instance=ExtResource("4_2nij2")]
 visible = false
-scene_text_file = "res://Assets/Data/Dialogue/tutorial.json"
