@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://caov6sc8wlnot"]
+[gd_scene load_steps=6 format=3 uid="uid://caov6sc8wlnot"]
 
+[ext_resource type="Script" uid="uid://cvtvlwcjd0tiw" path="res://test_scene.gd" id="1_coq8p"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
-[ext_resource type="PackedScene" uid="uid://srpk4wkg14dc" path="res://Entities/Skewer/skewer.tscn" id="2_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://ytur78asltc" path="res://UI/Dialog Player/dialog_player.tscn" id="4_2nij2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hn0n"]
 size = Vector3(10, 1, 10)
@@ -10,6 +11,7 @@ size = Vector3(10, 1, 10)
 size = Vector3(10, 1, 10)
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_coq8p")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -28,5 +30,6 @@ transform = Transform3D(1, 0, 0, 0, 0.755922, 0.65466166, 0, -0.65466166, 0.7559
 [node name="0" parent="." instance=ExtResource("1_uhqqe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422091, 0.6148584, 0.63885355)
 
-[node name="Skewer" parent="." instance=ExtResource("2_ia1lp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.857, 0.5, 0.009)
+[node name="Dialog Player" parent="." instance=ExtResource("4_2nij2")]
+visible = false
+scene_text_file = "res://Assets/Data/Dialogue/tutorial.json"

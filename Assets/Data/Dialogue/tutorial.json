@@ -1,0 +1,74 @@
+{
+  "intro": [
+	"Hey there! Welcome to town.",
+	"I take it you're here to service our market of hungry villagers?",
+    "Well theres a few things you should know before getting started."
+  ],
+  "movement": [
+	"Our town isnt like other towns",
+	"While our villagers may be extremely hungry, they're also lazy.",
+	"Rather than walking to you, they prefer to be served where they are.",
+	"Use the left analog stick to shove that stand of yours right over to 'em.",
+    "Try it out with our town training dummy over there!"
+  ],
+  "customers": [
+	"Great job scraping that thing along!",
+	"Now, lets talk about our villagers.",
+	"Each villager has their own unique preferences when it comes to food.",
+	"When you approach a villager, take a look at the icons above their head to see what they want.",
+	"Serve them the right food, and they'll be happy to pay you!",
+	"Don't worry about making mistakes though.",
+	"If you serve them the wrong food, they'll just want a completely different order the next go around.",
+	"An important thing to remember is that it takes stamina to prepare and serve food, so make sure you aren't exhausted before taking on a customer.",
+    "Try serving our wooden friend here by using the d-pad to fulfill their request."
+  ],
+  "sprint": [
+	"Nice work serving that villager!",
+	"You're a natural at this.",
+	"In the real market, things can get pretty hectic since there's a lot of competition.",
+	"You'll need to be quick on your feet to get to the best customers before anyone else does.",
+	"Hold down the A button while moving to sprint and get to those customers faster!",
+	"Sprinting with that stand is hard work and will drain your stamina, so be careful not to overdo it.",
+    "Give it a try by sprinting over to that next training dummy!"
+  ],
+  "bump": [
+	"Now thats what I call fast!",
+	"Let's talk about dealing with other vendors in the market.",
+	"Sometimes, other vendors might get in your way or try to steal your customers.",
+	"You can give them a bump with your stand to get them out of the way.",
+	"Just sprint directly into them to show them whos boss!",
+	"Make sure to hit them directly head-on for maximum effect.",
+	"You'll feel so good after committing an act of violence that you'll regain a bit of stamina too.",
+	"The more momentum you have on impact, the more intensly they'll be lauched.", 
+	"The more intense the launch, the more stamina you'll recover!",
+	"I'd tell ya to try it out, but there doensn't seem to be any other vendors around.",
+    "Try it out on this bird instead!"
+  ],
+  "slam": [
+	"Whoa! Look at that bird fly!",
+	"Now, for our another trick: the slam.",
+	"Occasionally, you'll find yourself sent flying through the air after a particularly intense bump.",
+	"When that happens, you can slam your stand back down onto the ground by pressing the B button while in midair.",
+	"The impact of the slam will send out a shockwave that can knock away any nearby competition!",
+	"If you time it just right, you can even slam directly onto another vendor for a super powerful bump!",
+	"Use this jump pad to launch yourself into the air and try out the slam!",
+    "...and don't ask me where I got this jump pad."
+  ],
+  "parry": [
+	"Impressive! That was quite the slam.",
+	"Now, let's talk about defending yourself.",
+	"Sometimes, other vendors might try to bump you out of the way.",
+	"If you see one coming, you can use your trusty frying pan to knock them away by pressing the RB button just before they hit you.",
+	"The timing is pretty tight, but successfully parrying will not only prevent you from being knocked back, but will redirect their attack back at them!",
+	"Busting out your frying pan is risky business.",
+	"If you whip it out without successfully parrying an attack, you'll become exhausted and lose all of your stamina.",
+	"Make sure to only use it when you really need to!",
+    "Use the RB button to try parrying an incoming attack with the from this delicious skewer i'm going to throw at you!"
+  ],
+  "outro": [
+	"Fantastic! You've got the hang of it now.",
+	"With these skills under your belt, you're ready to take on the bustling market and serve our hungry villagers.",
+	"Remember to stay quick, keep an eye on your stamina, and don't be afraid to get a little competitive!",
+    "Good luck out there, vendor! And make sure that your stand is the last stand standing!"
+  ]
+}
