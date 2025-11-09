@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cut1v6u3e5oqh"]
 
-[ext_resource type="Script" uid="uid://cotkt6ds77muu" path="res://Game Scenes/Main Game Scene/Game Levels/game_level.gd" id="1_njfco"]
+[ext_resource type="Script" uid="uid://cotkt6ds77muu" path="res://Game Levels/game_level.gd" id="1_njfco"]
 [ext_resource type="Texture2D" uid="uid://c4s7yucygjxaq" path="res://Assets/Environment/uploads_files_4381654_LightBlueSky_texture.jpg" id="2_eyjt6"]
 [ext_resource type="Script" uid="uid://2mpjksevpep4" path="res://Entities/Killbox/Killbox.gd" id="8_uqptf"]
 

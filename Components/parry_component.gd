@@ -2,6 +2,7 @@ class_name ParryComponent
 extends Node
 
 signal parry_failure
+signal parry_success
 signal parry_sound(sound: AudioStream)
 
 @export_category("Parry")
@@ -55,6 +56,7 @@ func try_parry(impulse_force: Vector3, calling_entity: RigidBody3D) -> bool:
 	_create_parry_effect(-impulse_force.normalized(), calling_entity.global_position, true)
 	
 	did_succesfully_parry = true
+	parry_success.emit()
 	global.successful_parry.emit(get_parent().global_position)
 	
 	return true
