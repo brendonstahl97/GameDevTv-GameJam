@@ -1,6 +1,6 @@
 [gd_scene load_steps=51 format=4 uid="uid://bqrhmbkbhflce"]
 
-[ext_resource type="Script" uid="uid://bj287pyycqq57" path="res://Entities/Customer/training_customer.gd" id="1_2v7vy"]
+[ext_resource type="Script" uid="uid://bj287pyycqq57" path="res://Entities/Customer/Training Customer/training_customer.gd" id="1_2v7vy"]
 [ext_resource type="AudioStream" uid="uid://otqjcmymmqv5" path="res://Assets/Audio/CodeSumbittedCorrect.wav" id="2_05gyu"]
 [ext_resource type="AudioStream" uid="uid://b0dc8lfkjv56p" path="res://Assets/Audio/CodeSumbittedIncorrect.wav" id="3_2v7vy"]
 [ext_resource type="Script" uid="uid://bcl745ju8ewk4" path="res://Resources/Loot Table/loot_table_item.gd" id="4_sjbht"]

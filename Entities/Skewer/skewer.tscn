@@ -214,102 +214,6 @@ flip_faces = true
 size = 0.045
 curve = SubResource("Curve_2h6bj")
 
-[sub_resource type="Animation" id="Animation_f6n2u"]
-resource_name = "deflect"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.03333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("skewerVegetables:transparency")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.14444445, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("skewerVegetables/meat:transparency")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.15, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("skewerVegetables/meat2:transparency")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.15555556, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("skewerVegetables/meat3:transparency")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.15555556, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("skewerVegetables/vegetables:transparency")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.15, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("skewerVegetables/vegetables2:transparency")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.14444445, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath(".")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_2h6bj"]
 length = 0.001
 tracks/0/type = "value"
@@ -487,6 +391,101 @@ tracks/7/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_f6n2u"]
+resource_name = "deflect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("skewerVegetables:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.10000001, -0.10000001, 0.06666666, 0.06666666, 1, -0.14444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.41666666, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("skewerVegetables/meat:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.10000001, -0.10000001, 0.06666666, 0.06666666, 1, -0.15, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.6, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("skewerVegetables/meat2:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.10000001, -0.10000001, 0.06666666, 0.06666666, 1, -0.15555556, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.6, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("skewerVegetables/meat3:transparency")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.10000001, -0.10000001, 0.06666666, 0.06666666, 1, -0.15555556, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.6, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("skewerVegetables/vegetables:transparency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.10000001, -0.10000001, 0.06666666, 0.06666666, 1, -0.15, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.6, 1)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("skewerVegetables/vegetables2:transparency")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.10000001, -0.10000001, 0.06666666, 0.06666666, 1, -0.14444445, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.6, 1)
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yvpd3"]
 _data = {
 &"RESET": SubResource("Animation_2h6bj"),
@@ -495,27 +494,28 @@ _data = {
 }
 
 [node name="Skewer" type="RigidBody3D"]
+mass = 0.8
 gravity_scale = 0.0
 script = ExtResource("1_l17sy")
 metadata/_custom_type_script = "uid://doylhbsg6shpe"
 
 [node name="skewerVegetables" type="MeshInstance3D" parent="."]
-transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -0.013007781, 0, 0.013690582)
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -0.013007781, 0, 0.013690582)
 mesh = SubResource("ArrayMesh_dq51v")
 skeleton = NodePath("")
 
 [node name="meat" type="MeshInstance3D" parent="skewerVegetables"]
-transform = Transform3D(7.702112e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 9.858704e-08, -0.05055, 0.006833956, 2.0442326e-09)
+transform = Transform3D(9.7558384e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 1.2487473e-07, -0.05055, 0.006833956, 2.0442326e-09)
 mesh = SubResource("ArrayMesh_i3iu1")
 skeleton = NodePath("")
 
 [node name="meat2" type="MeshInstance3D" parent="skewerVegetables"]
-transform = Transform3D(7.702112e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 9.858704e-08, 0.086633995, 0.006833956, 0)
+transform = Transform3D(9.7558384e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 1.2487473e-07, 0.086633995, 0.006833956, 0)
 mesh = SubResource("ArrayMesh_i3iu1")
 skeleton = NodePath("")
 
 [node name="meat3" type="MeshInstance3D" parent="skewerVegetables"]
-transform = Transform3D(7.702112e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 9.858704e-08, 0.223818, 0.006833956, -2.0442326e-09)
+transform = Transform3D(9.7558384e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 1.2487473e-07, 0.223818, 0.006833956, -2.0442326e-09)
 mesh = SubResource("ArrayMesh_i3iu1")
 skeleton = NodePath("")
 
@@ -530,7 +530,7 @@ mesh = SubResource("ArrayMesh_jberr")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -0.015109945, 0.11283548, 0.023443285)
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -0.015109945, 0.11283548, 0.023443285)
 shape = SubResource("BoxShape3D_vuh75")
 
 [node name="BumpComponent" type="Area3D" parent="."]
@@ -540,7 +540,7 @@ script = ExtResource("1_d74w6")
 metadata/_custom_type_script = "uid://w5lr7k7dywgf"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BumpComponent"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.034283962, 0.11283548, 2.7939677e-09)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.034283962, 0.11283548, 2.7939677e-09)
 shape = SubResource("BoxShape3D_yawni")
 debug_color = Color(0.8920837, 0.14451979, 0.709596, 0.41960785)
 
@@ -556,7 +556,7 @@ script = ExtResource("4_f6n2u")
 metadata/_custom_type_script = "uid://b02dexygwwdjs"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(-4.3711392e-08, 0, -1.0000001, 0, 0.9999999, 0, 1.0000001, 0, -4.3711392e-08, 0, 0.113, -0.6645124)
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 0, 0.12582347, -0.8945724)
 amount = 100
 lifetime = 0.5
 fixed_fps = 60
@@ -571,6 +571,7 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_yvpd3")
 }
+speed_scale = 0.5
 
 [connection signal="body_entered" from="BumpComponent" to="BumpComponent" method="_on_body_entered"]
 [connection signal="successful_bump" from="BumpComponent" to="." method="_on_bump_component_successful_bump"]

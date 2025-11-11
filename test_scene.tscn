@@ -1,9 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://caov6sc8wlnot"]
+[gd_scene load_steps=35 format=3 uid="uid://caov6sc8wlnot"]
 
 [ext_resource type="Script" uid="uid://cvtvlwcjd0tiw" path="res://test_scene.gd" id="1_coq8p"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://bsm0lw2r3lkwk" path="res://Entities/Launch Pad/launch_pad.tscn" id="2_4gito"]
-[ext_resource type="PackedScene" uid="uid://bqrhmbkbhflce" path="res://Entities/Customer/Training_Customer.tscn" id="2_coq8p"]
+[ext_resource type="PackedScene" uid="uid://bqrhmbkbhflce" path="res://Entities/Customer/Training Customer/Training_Customer.tscn" id="2_coq8p"]
 [ext_resource type="PackedScene" uid="uid://dyv6i67m65snm" path="res://Entities/Turkey/turkey.tscn" id="2_oo8pe"]
 [ext_resource type="PackedScene" uid="uid://ytur78asltc" path="res://UI/Dialog Player/dialog_player.tscn" id="4_2nij2"]
 [ext_resource type="Script" uid="uid://7dpbpu188ln" path="res://Entities/Objective Manager/objective_manager.gd" id="5_7cbxl"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" uid="uid://cmmn2frkxq3a3" path="res://Resources/Objectives/bump_objective.gd" id="11_rpuu0"]
 [ext_resource type="Script" uid="uid://b6j40abr0015f" path="res://Resources/Objectives/slam_objective.gd" id="14_fbuy2"]
 [ext_resource type="Script" uid="uid://dmii05mnainkl" path="res://Resources/Objectives/parry_objective.gd" id="15_0k8yu"]
+[ext_resource type="Script" uid="uid://brjggofdmchc" path="res://Entities/Objective Triggered Entity Spawner/objective_triggered_entity_spawner.gd" id="16_hiucn"]
+[ext_resource type="Script" uid="uid://dxs745ujbj8qy" path="res://Entities/Objective Triggered Entity Spawner/Continuous Objective Triggered Entity Spawner/continuous_objective_triggered_entity_spawner.gd" id="17_2dw41"]
+[ext_resource type="PackedScene" uid="uid://srpk4wkg14dc" path="res://Entities/Skewer/skewer.tscn" id="17_k6its"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hn0n"]
 size = Vector3(30, 1, 30)
@@ -36,7 +39,7 @@ metadata/_custom_type_script = "uid://qheuojllmhtq"
 [sub_resource type="Resource" id="Resource_vr1i5"]
 script = ExtResource("8_buypi")
 navigator_node_path = NodePath("../0")
-target_node_path = NodePath("../Training Customer")
+target_node_path = NodePath("../Customer Spawner")
 distance_threshold = 1.0
 objective_name = "Move to the training dummy"
 metadata/_custom_type_script = "uid://ctpymthqsxglb"
@@ -119,29 +122,52 @@ shape = SubResource("BoxShape3D_4hn0n")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_ljoqb")
 
-[node name="LaunchPad" parent="StaticBody3D" instance=ExtResource("2_4gito")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13559073, 0.5, -5.431467)
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.96104974, 0.27637547, 0, -0.27637547, 0.96104974, 0, 3.9333472, 6.3307343)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.755922, 0.65466166, 0, -0.65466166, 0.755922, 0, 3.926616, 3.727194)
 
-[node name="Turkey" parent="." instance=ExtResource("2_oo8pe")]
-transform = Transform3D(-0.07957267, 0, -0.9968291, 0, 1, 0, 0.9968291, 0, -0.07957267, 3.7793374, 2.031886, 0.624033)
-
 [node name="0" parent="." instance=ExtResource("1_uhqqe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422091, 0.6148584, 0.63885355)
-
-[node name="Training Customer" parent="." instance=ExtResource("2_coq8p")]
-unique_name_in_owner = true
-transform = Transform3D(0.285, 0, 0, 0, 0.285, 0, 0, 0, 0.285, -7.659993, 6.333799, 0.42716312)
 
 [node name="Dialog Player" parent="." instance=ExtResource("4_2nij2")]
 visible = false
 
 [node name="ObjectiveManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("5_7cbxl")
 objectives = Array[ExtResource("6_8pr8v")]([SubResource("Resource_buypi"), SubResource("Resource_8pr8v"), SubResource("Resource_vr1i5"), SubResource("Resource_njel3"), SubResource("Resource_oo8pe"), SubResource("Resource_4gito"), SubResource("Resource_fbuy2"), SubResource("Resource_0k8yu"), SubResource("Resource_hiucn"), SubResource("Resource_k6its"), SubResource("Resource_2dw41"), SubResource("Resource_ykxp3"), SubResource("Resource_g6y4b"), SubResource("Resource_pvxhv")])
 metadata/_custom_type_script = "uid://7dpbpu188ln"
+
+[node name="Customer Spawner" type="Node3D" parent="." node_paths=PackedStringArray("objective_manager")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.66, 1, 0.427)
+script = ExtResource("16_hiucn")
+objective_manager = NodePath("../ObjectiveManager")
+entity_scene = ExtResource("2_coq8p")
+Objective_triggers = Array[ExtResource("6_8pr8v")]([SubResource("Resource_vr1i5")])
+metadata/_custom_type_script = "uid://brjggofdmchc"
+
+[node name="Turkey Spawner" type="Node3D" parent="." node_paths=PackedStringArray("objective_manager")]
+transform = Transform3D(-0.07957267, 0, -0.9968291, 0, 1, 0, 0.9968291, 0, -0.07957267, 3.7793374, 2.031886, 0.624033)
+script = ExtResource("16_hiucn")
+objective_manager = NodePath("../ObjectiveManager")
+entity_scene = ExtResource("2_oo8pe")
+Objective_triggers = Array[ExtResource("6_8pr8v")]([SubResource("Resource_hiucn")])
+metadata/_custom_type_script = "uid://brjggofdmchc"
+
+[node name="Jump Pad Spawner" type="Node3D" parent="." node_paths=PackedStringArray("objective_manager")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13559073, 0.5, -5.431467)
+script = ExtResource("16_hiucn")
+objective_manager = NodePath("../ObjectiveManager")
+entity_scene = ExtResource("2_4gito")
+Objective_triggers = Array[ExtResource("6_8pr8v")]([SubResource("Resource_2dw41")])
+metadata/_custom_type_script = "uid://brjggofdmchc"
+
+[node name="ContinuousObjectiveTriggeredEntitySpawner" type="Node3D" parent="." node_paths=PackedStringArray("objective_manager")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.548006, 0.7673147, 0)
+script = ExtResource("17_2dw41")
+objective_manager = NodePath("../ObjectiveManager")
+entity_scene = ExtResource("17_k6its")
+Objective_triggers = Array[ExtResource("6_8pr8v")]([SubResource("Resource_g6y4b")])
+metadata/_custom_type_script = "uid://dxs745ujbj8qy"

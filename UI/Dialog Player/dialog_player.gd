@@ -50,6 +50,8 @@ func _finish() -> void:
 	text_label.text = ""
 	visible = false
 	in_progress = false
+	audio_player.stop()
+	timer.stop()
 	SignalBus.dialog_completed.emit()
 
 
@@ -83,10 +85,10 @@ func _animate_text() -> void:
 
 func _play_dialogue_audio(character: String) -> void:
 	# Use the ascii value to determine if the character is a letter or not
-	var ascii = character.to_ascii_buffer()[0]
+	var ascii_value = character.to_ascii_buffer()[0]
 	
 	# If it is not a letter, do not play a sound
-	if (character.to_ascii_buffer()[0] - 65 < 0):
+	if (ascii_value - 65 < 0):
 		return
 		
 	audio_player.stream = dialogue_sound_effects.pick_random()

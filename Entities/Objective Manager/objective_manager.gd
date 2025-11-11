@@ -2,6 +2,7 @@ class_name ObjectiveManager
 extends Node
 
 signal objective_changed(current_objective: BaseObjective)
+signal objective_completed(completed_objective: BaseObjective)
 signal all_objectives_completed
 
 @export var objectives: Array[BaseObjective] = []
@@ -42,10 +43,11 @@ func start_objective(index: int) -> void:
 	current_objective.initialize(self)
 	
 	# signal that the current objective has changed
-	objective_changed.emit()
+	objective_changed.emit(current_objective)
 
 
 func _on_objective_completed() -> void:
+	objective_completed.emit(current_objective)
 	if (current_objective_index == objectives.size() - 1):
 		print("All objectives completed")
 		all_objectives_completed.emit()
