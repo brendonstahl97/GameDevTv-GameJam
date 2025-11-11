@@ -9,6 +9,7 @@ class_name Customer
 extends Area3D
 
 signal customer_type_assigned(customer_type: CustomerType)
+signal player_in_range
 
 @onready var code_submission_sounds: AudioStreamPlayer3D = %CodeSubmissionSounds
 @onready var coin_effect_spawner: EffectSpawner = %CoinEffectSpawner
@@ -54,16 +55,8 @@ func generateSequence() -> Array[Global.CodeDirection]:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group(customer_group_name)
-	# Get a random customer tier based on "rarity".
-	customer_type = customer_type_loot_table.get_loot()
-	customer_type_assigned.emit(customer_type)
-
-	# Spawn the character model
-	var desiredCharacter = customer_type.character_model.instantiate()
-	var meshInstance: MeshInstance3D = desiredCharacter.get_node("CharacterArmature/Skeleton3D/Body")
-	var oldMeshInstance: MeshInstance3D = get_node("Casual2_Female/CharacterArmature/Skeleton3D/Body")
-	oldMeshInstance.mesh = meshInstance.mesh
-	desiredCharacter.queue_free()
+	
+	_randomize_customer_type()
 
 	# Generate the task sequence for the customer
 	correctTaskSequence = generateSequence()
@@ -83,6 +76,7 @@ func _on_body_entered(body:Node3D) -> void:
 		return
 		
 	customer_task_display.visible = true
+	player_in_range.emit()
 
 	# If there isn't a player already assigned, assign the customer to the current player
 	if currentPlayer == null:
@@ -120,6 +114,19 @@ func _on_body_exited(_body:Node3D) -> void:
 
 func get_next_correct_input() -> global.CodeDirection:
 	return correctTaskSequence[currentPlayerSequence.size()]
+
+
+func _randomize_customer_type() -> void:
+	# Get a random customer tier based on "rarity".
+	customer_type = customer_type_loot_table.get_loot()
+	customer_type_assigned.emit(customer_type)
+
+	# Spawn the character model
+	var desiredCharacter = customer_type.character_model.instantiate()
+	var meshInstance: MeshInstance3D = desiredCharacter.get_node("CharacterArmature/Skeleton3D/Body")
+	var oldMeshInstance: MeshInstance3D = get_node("Casual2_Female/CharacterArmature/Skeleton3D/Body")
+	oldMeshInstance.mesh = meshInstance.mesh
+	desiredCharacter.queue_free()
 
 
 # Connect to the player controller 

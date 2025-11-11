@@ -1,6 +1,8 @@
 class_name SlamComponent
 extends RigidbodyManipulatorComponent
 
+signal successful_slam
+
 @export_category("Slam")
 @export var SlamSpeed = 5000.0 ## The speed that you slam
 @export var SlamLaunchForceMultiplier = 1.0 ## A multipler to adjust the force of the launch from the slam
@@ -43,6 +45,7 @@ func _physics_process(delta: float) -> void:
 			
 	if (should_slam_next_physics_frame):
 		_slam_cast()
+		successful_slam.emit()
 
 
 # TODO Refactor this component into a ShapeCast3D Node

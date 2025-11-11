@@ -1,3 +1,4 @@
+class_name DialogPlayer
 extends Control
 
 @export_file("*json") var scene_dialogue_file: String
@@ -19,6 +20,7 @@ var num_characters = 0
 func _ready() -> void:
 	visible = false
 	scene_dialogue = _load_scene_dialogue()
+	timer.timeout.connect(_animate_text)
 	SignalBus.display_dialog.connect(_on_display_dialog)
 
 
@@ -34,7 +36,6 @@ func _load_scene_dialogue() -> Dictionary:
 
 func _show_text() -> void:
 	current_line = current_topic.pop_front()
-	timer.timeout.connect(_animate_text)
 	timer.start(1/text_display_speed)
 
 
@@ -49,6 +50,8 @@ func _finish() -> void:
 	text_label.text = ""
 	visible = false
 	in_progress = false
+	audio_player.stop()
+	timer.stop()
 	SignalBus.dialog_completed.emit()
 
 
@@ -68,7 +71,7 @@ func _on_display_dialog(text_key: StringName) -> void:
 
 func _animate_text() -> void: 
 	if (current_line.length() <= 0):
-		timer.timeout.disconnect(_animate_text)
+		timer.stop()
 		return
 	
 	var new_character = current_line.left(1)
@@ -81,9 +84,12 @@ func _animate_text() -> void:
 
 
 func _play_dialogue_audio(character: String) -> void:
-	var ascii = character.to_ascii_buffer()[0]
-	if (character.to_ascii_buffer()[0] - 65 < 0):
-		print("non-letter detected")
+	# Use the ascii value to determine if the character is a letter or not
+	var ascii_value = character.to_ascii_buffer()[0]
+	
+	# If it is not a letter, do not play a sound
+	if (ascii_value - 65 < 0):
 		return
+		
 	audio_player.stream = dialogue_sound_effects.pick_random()
 	audio_player.play()

@@ -26,6 +26,8 @@ func _on_body_entered(body: Node3D):
 		
 	if (target_bumpable_component.try_bump(get_parent())):
 		var restored_stamina_amount = get_parent().linear_velocity.length() * get_parent().mass * bump_stamina_gain_multiplier
+		collision_audio_player.stream = bump_sound_effect
+		collision_audio_player.play()
 		successful_bump.emit(restored_stamina_amount)
 	else:
 		if (!collision_audio_player.playing):

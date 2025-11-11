@@ -27,7 +27,7 @@ var PlayerColor : Color = Color(.8, .19, 0.01)
 var PlayerGuy : String = "Man 1"
 
 var movement_direction = Vector3.ZERO
-var player_controls_enabled := false
+var player_controls_enabled := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,8 +46,9 @@ func _process(_delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	_update_movement_direction()
+	_handle_sprint_input(delta)
+	
 	if (player_controls_enabled):
-		_handle_sprint_input(delta)
 		movement_component.move(movement_direction)
 		rotation_component.look_in_movement_direction()
 		_handle_slam_input()
@@ -57,15 +58,30 @@ func _update_movement_direction() -> void:
 	movement_direction = Vector3(Input.get_axis(Controls.move_left, Controls.move_right), 0, Input.get_axis(Controls.move_up, Controls.move_down)).normalized()
 
 func _handle_sprint_input(delta: float) -> void: 
-	if (Input.is_action_just_pressed(Controls.sprint)):
-		_begin_sprint()
 
-	elif (Input.is_action_pressed(Controls.sprint) && sprint_component.is_sprinting):
-		if (!stamina_manager.try_drain_stamina(sprint_component.sprint_stamina_drain * delta)):
-			_end_sprint()
-
-	elif (Input.is_action_just_released(Controls.sprint)):
+	# If the sprint button was released, stop sprinting
+	if (Input.is_action_just_released(Controls.sprint)):
 		_end_sprint()
+		return
+
+	# If not moving and currently sprinting, stop sprinting
+	if (linear_velocity.length() <= 0.1 && sprint_component.is_sprinting):
+			_end_sprint()
+			return
+
+	# If we make it here and the sprint button is not pressed, do nothing
+	if (!Input.is_action_pressed(Controls.sprint)):
+		return
+
+	# If the sprint button is pressed and we are not currently sprinting, begin sprinting
+	if (!sprint_component.is_sprinting && linear_velocity.length() > 0.1):
+		_begin_sprint()
+	
+	# If we are currently sprinting, try to drain stamina
+	if (sprint_component.is_sprinting):
+			if (!stamina_manager.try_drain_stamina(sprint_component.sprint_stamina_drain * delta)):
+				_end_sprint()	
+
 
 
 func _begin_sprint() -> void:

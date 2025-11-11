@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://by4osre76goju"]
 
-[ext_resource type="Script" uid="uid://cotkt6ds77muu" path="res://Game Scenes/Main Game Scene/Game Levels/game_level.gd" id="1_swale"]
+[ext_resource type="Script" uid="uid://cotkt6ds77muu" path="res://Game Levels/game_level.gd" id="1_swale"]
 [ext_resource type="Texture2D" uid="uid://c4s7yucygjxaq" path="res://Assets/Environment/uploads_files_4381654_LightBlueSky_texture.jpg" id="2_lxy22"]
 [ext_resource type="MeshLibrary" uid="uid://b5fof6mi2gx1e" path="res://Assets/Environment/Desert Tileset/desert_tileset.tres" id="3_lxy22"]
 [ext_resource type="Script" uid="uid://2mpjksevpep4" path="res://Entities/Killbox/Killbox.gd" id="3_r5wdn"]
