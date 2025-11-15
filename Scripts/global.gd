@@ -1,15 +1,17 @@
 class_name Global
 extends Node
 
-# Should these be global?
+# TODO: move to signal bus
 signal successful_parry(global_position: Vector3)
 signal customer_completed(reward: int, player_name: String)
 
 
+# TODO: move to utility script
 func remap_range(value, InputA, InputB, OutputA, OutputB):
 	return(value - InputA) / (InputB - InputA) * (OutputB - OutputA) + OutputA
 
 
+# TODO: move to utility script
 func _sort_descending(a, b):
 	if a[1]["Money"] > b[1]["Money"]:
 		return true
