@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkvb0aqhpd4f1"]
+
+[ext_resource type="Script" uid="uid://dnvkvjb6ug3ck" path="res://UI/Player Profile Element/player_profile_element.gd" id="1_3y3np"]
+[ext_resource type="Script" uid="uid://il6bhfavjjtl" path="res://UI/Player Profile Element/player_profile_tab_container.gd" id="1_5f4eq"]
+[ext_resource type="PackedScene" uid="uid://byaiid0jt7r71" path="res://UI/Player Profile Element/player_profile_tab.tscn" id="2_sinuv"]
+[ext_resource type="Theme" uid="uid://cftuabnvjxfdf" path="res://UI/BlockTheme.tres" id="3_bcstl"]
+[ext_resource type="PackedScene" uid="uid://ctnf8ssskrrna" path="res://UI/Character Selector/character_selector.tscn" id="4_3y3np"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y3np"]
+
+[node name="Player Profile" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../Guy")
+focus_neighbor_bottom = NodePath("../Ready")
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3y3np")
+script = ExtResource("1_3y3np")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="PlayerProfileTabContainer" type="TabContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.5
+offset_top = -50.0
+offset_right = 179.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+tabs_visible = false
+script = ExtResource("1_5f4eq")
+player_profile_tab_scene = ExtResource("2_sinuv")
+metadata/_custom_type_script = "uid://il6bhfavjjtl"
+
+[node name="Test Profile" parent="Control/PlayerProfileTabContainer" instance=ExtResource("2_sinuv")]
+layout_mode = 2
+text = "Test Profile"
+profile_id = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.5
+offset_top = -50.0
+offset_right = 179.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 3
+
+[node name="ProfileNameInput" type="Label" parent="Control/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_bcstl")
+theme_override_font_sizes/font_size = 57
+
+[node name="CharacterSelector" parent="Control" instance=ExtResource("4_3y3np")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.5
+offset_top = -50.0
+offset_right = -126.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0

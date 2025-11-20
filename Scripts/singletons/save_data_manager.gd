@@ -15,8 +15,7 @@ var current_save_data: Dictionary = {
 
 
 func _ready() -> void:
-	_save_game()
-	# _load_game()
+	_load_game()
 	print(current_save_data)
 
 

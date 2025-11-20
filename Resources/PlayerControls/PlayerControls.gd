@@ -14,3 +14,4 @@ extends Resource
 @export var slam := "p1_slam"
 @export var parry := "p1_parry"
 @export var begin_game := "p1_begin_game"
+@export var delete := "p1_delete"
