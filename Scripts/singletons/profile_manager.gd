@@ -1,7 +1,7 @@
 @tool
-class_name ProfileManager
 extends Node
 
+signal profiles_changed
 
 @export_group("Buttons for testing in editor (Will not affect save data)")
 @export_tool_button("View Profiles") var view_profiles_button_action = _on_view_profiles_button_pressed
@@ -15,11 +15,11 @@ func _ready() -> void:
 	if (Engine.is_editor_hint()):
 		return
 		
+	load_profiles()
+
+
+func load_profiles() -> void:
 	var save_data = SaveDataManager.get_save_data()
-	load_profiles(save_data)
-
-
-func load_profiles(save_data: Dictionary) -> void:
 	if (save_data.has("profiles")):
 		profiles = save_data["profiles"].duplicate()
 		print("Profiles loaded:", profiles)
@@ -27,7 +27,7 @@ func load_profiles(save_data: Dictionary) -> void:
 		print("No profiles found in save data.")
 
 
-func get_profiles() -> Array[Dictionary]:
+func get_profiles() -> Array:
 	return profiles.duplicate()
 
 
@@ -59,7 +59,7 @@ func update_profile(updated_profile: Dictionary, should_save: bool = true) -> vo
 
 			if should_save:
 				_save_profiles()
-				
+			
 			return
 
 	print("Profile with ID", updated_profile["id"], "not found.")
@@ -100,6 +100,8 @@ func _save_profiles() -> void:
 	save_data["profiles"] = profiles.duplicate()
 	SaveDataManager.update_save_data(save_data)
 	print("Profiles saved.")
+	load_profiles()
+	profiles_changed.emit()
 
 
 func _on_view_profiles_button_pressed() -> void:

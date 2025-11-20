@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://brjggofdmchc" path="res://Entities/Objective Triggered Entity Spawner/objective_triggered_entity_spawner.gd" id="16_hiucn"]
 [ext_resource type="Script" uid="uid://dxs745ujbj8qy" path="res://Entities/Objective Triggered Entity Spawner/Continuous Objective Triggered Entity Spawner/continuous_objective_triggered_entity_spawner.gd" id="17_2dw41"]
 [ext_resource type="PackedScene" uid="uid://srpk4wkg14dc" path="res://Entities/Skewer/skewer.tscn" id="17_k6its"]
-[ext_resource type="Script" uid="uid://ds5qvfgc6cn1v" path="res://Entities/Profile Manager/profile_manager.gd" id="19_ykxp3"]
+[ext_resource type="Script" uid="uid://ds5qvfgc6cn1v" path="res://Scripts/singletons/profile_manager.gd" id="19_ykxp3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hn0n"]
 size = Vector3(30, 1, 30)
