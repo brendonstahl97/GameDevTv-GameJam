@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bkyuf5r5kqrx1" path="res://Entities/Display-Only Player/display_player.gd" id="1_0cifn"]
 [ext_resource type="PackedScene" uid="uid://bjn5lgpnk6gjh" path="res://Assets/Environment/Models/stallGreen.glb" id="2_y3lfj"]
 [ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="3_nl45l"]
-[ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="4_b0mf0"]
+[ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Models/Heavy cart.glb" id="4_b0mf0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8556r"]
 size = Vector3(0.989289, 0.977639, 1.39005)

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dy465foacy0nu" path="res://Assets/Environment/Models/cart.glb" id="12_gjje0"]
 [ext_resource type="ArrayMesh" uid="uid://bcajcbayhx0l4" path="res://Assets/Environment/Food/Meat.mesh" id="13_u2tqh"]
 [ext_resource type="ArrayMesh" uid="uid://duhottr1wvyho" path="res://Assets/Environment/Food/Ribs.meh.tres" id="14_g11oc"]
-[ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="15_5fw4o"]
+[ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Models/Heavy cart.glb" id="15_5fw4o"]
 [ext_resource type="Script" uid="uid://c028afkhggfkv" path="res://Components/movement_component.gd" id="16_tym7x"]
 [ext_resource type="Script" uid="uid://dhn3708afotvc" path="res://Components/sprint_component.gd" id="17_tlxwx"]
 [ext_resource type="Script" uid="uid://b02dexygwwdjs" path="res://Components/rotation_component.gd" id="18_5xx4b"]
