@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=3 uid="uid://caov6sc8wlnot"]
 
-[ext_resource type="Script" uid="uid://cvtvlwcjd0tiw" path="res://test_scene.gd" id="1_coq8p"]
+[ext_resource type="Script" uid="uid://cvtvlwcjd0tiw" path="res://Game Scenes/Test Scene/test_scene.gd" id="1_coq8p"]
 [ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Entities/Player/player.tscn" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://bsm0lw2r3lkwk" path="res://Entities/Launch Pad/launch_pad.tscn" id="2_4gito"]
 [ext_resource type="PackedScene" uid="uid://bqrhmbkbhflce" path="res://Entities/Customer/Training Customer/Training_Customer.tscn" id="2_coq8p"]

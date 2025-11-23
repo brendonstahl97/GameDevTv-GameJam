@@ -15,7 +15,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bcajcbayhx0l4" path="res://Assets/Environment/Food/Meat.mesh" id="19_v3uw3"]
 [ext_resource type="PackedScene" uid="uid://bt7b3sapwvtif" path="res://Entities/VFX/parry_effect.tscn" id="20_1ii4q"]
 [ext_resource type="ArrayMesh" uid="uid://duhottr1wvyho" path="res://Assets/Environment/Food/Ribs.meh.tres" id="20_od5bw"]
-[ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Heavy cart.glb" id="21_fq4wi"]
+[ext_resource type="PackedScene" uid="uid://dfc6csiyam8fu" path="res://Assets/Environment/Models/Heavy cart.glb" id="21_fq4wi"]
 [ext_resource type="Script" uid="uid://c028afkhggfkv" path="res://Components/movement_component.gd" id="22_y1ns3"]
 [ext_resource type="Script" uid="uid://dhn3708afotvc" path="res://Components/sprint_component.gd" id="23_ujhkw"]
 [ext_resource type="PackedScene" uid="uid://d3cume3848xru" path="res://Entities/VFX/slam_impact.tscn" id="24_520x1"]

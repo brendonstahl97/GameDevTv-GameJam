@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://biibnheml74hb" path="res://Entities/Stamina Manager/StaminaManager.gd" id="1_uhar7"]
 [ext_resource type="Script" uid="uid://cselbrch42wg7" path="res://Entities/Stamina Bar/Stamina Bar.gd" id="2_bhuub"]
-[ext_resource type="Texture2D" uid="uid://d7diw50ew7bx" path="res://Assets/ProgressBarOutline.png" id="3_pq4hc"]
-[ext_resource type="Texture2D" uid="uid://bq17il6on2sdk" path="res://Assets/circle-outline-xxl-280.png" id="4_b5l7s"]
+[ext_resource type="Texture2D" uid="uid://d7diw50ew7bx" path="res://Assets/UI/stamina bar/ProgressBarOutline.png" id="3_pq4hc"]
+[ext_resource type="Texture2D" uid="uid://bq17il6on2sdk" path="res://Assets/UI/stamina bar/circle-outline-xxl-280.png" id="4_b5l7s"]
 [ext_resource type="Script" uid="uid://daubcmkpq6kw0" path="res://Entities/Stamina Bar/StaminaProgressBar.gd" id="5_20nyw"]
 [ext_resource type="Script" uid="uid://c1kutjv5mgwn" path="res://Components/NoYMovement.gd" id="6_qyj0q"]
 [ext_resource type="AudioStream" uid="uid://ofxsqnsmc8cs" path="res://Assets/Audio/FailBuzz.mp3" id="7_xhq2h"]

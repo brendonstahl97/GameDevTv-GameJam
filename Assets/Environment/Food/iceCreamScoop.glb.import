@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bifo0teo8tccr"
-path="res://.godot/imported/iceCreamScoop.glb-907f4c02727519f8d3ca530860e470bd.scn"
+path="res://.godot/imported/iceCreamScoop.glb-b9d3a880826084d4b6d96506f4707780.scn"
 
 [deps]
 
-source_file="res://iceCreamScoop.glb"
-dest_files=["res://.godot/imported/iceCreamScoop.glb-907f4c02727519f8d3ca530860e470bd.scn"]
+source_file="res://Assets/Environment/Food/iceCreamScoop.glb"
+dest_files=["res://.godot/imported/iceCreamScoop.glb-b9d3a880826084d4b6d96506f4707780.scn"]
 
 [params]
 

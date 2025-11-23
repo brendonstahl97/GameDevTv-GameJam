@@ -13,7 +13,6 @@ config_version=5
 config/name="GameDevTv_Game_Jam_Entry"
 run/main_scene="res://Game Scenes/Start Menu/Start.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
 
 [audio]
 
