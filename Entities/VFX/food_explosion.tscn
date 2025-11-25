@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://t2fs6qdu3qwr"]
+[gd_scene load_steps=9 format=3 uid="uid://t2fs6qdu3qwr"]
 
 [ext_resource type="ArrayMesh" uid="uid://b3kxgd7rlxxhn" path="res://Assets/Environment/Food/Broccoli.mesh" id="1_ared3"]
+[ext_resource type="Script" uid="uid://chcrcumx5dtpc" path="res://Entities/VFX/visual_effect.gd" id="1_ayuqq"]
 [ext_resource type="ArrayMesh" uid="uid://bpge6weux1xt5" path="res://Assets/Environment/Food/Apple.mesh" id="2_4h6ug"]
 [ext_resource type="ArrayMesh" uid="uid://c4upnglim5802" path="res://Assets/Environment/Food/Carrot.tres" id="3_bnpyt"]
 [ext_resource type="ArrayMesh" uid="uid://bcajcbayhx0l4" path="res://Assets/Environment/Food/Meat.mesh" id="4_mfxaf"]
@@ -128,7 +129,10 @@ _data = {
 &"RESET": SubResource("Animation_gu4at")
 }
 
-[node name="Food Explosion" type="Node3D"]
+[node name="Food Explosion" type="Node3D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_ayuqq")
+animation_name = &"Play Explosion"
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Broccoli" type="CPUParticles3D" parent="."]
 emitting = false
@@ -188,6 +192,5 @@ angular_velocity_max = 3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_jh7jl")
+&"": SubResource("AnimationLibrary_jh7jl")
 }
-autoplay = "Play Explosion"

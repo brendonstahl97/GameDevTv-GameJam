@@ -3,6 +3,7 @@ extends PanelContainer
 
 signal player_choices_updated(player_name: String, player_info: Dictionary)
 signal player_status_changed
+signal bot_requested(control_stack: ControlStack)
 
 @onready var stand_type_selector: TitleTabContainer = %StandType
 @onready var color_selector: ColorTabContainer = %Color
@@ -73,6 +74,9 @@ func _init_player_panel() -> void:
 
 
 func _init_bot_panel() -> void:
+	# Set the bot flag
+	is_bot = true
+
 	# Hide the player profile selector
 	player_profile.hide()
 
@@ -159,6 +163,9 @@ func _handle_ready_input() -> void:
 		ready_indicator.hide()
 		is_ready = false
 		player_status_changed.emit()
+	elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.parry)):
+		## Request a bot be added by this plaayer's control stack
+		bot_requested.emit(assigned_player_control_stack)
 
 
 func _get_selected_values() -> Dictionary:

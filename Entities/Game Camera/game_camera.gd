@@ -28,7 +28,7 @@ func _setup() -> void:
 	StartingPosition = position
 	StartingFov = fov
 	PlayersInGame = get_tree().get_nodes_in_group("Players")
-	global.successful_parry.connect(_on_successful_parry)
+	SignalBus.successful_parry.connect(_on_successful_parry)
 	active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

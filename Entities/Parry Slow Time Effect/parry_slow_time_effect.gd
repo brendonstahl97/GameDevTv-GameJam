@@ -5,7 +5,7 @@ extends Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	global.successful_parry.connect(_on_successful_parry)
+	SignalBus.successful_parry.connect(_on_successful_parry)
 
 
 func _on_successful_parry(_global_position: Vector3):

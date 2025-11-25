@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3cume3848xru"]
+[gd_scene load_steps=9 format=3 uid="uid://d3cume3848xru"]
 
 [ext_resource type="ArrayMesh" uid="uid://b3kxgd7rlxxhn" path="res://Assets/Environment/Food/Broccoli.mesh" id="1_pd36y"]
+[ext_resource type="Script" uid="uid://chcrcumx5dtpc" path="res://Entities/VFX/visual_effect.gd" id="1_w8bhn"]
 [ext_resource type="AudioStream" uid="uid://y7qewn8senf2" path="res://Assets/Audio/Impacts/WoodenCrash.wav" id="2_25fdo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxrp1"]
@@ -86,7 +87,10 @@ _data = {
 &"RESET": SubResource("Animation_gu4at")
 }
 
-[node name="SlamImpact" type="Node3D"]
+[node name="SlamImpact" type="Node3D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_w8bhn")
+animation_name = &"Play Explosion"
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Smoke" type="CPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_xxrp1")
@@ -110,7 +114,6 @@ color_ramp = SubResource("Gradient_s1u17")
 libraries = {
 &"": SubResource("AnimationLibrary_jh7jl")
 }
-autoplay = "Play Explosion"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_25fdo")

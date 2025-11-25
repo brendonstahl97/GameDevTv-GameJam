@@ -22,7 +22,7 @@ func _ready() -> void:
 	_init_map()
 	_init_game_mode()
 	
-	global.customer_completed.connect(_on_customer_completed)
+	SignalBus.customer_completed.connect(_on_customer_completed)
 
 	_setup_players()
 

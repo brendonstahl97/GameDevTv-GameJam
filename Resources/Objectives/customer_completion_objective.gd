@@ -3,11 +3,11 @@ extends CountObjective
 
 
 func initialize(_objective_manager: ObjectiveManager) -> void:
-	global.customer_completed.connect(_on_customer_completed)
+	SignalBus.customer_completed.connect(_on_customer_completed)
 
 
 func cleanup() -> void:
-	global.customer_completed.disconnect(_on_customer_completed)
+	SignalBus.customer_completed.disconnect(_on_customer_completed)
 
 
 func update(_delta: float) -> void:

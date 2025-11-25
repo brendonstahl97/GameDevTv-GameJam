@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cynbdysn21c8e"]
+[gd_scene load_steps=13 format=3 uid="uid://cynbdysn21c8e"]
 
 [ext_resource type="ArrayMesh" uid="uid://dw0brtuwwbif2" path="res://Assets/Environment/Models/Coin.mesh" id="1_6bq86"]
+[ext_resource type="Script" uid="uid://chcrcumx5dtpc" path="res://Entities/VFX/visual_effect.gd" id="1_vtnh2"]
 [ext_resource type="AudioStream" uid="uid://bquti63oapwbe" path="res://Assets/Audio/Coins.wav" id="2_x412q"]
 
 [sub_resource type="Animation" id="Animation_fdldf"]
@@ -118,13 +119,15 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.5
 
-[node name="Coin Explosion" type="Node3D"]
+[node name="Coin Explosion" type="Node3D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_vtnh2")
+animation_name = &"Play Explosion"
+animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_jh7jl")
 }
-autoplay = "Play Explosion"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_x412q")

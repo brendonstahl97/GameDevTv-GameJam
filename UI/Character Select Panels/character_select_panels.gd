@@ -1,6 +1,10 @@
 class_name CharacterSelectPanelManager
 extends HBoxContainer
 
+func _ready() -> void:
+	for panel: CharacterSelectPanel in get_children():
+		panel.bot_requested.connect(_on_bot_requested)
+
 signal player_choices_updated(player_name: String, player_info: Dictionary)
 
 func initialize_next_panel(player_control_stack: ControlStack, is_bot: bool = false) -> void:
@@ -21,3 +25,7 @@ func initialize_next_panel(player_control_stack: ControlStack, is_bot: bool = fa
 
 func _on_player_choices_updated(player_name: String, player_info: Dictionary) -> void:
 	player_choices_updated.emit(player_name, player_info)
+
+
+func _on_bot_requested(control_stack: ControlStack) -> void:
+	initialize_next_panel(control_stack, true)

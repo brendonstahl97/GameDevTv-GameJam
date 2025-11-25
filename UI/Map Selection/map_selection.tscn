@@ -64,7 +64,6 @@ focus_neighbor_right = NodePath("../MapElement2")
 [node name="MapElement2" parent="MarginContainer/GridContainer" instance=ExtResource("1_qgtln")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../MapElement")
-focus_neighbor_right = NodePath("../MapElement")
 map_resource = ExtResource("4_2cvoj")
 
 [node name="StartGameContainer" type="Control" parent="."]
