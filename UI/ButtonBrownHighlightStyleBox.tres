@@ -1,0 +1,56 @@
+[gd_resource type="StyleBoxTexture" load_steps=16 format=3 uid="uid://c1armcyyr0t2u"]
+
+[ext_resource type="Texture2D" uid="uid://x3caeugfdu6g" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0010.png" id="1_wnkjq"]
+[ext_resource type="Texture2D" uid="uid://dtppsu43sniib" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0020.png" id="2_e2bln"]
+[ext_resource type="Texture2D" uid="uid://dthsa4y0bp5ge" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0110.png" id="3_chvs5"]
+[ext_resource type="Texture2D" uid="uid://cctrnkonykwtp" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0120.png" id="4_i6tx6"]
+[ext_resource type="Texture2D" uid="uid://c4pci2mhbrrv0" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0130.png" id="5_swurq"]
+[ext_resource type="Texture2D" uid="uid://x5b8i4ubukr3" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0140.png" id="6_3lm6j"]
+[ext_resource type="Texture2D" uid="uid://dfqt48ll2cr8m" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0030.png" id="7_3d5jl"]
+[ext_resource type="Texture2D" uid="uid://rt3m87ihxv5n" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0040.png" id="8_x7rnk"]
+[ext_resource type="Texture2D" uid="uid://ctw4wkpsu4mi2" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0050.png" id="9_8iacv"]
+[ext_resource type="Texture2D" uid="uid://bja3ayhomyhp8" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0060.png" id="10_60tts"]
+[ext_resource type="Texture2D" uid="uid://cw7m6eyu5pa3k" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0070.png" id="11_8cb2i"]
+[ext_resource type="Texture2D" uid="uid://bsaokbh674dbd" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0080.png" id="12_6xy85"]
+[ext_resource type="Texture2D" uid="uid://dkqahcqwxh6qf" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0090.png" id="13_2gfam"]
+[ext_resource type="Texture2D" uid="uid://b45rec7h5jn1w" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0100.png" id="14_buayq"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_aw8i0"]
+frames = 14
+frame_0/texture = ExtResource("1_wnkjq")
+frame_0/duration = 0.03
+frame_1/texture = ExtResource("2_e2bln")
+frame_1/duration = 0.03
+frame_2/texture = ExtResource("7_3d5jl")
+frame_2/duration = 0.03
+frame_3/texture = ExtResource("8_x7rnk")
+frame_3/duration = 0.03
+frame_4/texture = ExtResource("9_8iacv")
+frame_4/duration = 0.03
+frame_5/texture = ExtResource("10_60tts")
+frame_5/duration = 0.03
+frame_6/texture = ExtResource("11_8cb2i")
+frame_6/duration = 0.03
+frame_7/texture = ExtResource("12_6xy85")
+frame_7/duration = 0.03
+frame_8/texture = ExtResource("13_2gfam")
+frame_8/duration = 0.03
+frame_9/texture = ExtResource("14_buayq")
+frame_9/duration = 0.03
+frame_10/texture = ExtResource("3_chvs5")
+frame_10/duration = 0.03
+frame_11/texture = ExtResource("4_i6tx6")
+frame_11/duration = 0.03
+frame_12/texture = ExtResource("5_swurq")
+frame_12/duration = 0.03
+frame_13/texture = ExtResource("6_3lm6j")
+frame_13/duration = 0.57
+
+[resource]
+texture = SubResource("AnimatedTexture_aw8i0")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2

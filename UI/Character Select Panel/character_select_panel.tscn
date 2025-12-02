@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://ds1asw4j4y68q"]
+[gd_scene load_steps=16 format=3 uid="uid://ds1asw4j4y68q"]
 
 [ext_resource type="Script" uid="uid://tuhqkfs0pmt4" path="res://UI/Character Select Panel/character_select_panel.gd" id="1_qlqdv"]
-[ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://UI/highlight_stylebox.tres" id="3_wdw6p"]
 [ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="4_d56o1"]
 [ext_resource type="Script" uid="uid://bu78s2gjf8h8q" path="res://UI/Multiplayer Tab Container/title_tab_container.gd" id="5_y6xyc"]
 [ext_resource type="Script" uid="uid://dunwun5rl2m1f" path="res://UI/Multiplayer Tab Container/difficulty_tab_container.gd" id="6_bo8kf"]
@@ -60,7 +59,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qlqdv")
 initial_focus = NodePath("MarginContainer/Character Options/StandType")
-highlight_stylebox = ExtResource("3_wdw6p")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -71,7 +69,6 @@ theme_override_constants/margin_bottom = 25
 
 [node name="Character Options" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -559,6 +556,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Join Prompt" type="Panel" parent="MarginContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(350, 515)
 layout_mode = 2
 

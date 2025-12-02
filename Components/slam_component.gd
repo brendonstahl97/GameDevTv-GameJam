@@ -4,10 +4,11 @@ extends RigidbodyManipulatorComponent
 signal successful_slam
 
 @export_category("Slam")
-@export var SlamSpeed = 5000.0 ## The speed that you slam
-@export var SlamLaunchForceMultiplier = 1.0 ## A multipler to adjust the force of the launch from the slam
-@export var SlamDirectHitForce = 50.0 ## An impulse force amount that is applied when the slam makes a direct hit with another player
-@export var SlamImpactShape: Shape3D ## A shape used in the shapeCast calculation to determine the area which players are affected by a slam
+@export var slam_speed = 5000.0 ## The speed that you slam
+@export var slam_launch_force_multiplier = 1.0 ## A multipler to adjust the force of the launch from the slam
+@export var slam_direct_hit_force = 50.0 ## An impulse force amount that is applied when the slam makes a direct hit with another player
+@export var slam_impact_shape: Shape3D ## A shape used in the shapeCast calculation to determine the area which players are affected by a slam
+@export var slam_allowed_delay: float = 1.0 ## The amount of time a player must wait after leaving the ground before being allowed to slam
 
 @export var slam_effect: PackedScene
 
@@ -39,7 +40,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if (is_slamming):
-		target_rigidbody.apply_force(Vector3.DOWN * SlamSpeed * delta)
+		target_rigidbody.apply_force(Vector3.DOWN * slam_speed * delta)
 		if (abs(target_rigidbody.linear_velocity.y) > highest_y_velocity_during_slam):
 			highest_y_velocity_during_slam = abs(target_rigidbody.linear_velocity.y)
 			
@@ -53,7 +54,7 @@ func _physics_process(delta: float) -> void:
 func _slam_cast() -> void:
 	var spaceState = target_rigidbody.get_world_3d().direct_space_state
 	var query = PhysicsShapeQueryParameters3D.new()
-	query.shape = SlamImpactShape
+	query.shape = slam_impact_shape
 	query.transform = target_rigidbody.transform
 	var castResults = spaceState.intersect_shape(query)
 	
@@ -69,9 +70,9 @@ func _slam_cast() -> void:
 		var bodyDirection = collider.global_position - target_rigidbody.global_position
 		
 		if (collider.global_position.y < target_rigidbody.global_position.y):
-			collider.apply_impulse(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * SlamDirectHitForce)
+			collider.apply_impulse(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * slam_direct_hit_force)
 		else:
-			collider.apply_impulse(bodyDirection * momentumY * SlamLaunchForceMultiplier)
+			collider.apply_impulse(bodyDirection * momentumY * slam_launch_force_multiplier)
 		
 	highest_y_velocity_during_slam = 0
 	should_slam_next_physics_frame = false

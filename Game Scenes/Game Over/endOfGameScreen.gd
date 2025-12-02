@@ -45,7 +45,7 @@ func _ready() -> void:
 		display_player.global_position = target_position.global_position
 		
 		display_player.name = player_name
-		display_player._update_character_display(player_name, thisPlayersInfo)
+		display_player.update_character_display(player_name, thisPlayersInfo)
 		
 		if (i == 0):
 			display_player.animation_player.play("Victory")

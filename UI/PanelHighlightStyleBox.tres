@@ -1,0 +1,54 @@
+[gd_resource type="StyleBoxTexture" load_steps=16 format=3 uid="uid://4vr1rxe8utud"]
+
+[ext_resource type="Texture2D" uid="uid://b3eo1yunlbu00" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0010.png" id="1_4yyq7"]
+[ext_resource type="Texture2D" uid="uid://btwudjv0cnc7" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0020.png" id="2_sy254"]
+[ext_resource type="Texture2D" uid="uid://blv7t22xbpxlf" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0110.png" id="3_atyfp"]
+[ext_resource type="Texture2D" uid="uid://dinfl202b0ktt" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0120.png" id="4_yeylo"]
+[ext_resource type="Texture2D" uid="uid://d2qlgysu68t3o" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0130.png" id="5_6ibq3"]
+[ext_resource type="Texture2D" uid="uid://dqlj2yknah5ca" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0140.png" id="6_fflew"]
+[ext_resource type="Texture2D" uid="uid://cewouucwkwdp4" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0030.png" id="7_car4c"]
+[ext_resource type="Texture2D" uid="uid://cj6ctabacodj0" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0040.png" id="8_ypdq2"]
+[ext_resource type="Texture2D" uid="uid://qdikgv58fk8k" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0050.png" id="9_w2wtd"]
+[ext_resource type="Texture2D" uid="uid://b16jus7tlc7wf" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0060.png" id="10_t7lqs"]
+[ext_resource type="Texture2D" uid="uid://caik8qtqfmsk8" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0070.png" id="11_d8lu7"]
+[ext_resource type="Texture2D" uid="uid://cuuthstj6u5aj" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0080.png" id="12_incg0"]
+[ext_resource type="Texture2D" uid="uid://bssnci7nid6fs" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0090.png" id="13_xg83f"]
+[ext_resource type="Texture2D" uid="uid://ccg2l03vcjegj" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0100.png" id="14_7d0v7"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_aw8i0"]
+frames = 14
+frame_0/texture = ExtResource("1_4yyq7")
+frame_0/duration = 0.03
+frame_1/texture = ExtResource("2_sy254")
+frame_1/duration = 0.03
+frame_2/texture = ExtResource("7_car4c")
+frame_2/duration = 0.03
+frame_3/texture = ExtResource("8_ypdq2")
+frame_3/duration = 0.03
+frame_4/texture = ExtResource("9_w2wtd")
+frame_4/duration = 0.03
+frame_5/texture = ExtResource("10_t7lqs")
+frame_5/duration = 0.03
+frame_6/texture = ExtResource("11_d8lu7")
+frame_6/duration = 0.03
+frame_7/texture = ExtResource("12_incg0")
+frame_7/duration = 0.03
+frame_8/texture = ExtResource("13_xg83f")
+frame_8/duration = 0.03
+frame_9/texture = ExtResource("14_7d0v7")
+frame_9/duration = 0.03
+frame_10/texture = ExtResource("3_atyfp")
+frame_10/duration = 0.03
+frame_11/texture = ExtResource("4_yeylo")
+frame_11/duration = 0.03
+frame_12/texture = ExtResource("5_6ibq3")
+frame_12/duration = 0.03
+frame_13/texture = ExtResource("6_fflew")
+frame_13/duration = 0.57
+
+[resource]
+texture = SubResource("AnimatedTexture_aw8i0")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
