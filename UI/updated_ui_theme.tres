@@ -1,0 +1,112 @@
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://bj1yf8r6vkpu4"]
+
+[ext_resource type="StyleBox" uid="uid://c1armcyyr0t2u" path="res://UI/ButtonBrownHighlightStyleBox.tres" id="1_fefs2"]
+[ext_resource type="Texture2D" uid="uid://bp5smbxoy8oj" path="res://Assets/UI/Adventure UI Pack/button_brown.png" id="1_hkx0t"]
+[ext_resource type="Texture2D" uid="uid://c3hv5qwkwan5v" path="res://Assets/UI/Adventure UI Pack/panel_brown_dark_corners_b.png" id="2_qcr3f"]
+[ext_resource type="Texture2D" uid="uid://ib767g014wd5" path="res://Assets/UI/Adventure UI Pack/banner_classic_curtain.png" id="3_fefs2"]
+[ext_resource type="FontFile" uid="uid://cs2updd2yd3cx" path="res://Assets/Fonts/Texturina-VariableFont_opsz,wght.ttf" id="4_qcr3f"]
+[ext_resource type="Texture2D" uid="uid://yv16bv5rp0jn" path="res://Assets/UI/Adventure UI Pack/panel_brown_corners_a.png" id="5_fefs2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w1wqu"]
+load_path = "res://.godot/imported/button_brown.png-27dba400d652701d0e40b7449ffcd4fe.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2jb2c"]
+texture = SubResource("CompressedTexture2D_w1wqu")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bp0ds"]
+texture = ExtResource("1_hkx0t")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+modulate_color = Color(0.8862616, 0.88626146, 0.8862615, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hkx0t"]
+load_path = "res://.godot/imported/button_brown.png-27dba400d652701d0e40b7449ffcd4fe.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wrqco"]
+texture = SubResource("CompressedTexture2D_hkx0t")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0.57700807, 0.5770085, 0.57700837, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ir0gu"]
+texture = ExtResource("3_fefs2")
+texture_margin_left = 24.0
+texture_margin_top = 35.0
+texture_margin_right = 24.0
+texture_margin_bottom = 50.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fefs2"]
+texture = ExtResource("2_qcr3f")
+texture_margin_left = 48.0
+texture_margin_top = 48.0
+texture_margin_right = 48.0
+texture_margin_bottom = 48.0
+region_rect = Rect2(0, 0, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w1wqu"]
+texture = ExtResource("2_qcr3f")
+texture_margin_left = 38.0
+texture_margin_top = 44.0
+texture_margin_right = 43.0
+texture_margin_bottom = 36.0
+region_rect = Rect2(0, 0, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsebq"]
+texture = ExtResource("5_fefs2")
+texture_margin_left = 55.0
+texture_margin_top = 50.0
+texture_margin_right = 58.0
+texture_margin_bottom = 56.0
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+region_rect = Rect2(0, 0, 128, 128)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fefs2"]
+load_path = "res://.godot/imported/panel_grey_bolts_detail_b.png-c3f18c84b2291f44dbd67114f4cc7d0a.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vx886"]
+texture = SubResource("CompressedTexture2D_fefs2")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+
+[resource]
+default_font = ExtResource("4_qcr3f")
+default_font_size = 24
+Button/colors/font_color = Color(0.3624398, 0.23768994, 0.050332077, 1)
+Button/colors/font_focus_color = Color(0.36078432, 0.23921569, 0.050980393, 1)
+Button/colors/font_hover_color = Color(0.36078432, 0.23921569, 0.050980393, 1)
+Button/colors/font_pressed_color = Color(0.36078432, 0.23921569, 0.050980393, 1)
+Button/styles/focus = ExtResource("1_fefs2")
+Button/styles/hover = SubResource("StyleBoxTexture_2jb2c")
+Button/styles/normal = SubResource("StyleBoxTexture_bp0ds")
+Button/styles/pressed = SubResource("StyleBoxTexture_wrqco")
+HeaderLarge/base_type = &"Label"
+HeaderLarge/font_sizes/font_size = 32
+HeaderLarge/fonts/font = ExtResource("4_qcr3f")
+HeaderLarge/styles/normal = SubResource("StyleBoxTexture_ir0gu")
+Label/colors/font_color = Color(0.97820526, 0.9432897, 0.8939901, 1)
+Label/font_sizes/font_size = 24
+Label_Alt/base_type = &"Label"
+Label_Alt/colors/font_color = Color(0.36078432, 0.23921569, 0.050980393, 1)
+Panel/styles/panel = SubResource("StyleBoxTexture_fefs2")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_w1wqu")
+Panel_Alt/base_type = &"Panel"
+Panel_Alt/styles/panel = SubResource("StyleBoxTexture_wsebq")
+TabContainer/constants/side_margin = 9
+TabContainer/styles/panel = SubResource("StyleBoxTexture_vx886")

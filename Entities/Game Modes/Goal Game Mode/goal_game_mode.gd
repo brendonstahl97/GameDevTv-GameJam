@@ -8,7 +8,7 @@ extends GameMode
 var current_score_leader: String
 
 func start_game() -> void:
-	global.customer_completed.connect(_update_score_leader)
+	SignalBus.customer_completed.connect(_update_score_leader)
 	_update_score_leader()
 
 func _update_score_leader(_reward: int = 0, _player_name: String = "") -> void:

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt7b3sapwvtif"]
+[gd_scene load_steps=6 format=3 uid="uid://bt7b3sapwvtif"]
 
+[ext_resource type="Script" uid="uid://chcrcumx5dtpc" path="res://Entities/VFX/visual_effect.gd" id="1_eu7pr"]
 [ext_resource type="ArrayMesh" uid="uid://d0mi1p1uy7puh" path="res://Assets/Environment/Food/FryingPan.mesh" id="1_i520t"]
 
 [sub_resource type="Animation" id="Animation_wu27a"]
@@ -101,7 +102,10 @@ _data = {
 &"RESET": SubResource("Animation_mdsel")
 }
 
-[node name="Parry Effect" type="Node3D"]
+[node name="Parry Effect" type="Node3D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_eu7pr")
+animation_name = &"Parry"
+animation_player = NodePath("HandleAnchor/AnimationPlayer2")
 
 [node name="HandleAnchor" type="Node3D" parent="."]
 
@@ -113,6 +117,5 @@ skeleton = NodePath("../..")
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="HandleAnchor"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_2l3yi")
+&"": SubResource("AnimationLibrary_2l3yi")
 }
-autoplay = "Parry"

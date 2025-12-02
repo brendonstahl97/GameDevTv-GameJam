@@ -1,7 +1,7 @@
 class_name NoYMovementRemoteTransformComponent
 extends RemoteTransform3D
 
-@onready var position_ray_cast: RayCast3D = %RayCast3D
+@export var position_ray_cast: RayCast3D
 
 @export var height_offset = 0.1 ## An offset to be applied to the y position of the remote transform after being aligned with the ground
 

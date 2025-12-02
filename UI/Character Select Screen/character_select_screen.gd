@@ -14,7 +14,6 @@ var can_progress_screen := false
 
 func update(delta: float) -> void:
 	_handle_input_assignment()
-	_handle_add_bots()
 	_handle_screen_progression()
 	
 	for panel: CharacterSelectPanel in character_select_panels.get_children():
@@ -25,12 +24,6 @@ func _ready():
 	## Connect panel signals
 	for panel: CharacterSelectPanel in character_select_panels.get_children():
 		panel.player_status_changed.connect(_check_player_status)
-
-
-func _handle_add_bots() -> void:
-	for control_stack: ControlStack in player_controls:
-		if (Input.is_action_just_pressed(control_stack.player_controls.parry)):
-			character_select_panels.initialize_next_panel(control_stack, true)
 
 
 func _handle_input_assignment() -> void:

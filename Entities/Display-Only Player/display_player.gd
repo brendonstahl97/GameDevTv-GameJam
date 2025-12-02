@@ -5,7 +5,7 @@ extends StaticBody3D
 @onready var body: MeshInstance3D = %Body
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
-func _update_character_display(player_name: String, player_info: Dictionary) -> void:
+func update_character_display(player_name: String, player_info: Dictionary) -> void:
 	
 	if (player_name != self.name):
 		return
@@ -28,3 +28,7 @@ func _update_character_display(player_name: String, player_info: Dictionary) -> 
 			stand.hide()
 		else :
 			stand.show()
+
+
+func update_character_display_direct(player_info: Dictionary) -> void:
+	update_character_display(self.name, player_info)

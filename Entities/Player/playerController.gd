@@ -125,7 +125,10 @@ func _handle_dialog_input() -> void:
 
 
 func _handle_slam_input() -> void:
-	if(Input.is_action_just_pressed(Controls.slam) and !ground_detection_component.is_grounded):
+	if (ground_detection_component.is_grounded || ground_detection_component.time_since_last_grounded < slam_component.slam_allowed_delay):
+		return
+
+	if(Input.is_action_just_pressed(Controls.slam)):
 		slam_component.begin_slam()
 
 

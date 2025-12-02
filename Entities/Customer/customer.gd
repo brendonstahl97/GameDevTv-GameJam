@@ -148,7 +148,7 @@ func playerDirectionalInput(player: Node3D, direction: Global.CodeDirection) -> 
 
 			# Emit the signal to the game controller
 			# Tells the game controller to reward this player this amount.
-			global.customer_completed.emit(reward, player.name)
+			SignalBus.customer_completed.emit(reward, player.name)
 			
 			coin_effect_spawner.create_effect(global_position)
 

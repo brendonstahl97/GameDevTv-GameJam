@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdppnyq2cpif3"]
+
+[ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_i1b33"]
+[ext_resource type="PackedScene" uid="uid://bx3psh0p4jemc" path="res://Entities/Display-Only Player/display_only_player.tscn" id="2_3tb3b"]
+[ext_resource type="Texture2D" uid="uid://c63era0e5k8cp" path="res://Assets/UI/Adventure UI Pack/panel_grey_bolts_detail_b.png" id="2_hhubm"]
+[ext_resource type="Script" uid="uid://bf8xlkva1uadm" path="res://UI/Character Preview/character_preview.gd" id="2_olce3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olce3"]
+texture = ExtResource("2_hhubm")
+texture_margin_left = 35.0
+texture_margin_top = 35.0
+texture_margin_right = 35.0
+texture_margin_bottom = 35.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i1b33"]
+viewport_path = NodePath("PanelContainer/SubViewport")
+
+[node name="Character Preview" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -267.0
+offset_right = 264.0
+offset_bottom = 267.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_i1b33")
+script = ExtResource("2_olce3")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_olce3")
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = SubResource("ViewportTexture_i1b33")
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="PanelContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="PanelContainer/SubViewport"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9969379, 0.0781981, 0, -0.0781981, 0.9969379, 1766.1893, 0.6301635, 1.8647144)
+projection = 1
+current = true
+size = 1.4
+far = 6.92
+
+[node name="DisplayPlayer" parent="PanelContainer/SubViewport" instance=ExtResource("2_3tb3b")]
+unique_name_in_owner = true
+transform = Transform3D(0.97532696, 0, 0.22076555, 0.018580692, 0.99645185, -0.08208822, -0.21998224, 0.084164806, 0.97186637, 1766.2094, 0, 0)

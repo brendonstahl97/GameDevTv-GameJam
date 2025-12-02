@@ -57,7 +57,7 @@ func try_parry(impulse_force: Vector3, calling_entity: RigidBody3D) -> bool:
 	
 	did_succesfully_parry = true
 	parry_success.emit()
-	global.successful_parry.emit(get_parent().global_position)
+	SignalBus.successful_parry.emit(get_parent().global_position)
 	
 	return true
 

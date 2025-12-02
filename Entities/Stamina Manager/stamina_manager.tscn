@@ -91,11 +91,12 @@ libraries = {
 stream = ExtResource("7_xhq2h")
 volume_db = 5.0
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." node_paths=PackedStringArray("position_ray_cast")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 remote_path = NodePath("../StaminaDisplay")
 update_rotation = false
 script = ExtResource("6_qyj0q")
+position_ray_cast = NodePath("../RayCast3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 unique_name_in_owner = true

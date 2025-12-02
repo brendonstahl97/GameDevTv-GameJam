@@ -55,13 +55,11 @@ player_controls = Array[ExtResource("2_koq1q")]([SubResource("Resource_dyydw"), 
 [node name="Character Select Panels" parent="." instance=ExtResource("7_xi6yu")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -875.0
-offset_right = 875.0
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
 
 [node name="AllReadyContainer" type="Control" parent="."]
 unique_name_in_owner = true
