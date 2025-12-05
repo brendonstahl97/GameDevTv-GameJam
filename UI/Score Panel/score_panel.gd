@@ -1,5 +1,5 @@
 class_name ScorePanel
-extends Panel
+extends PanelContainer
 
 @onready var player_name_label: RichTextLabel = %PlayerName
 @onready var score_label: RichTextLabel = %ScoreLabel

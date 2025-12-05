@@ -1,7 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://comhbdb6wxv3p"]
+[gd_scene load_steps=24 format=3 uid="uid://comhbdb6wxv3p"]
 
+[ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_3ol4c"]
 [ext_resource type="Script" uid="uid://cxkiikwl1jfxd" path="res://UI/Pause Menu/pause_menu.gd" id="1_8siy5"]
-[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_e11wt"]
+[ext_resource type="Texture2D" uid="uid://bp5smbxoy8oj" path="res://Assets/UI/Adventure UI Pack/button_brown.png" id="3_q706g"]
+[ext_resource type="Texture2D" uid="uid://x3caeugfdu6g" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0010.png" id="4_qfyjf"]
+[ext_resource type="Texture2D" uid="uid://dtppsu43sniib" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0020.png" id="5_et0lo"]
+[ext_resource type="Texture2D" uid="uid://dthsa4y0bp5ge" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0110.png" id="6_vqt4l"]
+[ext_resource type="Texture2D" uid="uid://cctrnkonykwtp" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0120.png" id="7_0jg3l"]
+[ext_resource type="Texture2D" uid="uid://c4pci2mhbrrv0" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0130.png" id="8_df05m"]
+[ext_resource type="Texture2D" uid="uid://x5b8i4ubukr3" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0140.png" id="9_lgeg3"]
+[ext_resource type="Texture2D" uid="uid://dfqt48ll2cr8m" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0030.png" id="10_4l17m"]
+[ext_resource type="Texture2D" uid="uid://rt3m87ihxv5n" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0040.png" id="11_1glb7"]
+[ext_resource type="Texture2D" uid="uid://ctw4wkpsu4mi2" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0050.png" id="12_16jii"]
+[ext_resource type="Texture2D" uid="uid://bja3ayhomyhp8" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0060.png" id="13_lvcsf"]
+[ext_resource type="Texture2D" uid="uid://cw7m6eyu5pa3k" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0070.png" id="14_wrnib"]
+[ext_resource type="Texture2D" uid="uid://bsaokbh674dbd" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0080.png" id="15_ypsvc"]
+[ext_resource type="Texture2D" uid="uid://dkqahcqwxh6qf" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0090.png" id="16_prfrn"]
+[ext_resource type="Texture2D" uid="uid://b45rec7h5jn1w" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0100.png" id="17_63joq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e11wt"]
 content_margin_left = 0.0
@@ -15,81 +30,92 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8siy5"]
-content_margin_left = 25.0
-content_margin_top = 10.0
-content_margin_right = 25.0
-content_margin_bottom = 10.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ol4c"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("3_q706g")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+modulate_color = Color(0.8862616, 0.88626146, 0.8862615, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q706g"]
-content_margin_left = 25.0
-content_margin_top = 10.0
-content_margin_right = 25.0
-content_margin_bottom = 10.0
-draw_center = false
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_aw8i0"]
+frames = 14
+frame_0/texture = ExtResource("4_qfyjf")
+frame_0/duration = 0.03
+frame_1/texture = ExtResource("5_et0lo")
+frame_1/duration = 0.03
+frame_2/texture = ExtResource("10_4l17m")
+frame_2/duration = 0.03
+frame_3/texture = ExtResource("11_1glb7")
+frame_3/duration = 0.03
+frame_4/texture = ExtResource("12_16jii")
+frame_4/duration = 0.03
+frame_5/texture = ExtResource("13_lvcsf")
+frame_5/duration = 0.03
+frame_6/texture = ExtResource("14_wrnib")
+frame_6/duration = 0.03
+frame_7/texture = ExtResource("15_ypsvc")
+frame_7/duration = 0.03
+frame_8/texture = ExtResource("16_prfrn")
+frame_8/duration = 0.03
+frame_9/texture = ExtResource("17_63joq")
+frame_9/duration = 0.03
+frame_10/texture = ExtResource("6_vqt4l")
+frame_10/duration = 0.03
+frame_11/texture = ExtResource("7_0jg3l")
+frame_11/duration = 0.03
+frame_12/texture = ExtResource("8_df05m")
+frame_12/duration = 0.03
+frame_13/texture = ExtResource("9_lgeg3")
+frame_13/duration = 0.57
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ol4c"]
-content_margin_left = 25.0
-content_margin_top = 10.0
-content_margin_right = 25.0
-content_margin_bottom = 10.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_owokp"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = SubResource("AnimatedTexture_aw8i0")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0n8i1"]
-content_margin_left = 25.0
-content_margin_top = 10.0
-content_margin_right = 25.0
-content_margin_bottom = 10.0
-draw_center = false
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0n8i1"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("3_q706g")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+modulate_color = Color(0.8862616, 0.88626146, 0.8862615, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qfyjf"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = SubResource("AnimatedTexture_aw8i0")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_3ol4c")
 script = ExtResource("1_8siy5")
 
 [node name="Panel" type="Panel" parent="."]
@@ -129,7 +155,6 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("1_e11wt")
 theme_override_font_sizes/font_size = 36
 text = "Paused"
 
@@ -138,10 +163,9 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../Main Menu")
 focus_neighbor_bottom = NodePath("../Main Menu")
-theme_override_fonts/font = ExtResource("1_e11wt")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_8siy5")
-theme_override_styles/focus = SubResource("StyleBoxFlat_q706g")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3ol4c")
+theme_override_styles/focus = SubResource("StyleBoxTexture_owokp")
 action_mode = 0
 text = "Resume"
 
@@ -149,10 +173,9 @@ text = "Resume"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Resume")
 focus_neighbor_bottom = NodePath("../Resume")
-theme_override_fonts/font = ExtResource("1_e11wt")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_3ol4c")
-theme_override_styles/focus = SubResource("StyleBoxFlat_0n8i1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0n8i1")
+theme_override_styles/focus = SubResource("StyleBoxTexture_qfyjf")
 action_mode = 0
 text = "Main Menu
 "

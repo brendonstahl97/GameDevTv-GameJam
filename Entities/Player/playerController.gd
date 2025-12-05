@@ -1,7 +1,7 @@
 class_name Player
 extends LaunchableRigidbody3D
 
-@onready var animation_tree : AnimationTree = $Casual3_Male/AnimationTree
+@onready var animation_tree: AnimationTree = $Casual3_Male/AnimationTree
 @onready var AudioPlayer: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var scrape_sound_player: AudioStreamPlayer3D = $ScrapeSoundEffect
 
@@ -16,15 +16,16 @@ extends LaunchableRigidbody3D
 @onready var ground_detection_component: GroundDetectionComponent = %GroundDetectionComponent
 @onready var stamina_manager: StaminaManager = %StaminaManager
 @onready var multi_effect_spawner: MultiEffectSpawner = %MultiEffectSpawner
+@onready var hit_freeze_component: HitFreezeComponent = %HitFreezeComponent
 
 @export var Controls: PlayerControls
 @export var stand_class: Stand
 
 ## These are set by the game manager when spawning players
-var PlayerName : String = "Player"
-var PlayerCartType : String = "Normal"
-var PlayerColor : Color = Color(.8, .19, 0.01)
-var PlayerGuy : String = "Man 1"
+var PlayerName: String = "Player"
+var PlayerCartType: String = "Normal"
+var PlayerColor: Color = Color(.8, .19, 0.01)
+var PlayerGuy: String = "Man 1"
 
 var movement_direction = Vector3.ZERO
 var player_controls_enabled := true
@@ -35,6 +36,7 @@ func _ready() -> void:
 	mass = stand_class.Mass
 	_connect_dialog_signals()
 
+
 func _process(_delta: float) -> void:
 	_update_animation_parameters()
 	_update_scrape_sound_play_status()
@@ -42,6 +44,7 @@ func _process(_delta: float) -> void:
 		_handle_code_input()
 	else:
 		_handle_dialog_input()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -54,11 +57,12 @@ func _physics_process(delta: float) -> void:
 		_handle_slam_input()
 		_handle_parry_input()
 
+
 func _update_movement_direction() -> void:
 	movement_direction = Vector3(Input.get_axis(Controls.move_left, Controls.move_right), 0, Input.get_axis(Controls.move_up, Controls.move_down)).normalized()
 
-func _handle_sprint_input(delta: float) -> void: 
 
+func _handle_sprint_input(delta: float) -> void:
 	# If the sprint button was released, stop sprinting
 	if (Input.is_action_just_released(Controls.sprint)):
 		_end_sprint()
@@ -80,8 +84,7 @@ func _handle_sprint_input(delta: float) -> void:
 	# If we are currently sprinting, try to drain stamina
 	if (sprint_component.is_sprinting):
 			if (!stamina_manager.try_drain_stamina(sprint_component.sprint_stamina_drain * delta)):
-				_end_sprint()	
-
+				_end_sprint()
 
 
 func _begin_sprint() -> void:
@@ -128,7 +131,7 @@ func _handle_slam_input() -> void:
 	if (ground_detection_component.is_grounded || ground_detection_component.time_since_last_grounded < slam_component.slam_allowed_delay):
 		return
 
-	if(Input.is_action_just_pressed(Controls.slam)):
+	if (Input.is_action_just_pressed(Controls.slam)):
 		slam_component.begin_slam()
 
 
@@ -145,24 +148,45 @@ func _update_scrape_sound_play_status():
 			scrape_sound_player.stop()
 
 
-# Duck Typed function that should be present on all launchable rigidbody nodes
 func launch(impulse_force: Vector3, callling_entity: RigidBody3D, is_parriable := true) -> void:
+	if (freeze):
+		return
+
 	if (is_parriable):
 		if (!parry_component.try_parry(impulse_force, callling_entity)):
-			apply_impulse(impulse_force)
-			apply_torque_impulse(Vector3.UP * impulse_force.length() * randf_range(-1, 1))
-			
-			multi_effect_spawner.create_effect(callling_entity.global_position)
-			
-			AudioPlayer.stream = bump_component.bump_sound_effect
-			AudioPlayer.play()
+			hit_freeze_component.hit_freeze()
+			hit_freeze_component.freeze_completed.connect(_on_hit_freeze_complete.bind(impulse_force, callling_entity, is_parriable))
+
 	else:
-		apply_impulse(impulse_force)
+		hit_freeze_component.hit_freeze()
+		hit_freeze_component.freeze_completed.connect(_on_hit_freeze_complete.bind(impulse_force, callling_entity, is_parriable))
+
+
+func _on_hit_freeze_complete(impulse_force, callling_entity, is_parriable):
+	if (callling_entity == self):
+		hit_freeze_component.freeze_completed.disconnect(_on_hit_freeze_complete.bind(impulse_force, callling_entity, is_parriable))
+		return
+
+	bump_component.start_bump_disabled_timer()
+	apply_impulse(impulse_force)
+
+	if (!is_parriable):
+		hit_freeze_component.freeze_completed.disconnect(_on_hit_freeze_complete.bind(impulse_force, callling_entity, is_parriable))
+		return
+	
+	apply_torque_impulse(Vector3.UP * impulse_force.length() * randf_range(-1, 1))
+	
+	multi_effect_spawner.create_effect(global_position)
+	
+	AudioPlayer.stream = bump_component.bump_sound_effect
+	AudioPlayer.play()
+	hit_freeze_component.freeze_completed.disconnect(_on_hit_freeze_complete.bind(impulse_force, callling_entity, is_parriable))
 
 
 func _connect_dialog_signals() -> void:
 	SignalBus.display_dialog.connect(func(_text_key: String): player_controls_enabled = false)
 	SignalBus.dialog_completed.connect(func(): player_controls_enabled = true)
+
 
 func _on_body_entered(_body: Node3D) -> void:
 	if (slam_component.is_slamming):
@@ -181,4 +205,5 @@ func _on_parry_component_parry_failure() -> void:
 
 
 func _on_bump_component_successful_bump(restored_stamina_amount: float) -> void:
-	stamina_manager.restoreStamina(restored_stamina_amount)
+	hit_freeze_component.hit_freeze(hit_freeze_component.freeze_time + 0.1, false)
+	hit_freeze_component.freeze_completed.connect(func(): stamina_manager.restoreStamina(restored_stamina_amount))

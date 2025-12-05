@@ -9,7 +9,7 @@ signal bot_requested(control_stack: ControlStack)
 @onready var color_selector: ColorTabContainer = %Color
 @onready var guy_selector: TitleTabContainer = %Guy
 @onready var join_prompt: Panel = %"Join Prompt"
-@onready var ready_indicator: Panel = %"Ready Indicator"
+@onready var ready_indicator: Control = %"Ready Indicator"
 @onready var character_options: VBoxContainer = %"Character Options"
 @onready var ready_button: Button = %ReadyUp
 @onready var name_display: Label = %"Player Name Label"
@@ -52,8 +52,8 @@ func initialize(player_control_stack: ControlStack, player_is_bot: bool = false)
 	
 	# in case this panel was previously a bot:
 	# reset element neighbors
-	guy_selector.focus_neighbor_bottom = guy_selector.get_path_to(ready_button)
-	ready_button.focus_neighbor_top = ready_button.get_path_to(guy_selector)
+	color_selector.focus_neighbor_bottom = color_selector.get_path_to(ready_button)
+	ready_button.focus_neighbor_top = ready_button.get_path_to(color_selector)
 	
 	_init_panel(player_is_bot)
 
@@ -71,8 +71,8 @@ func _init_player_panel() -> void:
 	bot_difficulty_selector.hide()
 
 	# Set the neighbors to include the bot difficulty selector
-	guy_selector.focus_neighbor_bottom = guy_selector.get_path_to(ready_button)
-	ready_button.focus_neighbor_top = ready_button.get_path_to(guy_selector)
+	color_selector.focus_neighbor_bottom = color_selector.get_path_to(ready_button)
+	ready_button.focus_neighbor_top = ready_button.get_path_to(color_selector)
 
 	# Display the player profile selector
 	# player_profile.show()
@@ -89,7 +89,7 @@ func _init_bot_panel() -> void:
 	# player_profile.hide()
 
 	# Set the neighbors to include the bot difficulty selector
-	guy_selector.focus_neighbor_bottom = guy_selector.get_path_to(bot_difficulty_selector)
+	color_selector.focus_neighbor_bottom = color_selector.get_path_to(bot_difficulty_selector)
 	ready_button.focus_neighbor_top = ready_button.get_path_to(bot_difficulty_selector)
 	
 	# Display the bot difficulty selector
@@ -133,37 +133,13 @@ func _handle_joined_input() -> void:
 		_unjoin()
 		return
 	
+	# This is a duck typed function call to the current focus element's update function
+	# Each focusable element should have its own update function to handle specific input
+	if (current_focus != null && current_focus.has_method("update")):
+		current_focus.update(assigned_player_control_stack)
 
-	# TODO: Move this into the player profile element script
-	if (current_focus == player_profile):
-		if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_left)):
-			player_profile.previous_tab()
-		elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_right)):
-			player_profile.next_tab()
-		elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.delete)):
-			player_profile.delete_current_profile()
-		elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.begin_game)):
-			player_profile.begin_create_profile(assigned_player_control_stack)
-
-	
-	## TODO: Move this into the multiplayer tab container script
-	if (current_focus is MultiplayerTabContainer):
-		
-		if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_left)):
-			current_focus.navigate_left()
-			player_choices_updated.emit(self.name, player_info)
-			
-		if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_right)):
-			current_focus.navigate_right()
-			player_choices_updated.emit(self.name, player_info)
-			
-	# TODO: Move this into the ready button script
-	elif (current_focus == ready_button):
-		
-		if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.sprint)):
-			ready_indicator.show()
-			is_ready = true
-			player_status_changed.emit()
+	if (Input.is_anything_pressed()):
+		player_choices_updated.emit(self.name, player_info)
 
 
 func _handle_ready_input() -> void:
@@ -202,12 +178,26 @@ func _focus_up() -> void:
 
 
 func _focus_element(element: Control) -> void:
+	# Remove the focus styling from the current focus, if any
 	if (current_focus != null):
-		current_focus.remove_theme_stylebox_override(stylebox_override_target)
-		
+
+		if (current_focus.has_method("exit_pseudo_focus")):
+			current_focus.exit_pseudo_focus()
+
+		if (current_focus.has_theme_stylebox_override(stylebox_override_target)):
+			current_focus.remove_theme_stylebox_override(stylebox_override_target)
+	
+	# set new focus
 	current_focus = element
-	current_focus.add_theme_stylebox_override(stylebox_override_target, highlight_stylebox)
-	element.grab_focus()
+
+	assert(current_focus.has_theme_stylebox("pseudo_focus") || current_focus.has_method("pseudo_focus"), "The current focus does not have a 'pseudo_focus' theme stylebox or a 'pseudo_focus()' method and is unable to display as focused")
+
+	# Apply styling to new focus element
+	if (current_focus.has_theme_stylebox("pseudo_focus")):
+		current_focus.add_theme_stylebox_override(stylebox_override_target, current_focus.get_theme_stylebox("pseudo_focus"))
+	
+	if (current_focus.has_method("pseudo_focus")):
+		current_focus.pseudo_focus()
 
 
 func _join() -> void:
@@ -233,3 +223,9 @@ func _unjoin() -> void:
 	
 	if (is_bot):
 		is_bot = false
+
+
+func _on_ready_up_pressed() -> void:
+			ready_indicator.show()
+			is_ready = true
+			player_status_changed.emit()

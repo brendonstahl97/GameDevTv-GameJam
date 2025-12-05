@@ -1,25 +1,67 @@
-[gd_scene load_steps=14 format=3 uid="uid://c733ctr40umod"]
+[gd_scene load_steps=28 format=3 uid="uid://c733ctr40umod"]
 
 [ext_resource type="Script" uid="uid://ycu5nbbigrqf" path="res://UI/Map Selection/map_selection.gd" id="1_ctb0f"]
+[ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_olmxg"]
 [ext_resource type="PackedScene" uid="uid://cs547ftw8k07j" path="res://UI/Map Selection/map_element/map_element.tscn" id="1_qgtln"]
-[ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://UI/highlight_stylebox.tres" id="2_7nsj6"]
 [ext_resource type="Script" uid="uid://s5lx6moi64uo" path="res://Resources/PlayerControls/PlayerControls.gd" id="2_v58th"]
 [ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="3_rywcu"]
 [ext_resource type="Resource" uid="uid://bs715mfdkato8" path="res://Resources/Map/mountaintop_manor_map.tres" id="4_2cvoj"]
 [ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_st3cb"]
 [ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_olmxg"]
 [ext_resource type="Resource" uid="uid://2tmli3c0va8o" path="res://Resources/PlayerControls/Player_4_Controls.tres" id="6_pbqtw"]
-[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="10_st3cb"]
+[ext_resource type="Texture2D" uid="uid://dg5jyq16doyqw" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0010.png" id="8_a470u"]
+[ext_resource type="Texture2D" uid="uid://ck4aikex2co3n" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0020.png" id="9_j0lmi"]
+[ext_resource type="Texture2D" uid="uid://csvs5ajskse3h" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0110.png" id="10_lgyow"]
 [ext_resource type="Texture2D" uid="uid://civy6x3bdfgo8" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_y_outline.png" id="11_olmxg"]
+[ext_resource type="Texture2D" uid="uid://cgjx5fdq240ff" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0120.png" id="11_vdpcp"]
+[ext_resource type="Texture2D" uid="uid://b4lpiub1i1s33" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0130.png" id="12_i5mru"]
+[ext_resource type="Texture2D" uid="uid://chdxpwacqkdr2" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0140.png" id="13_0sfa0"]
+[ext_resource type="Texture2D" uid="uid://b75cxmiwvy13d" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0030.png" id="14_dtipw"]
+[ext_resource type="Texture2D" uid="uid://bsk6oa8e5iutb" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0040.png" id="15_evnip"]
+[ext_resource type="Texture2D" uid="uid://dtw5yoxvn22qc" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0050.png" id="16_sct7h"]
+[ext_resource type="Texture2D" uid="uid://c4c3uih2oimi4" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0060.png" id="17_6obeu"]
+[ext_resource type="Texture2D" uid="uid://b73kuu81y63hp" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0070.png" id="18_1dufj"]
+[ext_resource type="Texture2D" uid="uid://b8bw2a3j4k3wq" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0080.png" id="19_ysof0"]
+[ext_resource type="Texture2D" uid="uid://ccfdbixb6vk0i" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0090.png" id="20_b35s0"]
+[ext_resource type="Texture2D" uid="uid://bfw6ce5sqcbrw" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/brown_panel/Gradient Panel Highlight0100.png" id="21_26yai"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbqtw"]
-bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 0.501961)
-border_blend = true
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_p54hc"]
+frames = 14
+frame_0/texture = ExtResource("8_a470u")
+frame_0/duration = 0.03
+frame_1/texture = ExtResource("9_j0lmi")
+frame_1/duration = 0.03
+frame_2/texture = ExtResource("14_dtipw")
+frame_2/duration = 0.03
+frame_3/texture = ExtResource("15_evnip")
+frame_3/duration = 0.03
+frame_4/texture = ExtResource("16_sct7h")
+frame_4/duration = 0.03
+frame_5/texture = ExtResource("17_6obeu")
+frame_5/duration = 0.03
+frame_6/texture = ExtResource("18_1dufj")
+frame_6/duration = 0.03
+frame_7/texture = ExtResource("19_ysof0")
+frame_7/duration = 0.03
+frame_8/texture = ExtResource("20_b35s0")
+frame_8/duration = 0.03
+frame_9/texture = ExtResource("21_26yai")
+frame_9/duration = 0.03
+frame_10/texture = ExtResource("10_lgyow")
+frame_10/duration = 0.03
+frame_11/texture = ExtResource("11_vdpcp")
+frame_11/duration = 0.03
+frame_12/texture = ExtResource("12_i5mru")
+frame_12/duration = 0.03
+frame_13/texture = ExtResource("13_0sfa0")
+frame_13/duration = 0.57
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x0elm"]
+texture = SubResource("AnimatedTexture_p54hc")
+texture_margin_left = 46.0
+texture_margin_top = 56.0
+texture_margin_right = 50.0
+texture_margin_bottom = 55.0
 
 [sub_resource type="Theme" id="Theme_3hq2b"]
 
@@ -30,9 +72,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_olmxg")
 script = ExtResource("1_ctb0f")
 input_resources = Array[ExtResource("2_v58th")]([ExtResource("3_rywcu"), ExtResource("4_st3cb"), ExtResource("5_olmxg"), ExtResource("6_pbqtw")])
-focused_stylebox = ExtResource("2_7nsj6")
+focused_stylebox = SubResource("StyleBoxTexture_x0elm")
 initial_focus = NodePath("MarginContainer/GridContainer/MapElement")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -64,6 +107,7 @@ focus_neighbor_right = NodePath("../MapElement2")
 [node name="MapElement2" parent="MarginContainer/GridContainer" instance=ExtResource("1_qgtln")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../MapElement")
+focus_neighbor_right = NodePath("../MapElement")
 map_resource = ExtResource("4_2cvoj")
 
 [node name="StartGameContainer" type="Control" parent="."]
@@ -86,7 +130,6 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pbqtw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StartGameContainer/panel"]
 layout_mode = 1
@@ -107,8 +150,7 @@ alignment = 1
 [node name="Label" type="Label" parent="StartGameContainer/panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("10_st3cb")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Press"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -121,8 +163,7 @@ stretch_mode = 3
 [node name="Label2" type="Label" parent="StartGameContainer/panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("10_st3cb")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "to select a game mode"
 horizontal_alignment = 1
 vertical_alignment = 1

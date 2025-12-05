@@ -63,16 +63,18 @@ func _slam_cast() -> void:
 	effect_spawner.create_effect(target_rigidbody.global_position)
 	
 	for body in castResults:
-		var collider = body.collider
-		if (!collider is RigidBody3D || !collider.get_groups().has("Players") || collider == self):
+		var collider = body.collider as LaunchableRigidbody3D
+		if (!collider is LaunchableRigidbody3D || collider == get_parent()):
 			continue
 			
 		var bodyDirection = collider.global_position - target_rigidbody.global_position
 		
 		if (collider.global_position.y < target_rigidbody.global_position.y):
-			collider.apply_impulse(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * slam_direct_hit_force)
+			collider.launch(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * slam_direct_hit_force, get_parent(), false)
+			# collider.apply_impulse(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * slam_direct_hit_force)
 		else:
-			collider.apply_impulse(bodyDirection * momentumY * slam_launch_force_multiplier)
+			collider.launch(bodyDirection * momentumY * slam_launch_force_multiplier, get_parent(), false)
+			# collider.apply_impulse(bodyDirection * momentumY * slam_launch_force_multiplier)
 		
 	highest_y_velocity_during_slam = 0
 	should_slam_next_physics_frame = false

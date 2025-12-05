@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0bs15i8wpasg"]
+[gd_scene load_steps=6 format=3 uid="uid://b0bs15i8wpasg"]
 
+[ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_2xtkk"]
 [ext_resource type="Script" uid="uid://dgff5ncdv8b10" path="res://UI/Game Mode Select Screen/game_mode_element/game_mode_element.gd" id="1_f8xkb"]
-[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="2_2xtkk"]
-[ext_resource type="Theme" uid="uid://cftuabnvjxfdf" path="res://UI/BlockTheme.tres" id="3_jsjoe"]
 
 [sub_resource type="Animation" id="Animation_nqic4"]
 length = 0.001
@@ -64,6 +63,7 @@ _data = {
 }
 
 [node name="GameModeElement" type="PanelContainer"]
+theme = ExtResource("1_2xtkk")
 script = ExtResource("1_f8xkb")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -81,8 +81,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("2_2xtkk")
-theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.9764706, 0.94509804, 0.60784316, 1)
+theme_override_font_sizes/font_size = 40
 text = "Feed 'em all"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -92,9 +92,7 @@ unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
-theme = ExtResource("3_jsjoe")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 30
 text = "The first stand to reach the target score wins!"
 horizontal_alignment = 1
 vertical_alignment = 1

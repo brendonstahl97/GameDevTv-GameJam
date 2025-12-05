@@ -1,26 +1,96 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo4432c40s3ov"]
+[gd_scene load_steps=29 format=3 uid="uid://bo4432c40s3ov"]
 
+[ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_okap2"]
 [ext_resource type="Script" uid="uid://b1rl3huei1hpx" path="res://UI/Game Mode Select Screen/game_mode_select_screen.gd" id="1_v8u5h"]
 [ext_resource type="Script" uid="uid://s5lx6moi64uo" path="res://Resources/PlayerControls/PlayerControls.gd" id="2_okap2"]
 [ext_resource type="PackedScene" uid="uid://b0bs15i8wpasg" path="res://UI/Game Mode Select Screen/game_mode_element/game_mode_element.tscn" id="2_y4ccr"]
 [ext_resource type="Resource" uid="uid://cviuqk62f0g6f" path="res://Resources/Game Mode/timer.tres" id="3_ej4go"]
 [ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="3_stvcp"]
-[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="4_6ndkv"]
 [ext_resource type="Resource" uid="uid://dewm14iv2mqt8" path="res://Resources/PlayerControls/Player_2_Controls.tres" id="4_nleja"]
 [ext_resource type="Resource" uid="uid://d3iltk323leo4" path="res://Resources/Game Mode/score.tres" id="4_q4oso"]
 [ext_resource type="Resource" uid="uid://c12vktqs77rb8" path="res://Resources/PlayerControls/Player_3_Controls.tres" id="5_8114a"]
 [ext_resource type="Texture2D" uid="uid://civy6x3bdfgo8" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_y_outline.png" id="5_t3h7f"]
 [ext_resource type="Resource" uid="uid://2tmli3c0va8o" path="res://Resources/PlayerControls/Player_4_Controls.tres" id="6_ulnys"]
-[ext_resource type="StyleBox" uid="uid://cjx8ku4d6821t" path="res://UI/highlight_stylebox.tres" id="7_stvcp"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcac3"]
-bg_color = Color(0.0923971, 0.0923971, 0.092397, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 0.501961)
-border_blend = true
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_okap2"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0010.png-bf2f6258d959c269458d67855435e8e6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_stvcp"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0020.png-a12d8e8e5a975030e8dc8cb7f4a70d7d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nleja"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0110.png-b41c13fafdf6d89ccb15e3890cf882d9.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8114a"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0120.png-0613406afdae75ef48bd87ae6f861c41.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ulnys"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0130.png-21da562819c7b2aab60798152991af4c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gsiuh"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0140.png-e4154b96bd3457b204443bb44797d3e4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ysrhl"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0030.png-e17b30d07f96b9b5aec6f5aa176d9cfe.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_woki0"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0040.png-649c4696cd4a05f01d84fc44c7f0d58c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_byoai"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0050.png-fbfd4f522179c90df1c6a8f55c45e263.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8vxjc"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0060.png-018c047f284c5956b566c9414a360100.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ftl5h"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0070.png-a8157f89971b910c0108e55376560635.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k3p2v"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0080.png-e76fe97133854ad393eb5e2021eebe8d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6et2t"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0090.png-059dfe4c3756c09caeb500abe9970667.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rplij"]
+load_path = "res://.godot/imported/Gradient Panel Highlight0100.png-a323afb1327e506d1c217e09e16dcd7a.ctex"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ypu17"]
+frames = 14
+frame_0/texture = SubResource("CompressedTexture2D_okap2")
+frame_0/duration = 0.03
+frame_1/texture = SubResource("CompressedTexture2D_stvcp")
+frame_1/duration = 0.03
+frame_2/texture = SubResource("CompressedTexture2D_ysrhl")
+frame_2/duration = 0.03
+frame_3/texture = SubResource("CompressedTexture2D_woki0")
+frame_3/duration = 0.03
+frame_4/texture = SubResource("CompressedTexture2D_byoai")
+frame_4/duration = 0.03
+frame_5/texture = SubResource("CompressedTexture2D_8vxjc")
+frame_5/duration = 0.03
+frame_6/texture = SubResource("CompressedTexture2D_ftl5h")
+frame_6/duration = 0.03
+frame_7/texture = SubResource("CompressedTexture2D_k3p2v")
+frame_7/duration = 0.03
+frame_8/texture = SubResource("CompressedTexture2D_6et2t")
+frame_8/duration = 0.03
+frame_9/texture = SubResource("CompressedTexture2D_rplij")
+frame_9/duration = 0.03
+frame_10/texture = SubResource("CompressedTexture2D_nleja")
+frame_10/duration = 0.03
+frame_11/texture = SubResource("CompressedTexture2D_8114a")
+frame_11/duration = 0.03
+frame_12/texture = SubResource("CompressedTexture2D_ulnys")
+frame_12/duration = 0.03
+frame_13/texture = SubResource("CompressedTexture2D_gsiuh")
+frame_13/duration = 0.57
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5odfg"]
+texture = SubResource("AnimatedTexture_ypu17")
+texture_margin_left = 46.0
+texture_margin_top = 56.0
+texture_margin_right = 50.0
+texture_margin_bottom = 55.0
 
 [sub_resource type="Theme" id="Theme_okap2"]
 
@@ -31,9 +101,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_okap2")
 script = ExtResource("1_v8u5h")
 input_resources = Array[ExtResource("2_okap2")]([ExtResource("3_stvcp"), ExtResource("4_nleja"), ExtResource("5_8114a"), ExtResource("6_ulnys")])
-focused_stylebox = ExtResource("7_stvcp")
+focused_stylebox = SubResource("StyleBoxTexture_5odfg")
 initial_focus = NodePath("MarginContainer/GridContainer/GameModeElement")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -70,7 +141,6 @@ game_mode_resource = ExtResource("4_q4oso")
 
 [node name="StartGameContainer" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -88,7 +158,6 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_wcac3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StartGameContainer/panel"]
 layout_mode = 1
@@ -109,8 +178,7 @@ alignment = 1
 [node name="Label" type="Label" parent="StartGameContainer/panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("4_6ndkv")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 36
 text = "Press"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -123,8 +191,7 @@ stretch_mode = 3
 [node name="Label2" type="Label" parent="StartGameContainer/panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("4_6ndkv")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 36
 text = "to start!"
 horizontal_alignment = 1
 vertical_alignment = 1
