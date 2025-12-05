@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://bj1yf8r6vkpu4"]
+[gd_resource type="Theme" load_steps=52 format=3 uid="uid://bj1yf8r6vkpu4"]
 
 [ext_resource type="StyleBox" uid="uid://c1armcyyr0t2u" path="res://UI/ButtonBrownHighlightStyleBox.tres" id="1_fefs2"]
 [ext_resource type="Texture2D" uid="uid://bp5smbxoy8oj" path="res://Assets/UI/Adventure UI Pack/button_brown.png" id="1_hkx0t"]
@@ -6,6 +6,35 @@
 [ext_resource type="Texture2D" uid="uid://ib767g014wd5" path="res://Assets/UI/Adventure UI Pack/banner_classic_curtain.png" id="3_fefs2"]
 [ext_resource type="FontFile" uid="uid://cs2updd2yd3cx" path="res://Assets/Fonts/Texturina-VariableFont_opsz,wght.ttf" id="4_qcr3f"]
 [ext_resource type="Texture2D" uid="uid://yv16bv5rp0jn" path="res://Assets/UI/Adventure UI Pack/panel_brown_corners_a.png" id="5_fefs2"]
+[ext_resource type="Texture2D" uid="uid://b3eo1yunlbu00" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0010.png" id="7_vjryh"]
+[ext_resource type="Texture2D" uid="uid://j6f0sm7fycl6" path="res://Assets/UI/Adventure UI Pack/Gradient Panel Metal.png" id="7_w1wqu"]
+[ext_resource type="Texture2D" uid="uid://caut4c00236tv" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0010.png" id="7_wtwsf"]
+[ext_resource type="Texture2D" uid="uid://btwudjv0cnc7" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0020.png" id="8_n1tgf"]
+[ext_resource type="Texture2D" uid="uid://dbkwpxqlpsr2r" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0020.png" id="8_u3k3h"]
+[ext_resource type="Texture2D" uid="uid://ckr4fa6ocqh1y" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0110.png" id="9_ryayv"]
+[ext_resource type="Texture2D" uid="uid://blv7t22xbpxlf" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0110.png" id="9_ve2ix"]
+[ext_resource type="Texture2D" uid="uid://dinfl202b0ktt" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0120.png" id="10_42ud5"]
+[ext_resource type="Texture2D" uid="uid://dx0xaxqte22rb" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0120.png" id="10_xlmrs"]
+[ext_resource type="Texture2D" uid="uid://d2qlgysu68t3o" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0130.png" id="11_1ow8m"]
+[ext_resource type="Texture2D" uid="uid://yjnsp20bp6oy" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0130.png" id="11_mohyv"]
+[ext_resource type="Texture2D" uid="uid://dqlj2yknah5ca" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0140.png" id="12_f4lig"]
+[ext_resource type="Texture2D" uid="uid://d2be50bqx4df1" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0140.png" id="12_muv5t"]
+[ext_resource type="Texture2D" uid="uid://cewouucwkwdp4" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0030.png" id="13_0uji6"]
+[ext_resource type="Texture2D" uid="uid://cedyajdgkm0cu" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0030.png" id="13_ggffg"]
+[ext_resource type="Texture2D" uid="uid://bksgppqgg8se7" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0040.png" id="14_u4jwb"]
+[ext_resource type="Texture2D" uid="uid://cj6ctabacodj0" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0040.png" id="14_wljvi"]
+[ext_resource type="Texture2D" uid="uid://bbtt6g24uwf8h" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0050.png" id="15_ro8vq"]
+[ext_resource type="Texture2D" uid="uid://qdikgv58fk8k" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0050.png" id="15_wryok"]
+[ext_resource type="Texture2D" uid="uid://b16jus7tlc7wf" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0060.png" id="16_71rtv"]
+[ext_resource type="Texture2D" uid="uid://ct2ee75fqjxyb" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0060.png" id="16_kuu0h"]
+[ext_resource type="Texture2D" uid="uid://caik8qtqfmsk8" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0070.png" id="17_ir0ww"]
+[ext_resource type="Texture2D" uid="uid://duyfiwx5lc303" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0070.png" id="17_u05s2"]
+[ext_resource type="Texture2D" uid="uid://cuuthstj6u5aj" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0080.png" id="18_fqg7y"]
+[ext_resource type="Texture2D" uid="uid://dpj1slhqvockc" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0080.png" id="18_kvt36"]
+[ext_resource type="Texture2D" uid="uid://bssnci7nid6fs" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0090.png" id="19_1kjmx"]
+[ext_resource type="Texture2D" uid="uid://cpmpr53wus7gd" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0090.png" id="19_tec8m"]
+[ext_resource type="Texture2D" uid="uid://c2kyq26vp336c" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Player Preview/Gradient Panel Highlight0100.png" id="20_fx8qd"]
+[ext_resource type="Texture2D" uid="uid://ccg2l03vcjegj" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0100.png" id="20_vwo6q"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w1wqu"]
 load_path = "res://.godot/imported/button_brown.png-27dba400d652701d0e40b7449ffcd4fe.ctex"
@@ -57,10 +86,12 @@ region_rect = Rect2(0, 0, 128, 128)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w1wqu"]
 texture = ExtResource("2_qcr3f")
-texture_margin_left = 38.0
-texture_margin_top = 44.0
-texture_margin_right = 43.0
-texture_margin_bottom = 36.0
+texture_margin_left = 46.0
+texture_margin_top = 56.0
+texture_margin_right = 50.0
+texture_margin_bottom = 55.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 region_rect = Rect2(0, 0, 128, 128)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsebq"]
@@ -85,6 +116,89 @@ texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_aw8i0"]
+frames = 14
+frame_0/texture = ExtResource("7_vjryh")
+frame_0/duration = 0.03
+frame_1/texture = ExtResource("8_n1tgf")
+frame_1/duration = 0.03
+frame_2/texture = ExtResource("13_0uji6")
+frame_2/duration = 0.03
+frame_3/texture = ExtResource("14_wljvi")
+frame_3/duration = 0.03
+frame_4/texture = ExtResource("15_wryok")
+frame_4/duration = 0.03
+frame_5/texture = ExtResource("16_71rtv")
+frame_5/duration = 0.03
+frame_6/texture = ExtResource("17_ir0ww")
+frame_6/duration = 0.03
+frame_7/texture = ExtResource("18_fqg7y")
+frame_7/duration = 0.03
+frame_8/texture = ExtResource("19_1kjmx")
+frame_8/duration = 0.03
+frame_9/texture = ExtResource("20_vwo6q")
+frame_9/duration = 0.03
+frame_10/texture = ExtResource("9_ve2ix")
+frame_10/duration = 0.03
+frame_11/texture = ExtResource("10_42ud5")
+frame_11/duration = 0.03
+frame_12/texture = ExtResource("11_1ow8m")
+frame_12/duration = 0.03
+frame_13/texture = ExtResource("12_f4lig")
+frame_13/duration = 0.57
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0srbg"]
+texture = SubResource("AnimatedTexture_aw8i0")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olce3"]
+texture = ExtResource("7_w1wqu")
+texture_margin_left = 35.0
+texture_margin_top = 35.0
+texture_margin_right = 35.0
+texture_margin_bottom = 35.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_wtwsf"]
+frames = 14
+frame_0/texture = ExtResource("7_wtwsf")
+frame_0/duration = 0.03
+frame_1/texture = ExtResource("8_u3k3h")
+frame_1/duration = 0.03
+frame_2/texture = ExtResource("13_ggffg")
+frame_2/duration = 0.03
+frame_3/texture = ExtResource("14_u4jwb")
+frame_3/duration = 0.03
+frame_4/texture = ExtResource("15_ro8vq")
+frame_4/duration = 0.03
+frame_5/texture = ExtResource("16_kuu0h")
+frame_5/duration = 0.03
+frame_6/texture = ExtResource("17_u05s2")
+frame_6/duration = 0.03
+frame_7/texture = ExtResource("18_kvt36")
+frame_7/duration = 0.03
+frame_8/texture = ExtResource("19_tec8m")
+frame_8/duration = 0.03
+frame_9/texture = ExtResource("20_fx8qd")
+frame_9/duration = 0.03
+frame_10/texture = ExtResource("9_ryayv")
+frame_10/duration = 0.03
+frame_11/texture = ExtResource("10_xlmrs")
+frame_11/duration = 0.03
+frame_12/texture = ExtResource("11_mohyv")
+frame_12/duration = 0.03
+frame_13/texture = ExtResource("12_muv5t")
+frame_13/duration = 0.57
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u3k3h"]
+texture = SubResource("AnimatedTexture_wtwsf")
+texture_margin_left = 35.0
+texture_margin_top = 35.0
+texture_margin_right = 35.0
+texture_margin_bottom = 35.0
+
 [resource]
 default_font = ExtResource("4_qcr3f")
 default_font_size = 24
@@ -96,6 +210,7 @@ Button/styles/focus = ExtResource("1_fefs2")
 Button/styles/hover = SubResource("StyleBoxTexture_2jb2c")
 Button/styles/normal = SubResource("StyleBoxTexture_bp0ds")
 Button/styles/pressed = SubResource("StyleBoxTexture_wrqco")
+Button/styles/pseudo_focus = ExtResource("1_fefs2")
 HeaderLarge/base_type = &"Label"
 HeaderLarge/font_sizes/font_size = 32
 HeaderLarge/fonts/font = ExtResource("4_qcr3f")
@@ -110,3 +225,7 @@ Panel_Alt/base_type = &"Panel"
 Panel_Alt/styles/panel = SubResource("StyleBoxTexture_wsebq")
 TabContainer/constants/side_margin = 9
 TabContainer/styles/panel = SubResource("StyleBoxTexture_vx886")
+TabContainer/styles/pseudo_focus = SubResource("StyleBoxTexture_0srbg")
+panel_container_alt/base_type = &"PanelContainer"
+panel_container_alt/styles/panel = SubResource("StyleBoxTexture_olce3")
+panel_container_alt/styles/pseudo_focus = SubResource("StyleBoxTexture_u3k3h")

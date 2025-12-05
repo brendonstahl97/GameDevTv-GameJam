@@ -12,6 +12,17 @@ var assigned_control_stack: ControlStack = null
 var is_creating_profile: bool = false
 
 
+func update(assigned_player_control_stack: ControlStack) -> void:
+  if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_left)):
+    previous_tab()
+  elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_right)):
+    next_tab()
+  elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.delete)):
+    delete_current_profile()
+  elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.begin_game)):
+    begin_create_profile(assigned_player_control_stack)
+
+
 func begin_create_profile(control_stack: ControlStack) -> void:
   # Assign the control stack and push this element onto it
   assigned_control_stack = control_stack

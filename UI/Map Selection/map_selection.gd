@@ -5,7 +5,7 @@ extends SequentialScreen
 @onready var start_game_container: Control = %StartGameContainer
 
 @export var input_resources: Array[PlayerControls]
-@export var focused_stylebox: StyleBoxFlat
+@export var focused_stylebox: StyleBox
 @export var initial_focus: MapElement
 
 var focused_element: MapElement

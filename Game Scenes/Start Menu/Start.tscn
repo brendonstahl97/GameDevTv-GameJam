@@ -1,50 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbndwwj3oi2c8"]
+[gd_scene load_steps=7 format=3 uid="uid://dbndwwj3oi2c8"]
 
+[ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_8pis4"]
 [ext_resource type="Texture2D" uid="uid://cl7ete8ccffph" path="res://Assets/Last Stand Standing.png" id="1_hmthl"]
-[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_sbync"]
 [ext_resource type="Script" uid="uid://bckbcr7h6aa2m" path="res://Game Scenes/Start Menu/titleScreen.gd" id="1_v46k4"]
+[ext_resource type="Texture2D" uid="uid://jitakhbw8pp3" path="res://Assets/UI/Adventure UI Pack/panel_brown_corners_b.png" id="4_tlea4"]
 
 [sub_resource type="Theme" id="Theme_bt6ow"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pis4"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="Theme" id="Theme_fhub5"]
-default_font = ExtResource("1_sbync")
-default_font_size = 45
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tam5"]
-bg_color = Color(0.103744, 0.103744, 0.103743, 0.776471)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 0.0980392, 0.603922)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color(0, 0, 0, 0.372549)
-anti_aliasing_size = 0.01
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5bwrl"]
+texture = ExtResource("4_tlea4")
+texture_margin_left = 55.0
+texture_margin_top = 48.0
+texture_margin_right = 61.0
+texture_margin_bottom = 37.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(0, 0, 128, 128)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -53,28 +24,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_8pis4")
 script = ExtResource("1_v46k4")
 
-[node name="1" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -3.05176e-05
-grow_horizontal = 2
-size_flags_horizontal = 4
-metadata/_edit_use_anchors_ = true
-
-[node name="NavigableItems" type="Control" parent="1"]
+[node name="NavigableItems" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="1/NavigableItems"]
+[node name="PlayButton" type="Button" parent="NavigableItems"]
 unique_name_in_owner = true
 show_behind_parent = true
 top_level = true
@@ -93,12 +54,10 @@ grow_vertical = 0
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 theme = SubResource("Theme_bt6ow")
-theme_override_fonts/font = ExtResource("1_sbync")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/focus = SubResource("StyleBoxFlat_8pis4")
 text = "Play!"
 
-[node name="QuitButton" type="Button" parent="1/NavigableItems"]
+[node name="QuitButton" type="Button" parent="NavigableItems"]
 show_behind_parent = true
 top_level = true
 layout_mode = 1
@@ -116,12 +75,10 @@ grow_vertical = 0
 focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../PlayButton")
 theme = SubResource("Theme_bt6ow")
-theme_override_fonts/font = ExtResource("1_sbync")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/focus = SubResource("StyleBoxFlat_8pis4")
 text = "Quit :("
 
-[node name="TextureRect" type="TextureRect" parent="1"]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.215278
@@ -130,20 +87,26 @@ anchor_bottom = 1.01235
 texture = ExtResource("1_hmthl")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="1"]
+[node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -216.0
-offset_top = 64.0
-offset_right = 211.0
-offset_bottom = 216.0
+offset_left = -344.0
+offset_top = 79.0
+offset_right = 344.0
+offset_bottom = 251.0
 grow_horizontal = 2
-theme = SubResource("Theme_fhub5")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1tam5")
-bbcode_enabled = true
-text = "[center]Last Stand Standing [/center]"
+theme_override_styles/panel = SubResource("StyleBoxTexture_5bwrl")
 
-[connection signal="button_up" from="1/NavigableItems/PlayButton" to="." method="onPlayPressed"]
-[connection signal="pressed" from="1/NavigableItems/QuitButton" to="." method="onQuitPressed"]
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.36078432, 0.23921569, 0.050980393, 1)
+theme_override_font_sizes/font_size = 58
+text = "Last Stand Standing "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="NavigableItems/PlayButton" to="." method="onPlayPressed"]
+[connection signal="pressed" from="NavigableItems/QuitButton" to="." method="onQuitPressed"]

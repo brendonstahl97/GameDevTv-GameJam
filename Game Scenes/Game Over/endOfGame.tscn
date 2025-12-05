@@ -1,19 +1,15 @@
-[gd_scene load_steps=2115 format=4 uid="uid://b17ndi3hywyqw"]
+[gd_scene load_steps=2114 format=4 uid="uid://b17ndi3hywyqw"]
 
 [ext_resource type="Script" uid="uid://pp6x7b3h6qb5" path="res://Game Scenes/Game Over/endOfGameScreen.gd" id="1_4ksru"]
 [ext_resource type="PackedScene" uid="uid://bx3psh0p4jemc" path="res://Entities/Display-Only Player/display_only_player.tscn" id="2_4hgs4"]
+[ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="3_1kho1"]
 [ext_resource type="Script" uid="uid://bwbnuvp5q1etj" path="res://UI/matchUI.gd" id="3_6in8r"]
-[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="3_ceoml"]
 [ext_resource type="PackedScene" uid="uid://ci4fv2lmtjsua" path="res://UI/Score Panel/score_panel.tscn" id="3_od210"]
 [ext_resource type="PackedScene" uid="uid://dblahe6smtayo" path="res://Assets/Environment/RTS Pack/glTF/MountainLarge_Single.gltf" id="8_vjfei"]
 [ext_resource type="PackedScene" uid="uid://cbmbon6csuxu0" path="res://Assets/Environment/RTS Pack/glTF/Mountain_Group_1.gltf" id="9_m64ey"]
 [ext_resource type="PackedScene" uid="uid://dv7iagtewvsh0" path="res://Assets/Environment/RTS Pack/glTF/Mountain_Group_2.gltf" id="10_5llpg"]
 [ext_resource type="PackedScene" uid="uid://dum7qyuj55qq8" path="res://Assets/Environment/RTS Pack/glTF/Mountain_Single.gltf" id="11_ja1nm"]
 [ext_resource type="Texture2D" uid="uid://c4s7yucygjxaq" path="res://Assets/Environment/uploads_files_4381654_LightBlueSky_texture.jpg" id="12_7wtfh"]
-
-[sub_resource type="Theme" id="Theme_yi55n"]
-default_font = ExtResource("3_ceoml")
-default_font_size = 50
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6d4h3"]
 albedo_color = Color(0.72549, 0.941176, 0.592157, 1)
@@ -26278,6 +26274,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_1kho1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 unique_name_in_owner = true
@@ -26322,7 +26319,7 @@ custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme = SubResource("Theme_yi55n")
+theme_override_font_sizes/font_size = 75
 text = "Rematch"
 clip_text = true
 
@@ -26331,8 +26328,7 @@ custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("3_ceoml")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 75
 text = "Main Menu"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

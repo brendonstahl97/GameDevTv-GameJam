@@ -3,8 +3,17 @@ extends TabContainer
 
 var num_tabs: int = 0
 
+
 func _ready() -> void:
 	num_tabs = get_children().size()
+
+
+func update(assigned_player_control_stack: ControlStack) -> void:
+	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_left)):
+		navigate_left()
+		
+	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_right)):
+		navigate_right()
 
 
 func navigate_left() -> void:
