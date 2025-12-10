@@ -4,6 +4,9 @@ extends Node3D
 @export var main_game_scene: PackedScene
 @export var main_menu_scene: PackedScene
 
+func _ready() -> void:
+	print("in Game settings scene")
+
 func _start_game(player_choices_dictionary):
 	# Set GLOBAL player info for their choices, usable anywhere.
 	global.playerInfo = player_choices_dictionary
