@@ -14,7 +14,7 @@ signal bot_requested(control_stack: ControlStack)
 @onready var ready_button: Button = %ReadyUp
 @onready var name_display: Label = %"Player Name Label"
 @onready var bot_difficulty_selector: DifficultyTabContainer = %"Bot Difficulty"
-@onready var player_profile: PlayerProfileElement = %"Player Profile"
+@onready var player_profile_element: PlayerProfileElement = %"Player Profile"
 @onready var character_preview: CharacterPreview = %"Character Preview"
 
 @export var player_name: String = "Player 1" ## Display name of the player in-game
@@ -74,19 +74,13 @@ func _init_player_panel() -> void:
 	color_selector.focus_neighbor_bottom = color_selector.get_path_to(ready_button)
 	ready_button.focus_neighbor_top = ready_button.get_path_to(color_selector)
 
-	# Display the player profile selector
-	# player_profile.show()
-
-	name_display.text = player_name
+	player_profile_element.init_player_default_profile(player_name)
 	_join()
 
 
 func _init_bot_panel() -> void:
 	# Set the bot flag
 	is_bot = true
-
-	# Hide the player profile selector
-	# player_profile.hide()
 
 	# Set the neighbors to include the bot difficulty selector
 	color_selector.focus_neighbor_bottom = color_selector.get_path_to(bot_difficulty_selector)
@@ -95,6 +89,8 @@ func _init_bot_panel() -> void:
 	# Display the bot difficulty selector
 	bot_difficulty_selector.show()
 	
+	player_profile_element.init_player_default_profile(player_name + bot_name_modifier)
+
 	# Include the bot name modifier 
 	name_display.text += bot_name_modifier
 	_join()
@@ -162,6 +158,7 @@ func _get_selected_values() -> Dictionary:
 		"PlayerGuy" = guy_selector.selected_tab_title,
 		"PlayerCart" = stand_type_selector.selected_tab_title,
 		"PlayerControls" = player_controls,
+		"PlayerProfileId" = player_profile_element.get_selected_profile_id(),
 		"is_bot" = is_bot,
 		"bot_difficulty" = bot_difficulty_selector.selected_tab_difficulty
 	}

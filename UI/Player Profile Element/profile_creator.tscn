@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://ffyelnrq6mgf"]
+
+[ext_resource type="Script" uid="uid://def0oo6e8hybf" path="res://UI/Player Profile Element/player_profile_creator.gd" id="1_j50ab"]
+[ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_wed7h"]
+
+[sub_resource type="Animation" id="Animation_j50ab"]
+resource_name = "Error"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.97820526, 0.9432897, 0.8939901, 1), Color(0.9764706, 0, 0, 1), Color(0.97820526, 0.9432897, 0.8939901, 1), Color(0.9764706, 0, 0, 1), Color(0.97820526, 0.9432897, 0.8939901, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wed7h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.97820526, 0.9432897, 0.8939901, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_21l4s"]
+_data = {
+&"Error": SubResource("Animation_j50ab"),
+&"RESET": SubResource("Animation_wed7h")
+}
+
+[node name="ProfileCreator" type="Label"]
+theme = ExtResource("1_wed7h")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.97820526, 0.9432897, 0.8939901, 1)
+text = "Create Profile"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_j50ab")
+metadata/_tab_index = 1
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 0.5
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_21l4s")
+}

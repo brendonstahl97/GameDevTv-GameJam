@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=52 format=3 uid="uid://bj1yf8r6vkpu4"]
+[gd_resource type="Theme" load_steps=54 format=3 uid="uid://bj1yf8r6vkpu4"]
 
 [ext_resource type="StyleBox" uid="uid://c1armcyyr0t2u" path="res://UI/ButtonBrownHighlightStyleBox.tres" id="1_fefs2"]
 [ext_resource type="Texture2D" uid="uid://bp5smbxoy8oj" path="res://Assets/UI/Adventure UI Pack/button_brown.png" id="1_hkx0t"]
@@ -71,6 +71,16 @@ modulate_color = Color(0.57700807, 0.5770085, 0.57700837, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ir0gu"]
 texture = ExtResource("3_fefs2")
+texture_margin_left = 24.0
+texture_margin_top = 35.0
+texture_margin_right = 24.0
+texture_margin_bottom = 50.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vjryh"]
+load_path = "res://.godot/imported/banner_classic_curtain.png-d21e97f1ca1f383d2ea45fee8df150a1.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1tgf"]
+texture = SubResource("CompressedTexture2D_vjryh")
 texture_margin_left = 24.0
 texture_margin_top = 35.0
 texture_margin_right = 24.0
@@ -215,6 +225,7 @@ HeaderLarge/base_type = &"Label"
 HeaderLarge/font_sizes/font_size = 32
 HeaderLarge/fonts/font = ExtResource("4_qcr3f")
 HeaderLarge/styles/normal = SubResource("StyleBoxTexture_ir0gu")
+HeaderLarge/styles/pseudo_focus = SubResource("StyleBoxTexture_n1tgf")
 Label/colors/font_color = Color(0.97820526, 0.9432897, 0.8939901, 1)
 Label/font_sizes/font_size = 24
 Label_Alt/base_type = &"Label"

@@ -139,13 +139,27 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 focus_neighbor_top = NodePath("../../HBoxContainer2/ReadyUp")
-focus_neighbor_bottom = NodePath("../VBoxContainer/StandType")
+focus_neighbor_bottom = NodePath("Player Profile")
 focus_mode = 2
 model_selector = NodePath("Guy")
 arrow_highlight_color = Color(0.53825337, 0.73484087, 0.9471019, 1)
 
+[node name="Player Profile" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" instance=ExtResource("7_q0t2s")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -39.0
+offset_bottom = 91.0
+grow_vertical = 0
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("../../VBoxContainer/StandType")
+
 [node name="Player Name Label" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 1
 anchors_preset = 7
@@ -357,7 +371,7 @@ alignment = 1
 [node name="StandType" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../Character Preview")
+focus_neighbor_top = NodePath("../../Character Preview/Player Profile")
 focus_neighbor_bottom = NodePath("../Color")
 focus_mode = 2
 current_tab = 2
@@ -524,6 +538,7 @@ color = Color(0.263164, 0.85746, 0.229203, 1)
 
 [node name="Bot Difficulty" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 focus_neighbor_top = NodePath("../Color")
 focus_neighbor_bottom = NodePath("../../../HBoxContainer2/ReadyUp")
@@ -567,14 +582,6 @@ vertical_alignment = 1
 text_overrun_behavior = 3
 script = ExtResource("6_xxpd3")
 metadata/_tab_index = 2
-
-[node name="Player Profile" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer" instance=ExtResource("7_q0t2s")]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 130)
-layout_mode = 2
-focus_neighbor_top = NodePath("../../Character Preview/Guy")
-focus_neighbor_bottom = NodePath("")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/Character Options"]
 layout_mode = 2

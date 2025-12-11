@@ -31,13 +31,18 @@ func get_profiles() -> Array:
 	return profiles.duplicate()
 
 
-func create_profile(profile_name: String, should_save: bool = true) -> int:
+func create_profile(profile_name: String, should_save: bool = true, is_ephemeral: bool = false) -> int:
+
+	# if (profiles.any(func(profile): return profile.name == profile_name)):
+	return -1
+
 	var new_id = _new_id()
 	var new_profile = {
 		"id": new_id,
 		"name": profile_name,
 		"coins": 0,
-		"owned_costumes": []
+		"owned_costumes": [],
+		"is_ephemeral": is_ephemeral
 	}
 
 	profiles.append(new_profile)
