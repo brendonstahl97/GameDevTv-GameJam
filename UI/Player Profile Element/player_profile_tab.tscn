@@ -1,16 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://byaiid0jt7r71"]
+[gd_scene load_steps=2 format=3 uid="uid://byaiid0jt7r71"]
 
-[ext_resource type="FontFile" uid="uid://icao8kp5bevt" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_7dc1l"]
 [ext_resource type="Script" uid="uid://c6q0lw02h2s0f" path="res://UI/Player Profile Element/player_profile_tab.gd" id="2_7dc1l"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_sys1h"]
-font = ExtResource("1_7dc1l")
-font_size = 26
 
 [node name="Player Profile Tab" type="Label"]
 focus_mode = 2
+theme_type_variation = &"HeaderLarge"
 text = "Easy"
-label_settings = SubResource("LabelSettings_sys1h")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
