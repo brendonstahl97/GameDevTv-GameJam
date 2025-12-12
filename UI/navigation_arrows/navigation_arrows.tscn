@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqpkbwdgsesg2"]
+
+[ext_resource type="Script" uid="uid://dacl834uw07hp" path="res://UI/navigation_arrows/navigation_arrows.gd" id="1_ulclo"]
+[ext_resource type="Texture2D" uid="uid://1p0c8e8a50tm" path="res://Assets/UI/Adventure UI Pack/minimap_arrow_a.png" id="1_wa68y"]
+
+[node name="NavigationArrows" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ulclo")
+
+[node name="LeftArrow" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 35.0
+offset_top = -20.0
+offset_right = 75.0
+offset_bottom = 20.0
+grow_vertical = 2
+rotation = -1.5707964
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("1_wa68y")
+
+[node name="RightArrow" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -20.0
+offset_right = -35.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("1_wa68y")

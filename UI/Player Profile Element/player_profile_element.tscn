@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkvb0aqhpd4f1"]
+[gd_scene load_steps=8 format=3 uid="uid://dkvb0aqhpd4f1"]
 
 [ext_resource type="Script" uid="uid://dnvkvjb6ug3ck" path="res://UI/Player Profile Element/player_profile_element.gd" id="1_3y3np"]
 [ext_resource type="Script" uid="uid://il6bhfavjjtl" path="res://UI/Player Profile Element/player_profile_tab_container.gd" id="1_5f4eq"]
 [ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_hdkmt"]
 [ext_resource type="PackedScene" uid="uid://byaiid0jt7r71" path="res://UI/Player Profile Element/player_profile_tab.tscn" id="2_sinuv"]
 [ext_resource type="PackedScene" uid="uid://ffyelnrq6mgf" path="res://UI/Player Profile Element/profile_creator.tscn" id="5_hdkmt"]
+[ext_resource type="PackedScene" uid="uid://dqpkbwdgsesg2" path="res://UI/navigation_arrows/navigation_arrows.tscn" id="6_hdkmt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y3np"]
 
@@ -38,9 +39,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -179.5
-offset_top = -52.0
+offset_top = -68.0
 offset_right = 179.5
-offset_bottom = 52.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3y3np")
@@ -59,3 +60,12 @@ text = "Player"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="NavigationArrows" parent="." instance=ExtResource("6_hdkmt")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = -5.5
+offset_top = -9.0
+offset_right = 9.5
+offset_bottom = -9.0
