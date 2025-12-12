@@ -141,6 +141,7 @@ game_mode_resource = ExtResource("4_q4oso")
 
 [node name="StartGameContainer" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5

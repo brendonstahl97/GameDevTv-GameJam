@@ -3,6 +3,7 @@ extends TabContainer
 
 var num_tabs: int = 0
 
+@export var navigation_arrows: NavigationArrows
 
 func _ready() -> void:
 	num_tabs = get_children().size()
@@ -14,6 +15,19 @@ func update(assigned_player_control_stack: ControlStack) -> void:
 		
 	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.code_right)):
 		navigate_right()
+	
+	if (navigation_arrows != null):
+		navigation_arrows.update(assigned_player_control_stack)
+
+
+func pseudo_focus() -> void:
+	if (navigation_arrows != null):
+		navigation_arrows.show()
+
+
+func exit_pseudo_focus() -> void:
+	if (navigation_arrows != null):
+		navigation_arrows.hide()
 
 
 func navigate_left() -> void:
