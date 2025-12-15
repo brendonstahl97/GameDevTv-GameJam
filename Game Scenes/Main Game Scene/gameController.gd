@@ -80,7 +80,7 @@ func _setup_players() -> void:
 			var player_object: Player = scene_to_spawn.instantiate()
 			player_object.name = player_key
 
-			player_object.Controls = this_players_info["PlayerControls"]
+			player_object.controls = this_players_info["PlayerControls"]
 			
 			if (player_object is BotPlayer):
 				player_object.apply_difficulty(this_players_info["bot_difficulty"])
