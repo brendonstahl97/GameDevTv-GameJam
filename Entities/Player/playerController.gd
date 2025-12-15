@@ -29,6 +29,7 @@ var player_model: String = "Man 1"
 
 var movement_direction = Vector3.ZERO
 var player_controls_enabled := true
+var has_flashed_since_airborne: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -136,11 +137,18 @@ func _handle_dialog_input() -> void:
 
 
 func _handle_slam_input() -> void:
-	if (
-		ground_detection_component.is_grounded
-		|| ground_detection_component.time_since_last_grounded < slam_component.slam_allowed_delay
-	):
+	if (ground_detection_component.is_grounded):
+		if (has_flashed_since_airborne):
+			has_flashed_since_airborne = false
+			
 		return
+	
+	if (ground_detection_component.time_since_last_grounded < slam_component.slam_allowed_delay):
+		return
+
+	if (!has_flashed_since_airborne):
+		stamina_manager.flash_stamina_bar.emit()
+		has_flashed_since_airborne = true
 
 	if (Input.is_action_just_pressed(controls.slam)):
 		slam_component.begin_slam()

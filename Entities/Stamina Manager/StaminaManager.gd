@@ -1,6 +1,8 @@
 class_name StaminaManager
 extends Node3D
 
+@warning_ignore("unused_signal")
+signal flash_stamina_bar
 signal stamina_consumption_failed
 
 @onready var stamina_buzz: AudioStreamPlayer3D = $StaminaBuzz
