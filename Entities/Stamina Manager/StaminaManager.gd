@@ -1,6 +1,8 @@
 class_name StaminaManager
-extends  Node3D
+extends Node3D
 
+@warning_ignore("unused_signal")
+signal flash_stamina_bar
 signal stamina_consumption_failed
 
 @onready var stamina_buzz: AudioStreamPlayer3D = $StaminaBuzz
@@ -10,41 +12,45 @@ signal stamina_consumption_failed
 
 signal stamina_changed(value: float)
 
-var can_regen_stamina = true;
+var can_regen_stamina = true
 var current_stamina: float:
 	set(value):
 		current_stamina = clampf(value, 0, max_stamina)
 		stamina_changed.emit(current_stamina)
 
+
 func _ready() -> void:
 	current_stamina = max_stamina
 	stamina_changed.emit(current_stamina)
-	
+
+
 func _process(delta: float) -> void:
 	_handle_stamina_regen(delta)
-	
+
+
 func try_drain_stamina(amount_to_drain: float, must_have_amount: bool = true) -> bool:
 	if (must_have_amount && current_stamina < amount_to_drain):
-		_play_stamina_consumption_fail_effects()
+		play_stamina_consumption_fail_effects()
 		return false
-	
+
 	_drain_stamina(amount_to_drain)
 	return true
 
-func _drain_stamina(amountToDrain: float) -> void:
-	current_stamina -= amountToDrain
+
+func _drain_stamina(amount_to_drain: float) -> void:
+	current_stamina -= amount_to_drain
 
 
-func restoreStamina(amountToRestore: float) -> void:
-	current_stamina += amountToRestore
+func restore_stamina(amount_to_restore: float) -> void:
+	current_stamina += amount_to_restore
 
 
 func _handle_stamina_regen(delta) -> void:
 	if (current_stamina < max_stamina && can_regen_stamina):
 		current_stamina += passive_stamina_regen * delta
-		
 
-func _play_stamina_consumption_fail_effects() -> void:
+
+func play_stamina_consumption_fail_effects() -> void:
 	stamina_consumption_failed.emit()
 	if (!stamina_buzz.playing):
 		stamina_buzz.play()

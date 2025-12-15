@@ -1,6 +1,9 @@
 class_name PlayerProfileCreator
 extends PlayerProfileTab
 
+signal begin_create_profile
+signal end_create_profile
+
 @export var default_text: String = "Create Profile"
 @export var max_name_length: int = 10 ## The maximum profile name length in characters
 @export var error_animation_name: StringName = "Error"
@@ -47,6 +50,7 @@ var is_active := false
 
 @onready var flash_timer: Timer = %Timer
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var navigation_arrows: NavigationArrows = %NavigationArrows
 
 
 # Initialize our flash character timer signal
@@ -59,8 +63,10 @@ func update(player_control_stack: ControlStack) -> void:
 	if (!is_active):
 		if (Input.is_action_just_pressed(player_control_stack.player_controls.sprint)):
 			is_active = true
+			navigation_arrows.show()
 			player_control_stack.push_control(self)
 			current_player_control_stack = player_control_stack
+			begin_create_profile.emit()
 
 
 func _process(_delta: float) -> void:
@@ -71,7 +77,6 @@ func _process(_delta: float) -> void:
 		|| current_player_control_stack.get_current_control() != self
 	):
 		return
-
 	_display_sample_character()
 
 	if (Input.is_action_just_pressed(current_player_control_stack.player_controls.code_up)):
@@ -99,9 +104,13 @@ func _process(_delta: float) -> void:
 
 	elif (Input.is_action_just_pressed(current_player_control_stack.player_controls.slam)):
 		is_active = false
+		navigation_arrows.hide()
 		current_player_control_stack.pop_control()
 		current_player_control_stack = null
 		text = default_text
+		end_create_profile.emit()
+	
+	navigation_arrows.update(current_player_control_stack)
 
 
 func _next_character() -> void:

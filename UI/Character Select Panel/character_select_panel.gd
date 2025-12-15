@@ -44,7 +44,7 @@ var player_info: Dictionary:
 
 var final_player_name: String:
 	get:
-		return name_display.text
+		return player_profile_element.get_selected_profile_name()
 
 
 func _ready() -> void:
@@ -54,7 +54,6 @@ func _ready() -> void:
 
 
 func initialize(player_control_stack: ControlStack, player_is_bot: bool = false) -> void:
-	name_display.text = player_name
 	assigned_player_control_stack = player_control_stack
 
 	# in case this panel was previously a bot:
@@ -103,10 +102,9 @@ func _init_bot_panel() -> void:
 	# Display the bot difficulty selector
 	bot_difficulty_selector.show()
 
+	# Include the bot name modifier
 	player_profile_element.init_player_default_profile(player_name + bot_name_modifier)
 
-	# Include the bot name modifier
-	name_display.text += bot_name_modifier
 	_join()
 
 
