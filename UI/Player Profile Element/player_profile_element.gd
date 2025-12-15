@@ -38,6 +38,10 @@ func get_selected_profile_id() -> int:
 	return tab_container.get_current_tab_profile_id()
 
 
+func get_selected_profile_name() -> String:
+	return (tab_container.get_child(tab_container.current_tab) as Label).text
+
+
 func init_player_default_profile(player_name: String) -> void:
 	player_default.text = player_name
 

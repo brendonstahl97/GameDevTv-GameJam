@@ -235,4 +235,4 @@ func _on_parry_component_parry_failure() -> void:
 
 func _on_bump_component_successful_bump(restored_stamina_amount: float) -> void:
 	hit_freeze_component.hit_freeze(hit_freeze_component.freeze_time + 0.1, false)
-	hit_freeze_component.freeze_completed.connect(func(): stamina_manager.restoreStamina(restored_stamina_amount))
+	hit_freeze_component.freeze_completed.connect(func(): stamina_manager.restore_stamina(restored_stamina_amount))

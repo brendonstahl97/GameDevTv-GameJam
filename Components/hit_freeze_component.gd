@@ -3,7 +3,7 @@ extends RigidbodyManipulatorComponent
 
 signal freeze_completed()
 
-@export var freeze_time: float = 0.2 ## The default duration of the hit freeze effect
+@export var freeze_time: float = 0.1 ## The default duration of the hit freeze effect
 
 @export_category("Hit Flash")
 @export var hit_flash_enabled := false ## Should the hit flash effect be enabled on freeze?
