@@ -1,9 +1,13 @@
 class_name ScorePanel
-extends PanelContainer
+extends Control
+
+@export var reward_animation_name: StringName = "display_reward"
 
 @onready var player_name_label: RichTextLabel = %PlayerName
 @onready var score_label: RichTextLabel = %ScoreLabel
 @onready var player_icon: Panel = %PlayerIcon
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var reward_label: Label = $rewardLabel
 
 var player_name: String
 var player_color: Color
@@ -21,3 +25,8 @@ func initialize_display(display_name: String, color: Color) -> void:
 	
 	player_color = color
 	player_icon.modulate = player_color
+
+
+func display_reward(value: int) -> void:
+	reward_label.text = "+$" + str(value)
+	animation_player.play(reward_animation_name)
