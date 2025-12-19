@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://dv8lqrj1jvo72"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_n14lf"]
+[ext_resource type="PackedScene" uid="uid://daoc154viycm0" path="res://Assets/Characters/Pirate_Female.gltf" id="1_uwmhs"]
+
+[resource]
+script = ExtResource("1_n14lf")
+name = "Pirate"
+costume_scene = ExtResource("1_uwmhs")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

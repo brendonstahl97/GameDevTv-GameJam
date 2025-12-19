@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://bjny2a5jkku01"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_0krg6"]
+[ext_resource type="PackedScene" uid="uid://ybp6c67cdbuf" path="res://Assets/Characters/Goblin_Male.gltf" id="1_gi2aa"]
+
+[resource]
+script = ExtResource("1_0krg6")
+name = "Goblin"
+costume_scene = ExtResource("1_gi2aa")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

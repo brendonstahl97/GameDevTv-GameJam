@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://dygkbmxwmkxkm"]
+
+[ext_resource type="PackedScene" uid="uid://4abrtxbc8k0r" path="res://Assets/Characters/BaseCharacter.gltf" id="1_evht6"]
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_xj5af"]
+
+[resource]
+script = ExtResource("1_xj5af")
+name = "default"
+costume_scene = ExtResource("1_evht6")
+purchase_price = 0
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

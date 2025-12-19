@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://bsorft3bm0g55"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_dra7g"]
+[ext_resource type="PackedScene" uid="uid://dh3ttorqb0u35" path="res://Assets/Characters/Elf.gltf" id="1_nh7fg"]
+
+[resource]
+script = ExtResource("1_dra7g")
+name = "Elf"
+costume_scene = ExtResource("1_nh7fg")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

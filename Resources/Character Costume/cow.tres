@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://drmnr4j2pppsr"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_c5rou"]
+[ext_resource type="PackedScene" uid="uid://c8a4uiill0c1b" path="res://Assets/Characters/Cow.gltf" id="1_prrmt"]
+
+[resource]
+script = ExtResource("1_c5rou")
+name = "Cow"
+costume_scene = ExtResource("1_prrmt")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

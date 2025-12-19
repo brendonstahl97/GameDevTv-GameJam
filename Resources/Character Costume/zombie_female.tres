@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://bfjbdjeugsiei"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_l36i2"]
+[ext_resource type="PackedScene" uid="uid://dlx6r4f6jtwe3" path="res://Assets/Characters/Zombie_Female.gltf" id="1_tkf8a"]
+
+[resource]
+script = ExtResource("1_l36i2")
+name = "Zombie Female"
+costume_scene = ExtResource("1_tkf8a")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

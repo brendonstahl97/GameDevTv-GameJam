@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c3hj4qu8xskvc"]
+[gd_scene load_steps=54 format=3 uid="uid://c3hj4qu8xskvc"]
 
 [ext_resource type="Script" uid="uid://tuhqkfs0pmt4" path="res://UI/Character Select Panel/character_select_panel.gd" id="1_2idqe"]
 [ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_hc437"]
@@ -24,8 +24,29 @@
 [ext_resource type="Texture2D" uid="uid://cuuthstj6u5aj" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0080.png" id="14_54u2v"]
 [ext_resource type="Texture2D" uid="uid://bssnci7nid6fs" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0090.png" id="15_c4fn8"]
 [ext_resource type="Texture2D" uid="uid://ccg2l03vcjegj" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Metal/Panel Highlight0100.png" id="16_m3awr"]
+[ext_resource type="Script" uid="uid://bpsl0gj5fap15" path="res://UI/Multiplayer Tab Container/costume_tab_container.gd" id="19_jyudd"]
+[ext_resource type="Script" uid="uid://b7bsb355j6jdl" path="res://UI/Multiplayer Tab Container/costume_tab.gd" id="20_uinte"]
 [ext_resource type="PackedScene" uid="uid://dqpkbwdgsesg2" path="res://UI/navigation_arrows/navigation_arrows.tscn" id="20_w87j6"]
+[ext_resource type="Resource" uid="uid://bjny2a5jkku01" path="res://Resources/Character Costume/goblin_male.tres" id="21_ieiti"]
+[ext_resource type="Resource" uid="uid://dygkbmxwmkxkm" path="res://Resources/Character Costume/default.tres" id="21_jyudd"]
+[ext_resource type="Resource" uid="uid://b3hw31nqx5drh" path="res://Resources/Character Costume/casual_female.tres" id="22_jyudd"]
+[ext_resource type="Resource" uid="uid://b0p5rpcqum813" path="res://Resources/Character Costume/chef.tres" id="23_duim4"]
+[ext_resource type="Resource" uid="uid://drmnr4j2pppsr" path="res://Resources/Character Costume/cow.tres" id="24_675qb"]
+[ext_resource type="Resource" uid="uid://bsorft3bm0g55" path="res://Resources/Character Costume/elf.tres" id="25_i1wet"]
 [ext_resource type="Texture2D" uid="uid://yv16bv5rp0jn" path="res://Assets/UI/Adventure UI Pack/panel_brown_corners_a.png" id="25_t16ta"]
+[ext_resource type="Resource" uid="uid://d0hpp7jn8s1ja" path="res://Resources/Character Costume/knight_male.tres" id="26_nuuvg"]
+[ext_resource type="Resource" uid="uid://cd65764gduu6" path="res://Resources/Character Costume/classy.tres" id="27_ylq5i"]
+[ext_resource type="Resource" uid="uid://dv8lqrj1jvo72" path="res://Resources/Character Costume/priate_female.tres" id="28_c6yc3"]
+[ext_resource type="Resource" uid="uid://ba34lqu5ue4ed" path="res://Resources/Character Costume/pug.tres" id="29_0qclm"]
+[ext_resource type="Resource" uid="uid://buc54ehsbd6o5" path="res://Resources/Character Costume/viking.tres" id="30_1yumo"]
+[ext_resource type="Resource" uid="uid://cietrae2kb1tq" path="res://Resources/Character Costume/witch.tres" id="31_2t0pp"]
+[ext_resource type="Resource" uid="uid://c527jyt4fyxqw" path="res://Resources/Character Costume/wizard.tres" id="32_e75rt"]
+[ext_resource type="Resource" uid="uid://bfjbdjeugsiei" path="res://Resources/Character Costume/zombie_female.tres" id="33_yvcr3"]
+[ext_resource type="Resource" uid="uid://cup72ggh0mn1b" path="res://Resources/Character Costume/zombie_male.tres" id="34_bxw47"]
+[ext_resource type="Script" uid="uid://bexwdgaou0wae" path="res://UI/Character Select Panel/panel_sfx_player.gd" id="44_675qb"]
+[ext_resource type="AudioStream" uid="uid://bquti63oapwbe" path="res://Assets/Audio/Coins.wav" id="45_i1wet"]
+[ext_resource type="AudioStream" uid="uid://ofxsqnsmc8cs" path="res://Assets/Audio/FailBuzz.mp3" id="46_nuuvg"]
+[ext_resource type="AudioStream" uid="uid://cl7w4xf778qht" path="res://Assets/Audio/SFX/UI/pluck_001.ogg" id="47_ylq5i"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_aw8i0"]
 frames = 14
@@ -132,7 +153,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
 
-[node name="Character Preview" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer" node_paths=PackedStringArray("model_selector") instance=ExtResource("3_f3ryw")]
+[node name="Character Preview" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer" node_paths=PackedStringArray("model_selector", "player_profile_element") instance=ExtResource("3_f3ryw")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
@@ -144,6 +165,7 @@ focus_neighbor_bottom = NodePath("Player Profile")
 focus_mode = 2
 model_selector = NodePath("Guy")
 arrow_highlight_color = Color(0.53825337, 0.73484087, 0.9471019, 1)
+player_profile_element = NodePath("Player Profile")
 
 [node name="Player Profile" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" instance=ExtResource("7_q0t2s")]
 unique_name_in_owner = true
@@ -195,7 +217,7 @@ clip_tabs = false
 tabs_visible = false
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
-script = ExtResource("3_rsiyw")
+script = ExtResource("19_jyudd")
 metadata/_edit_use_anchors_ = true
 
 [node name="BaseCharacter" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -205,6 +227,8 @@ text = "Base Character"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("21_jyudd")
 metadata/_tab_index = 0
 
 [node name="Casual3_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -215,6 +239,8 @@ text = "Casual3 Male"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("21_ieiti")
 metadata/_tab_index = 1
 
 [node name="Casual_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -225,6 +251,8 @@ text = "Casual Female"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("22_jyudd")
 metadata/_tab_index = 2
 
 [node name="Chef_Hat" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -235,6 +263,8 @@ text = "Chef Hat"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("23_duim4")
 metadata/_tab_index = 3
 
 [node name="Cow" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -245,6 +275,8 @@ text = "Cow"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("24_675qb")
 metadata/_tab_index = 4
 
 [node name="Elf" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -255,6 +287,8 @@ text = "Elf"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("25_i1wet")
 metadata/_tab_index = 5
 
 [node name="Goblin_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -265,6 +299,8 @@ text = "Goblin Male"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("21_ieiti")
 metadata/_tab_index = 6
 
 [node name="Knight_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -275,6 +311,8 @@ text = "Knight Male"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("26_nuuvg")
 metadata/_tab_index = 7
 
 [node name="OldClassy_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -285,6 +323,8 @@ text = "Old Classy Male"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("27_ylq5i")
 metadata/_tab_index = 8
 
 [node name="Pirate_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -295,6 +335,8 @@ text = "Pirate Female"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("28_c6yc3")
 metadata/_tab_index = 9
 
 [node name="Pug" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -305,6 +347,8 @@ text = "Pug"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("29_0qclm")
 metadata/_tab_index = 10
 
 [node name="VikingHelmet" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -315,6 +359,8 @@ text = "Viking Helmet"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("30_1yumo")
 metadata/_tab_index = 11
 
 [node name="Witch" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -325,6 +371,8 @@ text = "Witch"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("31_2t0pp")
 metadata/_tab_index = 12
 
 [node name="Wizard" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -335,6 +383,8 @@ text = "Wizard"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("32_e75rt")
 metadata/_tab_index = 13
 
 [node name="Zombie_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -345,6 +395,8 @@ text = "Zombie Female"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("33_yvcr3")
 metadata/_tab_index = 14
 
 [node name="Zombie_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
@@ -355,6 +407,8 @@ text = "Zombie Male"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
+script = ExtResource("20_uinte")
+costume_resource = ExtResource("34_bxw47")
 metadata/_tab_index = 15
 
 [node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer"]
@@ -695,4 +749,21 @@ text = "Ready!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PanelSfx" type="AudioStreamPlayer3D" parent="."]
+volume_db = -1.0
+script = ExtResource("44_675qb")
+successful_purchase_sfx = ExtResource("45_i1wet")
+error_sfx = ExtResource("46_nuuvg")
+
+[node name="NavigationSfx" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("47_ylq5i")
+volume_db = -3.0
+
+[connection signal="ready_error" from="." to="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" method="_on_character_select_panel_ready_error"]
+[connection signal="ready_error" from="." to="PanelSfx" method="_play_error_sfx"]
+[connection signal="ui_navigation" from="." to="NavigationSfx" method="play" binds= [0.0]]
+[connection signal="purchase_failure" from="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" to="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Player Profile" method="_on_character_preview_purchase_failure"]
+[connection signal="purchase_failure" from="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" to="PanelSfx" method="_play_error_sfx"]
+[connection signal="purchase_success" from="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" to="." method="_on_character_preview_purchase_success"]
+[connection signal="purchase_success" from="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" to="PanelSfx" method="_play_purchase_sfx"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Character Options/HBoxContainer2/ReadyUp" to="." method="_on_ready_up_pressed"]

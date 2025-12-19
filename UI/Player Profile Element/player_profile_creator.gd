@@ -96,20 +96,16 @@ func _process(_delta: float) -> void:
 			return
 
 		if (current_character_index != -1 && current_base_text.length() <= max_name_length):
-			text += possible_characters[current_character_index]
+			text = current_base_text + possible_characters[current_character_index]
 
 		var new_id = ProfileManager.create_profile(text)
 		if (new_id == -1):
 			animation_player.play(error_animation_name)
+		else:
+			_exit()
 
 	elif (Input.is_action_just_pressed(current_player_control_stack.player_controls.slam)):
-		is_active = false
-		navigation_arrows.hide()
-		current_player_control_stack.pop_control()
-		current_player_control_stack = null
-		text = default_text
-		end_create_profile.emit()
-	
+		_exit()
 	navigation_arrows.update(current_player_control_stack)
 
 
@@ -127,15 +123,21 @@ func _previous_character() -> void:
 
 
 func _increment_character() -> void:
-	if (current_character_index == -1):
-		current_character_index = 1
-
 	current_character_index = (current_character_index + possible_characters.size() + 1) % possible_characters.size()
+
+
+func _exit() -> void:
+	is_active = false
+	navigation_arrows.hide()
+	current_player_control_stack.pop_control()
+	current_player_control_stack = null
+	text = default_text
+	end_create_profile.emit()
 
 
 func _decrement_character() -> void:
 	if (current_character_index == -1):
-		current_character_index = 1
+		current_character_index = 0
 
 	current_character_index = (current_character_index + possible_characters.size() - 1) % possible_characters.size()
 

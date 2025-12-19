@@ -11,6 +11,9 @@ var next_input: String
 var previous_input: String
 
 func update(control_stack: ControlStack) -> void:
+	if(control_stack == null):
+		return
+
 	if (!vertical):
 		previous_input = control_stack.player_controls.code_left
 		next_input = control_stack.player_controls.code_right
