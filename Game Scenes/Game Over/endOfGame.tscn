@@ -26248,6 +26248,7 @@ item/332/preview = SubResource("ImageTexture_ayvcs")
 [node name="EndOfGame" type="Node3D"]
 script = ExtResource("1_4ksru")
 display_player_scene = ExtResource("2_4hgs4")
+first_place_reward = 1000
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.971648, 0.236431, 0, -0.236431, 0.971648, 0.00279427, 2.26706, 14.1818)
@@ -26283,7 +26284,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -91.0
+offset_top = -74.0
+offset_bottom = -74.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1

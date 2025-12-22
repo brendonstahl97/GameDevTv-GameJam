@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://b0p5rpcqum813"]
+
+[ext_resource type="PackedScene" uid="uid://74evlbvrqp8c" path="res://Assets/Characters/Chef_Hat.gltf" id="1_ttkws"]
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="2_upwhm"]
+
+[resource]
+script = ExtResource("2_upwhm")
+name = "Chef"
+costume_scene = ExtResource("1_ttkws")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

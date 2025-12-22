@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://d0hpp7jn8s1ja"]
+
+[ext_resource type="PackedScene" uid="uid://c3mfnc3hr62sw" path="res://Assets/Characters/Knight_Male.gltf" id="1_3jmnq"]
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_cskxs"]
+
+[resource]
+script = ExtResource("1_cskxs")
+name = "Knight"
+costume_scene = ExtResource("1_3jmnq")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

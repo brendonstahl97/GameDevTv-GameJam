@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://ba34lqu5ue4ed"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_8u0r1"]
+[ext_resource type="PackedScene" uid="uid://kpl3b8rpdfus" path="res://Assets/Characters/Pug.gltf" id="1_txy0y"]
+
+[resource]
+script = ExtResource("1_8u0r1")
+name = "Pug"
+costume_scene = ExtResource("1_txy0y")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

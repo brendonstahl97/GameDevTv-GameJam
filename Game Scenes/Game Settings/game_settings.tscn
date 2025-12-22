@@ -26291,6 +26291,10 @@ fov = 32.7
 size = 6.267
 near = 0.018
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.207, -4.9084854, -0.73357594)
+current = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_p05t7")
 

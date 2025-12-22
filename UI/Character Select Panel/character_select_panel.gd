@@ -2,12 +2,14 @@ class_name CharacterSelectPanel
 extends Control
 
 signal player_choices_updated(player_name: String, player_info: Dictionary)
+signal ui_navigation
 signal player_status_changed
 signal bot_requested(control_stack: ControlStack)
+signal ready_error
 
 @onready var stand_type_selector: TitleTabContainer = %StandType
 @onready var color_selector: ColorTabContainer = %Color
-@onready var guy_selector: TitleTabContainer = %Guy
+@onready var guy_selector: CostumeTabContainer = %Guy
 @onready var join_prompt: Panel = %"Join Prompt"
 @onready var ready_indicator: Control = %"Ready Indicator"
 @onready var character_options: VBoxContainer = %"Character Options"
@@ -45,6 +47,19 @@ var player_info: Dictionary:
 var final_player_name: String:
 	get:
 		return player_profile_element.get_selected_profile_name()
+
+## TODO modify this to handle defaut profiles
+var can_ready: bool:
+	get:
+		if (is_bot):
+			return true
+
+		if (player_profile_element.get_selected_profile_id() == -1):
+			return true
+
+		return player_profile_element.get_selected_profile()["owned_costumes"].any(
+			func(costume): return costume == guy_selector.selected_costume.name
+		)
 
 
 func _ready() -> void:
@@ -150,8 +165,9 @@ func _handle_joined_input() -> void:
 	if (current_focus != null && current_focus.has_method("update")):
 		current_focus.update(assigned_player_control_stack)
 
-	if (Input.is_anything_pressed()):
-		player_choices_updated.emit(self.name, player_info)
+	if (InputUtilities.is_anything_just_pressed(assigned_player_control_stack.player_controls)):
+		ui_navigation.emit()
+		call_deferred("emit_signal", "player_choices_updated", self.name, player_info)
 
 
 func _handle_ready_input() -> void:
@@ -175,7 +191,7 @@ func _get_selected_values() -> Dictionary:
 		"PlayerColor"= color_selector.selected_color,
 		"is_joined"= is_joined,
 		"Money"= 0,
-		"PlayerGuy"= guy_selector.selected_tab_title,
+		"player_costume"= guy_selector.selected_costume,
 		"PlayerCart"= stand_type_selector.selected_tab_title,
 		"PlayerControls"= player_controls,
 		"PlayerProfileId"= player_profile_element.get_selected_profile_id(),
@@ -240,6 +256,8 @@ func _unjoin() -> void:
 
 	player_status_changed.emit()
 
+	_focus_element(initial_focus)
+
 	assigned_player_control_stack.stack.pop_back()
 	assigned_player_control_stack = null
 
@@ -250,6 +268,14 @@ func _unjoin() -> void:
 
 
 func _on_ready_up_pressed() -> void:
+	if (!can_ready):
+		ready_error.emit()
+		return
+
 	ready_indicator.show()
 	is_ready = true
 	player_status_changed.emit()
+
+
+func _on_character_preview_purchase_success() -> void:
+	player_choices_updated.emit(self.name, player_info)

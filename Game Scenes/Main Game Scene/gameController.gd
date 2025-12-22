@@ -104,7 +104,7 @@ func _setup_players() -> void:
 
 			# Set the guy
 			# Spawn a new instance of the character asset, switch the "Body" mesh instance.
-			var player_guy = load("res://Assets/Characters/" + this_players_info["PlayerGuy"] + ".gltf").instantiate()
+			var player_guy = (this_players_info["player_costume"] as CharacterCostume).costume_scene.instantiate()
 			add_child(player_guy)
 			var mesh_instance = player_guy.get_node("CharacterArmature/Skeleton3D/Body")
 			var old_mesh_instance = player_object.get_node("Casual3_Male/CharacterArmature/Skeleton3D/Body")

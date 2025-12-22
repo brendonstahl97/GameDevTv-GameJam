@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://c527jyt4fyxqw"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_t72qk"]
+[ext_resource type="PackedScene" uid="uid://c3m3p8omu2wh3" path="res://Assets/Characters/Wizard.gltf" id="1_tloct"]
+
+[resource]
+script = ExtResource("1_t72qk")
+name = "Wizard"
+costume_scene = ExtResource("1_tloct")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

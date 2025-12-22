@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://juyqnnjrr5f8"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_1ltuk"]
+[ext_resource type="PackedScene" uid="uid://c80mvsxyeieqq" path="res://Assets/Characters/Casual3_Male.gltf" id="1_8kvn5"]
+
+[resource]
+script = ExtResource("1_1ltuk")
+name = "casual male"
+costume_scene = ExtResource("1_8kvn5")
+purchase_price = 0
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

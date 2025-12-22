@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkvb0aqhpd4f1"]
+[gd_scene load_steps=12 format=3 uid="uid://dkvb0aqhpd4f1"]
 
 [ext_resource type="Script" uid="uid://dnvkvjb6ug3ck" path="res://UI/Player Profile Element/player_profile_element.gd" id="1_3y3np"]
 [ext_resource type="Script" uid="uid://il6bhfavjjtl" path="res://UI/Player Profile Element/player_profile_tab_container.gd" id="1_5f4eq"]
@@ -9,6 +9,43 @@
 [ext_resource type="Texture2D" uid="uid://dln10232o1jri" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_x_outline.png" id="7_xma0g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y3np"]
+
+[sub_resource type="Animation" id="Animation_w2r2h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoneyDisplay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xma0g"]
+resource_name = "purchase_error"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoneyDisplay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lomvi"]
+_data = {
+&"RESET": SubResource("Animation_w2r2h"),
+&"purchase_error": SubResource("Animation_xma0g")
+}
 
 [node name="Player Profile" type="Control" node_paths=PackedStringArray("player_default")]
 custom_minimum_size = Vector2(0, 100)
@@ -56,11 +93,13 @@ metadata/_custom_type_script = "uid://il6bhfavjjtl"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Player"
+should_display_money = false
 
 [node name="ProfileCreator" parent="PlayerProfileTabContainer" instance=ExtResource("5_hdkmt")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+should_display_money = false
 
 [node name="NavigationArrows" parent="." instance=ExtResource("6_hdkmt")]
 unique_name_in_owner = true
@@ -106,6 +145,33 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "to delete profile"
+
+[node name="MoneyDisplay" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.5
+offset_top = -10.0
+offset_right = 25.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9764706, 0.94509804, 0.3647059, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 29
+text = "$100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_lomvi")
+}
 
 [connection signal="begin_create_profile" from="PlayerProfileTabContainer/ProfileCreator" to="." method="_on_profile_creator_begin_create_profile"]
 [connection signal="end_create_profile" from="PlayerProfileTabContainer/ProfileCreator" to="." method="_on_profile_creator_end_create_profile"]

@@ -17,7 +17,7 @@ func update_character_display(player_name: String, player_info: Dictionary) -> v
 		hide()
 	
 	# Swap the character model
-	var desired_character = load("res://Assets/Characters/" + player_info["PlayerGuy"] + ".gltf").instantiate()
+	var desired_character = (player_info["player_costume"] as CharacterCostume).costume_scene.instantiate()
 	var new_mesh_instance: MeshInstance3D = desired_character.get_node("CharacterArmature/Skeleton3D/Body")
 	body.mesh = new_mesh_instance.mesh
 	desired_character.queue_free()

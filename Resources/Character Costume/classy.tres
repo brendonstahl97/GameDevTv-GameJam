@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterCostume" load_steps=3 format=3 uid="uid://cd65764gduu6"]
+
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="1_h8ah8"]
+[ext_resource type="PackedScene" uid="uid://vvx4bbtumosk" path="res://Assets/Characters/OldClassy_Male.gltf" id="1_qseef"]
+
+[resource]
+script = ExtResource("1_h8ah8")
+name = "Classy"
+costume_scene = ExtResource("1_qseef")
+metadata/_custom_type_script = "uid://c7pb47q5sjqir"

@@ -71,12 +71,12 @@ func _update_movement_direction() -> void:
 func _handle_sprint_input(delta: float) -> void:
 	# If the sprint button was released, stop sprinting
 	if (Input.is_action_just_released(controls.sprint)):
-		_end_sprint()
+		end_sprint()
 		return
 
 	# If not moving and currently sprinting, stop sprinting
 	if (linear_velocity.length() <= 0.1 && sprint_component.is_sprinting):
-		_end_sprint()
+		end_sprint()
 		return
 
 	# If we make it here and the sprint button is not pressed, do nothing
@@ -85,21 +85,21 @@ func _handle_sprint_input(delta: float) -> void:
 
 	# If the sprint button is pressed and we are not currently sprinting, begin sprinting
 	if (!sprint_component.is_sprinting && linear_velocity.length() > 0.1):
-		_begin_sprint()
+		begin_sprint()
 
 	# If we are currently sprinting, try to drain stamina
 	if (sprint_component.is_sprinting):
 		if (!stamina_manager.try_drain_stamina(sprint_component.sprint_stamina_drain * delta)):
-			_end_sprint()
+			end_sprint()
 
 
-func _begin_sprint() -> void:
+func begin_sprint() -> void:
 	if (stamina_manager.current_stamina > 0):
 		stamina_manager.can_regen_stamina = false
 		sprint_component.begin_sprint()
 
 
-func _end_sprint() -> void:
+func end_sprint() -> void:
 	stamina_manager.can_regen_stamina = true
 	sprint_component.end_sprint()
 	scrape_sound_player.stop()
