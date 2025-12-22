@@ -8,6 +8,8 @@ signal end_create_profile
 @export var max_name_length: int = 10 ## The maximum profile name length in characters
 @export var error_animation_name: StringName = "Error"
 
+@onready var create_profile_prompt: Control = %CreatePrompt
+
 var current_player_control_stack: ControlStack
 var possible_characters: Array[String] = [
 	"A",
@@ -64,6 +66,7 @@ func update(player_control_stack: ControlStack) -> void:
 		if (Input.is_action_just_pressed(player_control_stack.player_controls.sprint)):
 			is_active = true
 			navigation_arrows.show()
+			create_profile_prompt.show()
 			player_control_stack.push_control(self)
 			current_player_control_stack = player_control_stack
 			begin_create_profile.emit()
@@ -129,6 +132,7 @@ func _increment_character() -> void:
 func _exit() -> void:
 	is_active = false
 	navigation_arrows.hide()
+	create_profile_prompt.hide()
 	current_player_control_stack.pop_control()
 	current_player_control_stack = null
 	text = default_text

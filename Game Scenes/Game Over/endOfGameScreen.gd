@@ -87,7 +87,7 @@ func _give_rewards(sorted_player_info: Array, rewards: Array[int]) -> void:
 			return
 
 		# Update the player's profile
-		if (player_info[1].PlayerProfileId == -1):
+		if (player_info[1].PlayerProfileId < 0):
 			return
 
 		var profile = ProfileManager.get_profile_by_id(player_info[1].PlayerProfileId)

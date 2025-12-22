@@ -44,7 +44,7 @@ func create_profile(profile_name: String, should_save: bool = true, is_ephemeral
 		"id": new_id,
 		"name": profile_name,
 		"coins": 0,
-		"owned_costumes": [],
+		"owned_costumes": ["default", "casual female", "casual male"],
 		"is_ephemeral": is_ephemeral,
 	}
 

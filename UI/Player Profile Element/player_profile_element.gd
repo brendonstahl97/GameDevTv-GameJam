@@ -1,8 +1,12 @@
 class_name PlayerProfileElement
 extends Control
 
+## The node of the default player profile (ex: Player 1)
 @export var player_default: PlayerProfileTab
+## The name of the animation to play when there is a purchase error
 @export var purchase_failure_animation_name: StringName = "purchase_error"
+## The costumes that the default player profile has access to
+@export var default_profile_costumes: Array[CharacterCostume] = []
 
 @onready var tab_container: PlayerProfileTabContainer = %"PlayerProfileTabContainer"
 @onready var navigation_arrows: NavigationArrows = %NavigationArrows
@@ -35,6 +39,10 @@ func pseudo_focus() -> void:
 func exit_pseudo_focus() -> void:
 	navigation_arrows.hide()
 	delete_prompt.hide()
+
+	if (get_selected_profile_id() == -2):
+		next_tab()
+
 	_exit_pseudo_focus_tab()
 
 
@@ -79,8 +87,7 @@ func _on_profile_creator_begin_create_profile() -> void:
 
 
 func _on_profile_creator_end_create_profile() -> void:
-	if (!delete_prompt.visible):
-		delete_prompt.show()
+	_handle_delete_prompt_visibility()
 
 
 func _handle_delete_prompt_visibility() -> void:
@@ -104,7 +111,7 @@ func _pseudo_focus_tab() -> void:
 			"normal", #TODO: pass down the argument
 			current_focus.get_theme_stylebox("pseudo_focus"),
 		)
-		print ("Test")
+		print("Test")
 
 
 func _exit_pseudo_focus_tab() -> void:

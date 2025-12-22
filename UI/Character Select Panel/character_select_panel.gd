@@ -48,18 +48,16 @@ var final_player_name: String:
 	get:
 		return player_profile_element.get_selected_profile_name()
 
-## TODO modify this to handle defaut profiles
+
 var can_ready: bool:
 	get:
 		if (is_bot):
 			return true
 
 		if (player_profile_element.get_selected_profile_id() == -1):
-			return true
+			return player_profile_element.default_profile_costumes.any(_check_for_costume_ownership)
 
-		return player_profile_element.get_selected_profile()["owned_costumes"].any(
-			func(costume): return costume == guy_selector.selected_costume.name
-		)
+		return player_profile_element.get_selected_profile()["owned_costumes"].any(_check_for_costume_name_ownership)
 
 
 func _ready() -> void:
@@ -279,3 +277,11 @@ func _on_ready_up_pressed() -> void:
 
 func _on_character_preview_purchase_success() -> void:
 	player_choices_updated.emit(self.name, player_info)
+
+
+func _check_for_costume_name_ownership(costume_name: String) -> bool:
+	return costume_name == guy_selector.selected_costume.name
+
+
+func _check_for_costume_ownership(costume: CharacterCostume) -> bool:
+	return costume == guy_selector.selected_costume

@@ -6,9 +6,14 @@ signal parry_success
 signal parry_sound(sound: AudioStream)
 
 @export_category("Parry")
-@export var parry_force_multiplier = 1.0 ## A force multiplier applied to the launch
-@export var parry_window_length = 0.1 ## How long the parry window should be in seconds
-@export_range(0, 1) var parry_stamina_threshold = 0.25 ## the percentage amount of stamina required to attempt a parry
+## A force multiplier applied to the launch
+@export var parry_force_multiplier = 1.0
+## How long the parry window should be in seconds
+@export var parry_window_length = 0.1
+## the percentage amount of stamina required to attempt a parry
+@export_range(0, 1) var parry_stamina_threshold = 0.25
+## percentage of how much Y up direction should be included in the launch direction calculation
+@export_range(0, 1) var parry_y_dampening: float = 0.3
 
 @export_category("Visual Effect")
 @export var parry_effect_offset = Vector3(0, 1, 0) ## Position offset for spawning the parry visual effect
@@ -49,12 +54,18 @@ func try_begin_parry_window() -> bool:
 	return true
 
 
-func try_parry(impulse_force: Vector3, calling_entity: RigidBody3D) -> bool:
+func try_parry(impulse_force: Vector3, calling_entity: LaunchableRigidbody3D) -> bool:
 	if (!is_parrying):
 		return false
 
+	var reflect_direction = Vector3(
+		-impulse_force.x,
+		0,
+		-impulse_force.z,
+	) + (Vector3.UP * parry_y_dampening).normalized()
+
 	calling_entity.launch(
-		(-impulse_force + Vector3.DOWN).normalized() * impulse_force.length() * parry_force_multiplier,
+		(reflect_direction).normalized() * impulse_force.length() * parry_force_multiplier,
 		get_parent(),
 		false,
 	)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ffyelnrq6mgf"]
+[gd_scene load_steps=8 format=3 uid="uid://ffyelnrq6mgf"]
 
 [ext_resource type="Script" uid="uid://def0oo6e8hybf" path="res://UI/Player Profile Element/player_profile_creator.gd" id="1_j50ab"]
 [ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_wed7h"]
 [ext_resource type="PackedScene" uid="uid://dqpkbwdgsesg2" path="res://UI/navigation_arrows/navigation_arrows.tscn" id="3_21l4s"]
+[ext_resource type="Texture2D" uid="uid://ch15a8sa2xe13" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_rb.png" id="4_o8efa"]
 
 [sub_resource type="Animation" id="Animation_j50ab"]
 resource_name = "Error"
@@ -91,3 +92,39 @@ rotation = -1.5707964
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(121, 68)
 vertical = true
+
+[node name="CreatePrompt" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.5
+offset_top = -4.5
+offset_right = 116.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="CreatePrompt"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Press "
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="CreatePrompt"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("4_o8efa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="CreatePrompt"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "to create profile"

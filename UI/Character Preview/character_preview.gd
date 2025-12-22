@@ -75,7 +75,7 @@ func _attempt_purchase() -> bool:
 	if (!is_current_costume_locked):
 		return false
 
-	if (player_profile_element.get_selected_profile_id() == -1):
+	if (player_profile_element.get_selected_profile_id() < 0):
 		return false
 
 	var current_profile = player_profile_element.get_selected_profile()
@@ -91,7 +91,7 @@ func _attempt_purchase() -> bool:
 	(current_profile["owned_costumes"] as Array).append(current_player_info["player_costume"].name)
 
 	ProfileManager.update_profile(current_profile)
-	
+
 	animation_player.play(unlock_animation_name)
 	purchase_success.emit()
 	return true
@@ -105,26 +105,48 @@ func _update_costume_unlock_status() -> void:
 		return
 
 	var current_profile = player_profile_element.get_selected_profile()
+	var current_id = player_profile_element.get_selected_profile_id()
 
-	if (current_profile == null || current_profile == { }):
+	if (current_profile == null || current_id == -2):
+		return
+
+	# If the default profile owns the selected costume
+	if (current_id == -1):
+		if (player_profile_element.default_profile_costumes.any(
+				func(costume): return costume == model_selector.selected_costume
+			)
+		):
+			_handle_unlocked_costume()
+
+		else:
+			_handle_locked_costume()
+
 		return
 
 	# If the current profile owns the selected costume
 	if ((current_profile["owned_costumes"] as Array[String]).any(
-			func(costume): return costume == (current_player_info["player_costume"] as CharacterCostume).name
+			func(costume): return costume == model_selector.selected_costume.name
 		)
 	):
-		if (!animation_player.is_playing()):
-			costume_locked_display.hide()
+		_handle_unlocked_costume()
+
+	else:
+		_handle_locked_costume()
+
+
+func _handle_unlocked_costume() -> void:
+	if (!animation_player.is_playing()):
+		costume_locked_display.hide()
 
 		is_current_costume_locked = false
 
+
+func _handle_locked_costume() -> void:
+	if (!animation_player.is_playing()):
+		animation_player.play("RESET")
 	else:
-		if (!animation_player.is_playing()):
-			animation_player.play("RESET")
-		else:
-			await animation_player.animation_finished
-			animation_player.play("RESET")
+		await animation_player.animation_finished
+		animation_player.play("RESET")
 
 		costume_locked_display.show()
 		is_current_costume_locked = true

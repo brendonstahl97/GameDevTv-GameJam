@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func hit_freeze(duration: float = freeze_time, should_hit_flash := true):
 	target_rigidbody.linear_velocity = Vector3.ZERO
-	target_rigidbody.freeze = true;
+	target_rigidbody.freeze = true
 
 	if (hit_flash_enabled && should_hit_flash):
 		_apply_hit_flash()
@@ -26,6 +26,9 @@ func hit_freeze(duration: float = freeze_time, should_hit_flash := true):
 
 
 func _on_freeze_complete() -> void:
+	if (!target_rigidbody.freeze):
+		return
+
 	target_rigidbody.freeze = false
 	target_rigidbody.linear_velocity = Vector3.ZERO
 
@@ -41,7 +44,7 @@ func _apply_hit_flash() -> void:
 			mesh.material_overlay = hit_flash_material
 
 
-func _remove_hit_flash() -> void: 
+func _remove_hit_flash() -> void:
 	for mesh in target_meshes:
 		if (mesh != null):
 			mesh.material_overlay = null

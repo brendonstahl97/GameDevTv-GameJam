@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c3hj4qu8xskvc"]
+[gd_scene load_steps=55 format=3 uid="uid://c3hj4qu8xskvc"]
 
 [ext_resource type="Script" uid="uid://tuhqkfs0pmt4" path="res://UI/Character Select Panel/character_select_panel.gd" id="1_2idqe"]
 [ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_hc437"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dqpkbwdgsesg2" path="res://UI/navigation_arrows/navigation_arrows.tscn" id="20_w87j6"]
 [ext_resource type="Resource" uid="uid://bjny2a5jkku01" path="res://Resources/Character Costume/goblin_male.tres" id="21_ieiti"]
 [ext_resource type="Resource" uid="uid://dygkbmxwmkxkm" path="res://Resources/Character Costume/default.tres" id="21_jyudd"]
+[ext_resource type="Resource" uid="uid://juyqnnjrr5f8" path="res://Resources/Character Costume/casual_male.tres" id="22_i1wet"]
 [ext_resource type="Resource" uid="uid://b3hw31nqx5drh" path="res://Resources/Character Costume/casual_female.tres" id="22_jyudd"]
 [ext_resource type="Resource" uid="uid://b0p5rpcqum813" path="res://Resources/Character Costume/chef.tres" id="23_duim4"]
 [ext_resource type="Resource" uid="uid://drmnr4j2pppsr" path="res://Resources/Character Costume/cow.tres" id="24_675qb"]
@@ -240,7 +241,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 script = ExtResource("20_uinte")
-costume_resource = ExtResource("21_ieiti")
+costume_resource = ExtResource("22_i1wet")
 metadata/_tab_index = 1
 
 [node name="Casual_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]

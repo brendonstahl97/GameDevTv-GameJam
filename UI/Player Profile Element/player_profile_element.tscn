@@ -1,10 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkvb0aqhpd4f1"]
+[gd_scene load_steps=16 format=3 uid="uid://dkvb0aqhpd4f1"]
 
 [ext_resource type="Script" uid="uid://dnvkvjb6ug3ck" path="res://UI/Player Profile Element/player_profile_element.gd" id="1_3y3np"]
 [ext_resource type="Script" uid="uid://il6bhfavjjtl" path="res://UI/Player Profile Element/player_profile_tab_container.gd" id="1_5f4eq"]
 [ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_hdkmt"]
 [ext_resource type="PackedScene" uid="uid://byaiid0jt7r71" path="res://UI/Player Profile Element/player_profile_tab.tscn" id="2_sinuv"]
+[ext_resource type="Script" uid="uid://c7pb47q5sjqir" path="res://Resources/Character Costume/character_costume.gd" id="3_holy7"]
+[ext_resource type="Resource" uid="uid://b3hw31nqx5drh" path="res://Resources/Character Costume/casual_female.tres" id="4_ssw1e"]
+[ext_resource type="Resource" uid="uid://juyqnnjrr5f8" path="res://Resources/Character Costume/casual_male.tres" id="5_enpx1"]
 [ext_resource type="PackedScene" uid="uid://ffyelnrq6mgf" path="res://UI/Player Profile Element/profile_creator.tscn" id="5_hdkmt"]
+[ext_resource type="Resource" uid="uid://dygkbmxwmkxkm" path="res://Resources/Character Costume/default.tres" id="6_85qle"]
 [ext_resource type="PackedScene" uid="uid://dqpkbwdgsesg2" path="res://UI/navigation_arrows/navigation_arrows.tscn" id="6_hdkmt"]
 [ext_resource type="Texture2D" uid="uid://dln10232o1jri" path="res://Assets/UI/kenney_input-prompts/Xbox Series/Default/xbox_button_color_x_outline.png" id="7_xma0g"]
 
@@ -67,6 +71,7 @@ focus_mode = 2
 theme = ExtResource("1_hdkmt")
 script = ExtResource("1_3y3np")
 player_default = NodePath("PlayerProfileTabContainer/PlayerDefault")
+default_profile_costumes = Array[ExtResource("3_holy7")]([ExtResource("4_ssw1e"), ExtResource("5_enpx1"), ExtResource("6_85qle")])
 
 [node name="PlayerProfileTabContainer" type="TabContainer" parent="."]
 unique_name_in_owner = true
@@ -99,6 +104,7 @@ should_display_money = false
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+profile_id = -2
 should_display_money = false
 
 [node name="NavigationArrows" parent="." instance=ExtResource("6_hdkmt")]
