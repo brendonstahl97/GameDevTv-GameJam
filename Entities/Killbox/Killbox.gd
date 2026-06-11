@@ -3,24 +3,24 @@ extends Area3D
 
 @export var spawn_points: Node
 
-func _on_body_exited(body: Player) -> void:
+func _on_body_exited(body: Object) -> void:
 	if (!body is Player):
 		return
 
 	if (!body.get_groups().has("Players")):
 		return
 
-	Respawn(body)
+	_respawn(body)
 		
 		
-func Respawn(body: Player) -> void:
+func _respawn(body: Player) -> void:
 	if (spawn_points == null):
 		return
 	
-	var selectedSpawn = spawn_points.get_children().pick_random()
+	var selected_spawn_point = spawn_points.get_children().pick_random()
 	
-	if (selectedSpawn is Node3D):
-		body.global_position = selectedSpawn.global_position
+	if (selected_spawn_point is Node3D):
+		body.global_position = selected_spawn_point.global_position
 		body.linear_velocity = Vector3.ZERO
 	else: 
-		Respawn(body)
+		_respawn(body)

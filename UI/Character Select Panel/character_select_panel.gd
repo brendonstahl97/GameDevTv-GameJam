@@ -172,6 +172,12 @@ func _handle_ready_input() -> void:
 	if (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.slam)):
 		ready_indicator.hide()
 		is_ready = false
+		
+		if (player_profile_element.get_selected_profile_id() > -1):
+			var profile = player_profile_element.get_selected_profile()
+			profile["is_in_use"] = false
+			ProfileManager.update_profile(profile)
+
 		player_status_changed.emit()
 	elif (Input.is_action_just_pressed(assigned_player_control_stack.player_controls.parry)):
 		## Request a bot be added by this plaayer's control stack
@@ -272,6 +278,12 @@ func _on_ready_up_pressed() -> void:
 
 	ready_indicator.show()
 	is_ready = true
+
+	if (player_profile_element.get_selected_profile_id() > -1):
+		var profile = player_profile_element.get_selected_profile()
+		profile["is_in_use"] = true
+		ProfileManager.update_profile(profile)
+
 	player_status_changed.emit()
 
 
@@ -285,3 +297,7 @@ func _check_for_costume_name_ownership(costume_name: String) -> bool:
 
 func _check_for_costume_ownership(costume: CharacterCostume) -> bool:
 	return costume == guy_selector.selected_costume
+
+
+func manual_player_update() -> void:
+	call_deferred("emit_signal", "player_choices_updated", self.name, player_info)

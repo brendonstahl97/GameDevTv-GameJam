@@ -1,6 +1,8 @@
 class_name PlayerProfileElement
 extends Control
 
+signal profile_creation_focus_changed
+
 ## The node of the default player profile (ex: Player 1)
 @export var player_default: PlayerProfileTab
 ## The name of the animation to play when there is a purchase error
@@ -82,11 +84,13 @@ func delete_current_profile() -> void:
 
 
 func _on_profile_creator_begin_create_profile() -> void:
+	profile_creation_focus_changed.emit()
 	if (delete_prompt.visible):
 		delete_prompt.hide()
 
 
 func _on_profile_creator_end_create_profile() -> void:
+	profile_creation_focus_changed.emit()
 	_handle_delete_prompt_visibility()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbndwwj3oi2c8"]
+[gd_scene format=3 uid="uid://dbndwwj3oi2c8"]
 
 [ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_8pis4"]
 [ext_resource type="Texture2D" uid="uid://cl7ete8ccffph" path="res://Assets/Last Stand Standing.png" id="1_hmthl"]
@@ -17,7 +17,7 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 region_rect = Rect2(0, 0, 128, 128)
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" unique_id=1030494712]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +27,7 @@ grow_vertical = 2
 theme = ExtResource("1_8pis4")
 script = ExtResource("1_v46k4")
 
-[node name="NavigableItems" type="Control" parent="."]
+[node name="NavigableItems" type="Control" parent="." unique_id=2140908180]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,8 +35,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayButton" type="Button" parent="NavigableItems"]
+[node name="PlayButton" type="Button" parent="NavigableItems" unique_id=1722071609]
 unique_name_in_owner = true
+show_behind_parent = true
+top_level = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -275.0
+offset_right = 192.0
+offset_bottom = -211.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../TutorialButton")
+theme = SubResource("Theme_bt6ow")
+theme_override_font_sizes/font_size = 25
+text = "Play!"
+
+[node name="TutorialButton" type="Button" parent="NavigableItems" unique_id=1963193693]
 show_behind_parent = true
 top_level = true
 layout_mode = 1
@@ -51,13 +72,13 @@ offset_right = 192.0
 offset_bottom = -136.0
 grow_horizontal = 2
 grow_vertical = 0
-focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 theme = SubResource("Theme_bt6ow")
 theme_override_font_sizes/font_size = 25
-text = "Play!"
+text = "Tutorial"
 
-[node name="QuitButton" type="Button" parent="NavigableItems"]
+[node name="QuitButton" type="Button" parent="NavigableItems" unique_id=767815559]
 show_behind_parent = true
 top_level = true
 layout_mode = 1
@@ -72,13 +93,13 @@ offset_right = 192.0
 offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
-focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_top = NodePath("../TutorialButton")
 focus_neighbor_bottom = NodePath("../PlayButton")
 theme = SubResource("Theme_bt6ow")
 theme_override_font_sizes/font_size = 25
 text = "Quit :("
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1926635228]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.215278
@@ -87,7 +108,7 @@ anchor_bottom = 1.01235
 texture = ExtResource("1_hmthl")
 expand_mode = 1
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=1031671270]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -99,7 +120,7 @@ offset_bottom = 251.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5bwrl")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Label" type="Label" parent="Panel" unique_id=1997429121]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.36078432, 0.23921569, 0.050980393, 1)
@@ -108,5 +129,6 @@ text = "Last Stand Standing "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_up" from="NavigableItems/PlayButton" to="." method="onPlayPressed"]
-[connection signal="pressed" from="NavigableItems/QuitButton" to="." method="onQuitPressed"]
+[connection signal="button_up" from="NavigableItems/PlayButton" to="." method="on_play_pressed"]
+[connection signal="button_up" from="NavigableItems/TutorialButton" to="." method="on_tutorial_pressed"]
+[connection signal="button_up" from="NavigableItems/QuitButton" to="." method="on_quit_pressed"]

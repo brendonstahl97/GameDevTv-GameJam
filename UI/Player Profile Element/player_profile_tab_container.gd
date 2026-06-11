@@ -55,6 +55,9 @@ func _on_profiles_changed() -> void:
 
 	# Create new tabs
 	for profile in profiles:
+		if (profile.has("is_in_use") && profile["is_in_use"]):
+			continue
+
 		var tab_instance = player_profile_tab_scene.instantiate() as PlayerProfileTab
 		tab_instance.profile_id = profile["id"]
 		tab_instance.text = profile["name"]

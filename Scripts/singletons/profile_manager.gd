@@ -21,6 +21,10 @@ func _ready() -> void:
 
 	load_profiles()
 
+	for profile in profiles:
+		if (profile["is_in_use"] != null):
+			profile["is_in_use"] = false
+
 
 func load_profiles() -> void:
 	var save_data = SaveDataManager.get_save_data()
@@ -46,6 +50,7 @@ func create_profile(profile_name: String, should_save: bool = true, is_ephemeral
 		"coins": 0,
 		"owned_costumes": ["default", "casual female", "casual male"],
 		"is_ephemeral": is_ephemeral,
+		"is_in_use": false,
 	}
 
 	profiles.append(new_profile)

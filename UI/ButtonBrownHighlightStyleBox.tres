@@ -1,4 +1,4 @@
-[gd_resource type="StyleBoxTexture" load_steps=16 format=3 uid="uid://c1armcyyr0t2u"]
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://c1armcyyr0t2u"]
 
 [ext_resource type="Texture2D" uid="uid://x3caeugfdu6g" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0010.png" id="1_wnkjq"]
 [ext_resource type="Texture2D" uid="uid://dtppsu43sniib" path="res://Assets/UI/Adventure UI Pack/Animated Highlight/Parchment/Button Brown Highlight0020.png" id="2_e2bln"]

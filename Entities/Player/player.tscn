@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://dgsxkbytb4is"]
+[gd_scene format=4 uid="uid://dgsxkbytb4is"]
 
 [ext_resource type="Script" uid="uid://caja2qubvja1l" path="res://Entities/Player/playerController.gd" id="1_520x1"]
 [ext_resource type="Resource" uid="uid://bcmi4nl5dfrdu" path="res://Resources/Stands/MediumStand.tres" id="3_0bw0x"]
@@ -4772,7 +4772,7 @@ script = ExtResource("42_520x1")
 possible_items = Array[ExtResource("41_1ii4q")]([SubResource("Resource_1ii4q"), SubResource("Resource_d17g3")])
 metadata/_custom_type_script = "uid://bsga6d1v5gwko"
 
-[node name="0" type="RigidBody3D" groups=["Players"]]
+[node name="0" type="RigidBody3D" unique_id=1400985365 groups=["Players"]]
 collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
@@ -4783,16 +4783,16 @@ max_contacts_reported = 3
 script = ExtResource("1_520x1")
 stand_class = ExtResource("3_0bw0x")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=235335108]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.195145)
 shape = SubResource("BoxShape3D_ypfnu")
 
-[node name="Casual3_Male" type="Node3D" parent="."]
+[node name="Casual3_Male" type="Node3D" parent="." unique_id=13242817]
 transform = Transform3D(-0.325, 0, -2.84124e-08, 0, 0.325, 0, 2.84124e-08, 0, -0.325, 0.0277407, 0, 0.723203)
 
-[node name="CharacterArmature" type="Node3D" parent="Casual3_Male"]
+[node name="CharacterArmature" type="Node3D" parent="Casual3_Male" unique_id=1300426595]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Casual3_Male/CharacterArmature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Casual3_Male/CharacterArmature" unique_id=1295859955]
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, -1.42109e-14, 4.76837e-07, -1.42109e-14, 1, 5.96046e-08, -4.76837e-07, -5.96046e-08, 1, -0.00131147, -0.00241537, -0.000114684)
@@ -4804,15 +4804,15 @@ bones/1/name = "Foot.L"
 bones/1/parent = 0
 bones/1/rest = Transform3D(-1, -2.77933e-07, 1.48902e-05, 1.48924e-05, -0.0117173, 0.999932, -1.03443e-07, 0.999932, 0.0117171, 0.265425, 0.0246629, -0.0450554)
 bones/1/enabled = true
-bones/1/position = Vector3(0.26542482, 0.05039151, 0.06503852)
-bones/1/rotation = Quaternion(5.06287e-06, 0.72160846, 0.69230145, 5.4893053e-06)
+bones/1/position = Vector3(0.26542497, 0.06832081, -0.005639203)
+bones/1/rotation = Quaternion(5.586955e-06, 0.642741, 0.7660836, 4.869322e-06)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Body"
 bones/2/parent = 0
 bones/2/rest = Transform3D(1, 9.80371e-08, 2.48606e-07, -1.47056e-07, 0.978637, 0.205599, -2.23138e-07, -0.205599, 0.978637, 0.00215324, 0.646547, -0.388819)
 bones/2/enabled = true
-bones/2/position = Vector3(0.002552927, 0.9688457, 0.05797991)
-bones/2/rotation = Quaternion(-0.00031349226, 0.00078426494, 5.760156e-05, 0.9999997)
+bones/2/position = Vector3(0.0022597092, 0.9942244, 0.036471546)
+bones/2/rotation = Quaternion(-0.0002748443, 0.0010780408, 1.5250196e-05, 0.9999994)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Hips"
 bones/3/parent = 2
@@ -4833,14 +4833,14 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(1, 1.44448e-08, -1.66457e-06, 8.32723e-09, 0.999906, 0.0136796, 1.66461e-06, -0.0136796, 0.999907, 3.88243e-11, 0.298579, -8.55152e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(3.88243e-11, 0.298579, -8.55152e-09)
-bones/5/rotation = Quaternion(-0.0063302456, 0.014234995, -0.009452742, 0.999834)
+bones/5/rotation = Quaternion(-0.0063300524, 0.009293787, -0.006171726, 0.9999178)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Neck"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, -4.05998e-08, 1.35468e-06, -4.98829e-08, 0.997771, 0.0667261, -1.35437e-06, -0.0667261, 0.997771, 5.21959e-12, 0.476891, 7.39782e-08)
 bones/6/enabled = true
 bones/6/position = Vector3(5.21959e-12, 0.476891, 7.39782e-08)
-bones/6/rotation = Quaternion(-0.03943247, 1.8169116e-05, 0.00010003418, 0.9992223)
+bones/6/rotation = Quaternion(-0.0457539, 1.3048179e-05, 6.6242574e-05, 0.9989528)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Head"
 bones/7/parent = 6
@@ -4853,7 +4853,7 @@ bones/8/name = "Shoulder.L"
 bones/8/parent = 5
 bones/8/rest = Transform3D(0.663951, 0.747776, 2.43634e-06, -0.74611, 0.662471, 0.066724, 0.049893, -0.0443033, 0.997771, 0.133202, 0.140841, 0.0135214)
 bones/8/enabled = true
-bones/8/position = Vector3(0.14238034, 0.14019643, 0.013603904)
+bones/8/position = Vector3(0.1342446, 0.1407679, 0.013530769)
 bones/8/rotation = Quaternion(-0.0304479, -0.0136819, -0.40968, 0.911618)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "UpperArm.L"
@@ -4861,27 +4861,27 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(-0.0539795, 0.964737, -0.257622, -0.892192, 0.0692627, 0.446315, 0.44842, 0.25394, 0.856991, -5.9492e-08, 0.259532, -9.51747e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(-5.9492e-08, 0.259532, -9.51747e-09)
-bones/9/rotation = Quaternion(-0.36852226, -0.2537528, -0.757799, 0.4749121)
+bones/9/rotation = Quaternion(-0.36777225, -0.25501147, -0.7582773, 0.4740552)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "LowerArm.L"
 bones/10/parent = 9
 bones/10/rest = Transform3D(-0.0135782, 0.908027, 0.418692, -0.806026, 0.237856, -0.541984, -0.591725, -0.344836, 0.728664, -4.56279e-08, 0.528271, 1.29661e-07)
 bones/10/enabled = true
 bones/10/position = Vector3(-4.56279e-08, 0.528271, 1.29661e-07)
-bones/10/rotation = Quaternion(-0.014247049, 0.20547411, -0.16736211, 0.9641408)
+bones/10/rotation = Quaternion(-0.016793106, 0.20621406, -0.16604327, 0.96416986)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "Fist.L"
 bones/11/parent = 10
 bones/11/rest = Transform3D(0.406327, -0.134405, 0.903789, 0.35914, 0.933007, -0.022713, -0.840188, 0.333815, 0.427376, 2.94341e-08, 0.425347, 4.20032e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(2.94341e-08, 0.425347, 4.20032e-08)
-bones/11/rotation = Quaternion(0.0087874625, 0.09007607, -0.0064631286, 0.9958752)
+bones/11/rotation = Quaternion(0.007955522, 0.05063853, -0.00444584, 0.9986755)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Shoulder.R"
 bones/12/parent = 5
 bones/12/rest = Transform3D(0.66395, -0.747776, -1.19209e-06, 0.74611, 0.662471, 0.066724, -0.0498939, -0.0443024, 0.997771, -0.13313, 0.140755, 0.0134613)
 bones/12/enabled = true
-bones/12/position = Vector3(-0.14365594, 0.14001463, 0.013474486)
+bones/12/position = Vector3(-0.13422936, 0.14067805, 0.013461684)
 bones/12/rotation = Quaternion(-0.0304476, 0.0136825, 0.40968, 0.911618)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "UpperArm.R"
@@ -4889,14 +4889,14 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(-0.646538, -0.755923, 0.102808, 0.548331, -0.366773, 0.751539, -0.530399, 0.542272, 0.651628, -4.00059e-08, 0.259532, -2.67332e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-4.00059e-08, 0.259532, -2.67332e-08)
-bones/13/rotation = Quaternion(-0.3730077, 0.26709676, 0.75272685, 0.47215146)
+bones/13/rotation = Quaternion(-0.37261754, 0.2686653, 0.75277483, 0.47149277)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LowerArm.R"
 bones/14/parent = 13
 bones/14/rest = Transform3D(0.893954, -0.35155, -0.277954, 0.363521, 0.931542, -0.00903908, 0.262103, -0.0929615, 0.960552, 2.20161e-09, 0.528271, 1.32196e-07)
 bones/14/enabled = true
 bones/14/position = Vector3(2.20161e-09, 0.528271, 1.32196e-07)
-bones/14/rotation = Quaternion(-0.0005651431, -0.2167596, 0.15508248, 0.96382797)
+bones/14/rotation = Quaternion(-0.002184655, -0.21679586, 0.15493977, 0.96384054)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "Fist.R"
 bones/15/parent = 14
@@ -4909,29 +4909,29 @@ bones/16/name = "UpperLeg.L"
 bones/16/parent = 2
 bones/16/rest = Transform3D(0.99987, 0.00513071, 0.0151577, 0.0159931, -0.35363, -0.935214, 0.000561922, 0.93535, -0.353662, 0.253029, -0.016702, -0.0559237)
 bones/16/enabled = true
-bones/16/position = Vector3(0.25301504, -0.021282246, -0.058736473)
-bones/16/rotation = Quaternion(0.9769524, 0.009597245, -1.1802423e-05, 0.21324171)
+bones/16/position = Vector3(0.2530197, -0.01976967, -0.05780758)
+bones/16/rotation = Quaternion(0.9828685, 0.009687846, 9.3866605e-05, 0.18405361)
 bones/16/scale = Vector3(0.999998, 0.9999976, 0.99994963)
 bones/17/name = "LowerLeg.L"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.999807, -0.000640024, 0.0196487, 0.0196494, 0.0640279, -0.997754, -0.000619462, 0.997975, 0.0640263, -3.26563e-08, 0.453805, -2.0545e-08)
 bones/17/enabled = true
 bones/17/position = Vector3(-3.26563e-08, 0.453805, -2.0545e-08)
-bones/17/rotation = Quaternion(0.30821547, 0.0033230549, 0.009251331, 0.9512658)
+bones/17/rotation = Quaternion(0.30691966, 0.0033104555, 0.009255851, 0.9516847)
 bones/17/scale = Vector3(1, 1.00001, 1.00001)
 bones/18/name = "UpperLeg.R"
 bones/18/parent = 2
 bones/18/rest = Transform3D(0.99987, -0.00513235, -0.0151573, -0.0159934, -0.35363, -0.935214, -0.000560275, 0.93535, -0.353662, -0.254712, -0.016702, -0.0559241)
 bones/18/enabled = true
-bones/18/position = Vector3(-0.25471237, -0.027436053, -0.056034967)
-bones/18/rotation = Quaternion(0.9958635, -0.011425339, 0.001979247, 0.0901198)
+bones/18/position = Vector3(-0.25471258, -0.028104488, -0.05604188)
+bones/18/rotation = Quaternion(0.9959111, -0.010669946, 0.0018022303, 0.089689076)
 bones/18/scale = Vector3(0.999998, 0.9999996, 0.99994904)
 bones/19/name = "LowerLeg.R"
 bones/19/parent = 18
 bones/19/rest = Transform3D(0.999808, 0.000640102, -0.0196487, -0.0196494, 0.0640278, -0.997754, 0.000619382, 0.997975, 0.0640263, 1.09576e-08, 0.453805, -1.98441e-08)
 bones/19/enabled = true
 bones/19/position = Vector3(1.09576e-08, 0.453805, -1.98441e-08)
-bones/19/rotation = Quaternion(0.2852151, -0.0030992362, -0.009328691, 0.9584131)
+bones/19/rotation = Quaternion(0.2322393, -0.0025831123, -0.009484582, 0.9726091)
 bones/19/scale = Vector3(1, 1.0000081, 1.00001)
 bones/20/name = "PoleTarget.L"
 bones/20/parent = 0
@@ -4944,8 +4944,8 @@ bones/21/name = "Foot.R"
 bones/21/parent = 0
 bones/21/rest = Transform3D(-1, -8.33797e-07, -1.50613e-05, -1.50505e-05, -0.0117173, 0.999932, -1.01022e-06, 0.999932, 0.0117171, -0.262802, 0.0246629, -0.0450557)
 bones/21/enabled = true
-bones/21/position = Vector3(-0.2628018, 0.028807621, -0.118769154)
-bones/21/rotation = Quaternion(-5.873194e-06, 0.6725831, 0.74002165, -4.7859266e-06)
+bones/21/position = Vector3(-0.2628018, 0.027190851, -0.090634614)
+bones/21/rotation = Quaternion(-5.7210405e-06, 0.6934853, 0.7204707, -4.9313485e-06)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "PoleTarget.R"
 bones/22/parent = 0
@@ -4955,170 +4955,168 @@ bones/22/position = Vector3(-0.259372, 0.724533, 0.963147)
 bones/22/rotation = Quaternion(-3.55273e-15, -5.96046e-07, 3.3881304e-21, 1)
 bones/22/scale = Vector3(1, 1, 1)
 
-[node name="Body" type="MeshInstance3D" parent="Casual3_Male/CharacterArmature/Skeleton3D"]
+[node name="Body" type="MeshInstance3D" parent="Casual3_Male/CharacterArmature/Skeleton3D" unique_id=749253570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.323037, -0.300902)
 layers = 2
 mesh = SubResource("ArrayMesh_3vjug")
 skin = SubResource("Skin_1gryk")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Casual3_Male"]
-libraries = {
-&"": SubResource("AnimationLibrary_6ogh7")
-}
-autoplay = "Idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Casual3_Male" unique_id=662094078]
+libraries/ = SubResource("AnimationLibrary_6ogh7")
+autoplay = &"Idle"
 
-[node name="AnimationTree" type="AnimationTree" parent="Casual3_Male"]
+[node name="AnimationTree" type="AnimationTree" parent="Casual3_Male" unique_id=1773076717]
 tree_root = SubResource("AnimationNodeStateMachine_w0yt8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle_to_walk/blend_position = 0.583029
 
-[node name="StaminaManager" parent="." instance=ExtResource("4_c0fwy")]
+[node name="StaminaManager" parent="." unique_id=27811950 instance=ExtResource("4_c0fwy")]
 unique_name_in_owner = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=636872724]
 volume_db = -4.0
 
-[node name="ScrapeSoundEffect" type="AudioStreamPlayer3D" parent="."]
+[node name="ScrapeSoundEffect" type="AudioStreamPlayer3D" parent="." unique_id=1878143697]
 stream = ExtResource("11_vjwoo")
 volume_db = -5.0
 
-[node name="Particle Emitters" parent="." instance=ExtResource("12_bs7lp")]
+[node name="Particle Emitters" parent="." unique_id=945729201 instance=ExtResource("12_bs7lp")]
 
-[node name="Stands" type="Node3D" parent="."]
+[node name="Stands" type="Node3D" parent="." unique_id=187584789]
 
-[node name="Medium" type="Node3D" parent="Stands"]
-visible = false
+[node name="Medium" type="Node3D" parent="Stands" unique_id=1228602822]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Medium"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Medium" unique_id=948095732]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.214935, 0.355815, 0.258528)
 layers = 2
 mesh = ExtResource("14_lqb8y")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Stands/Medium"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Stands/Medium" unique_id=388774765]
 transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, 0.187745, 0.355815, -0.163337)
 layers = 2
 mesh = ExtResource("15_718ys")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Stands/Medium"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Stands/Medium" unique_id=1038329226]
 transform = Transform3D(0.392951, 0, -0.248625, 0, 0.465, 0, 0.248625, 0, 0.392951, -0.137878, 0.355815, 0.257449)
 layers = 2
 mesh = ExtResource("16_8ogvp")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Stands/Medium"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Stands/Medium" unique_id=671674326]
 transform = Transform3D(0.174411, -0.830078, -0.141956, 0.841623, 0.176836, 0, 0.0291894, -0.138922, 0.848203, 0.0535998, 0.387, -0.0459633)
 layers = 2
 mesh = ExtResource("17_keg2n")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Stands/Medium"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Stands/Medium" unique_id=1238107123]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165778, 0.355815, -0.351476)
 layers = 2
 mesh = ExtResource("14_lqb8y")
 skeleton = NodePath("")
 
-[node name="stallGreen2" type="MeshInstance3D" parent="Stands/Medium"]
+[node name="stallGreen2" type="MeshInstance3D" parent="Stands/Medium" unique_id=442902997]
 mesh = SubResource("ArrayMesh_1ii4q")
 skeleton = NodePath("")
 
-[node name="Light" type="Node3D" parent="Stands"]
+[node name="Light" type="Node3D" parent="Stands" unique_id=381810762]
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Light" unique_id=856787854]
 transform = Transform3D(0.67, 0, 0, 0, 0.582087, 0.331775, 0, -0.331775, 0.582087, 0.120098, 0.395135, 0.179056)
 layers = 2
 mesh = ExtResource("19_v3uw3")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Stands/Light" unique_id=1481265749]
 transform = Transform3D(-0.0558462, 0.000625795, -0.667668, 0.331908, 0.581375, -0.0272171, 0.579326, -0.333021, -0.0487691, 0.159075, 0.394779, 0.0601063)
 layers = 2
 mesh = ExtResource("20_od5bw")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Stands/Light" unique_id=66170158]
 transform = Transform3D(0.67, 0, 0, 0, 0.582087, 0.331775, 0, -0.331775, 0.582087, 0.120098, 0.395135, -0.0700464)
 layers = 2
 mesh = ExtResource("19_v3uw3")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Stands/Light" unique_id=1734340376]
 transform = Transform3D(-0.0558462, 0.000625795, -0.667668, 0.331908, 0.581375, -0.0272171, 0.579326, -0.333021, -0.0487691, 0.157588, 0.394229, -0.198486)
 layers = 2
 mesh = ExtResource("20_od5bw")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Stands/Light" unique_id=1413521548]
 transform = Transform3D(0.67, 0, 0, 0, 0.582087, 0.331775, 0, -0.331775, 0.582087, 0.120098, 0.395135, -0.33242)
 layers = 2
 mesh = ExtResource("19_v3uw3")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Stands/Light" unique_id=242978288]
 transform = Transform3D(-0.0558462, 0.000625795, -0.667668, 0.331908, 0.581375, -0.0272171, 0.579326, -0.333021, -0.0487691, -0.133747, 0.397435, 0.152756)
 layers = 2
 mesh = ExtResource("20_od5bw")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Stands/Light" unique_id=217498706]
 transform = Transform3D(0.67, 0, 0, 0, 0.582087, 0.331775, 0, -0.331775, 0.582087, -0.13785, 0.395135, 0.0326357)
 layers = 2
 mesh = ExtResource("19_v3uw3")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Stands/Light" unique_id=843455142]
 transform = Transform3D(-0.0558462, 0.000625795, -0.667668, 0.331908, 0.581375, -0.0272171, 0.579326, -0.333021, -0.0487691, -0.135179, 0.396905, -0.0963421)
 layers = 2
 mesh = ExtResource("20_od5bw")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Stands/Light" unique_id=603183490]
 transform = Transform3D(0.67, 0, 0, 0, 0.582087, 0.331775, 0, -0.331775, 0.582087, -0.13785, 0.395135, -0.225963)
 layers = 2
 mesh = ExtResource("19_v3uw3")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="Stands/Light"]
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Stands/Light" unique_id=1366598590]
 transform = Transform3D(-0.0558462, 0.000625795, -0.667668, 0.331908, 0.581375, -0.0272171, 0.579326, -0.333021, -0.0487691, -0.136688, 0.396347, -0.358711)
 layers = 2
 mesh = ExtResource("20_od5bw")
 skeleton = NodePath("")
 
-[node name="cart" type="MeshInstance3D" parent="Stands/Light"]
+[node name="cart" type="MeshInstance3D" parent="Stands/Light" unique_id=300384291]
 mesh = SubResource("ArrayMesh_520x1")
 skeleton = NodePath("")
 
-[node name="wheel" type="MeshInstance3D" parent="Stands/Light/cart"]
+[node name="wheel" type="MeshInstance3D" parent="Stands/Light/cart" unique_id=1379707699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34513, 0.25315, -0.19500001)
 mesh = SubResource("ArrayMesh_mycwr")
 skeleton = NodePath("")
 
-[node name="wheel2" type="MeshInstance3D" parent="Stands/Light/cart"]
+[node name="wheel2" type="MeshInstance3D" parent="Stands/Light/cart" unique_id=620363006]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40613002, 0.25315, -0.19500001)
 mesh = SubResource("ArrayMesh_mycwr")
 skeleton = NodePath("")
 
-[node name="Heavy" type="Node3D" parent="Stands"]
+[node name="Heavy" type="Node3D" parent="Stands" unique_id=1110029833]
 transform = Transform3D(2.01, 0, 0, 0, 2.01, 0, 0, 0, 2.01, 0, 0, 0)
+visible = false
 
-[node name="Pan" type="RigidBody3D" parent="Stands/Heavy"]
+[node name="Pan" type="RigidBody3D" parent="Stands/Heavy" unique_id=948931723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310033, 0.29958, 0.0813789)
 collision_layer = 4
 collision_mask = 4
 mass = 0.01
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Heavy/Pan"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Heavy/Pan" unique_id=899600322]
 transform = Transform3D(-1.3113419e-08, -0.30000007, -1.3113419e-08, 0, -1.3113419e-08, 0.30000007, -0.30000007, 1.3113419e-08, 5.732058e-16, 0.036040157, -0.03565693, 0)
 layers = 2
 mesh = ExtResource("16_8ogvp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stands/Heavy/Pan"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stands/Heavy/Pan" unique_id=1362083829]
 transform = Transform3D(-1.0053619e-08, 0.23, 1.0053619e-08, 0, -1.0053619e-08, 0.23, 0.23, 1.0053619e-08, 4.3945766e-16, -0.0352545, 0.00646555, 0)
 shape = SubResource("ConvexPolygonShape3D_oqn6o")
 
-[node name="HingeJoint3D" type="HingeJoint3D" parent="Stands/Heavy/Pan"]
+[node name="HingeJoint3D" type="HingeJoint3D" parent="Stands/Heavy/Pan" unique_id=1005974879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150734, 0.171845, 0)
 node_a = NodePath("../../../..")
 node_b = NodePath("..")
@@ -5128,22 +5126,22 @@ angular_limit/upper = 1.54636
 angular_limit/lower = -1.73486
 angular_limit/relaxation = 0.75
 
-[node name="Pan2" type="RigidBody3D" parent="Stands/Heavy"]
+[node name="Pan2" type="RigidBody3D" parent="Stands/Heavy" unique_id=1863382364]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310033, 0.29958, -0.127523)
 collision_layer = 4
 collision_mask = 4
 mass = 0.01
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Heavy/Pan2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Heavy/Pan2" unique_id=1935116428]
 transform = Transform3D(-1.3113419e-08, -0.30000007, -1.3113419e-08, 0, -1.3113419e-08, 0.30000007, -0.30000007, 1.3113419e-08, 5.732058e-16, 0.036040157, -0.03565693, 0)
 layers = 2
 mesh = ExtResource("16_8ogvp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stands/Heavy/Pan2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stands/Heavy/Pan2" unique_id=1356693094]
 transform = Transform3D(-1.0053619e-08, 0.23, 1.0053619e-08, 0, -1.0053619e-08, 0.23, 0.23, 1.0053619e-08, 4.3945766e-16, -0.0352545, 0.00646555, 0)
 shape = SubResource("ConvexPolygonShape3D_oqn6o")
 
-[node name="HingeJoint3D" type="HingeJoint3D" parent="Stands/Heavy/Pan2"]
+[node name="HingeJoint3D" type="HingeJoint3D" parent="Stands/Heavy/Pan2" unique_id=1605780197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150734, 0.171845, 0)
 node_a = NodePath("../../../..")
 node_b = NodePath("..")
@@ -5153,22 +5151,22 @@ angular_limit/upper = 1.54636
 angular_limit/lower = -1.73486
 angular_limit/relaxation = 0.75
 
-[node name="Pan3" type="RigidBody3D" parent="Stands/Heavy"]
+[node name="Pan3" type="RigidBody3D" parent="Stands/Heavy" unique_id=1331776508]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.329772, 0.29958, 0.0813789)
 collision_layer = 4
 collision_mask = 4
 mass = 0.01
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Heavy/Pan3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Heavy/Pan3" unique_id=883279903]
 transform = Transform3D(-1.3113416e-08, -0.30000007, -1.3113419e-08, 0, -1.3113419e-08, 0.30000007, -0.30000007, 1.3113416e-08, 5.732057e-16, 0.036040187, -0.03565693, 0)
 layers = 2
 mesh = ExtResource("16_8ogvp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stands/Heavy/Pan3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stands/Heavy/Pan3" unique_id=1739611739]
 transform = Transform3D(-1.0053619e-08, 0.23, 1.0053619e-08, 0, -1.0053619e-08, 0.23, 0.23, 1.0053619e-08, 4.3945766e-16, -0.0352545, 0.00646555, 0)
 shape = SubResource("ConvexPolygonShape3D_oqn6o")
 
-[node name="HingeJoint3D" type="HingeJoint3D" parent="Stands/Heavy/Pan3"]
+[node name="HingeJoint3D" type="HingeJoint3D" parent="Stands/Heavy/Pan3" unique_id=1942048645]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150734, 0.171845, 0)
 node_a = NodePath("../../../..")
 node_b = NodePath("..")
@@ -5178,22 +5176,22 @@ angular_limit/upper = 1.54636
 angular_limit/lower = -1.73486
 angular_limit/relaxation = 0.75
 
-[node name="Pan4" type="RigidBody3D" parent="Stands/Heavy"]
+[node name="Pan4" type="RigidBody3D" parent="Stands/Heavy" unique_id=1734641180]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.329772, 0.29958, -0.127523)
 collision_layer = 4
 collision_mask = 4
 mass = 0.01
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Heavy/Pan4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stands/Heavy/Pan4" unique_id=243002990]
 transform = Transform3D(-1.3113416e-08, -0.30000007, -1.3113419e-08, 0, -1.3113419e-08, 0.30000007, -0.30000007, 1.3113416e-08, 5.732057e-16, 0.036040187, -0.03565693, 0)
 layers = 2
 mesh = ExtResource("16_8ogvp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stands/Heavy/Pan4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stands/Heavy/Pan4" unique_id=863681392]
 transform = Transform3D(-1.0053619e-08, 0.23, 1.0053619e-08, 0, -1.0053619e-08, 0.23, 0.23, 1.0053619e-08, 4.3945766e-16, -0.0352545, 0.00646555, 0)
 shape = SubResource("ConvexPolygonShape3D_oqn6o")
 
-[node name="HingeJoint3D" type="HingeJoint3D" parent="Stands/Heavy/Pan4"]
+[node name="HingeJoint3D" type="HingeJoint3D" parent="Stands/Heavy/Pan4" unique_id=801955684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150734, 0.171845, 0)
 node_a = NodePath("../../../..")
 node_b = NodePath("..")
@@ -5203,26 +5201,26 @@ angular_limit/upper = 1.54636
 angular_limit/lower = -1.73486
 angular_limit/relaxation = 0.75
 
-[node name="Market_SecondAge_Level1" type="MeshInstance3D" parent="Stands/Heavy"]
+[node name="Market_SecondAge_Level1" type="MeshInstance3D" parent="Stands/Heavy" unique_id=159396327]
 mesh = SubResource("ArrayMesh_0bw0x")
 skeleton = NodePath("")
 
-[node name="MovementComponent" type="Node" parent="."]
+[node name="MovementComponent" type="Node" parent="." unique_id=987979701]
 unique_name_in_owner = true
 script = ExtResource("22_y1ns3")
 metadata/_custom_type_script = "uid://c028afkhggfkv"
 
-[node name="SprintComponent" type="Node" parent="MovementComponent"]
+[node name="SprintComponent" type="Node" parent="MovementComponent" unique_id=354702660]
 unique_name_in_owner = true
 script = ExtResource("23_ujhkw")
 metadata/_custom_type_script = "uid://dhn3708afotvc"
 
-[node name="RotationComponent" type="Node" parent="."]
+[node name="RotationComponent" type="Node" parent="." unique_id=1876492059]
 unique_name_in_owner = true
 script = ExtResource("24_wqp1d")
 metadata/_custom_type_script = "uid://b02dexygwwdjs"
 
-[node name="ParryComponent" type="Node" parent="."]
+[node name="ParryComponent" type="Node" parent="." unique_id=1095294604]
 unique_name_in_owner = true
 script = ExtResource("25_xf0r2")
 parry_visual_effect = ExtResource("20_1ii4q")
@@ -5230,19 +5228,19 @@ parry_sound_effect = ExtResource("26_vmpux")
 parry_fail_sound_effect = ExtResource("27_8ioaw")
 metadata/_custom_type_script = "uid://o0meho38myt2"
 
-[node name="SlamComponent" type="Node" parent="."]
+[node name="SlamComponent" type="Node" parent="." unique_id=1292403091]
 unique_name_in_owner = true
 script = ExtResource("28_bmqjx")
 slam_impact_shape = SubResource("CylinderShape3D_mycwr")
 slam_effect = ExtResource("24_520x1")
 metadata/_custom_type_script = "uid://c2ruxg3euex6r"
 
-[node name="BumpableComponent" type="Node" parent="."]
+[node name="BumpableComponent" type="Node" parent="." unique_id=932785024]
 unique_name_in_owner = true
 script = ExtResource("29_c2hx0")
 metadata/_custom_type_script = "uid://dtwe4w60ugunr"
 
-[node name="HitFreezeComponent" type="Node" parent="." node_paths=PackedStringArray("target_meshes")]
+[node name="HitFreezeComponent" type="Node" parent="." unique_id=1228315330 node_paths=PackedStringArray("target_meshes")]
 unique_name_in_owner = true
 script = ExtResource("26_0bw0x")
 hit_flash_enabled = true
@@ -5250,24 +5248,24 @@ hit_flash_material = SubResource("StandardMaterial3D_1ii4q")
 target_meshes = [NodePath("../Stands/Heavy/Market_SecondAge_Level1"), NodePath("../Stands/Heavy/Pan4/MeshInstance3D"), NodePath("../Stands/Heavy/Pan3/MeshInstance3D"), NodePath("../Stands/Heavy/Pan2/MeshInstance3D"), NodePath("../Stands/Heavy/Pan/MeshInstance3D"), NodePath("../Stands/Light/cart/wheel2"), NodePath("../Stands/Light/cart/wheel"), NodePath("../Stands/Light/cart"), NodePath("../Stands/Light/MeshInstance3D10"), NodePath("../Stands/Light/MeshInstance3D9"), NodePath("../Stands/Light/MeshInstance3D8"), NodePath("../Stands/Light/MeshInstance3D7"), NodePath("../Stands/Light/MeshInstance3D6"), NodePath("../Stands/Light/MeshInstance3D5"), NodePath("../Stands/Light/MeshInstance3D4"), NodePath("../Stands/Light/MeshInstance3D3"), NodePath("../Stands/Light/MeshInstance3D2"), NodePath("../Stands/Light/MeshInstance3D"), NodePath("../Stands/Medium/stallGreen2"), NodePath("../Stands/Medium/MeshInstance3D2"), NodePath("../Stands/Medium/MeshInstance3D5"), NodePath("../Stands/Medium/MeshInstance3D4"), NodePath("../Stands/Medium/MeshInstance3D3"), NodePath("../Stands/Medium/MeshInstance3D"), NodePath("../Casual3_Male/CharacterArmature/Skeleton3D/Body")]
 metadata/_custom_type_script = "uid://bnxf7yjj4gutw"
 
-[node name="BumpComponent" type="Area3D" parent="."]
+[node name="BumpComponent" type="Area3D" parent="." unique_id=1898224114]
 unique_name_in_owner = true
 script = ExtResource("30_ouk3m")
 bump_sound_effect = ExtResource("31_vmo6k")
 collision_sound_effects = Array[AudioStream]([ExtResource("32_b2ufw"), ExtResource("33_o5ua7"), ExtResource("34_ltlml"), ExtResource("35_mgcah"), ExtResource("36_qnyoj"), ExtResource("37_2gbsx"), ExtResource("38_6c8w1"), ExtResource("39_u1jra"), ExtResource("40_yith7"), ExtResource("41_cbtu4")])
 metadata/_custom_type_script = "uid://w5lr7k7dywgf"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpComponent" unique_id=1830662868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64132e-05, 0.525341, 0.149103)
 shape = SubResource("BoxShape3D_xuaoq")
 debug_color = Color(0.90655345, 0.03120817, 0.7339632, 0.41960785)
 
-[node name="CodeSubmissionComponent" type="Node" parent="."]
+[node name="CodeSubmissionComponent" type="Node" parent="." unique_id=234118297]
 unique_name_in_owner = true
 script = ExtResource("42_d2uml")
 metadata/_custom_type_script = "uid://cdwy2gq80ev6a"
 
-[node name="GroundDetectionComponent" type="RayCast3D" parent="."]
+[node name="GroundDetectionComponent" type="RayCast3D" parent="." unique_id=1851438624]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_mask = 3
@@ -5276,7 +5274,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 script = ExtResource("43_84ai8")
 metadata/_custom_type_script = "uid://q2d0if3ph7lh"
 
-[node name="MultiEffectSpawner" type="Node" parent="."]
+[node name="MultiEffectSpawner" type="Node" parent="." unique_id=1126698171]
 unique_name_in_owner = true
 script = ExtResource("38_qv8uv")
 possible_effects_loot_table = SubResource("Resource_mycwr")

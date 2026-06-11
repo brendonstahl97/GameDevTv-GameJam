@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://reurgfcm8s"]
+[gd_scene format=3 uid="uid://reurgfcm8s"]
 
 [ext_resource type="Script" uid="uid://blux4125gnvqt" path="res://Game Scenes/Main Game Scene/gameController.gd" id="1_jnwv1"]
 [ext_resource type="PackedScene" uid="uid://btmq676yqmw8b" path="res://Entities/Game Camera/game_camera.tscn" id="3_jnwv1"]
@@ -16,40 +16,40 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_r85bj"]
 size = Vector3(73, 64, 57)
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" unique_id=1016925233]
 script = ExtResource("1_jnwv1")
 player_scene = ExtResource("4_4rhit")
 bot_scene = ExtResource("12_rjcjm")
 
-[node name="Camera3D" parent="." instance=ExtResource("3_jnwv1")]
-transform = Transform3D(1, 0, 0, 0, 0.649448, 0.760406, 0, -0.760406, 0.649448, 0, 10.5, 20)
+[node name="Camera3D" parent="." unique_id=1951737267 instance=ExtResource("3_jnwv1")]
+transform = Transform3D(1, 0, 0, 0, 0.64944804, 0.76040596, 0, -0.76040596, 0.64944804, 0, 10.5, 20)
 
-[node name="Players" type="Node" parent="."]
+[node name="Players" type="Node" parent="." unique_id=1322026729]
 unique_name_in_owner = true
 
-[node name="Customers" type="Node" parent="."]
+[node name="Customers" type="Node" parent="." unique_id=1701542082]
 unique_name_in_owner = true
 script = ExtResource("4_41dbo")
 customer_scene = ExtResource("5_tf4o4")
 
-[node name="MatchUi" parent="." instance=ExtResource("5_swuax")]
+[node name="MatchUi" parent="." unique_id=39250854 instance=ExtResource("5_swuax")]
 unique_name_in_owner = true
 theme = ExtResource("8_rjcjm")
 
-[node name="Killbox" type="Area3D" parent="."]
+[node name="Killbox" type="Area3D" parent="." unique_id=415865700]
 script = ExtResource("6_6thhf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox" unique_id=65165511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 22.5, -5)
 shape = SubResource("BoxShape3D_r85bj")
 
-[node name="Broccoli Clouds" parent="." instance=ExtResource("7_eq00y")]
+[node name="Broccoli Clouds" parent="." unique_id=396527747 instance=ExtResource("7_eq00y")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 289, -35, -286)
 
-[node name="ParrySlowTimeEffect" type="Timer" parent="."]
+[node name="ParrySlowTimeEffect" type="Timer" parent="." unique_id=914059934]
 script = ExtResource("13_43rdh")
 
-[node name="PauseMenu" parent="." instance=ExtResource("13_3f0mu")]
+[node name="PauseMenu" parent="." unique_id=930044155 instance=ExtResource("13_3f0mu")]
 unique_name_in_owner = true
 visible = false
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c3hj4qu8xskvc"]
+[gd_scene format=3 uid="uid://c3hj4qu8xskvc"]
 
 [ext_resource type="Script" uid="uid://tuhqkfs0pmt4" path="res://UI/Character Select Panel/character_select_panel.gd" id="1_2idqe"]
 [ext_resource type="Theme" uid="uid://bj1yf8r6vkpu4" path="res://UI/updated_ui_theme.tres" id="1_hc437"]
@@ -115,7 +115,7 @@ expand_margin_right = 15.0
 expand_margin_bottom = 15.0
 region_rect = Rect2(0, 0, 128, 128)
 
-[node name="Character Select Panel" type="Control" node_paths=PackedStringArray("initial_focus")]
+[node name="Character Select Panel" type="Control" unique_id=1234110652 node_paths=PackedStringArray("initial_focus")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -133,7 +133,7 @@ script = ExtResource("1_2idqe")
 initial_focus = NodePath("PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer/StandType")
 highlight_stylebox = SubResource("StyleBoxTexture_0srbg")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=306147589]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,20 +141,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1526786304]
 layout_mode = 2
 
-[node name="Character Options" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="Character Options" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1629191502]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/Character Options"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/Character Options" unique_id=190621128]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
 
-[node name="Character Preview" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer" node_paths=PackedStringArray("model_selector", "player_profile_element") instance=ExtResource("3_f3ryw")]
+[node name="Character Preview" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer" unique_id=1551905394 node_paths=PackedStringArray("model_selector", "player_profile_element") instance=ExtResource("3_f3ryw")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
@@ -168,7 +168,7 @@ model_selector = NodePath("Guy")
 arrow_highlight_color = Color(0.53825337, 0.73484087, 0.9471019, 1)
 player_profile_element = NodePath("Player Profile")
 
-[node name="Player Profile" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" instance=ExtResource("7_q0t2s")]
+[node name="Player Profile" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" unique_id=436315356 instance=ExtResource("7_q0t2s")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 130)
 layout_mode = 1
@@ -181,7 +181,7 @@ grow_vertical = 0
 focus_neighbor_top = NodePath("..")
 focus_neighbor_bottom = NodePath("../../VBoxContainer/StandTypeContainer/StandType")
 
-[node name="Player Name Label" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview"]
+[node name="Player Name Label" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" unique_id=1961514367]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(350, 75)
@@ -204,7 +204,7 @@ text = "Player 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Guy" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview"]
+[node name="Guy" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" unique_id=1842471730]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -221,7 +221,7 @@ use_hidden_tabs_for_min_size = true
 script = ExtResource("19_jyudd")
 metadata/_edit_use_anchors_ = true
 
-[node name="BaseCharacter" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="BaseCharacter" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=796808981]
 layout_mode = 2
 focus_mode = 2
 text = "Base Character"
@@ -232,7 +232,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("21_jyudd")
 metadata/_tab_index = 0
 
-[node name="Casual3_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Casual3_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=900893093]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -244,7 +244,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("22_i1wet")
 metadata/_tab_index = 1
 
-[node name="Casual_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Casual_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=37704540]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -256,7 +256,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("22_jyudd")
 metadata/_tab_index = 2
 
-[node name="Chef_Hat" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Chef_Hat" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=151576590]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -268,7 +268,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("23_duim4")
 metadata/_tab_index = 3
 
-[node name="Cow" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Cow" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=1734544493]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -280,7 +280,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("24_675qb")
 metadata/_tab_index = 4
 
-[node name="Elf" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Elf" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=765677339]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -292,7 +292,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("25_i1wet")
 metadata/_tab_index = 5
 
-[node name="Goblin_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Goblin_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=2112733066]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -304,7 +304,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("21_ieiti")
 metadata/_tab_index = 6
 
-[node name="Knight_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Knight_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=2000370471]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -316,7 +316,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("26_nuuvg")
 metadata/_tab_index = 7
 
-[node name="OldClassy_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="OldClassy_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=2133252083]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -328,7 +328,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("27_ylq5i")
 metadata/_tab_index = 8
 
-[node name="Pirate_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Pirate_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=1783318703]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -340,7 +340,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("28_c6yc3")
 metadata/_tab_index = 9
 
-[node name="Pug" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Pug" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=723879664]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -352,7 +352,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("29_0qclm")
 metadata/_tab_index = 10
 
-[node name="VikingHelmet" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="VikingHelmet" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=210635926]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -364,7 +364,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("30_1yumo")
 metadata/_tab_index = 11
 
-[node name="Witch" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Witch" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=1551181161]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -376,7 +376,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("31_2t0pp")
 metadata/_tab_index = 12
 
-[node name="Wizard" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Wizard" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=1809382463]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -388,7 +388,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("32_e75rt")
 metadata/_tab_index = 13
 
-[node name="Zombie_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Zombie_Female" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=1637405184]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -400,7 +400,7 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("33_yvcr3")
 metadata/_tab_index = 14
 
-[node name="Zombie_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy"]
+[node name="Zombie_Male" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Guy" unique_id=1545302347]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -412,22 +412,22 @@ script = ExtResource("20_uinte")
 costume_resource = ExtResource("34_bxw47")
 metadata/_tab_index = 15
 
-[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer"]
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer" unique_id=1215772078]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer" unique_id=2065284787]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 2.0
 alignment = 1
 
-[node name="StandTypeContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer"]
+[node name="StandTypeContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer" unique_id=1158442594]
 layout_mode = 2
 
-[node name="StandType" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer" node_paths=PackedStringArray("navigation_arrows")]
+[node name="StandType" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer" unique_id=2134175923 node_paths=PackedStringArray("navigation_arrows")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Character Preview/Player Profile")
@@ -442,7 +442,7 @@ script = ExtResource("3_rsiyw")
 navigation_arrows = NodePath("../NavigationArrows")
 metadata/_edit_use_anchors_ = true
 
-[node name="Light" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer/StandType"]
+[node name="Light" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer/StandType" unique_id=228310573]
 layout_mode = 2
 focus_mode = 2
 text = "Light Cart"
@@ -450,7 +450,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_tab_index = 0
 
-[node name="Medium" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer/StandType"]
+[node name="Medium" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer/StandType" unique_id=1233365956]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -459,7 +459,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_tab_index = 1
 
-[node name="Heavy" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer/StandType"]
+[node name="Heavy" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer/StandType" unique_id=1311635073]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -468,14 +468,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_tab_index = 2
 
-[node name="NavigationArrows" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer" instance=ExtResource("20_w87j6")]
+[node name="NavigationArrows" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/StandTypeContainer" unique_id=1249095457 instance=ExtResource("20_w87j6")]
 visible = false
 layout_mode = 2
 
-[node name="ColorContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer"]
+[node name="ColorContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer" unique_id=1155461156]
 layout_mode = 2
 
-[node name="Color" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer" node_paths=PackedStringArray("navigation_arrows")]
+[node name="Color" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer" unique_id=1297159341 node_paths=PackedStringArray("navigation_arrows")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../StandTypeContainer/StandType")
@@ -490,14 +490,14 @@ script = ExtResource("4_f3ryw")
 navigation_arrows = NodePath("../NavigationArrows")
 metadata/_edit_use_anchors_ = true
 
-[node name="Blue" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color"]
+[node name="Blue" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color" unique_id=436955527]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
 metadata/_tab_index = 0
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Blue"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Blue" unique_id=942152627]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -507,7 +507,7 @@ grow_vertical = 2
 theme = SubResource("Theme_t3hcp")
 color = Color(0, 0.619608, 0.933333, 1)
 
-[node name="Purple" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color"]
+[node name="Purple" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color" unique_id=599523588]
 visible = false
 clip_contents = true
 layout_mode = 2
@@ -515,7 +515,7 @@ focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
 metadata/_tab_index = 1
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Purple"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Purple" unique_id=489338528]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -524,14 +524,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.751635, 0.370664, 1, 1)
 
-[node name="Pink" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color"]
+[node name="Pink" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color" unique_id=89692399]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
 metadata/_tab_index = 2
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Pink"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Pink" unique_id=424984791]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -540,14 +540,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.983123, 0.252881, 0.572498, 1)
 
-[node name="Red" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color"]
+[node name="Red" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color" unique_id=757122146]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
 metadata/_tab_index = 3
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Red"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Red" unique_id=660018155]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -556,14 +556,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.954993, 0.300531, 0.169365, 1)
 
-[node name="Orange" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color"]
+[node name="Orange" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color" unique_id=1630172081]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
 metadata/_tab_index = 4
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Orange"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Orange" unique_id=1679214370]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -572,14 +572,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.855891, 0.487664, 0.115647, 1)
 
-[node name="Yellow" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color"]
+[node name="Yellow" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color" unique_id=1211140927]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
 metadata/_tab_index = 5
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Yellow"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Yellow" unique_id=1742405872]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -588,14 +588,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.829442, 0.788601, 0.0820354, 1)
 
-[node name="Green" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color"]
+[node name="Green" type="Panel" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color" unique_id=530744617]
 visible = false
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lre7q")
 metadata/_tab_index = 6
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Green"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer/Color/Green" unique_id=1096912067]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -604,14 +604,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.263164, 0.85746, 0.229203, 1)
 
-[node name="NavigationArrows" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer" instance=ExtResource("20_w87j6")]
+[node name="NavigationArrows" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/ColorContainer" unique_id=486865105 instance=ExtResource("20_w87j6")]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer" unique_id=88391408]
 layout_mode = 2
 
-[node name="Bot Difficulty" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("navigation_arrows")]
+[node name="Bot Difficulty" type="TabContainer" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer" unique_id=114915342 node_paths=PackedStringArray("navigation_arrows")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../ColorContainer/Color")
@@ -626,7 +626,7 @@ script = ExtResource("5_l7d6s")
 navigation_arrows = NodePath("../NavigationArrows")
 metadata/_edit_use_anchors_ = true
 
-[node name="Easy" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer/Bot Difficulty"]
+[node name="Easy" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer/Bot Difficulty" unique_id=1669606204]
 layout_mode = 2
 focus_mode = 2
 text = "Easy"
@@ -636,7 +636,7 @@ text_overrun_behavior = 3
 script = ExtResource("6_xxpd3")
 metadata/_tab_index = 0
 
-[node name="Medium" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer/Bot Difficulty"]
+[node name="Medium" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer/Bot Difficulty" unique_id=914510516]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -647,7 +647,7 @@ text_overrun_behavior = 3
 script = ExtResource("6_xxpd3")
 metadata/_tab_index = 1
 
-[node name="Hard" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer/Bot Difficulty"]
+[node name="Hard" type="Label" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer/Bot Difficulty" unique_id=1913178930]
 visible = false
 layout_mode = 2
 focus_mode = 2
@@ -658,19 +658,19 @@ text_overrun_behavior = 3
 script = ExtResource("6_xxpd3")
 metadata/_tab_index = 2
 
-[node name="NavigationArrows" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer" instance=ExtResource("20_w87j6")]
+[node name="NavigationArrows" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer/VBoxContainer/MarginContainer" unique_id=1305753316 instance=ExtResource("20_w87j6")]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/Character Options"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/Character Options" unique_id=2147155482]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer2"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer2" unique_id=1421621327]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ReadyUp" type="Button" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer2"]
+[node name="ReadyUp" type="Button" parent="PanelContainer/MarginContainer/Character Options/HBoxContainer2" unique_id=209281105]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -681,12 +681,12 @@ text = "Ready"
 script = ExtResource("10_f3ryw")
 metadata/_edit_use_anchors_ = true
 
-[node name="Join Prompt" type="Panel" parent="PanelContainer/MarginContainer"]
+[node name="Join Prompt" type="Panel" parent="PanelContainer/MarginContainer" unique_id=262729929]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"Panel_Alt"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/Join Prompt"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/Join Prompt" unique_id=785022290]
 custom_minimum_size = Vector2(350, 515)
 layout_mode = 1
 anchors_preset = 15
@@ -698,7 +698,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Join Prompt/HBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Join Prompt/HBoxContainer" unique_id=1151279817]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"Label_Alt"
@@ -707,13 +707,13 @@ text = "Press"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/Join Prompt/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/Join Prompt/HBoxContainer" unique_id=933367182]
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("8_smpra")
 stretch_mode = 3
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/Join Prompt/HBoxContainer"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/Join Prompt/HBoxContainer" unique_id=135805219]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"Label_Alt"
@@ -722,14 +722,14 @@ text = "to join!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ready Indicator" type="Panel" parent="PanelContainer/MarginContainer"]
+[node name="Ready Indicator" type="Panel" parent="PanelContainer/MarginContainer" unique_id=742813783]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_type_variation = &"Panel_Alt"
 theme_override_styles/panel = SubResource("StyleBoxTexture_w87j6")
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Ready Indicator"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Ready Indicator" unique_id=1509547840]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -750,13 +750,13 @@ text = "Ready!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelSfx" type="AudioStreamPlayer3D" parent="."]
+[node name="PanelSfx" type="AudioStreamPlayer3D" parent="." unique_id=1816422400]
 volume_db = -1.0
 script = ExtResource("44_675qb")
 successful_purchase_sfx = ExtResource("45_i1wet")
 error_sfx = ExtResource("46_nuuvg")
 
-[node name="NavigationSfx" type="AudioStreamPlayer3D" parent="."]
+[node name="NavigationSfx" type="AudioStreamPlayer3D" parent="." unique_id=1535773998]
 stream = ExtResource("47_ylq5i")
 volume_db = -3.0
 
@@ -767,4 +767,5 @@ volume_db = -3.0
 [connection signal="purchase_failure" from="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" to="PanelSfx" method="_play_error_sfx"]
 [connection signal="purchase_success" from="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" to="." method="_on_character_preview_purchase_success"]
 [connection signal="purchase_success" from="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview" to="PanelSfx" method="_play_purchase_sfx"]
+[connection signal="profile_creation_focus_changed" from="PanelContainer/MarginContainer/Character Options/HBoxContainer/Character Preview/Player Profile" to="." method="manual_player_update"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Character Options/HBoxContainer2/ReadyUp" to="." method="_on_ready_up_pressed"]

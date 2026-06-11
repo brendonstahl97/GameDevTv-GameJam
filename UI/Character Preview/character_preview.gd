@@ -108,6 +108,7 @@ func _update_costume_unlock_status() -> void:
 	var current_id = player_profile_element.get_selected_profile_id()
 
 	if (current_profile == null || current_id == -2):
+		_handle_unlocked_costume()
 		return
 
 	# If the default profile owns the selected costume
@@ -123,8 +124,11 @@ func _update_costume_unlock_status() -> void:
 
 		return
 
-	# If the current profile owns the selected costume
-	if ((current_profile["owned_costumes"] as Array[String]).any(
+	# If the current profile owns the selected costume, or the profile creator is selected
+	print(current_profile["id"])
+	print(model_selector.selected_costume.purchase_price)
+	if (
+		(current_profile["owned_costumes"] as Array[String]).any(
 			func(costume): return costume == model_selector.selected_costume.name
 		)
 	):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://by4osre76goju"]
+[gd_scene format=3 uid="uid://by4osre76goju"]
 
 [ext_resource type="Script" uid="uid://cotkt6ds77muu" path="res://Game Levels/game_level.gd" id="1_swale"]
 [ext_resource type="Texture2D" uid="uid://c4s7yucygjxaq" path="res://Assets/Environment/uploads_files_4381654_LightBlueSky_texture.jpg" id="2_lxy22"]
@@ -28,7 +28,7 @@ fog_sun_scatter = 0.23
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.005
 volumetric_fog_emission = Color(0.972549, 0.09019608, 0.3372549, 1)
-volumetric_fog_emission_energy = 5.9
+volumetric_fog_emission_energy = 0.5
 volumetric_fog_anisotropy = -0.08
 volumetric_fog_ambient_inject = 1.12
 adjustment_enabled = true
@@ -44,114 +44,114 @@ region_min_size = 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwq0f"]
 size = Vector3(79, 31, 58)
 
-[node name="Environment" type="Node" node_paths=PackedStringArray("top_left_customer_spawn_limit", "bottom_right_customer_spawn_limit")]
+[node name="Environment" type="Node" unique_id=1705282501 node_paths=PackedStringArray("top_left_customer_spawn_limit", "bottom_right_customer_spawn_limit")]
 script = ExtResource("1_swale")
 top_left_customer_spawn_limit = NodePath("CustomerSpawnBounds/Top Left")
 bottom_right_customer_spawn_limit = NodePath("CustomerSpawnBounds/Bottom Right")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=397977939]
 environment = SubResource("Environment_kwq0f")
 
-[node name="FogVolume" type="FogVolume" parent="WorldEnvironment"]
+[node name="FogVolume" type="FogVolume" parent="WorldEnvironment" unique_id=591864601]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.174036, -10.394046)
 size = Vector3(150, 30, 73.950195)
 
-[node name="NavigableMeshes" type="NavigationRegion3D" parent="."]
+[node name="NavigableMeshes" type="NavigationRegion3D" parent="." unique_id=1326977672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031258583, -0.05092573, 0.026228905)
 navigation_mesh = SubResource("NavigationMesh_mld04")
 
-[node name="Desert" parent="NavigableMeshes" instance=ExtResource("3_jkaef")]
+[node name="Desert" parent="NavigableMeshes" unique_id=775065442 instance=ExtResource("3_jkaef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.462854, 0)
 
-[node name="palm-detailed-bend2" parent="NavigableMeshes" instance=ExtResource("6_8tq3r")]
+[node name="palm-detailed-bend2" parent="NavigableMeshes" unique_id=700526360 instance=ExtResource("6_8tq3r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.727713, 6.0509257, -12.678178)
 
-[node name="rocks-a2" parent="NavigableMeshes" instance=ExtResource("7_twvkb")]
+[node name="rocks-a2" parent="NavigableMeshes" unique_id=24975697 instance=ExtResource("7_twvkb")]
 transform = Transform3D(-0.2691215, 0, 0.9631062, 0, 1, 0, -0.9631062, 0, -0.2691215, -22.465088, 1.5548439, 3.965807)
 
-[node name="rocks-b3" parent="NavigableMeshes/rocks-a2" instance=ExtResource("8_4g0wj")]
+[node name="rocks-b3" parent="NavigableMeshes/rocks-a2" unique_id=1631411703 instance=ExtResource("8_4g0wj")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 2.7152994, -0.013852119, 1.1796494)
 
-[node name="rocks-b2" parent="NavigableMeshes" instance=ExtResource("8_4g0wj")]
+[node name="rocks-b2" parent="NavigableMeshes" unique_id=1052545655 instance=ExtResource("8_4g0wj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.442665, 4.732242, -10.997443)
 
-[node name="rocks-c2" parent="NavigableMeshes" instance=ExtResource("9_a4wii")]
+[node name="rocks-c2" parent="NavigableMeshes" unique_id=94403270 instance=ExtResource("9_a4wii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.560444, 3.4898934, -11.324674)
 
-[node name="palm-detailed-bend3" parent="NavigableMeshes" instance=ExtResource("6_8tq3r")]
+[node name="palm-detailed-bend3" parent="NavigableMeshes" unique_id=1501750501 instance=ExtResource("6_8tq3r")]
 transform = Transform3D(-0.99993664, 0, -0.011257085, 0, 1, 0, 0.011257085, 0, -0.99993664, -4.102033, 6.261234, -12.416598)
 
-[node name="rocks-a3" parent="NavigableMeshes" instance=ExtResource("7_twvkb")]
+[node name="rocks-a3" parent="NavigableMeshes" unique_id=1769281243 instance=ExtResource("7_twvkb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.947614, 5.464126, -14.683085)
 
-[node name="rocks-a4" parent="NavigableMeshes" instance=ExtResource("7_twvkb")]
+[node name="rocks-a4" parent="NavigableMeshes" unique_id=15679788 instance=ExtResource("7_twvkb")]
 transform = Transform3D(0.4981851, 0, -0.86707073, 0, 1, 0, 0.86707073, 0, 0.4981851, -9.357076, 6.052385, -16.154018)
 
-[node name="rocks-c3" parent="NavigableMeshes" instance=ExtResource("9_a4wii")]
+[node name="rocks-c3" parent="NavigableMeshes" unique_id=993977946 instance=ExtResource("9_a4wii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.878217, 2.955688, -2.4399462)
 
-[node name="rocks-c4" parent="NavigableMeshes" instance=ExtResource("9_a4wii")]
+[node name="rocks-c4" parent="NavigableMeshes" unique_id=112670377 instance=ExtResource("9_a4wii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.481941, 1.6167998, 4.6874285)
 
-[node name="rocks-c5" parent="NavigableMeshes" instance=ExtResource("9_a4wii")]
+[node name="rocks-c5" parent="NavigableMeshes" unique_id=1797673904 instance=ExtResource("9_a4wii")]
 transform = Transform3D(0.18019292, 0, -0.9836313, 0, 1, 0, 0.9836313, 0, 0.18019292, -10.522052, 1.6168008, 13.420771)
 
-[node name="palm-detailed-bend4" parent="NavigableMeshes" instance=ExtResource("6_8tq3r")]
+[node name="palm-detailed-bend4" parent="NavigableMeshes" unique_id=1564515018 instance=ExtResource("6_8tq3r")]
 transform = Transform3D(-0.95457894, 0, 0.29795808, 0, 1, 0, -0.29795808, 0, -0.95457894, -24.759045, 4.6158004, -13.898748)
 
-[node name="tool-shovel2" parent="NavigableMeshes" instance=ExtResource("11_rlggo")]
+[node name="tool-shovel2" parent="NavigableMeshes" unique_id=1658790249 instance=ExtResource("11_rlggo")]
 transform = Transform3D(0.2907492, 0.15412946, -0.37644258, 0, 0.4627174, 0.18945356, 0.40677384, -0.11016693, 0.26906943, 0.86843324, 6.4588447, -12.609159)
 
-[node name="Killbox" type="Area3D" parent="." node_paths=PackedStringArray("spawn_points")]
+[node name="Killbox" type="Area3D" parent="." unique_id=1875473764 node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("3_r5wdn")
 spawn_points = NodePath("../SpawnPoints")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox" unique_id=1335627884]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 14, 0.5)
 shape = SubResource("BoxShape3D_kwq0f")
 
-[node name="SpawnPoints" type="Node" parent="."]
+[node name="SpawnPoints" type="Node" parent="." unique_id=543065897]
 unique_name_in_owner = true
 
-[node name="0" type="Node3D" parent="SpawnPoints"]
+[node name="0" type="Node3D" parent="SpawnPoints" unique_id=19640113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 3, 4)
 
-[node name="1" type="Node3D" parent="SpawnPoints"]
+[node name="1" type="Node3D" parent="SpawnPoints" unique_id=647049877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 3, 12)
 
-[node name="2" type="Node3D" parent="SpawnPoints"]
+[node name="2" type="Node3D" parent="SpawnPoints" unique_id=291151241]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 12)
 
-[node name="3" type="Node3D" parent="SpawnPoints"]
+[node name="3" type="Node3D" parent="SpawnPoints" unique_id=736041786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 3, 6)
 
-[node name="CustomerSpawnBounds" type="Node" parent="."]
+[node name="CustomerSpawnBounds" type="Node" parent="." unique_id=1435900901]
 
-[node name="Top Left" type="Marker3D" parent="CustomerSpawnBounds"]
+[node name="Top Left" type="Marker3D" parent="CustomerSpawnBounds" unique_id=88381646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.549, 9, -18.473999)
 gizmo_extents = 1.0
 
-[node name="Bottom Right" type="Marker3D" parent="CustomerSpawnBounds"]
+[node name="Bottom Right" type="Marker3D" parent="CustomerSpawnBounds" unique_id=1101385346]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.85397, 8, 8.7267)
 gizmo_extents = 1.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=163766352]
 transform = Transform3D(1, 0, 0, 0, -0.7559106, 0.6546749, 0, -0.6546749, -0.7559106, 0, 8.018461, 0)
 shadow_enabled = true
 
-[node name="Geyser" parent="." instance=ExtResource("10_8roev")]
+[node name="Geyser" parent="." unique_id=31940514 instance=ExtResource("10_8roev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.133061, 1.5149474, 5.881646)
 
-[node name="Geyser2" parent="." instance=ExtResource("10_8roev")]
+[node name="Geyser2" parent="." unique_id=24943371 instance=ExtResource("10_8roev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9678755, 1.5149474, 7.4144144)
 
-[node name="Geyser3" parent="." instance=ExtResource("10_8roev")]
+[node name="Geyser3" parent="." unique_id=1304590939 instance=ExtResource("10_8roev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0402257, 3.534216, 1.8450034)
 
-[node name="Geyser4" parent="." instance=ExtResource("10_8roev")]
+[node name="Geyser4" parent="." unique_id=589198081 instance=ExtResource("10_8roev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.231467, 4.5436335, -11.181775)
 
-[node name="Geyser5" parent="." instance=ExtResource("10_8roev")]
+[node name="Geyser5" parent="." unique_id=1192733983 instance=ExtResource("10_8roev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.204961, 4.5436335, -11.1673975)
 
 [connection signal="body_exited" from="Killbox" to="Killbox" method="_on_body_exited"]

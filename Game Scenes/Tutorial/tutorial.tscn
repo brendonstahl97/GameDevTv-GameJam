@@ -1,0 +1,305 @@
+[gd_scene format=3 uid="uid://caov6sc8wlnot"]
+
+[ext_resource type="Script" uid="uid://cvtvlwcjd0tiw" path="res://Game Scenes/Tutorial/tutorial.gd" id="1_uun2c"]
+[ext_resource type="Texture2D" uid="uid://c4s7yucygjxaq" path="res://Assets/Environment/uploads_files_4381654_LightBlueSky_texture.jpg" id="2_ub1i3"]
+[ext_resource type="PackedScene" uid="uid://comhbdb6wxv3p" path="res://UI/Pause Menu/pause_menu.tscn" id="3_8qu01"]
+[ext_resource type="Texture2D" uid="uid://cygty3jbi30x" path="res://Assets/Materials/Stone/floor_stone_pattern_depth.png" id="4_6v2kw"]
+[ext_resource type="PackedScene" uid="uid://btmq676yqmw8b" path="res://Entities/Game Camera/game_camera.tscn" id="5_brite"]
+[ext_resource type="PackedScene" uid="uid://dgsxkbytb4is" path="res://Entities/Player/player.tscn" id="6_141sr"]
+[ext_resource type="Resource" uid="uid://bkb8o2ps546oc" path="res://Resources/PlayerControls/Player_1_Controls.tres" id="7_rp8ep"]
+[ext_resource type="PackedScene" uid="uid://ytur78asltc" path="res://UI/Dialog Player/dialog_player.tscn" id="8_xy0oj"]
+[ext_resource type="Script" uid="uid://7dpbpu188ln" path="res://Entities/Objective Manager/objective_manager.gd" id="9_7bknh"]
+[ext_resource type="Script" uid="uid://clmhkwfsxspai" path="res://Resources/Objectives/base_objective.gd" id="10_irovg"]
+[ext_resource type="Script" uid="uid://qheuojllmhtq" path="res://Resources/Objectives/dialogue_objective.gd" id="11_eggw1"]
+[ext_resource type="Script" uid="uid://ctpymthqsxglb" path="res://Resources/Objectives/navigation_objective.gd" id="12_8u6qo"]
+[ext_resource type="Script" uid="uid://ctyb7j2keggky" path="res://Resources/Objectives/customer_completion_objective.gd" id="13_cfipl"]
+[ext_resource type="Script" uid="uid://c0bko5yu3ip5v" path="res://Resources/Objectives/input_objective.gd" id="14_4tity"]
+[ext_resource type="Script" uid="uid://cmmn2frkxq3a3" path="res://Resources/Objectives/bump_objective.gd" id="15_c3d3s"]
+[ext_resource type="Script" uid="uid://b6j40abr0015f" path="res://Resources/Objectives/slam_objective.gd" id="16_38cfv"]
+[ext_resource type="Script" uid="uid://dmii05mnainkl" path="res://Resources/Objectives/parry_objective.gd" id="17_oe5cg"]
+[ext_resource type="Script" uid="uid://brjggofdmchc" path="res://Entities/Objective Triggered Entity Spawner/objective_triggered_entity_spawner.gd" id="18_8y4m5"]
+[ext_resource type="PackedScene" uid="uid://bqrhmbkbhflce" path="res://Entities/Customer/Training Customer/Training_Customer.tscn" id="19_upi1d"]
+[ext_resource type="PackedScene" uid="uid://dyv6i67m65snm" path="res://Entities/Turkey/turkey.tscn" id="20_0ufai"]
+[ext_resource type="PackedScene" uid="uid://bsm0lw2r3lkwk" path="res://Entities/Launch Pad/launch_pad.tscn" id="21_yty4u"]
+[ext_resource type="Script" uid="uid://dxs745ujbj8qy" path="res://Entities/Objective Triggered Entity Spawner/Continuous Objective Triggered Entity Spawner/continuous_objective_triggered_entity_spawner.gd" id="22_x8epo"]
+[ext_resource type="PackedScene" uid="uid://srpk4wkg14dc" path="res://Entities/Skewer/skewer.tscn" id="23_j4kyv"]
+[ext_resource type="Script" uid="uid://cotkt6ds77muu" path="res://Game Levels/game_level.gd" id="24_va2ii"]
+[ext_resource type="Script" uid="uid://2mpjksevpep4" path="res://Entities/Killbox/Killbox.gd" id="25_pe0p4"]
+[ext_resource type="MeshLibrary" uid="uid://cnbbc2lhpenjh" path="res://Game Levels/Mountaintop Manor/meshLibrary.tres" id="26_buyy5"]
+[ext_resource type="ArrayMesh" uid="uid://bwbjesmo1y3fi" path="res://Assets/Environment/OBJs/wallArch.obj" id="27_o4wb0"]
+[ext_resource type="ArrayMesh" uid="uid://de66m5rhta4id" path="res://Assets/Environment/OBJs/wallArchTopDetail.obj" id="28_ifhf3"]
+[ext_resource type="ArrayMesh" uid="uid://b4lseupb35dlr" path="res://Assets/Environment/OBJs/roofHighLeft.obj" id="29_547ft"]
+[ext_resource type="ArrayMesh" uid="uid://dyjle36lhebva" path="res://Assets/Environment/OBJs/wallDetailCross.obj" id="30_sk7e3"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ysjmy"]
+panorama = ExtResource("2_ub1i3")
+
+[sub_resource type="Sky" id="Sky_v7pil"]
+sky_material = SubResource("PanoramaSkyMaterial_ysjmy")
+
+[sub_resource type="Environment" id="Environment_5hivl"]
+background_mode = 2
+sky = SubResource("Sky_v7pil")
+sky_custom_fov = 84.1
+sky_rotation = Vector3(0, 3.14159, 0)
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.0
+fog_sun_scatter = 0.23
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+volumetric_fog_emission = Color(0.972549, 0.09019608, 0.3372549, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_anisotropy = -0.08
+volumetric_fog_ambient_inject = 1.12
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hn0n"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljoqb"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1cdn"]
+albedo_color = Color(0.5014446, 0.7948389, 0.47003186, 1)
+normal_scale = 0.3
+normal_texture = ExtResource("4_6v2kw")
+uv1_scale = Vector3(30, 30, 30)
+texture_filter = 1
+
+[sub_resource type="Resource" id="Resource_buypi"]
+script = ExtResource("11_eggw1")
+objective_name = "Intro Dialog"
+metadata/_custom_type_script = "uid://qheuojllmhtq"
+
+[sub_resource type="Resource" id="Resource_8pr8v"]
+script = ExtResource("11_eggw1")
+dialogue_category_name = &"movement"
+objective_name = "Movement Dialog"
+metadata/_custom_type_script = "uid://qheuojllmhtq"
+
+[sub_resource type="Resource" id="Resource_vr1i5"]
+script = ExtResource("12_8u6qo")
+navigator_node_path = NodePath("../0")
+target_node_path = NodePath("../Customer Spawner")
+distance_threshold = 1.5
+objective_name = "Move to the training dummy"
+metadata/_custom_type_script = "uid://ctpymthqsxglb"
+
+[sub_resource type="Resource" id="Resource_njel3"]
+script = ExtResource("11_eggw1")
+dialogue_category_name = &"customers"
+objective_name = "Customers Dialog"
+metadata/_custom_type_script = "uid://qheuojllmhtq"
+
+[sub_resource type="Resource" id="Resource_oo8pe"]
+script = ExtResource("13_cfipl")
+objective_name = "Complete training dummy's order"
+metadata/_custom_type_script = "uid://ctyb7j2keggky"
+
+[sub_resource type="Resource" id="Resource_4gito"]
+script = ExtResource("11_eggw1")
+dialogue_category_name = &"sprint"
+objective_name = "Sprint Dialog"
+metadata/_custom_type_script = "uid://qheuojllmhtq"
+
+[sub_resource type="Resource" id="Resource_fbuy2"]
+script = ExtResource("14_4tity")
+input_action = &"p1_sprint"
+input_duration_requirement = 2.0
+objective_name = "Try Sprinting"
+metadata/_custom_type_script = "uid://c0bko5yu3ip5v"
+
+[sub_resource type="Resource" id="Resource_0k8yu"]
+script = ExtResource("11_eggw1")
+dialogue_category_name = &"bump"
+objective_name = "Bump Dialog"
+metadata/_custom_type_script = "uid://qheuojllmhtq"
+
+[sub_resource type="Resource" id="Resource_hiucn"]
+script = ExtResource("15_c3d3s")
+target_player_nodepath = NodePath("../0")
+objective_name = "Bump the bird"
+metadata/_custom_type_script = "uid://cmmn2frkxq3a3"
+
+[sub_resource type="Resource" id="Resource_k6its"]
+script = ExtResource("11_eggw1")
+dialogue_category_name = &"slam"
+objective_name = "Slam Dialog"
+metadata/_custom_type_script = "uid://qheuojllmhtq"
+
+[sub_resource type="Resource" id="Resource_2dw41"]
+script = ExtResource("16_38cfv")
+target_player_nodepath = NodePath("../0")
+objective_name = "Try out the slam"
+metadata/_custom_type_script = "uid://b6j40abr0015f"
+
+[sub_resource type="Resource" id="Resource_ykxp3"]
+script = ExtResource("11_eggw1")
+dialogue_category_name = &"parry"
+objective_name = "Parry Dialog"
+metadata/_custom_type_script = "uid://qheuojllmhtq"
+
+[sub_resource type="Resource" id="Resource_g6y4b"]
+script = ExtResource("17_oe5cg")
+target_player_nodepath = NodePath("../0")
+objective_name = "Parry Skewer"
+metadata/_custom_type_script = "uid://dmii05mnainkl"
+
+[sub_resource type="Resource" id="Resource_pvxhv"]
+script = ExtResource("11_eggw1")
+dialogue_category_name = &"outro"
+objective_name = "Outro Dialog"
+metadata/_custom_type_script = "uid://qheuojllmhtq"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gx0k5"]
+size = Vector3(35, 9.900001, 35)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xw4ln"]
+
+[node name="Node3D" type="Node3D" unique_id=1522872536 node_paths=PackedStringArray("game_camera", "environment")]
+script = ExtResource("1_uun2c")
+game_camera = NodePath("Camera3D")
+environment = NodePath("Environment")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1882558122]
+environment = SubResource("Environment_5hivl")
+
+[node name="PauseMenu" parent="." unique_id=815366300 instance=ExtResource("3_8qu01")]
+unique_name_in_owner = true
+visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1298276431]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=102008391]
+shape = SubResource("BoxShape3D_4hn0n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1751253086]
+mesh = SubResource("BoxMesh_ljoqb")
+surface_material_override/0 = SubResource("StandardMaterial3D_m1cdn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1271681026]
+transform = Transform3D(0.8660254, -0.32733083, 0.377961, 0, 0.755922, 0.65466166, -0.5, -0.5669536, 0.65464765, 0, 3.926616, 3.727194)
+shadow_enabled = true
+
+[node name="Camera3D" parent="." unique_id=1612028189 instance=ExtResource("5_brite")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2, 10)
+x_player_limits = Vector2(-17.5, 17.5)
+y_player_limits = Vector2(0, 5)
+z_player_limits = Vector2(-17.5, 17.5)
+
+[node name="0" parent="." unique_id=1446488032 instance=ExtResource("6_141sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422091, 1.0148584, 0.63885355)
+controls = ExtResource("7_rp8ep")
+
+[node name="Dialog Player" parent="." unique_id=1916585893 instance=ExtResource("8_xy0oj")]
+visible = false
+
+[node name="ObjectiveManager" type="Node" parent="." unique_id=1002851906]
+unique_name_in_owner = true
+script = ExtResource("9_7bknh")
+objectives = Array[ExtResource("10_irovg")]([SubResource("Resource_buypi"), SubResource("Resource_8pr8v"), SubResource("Resource_vr1i5"), SubResource("Resource_njel3"), SubResource("Resource_oo8pe"), SubResource("Resource_4gito"), SubResource("Resource_fbuy2"), SubResource("Resource_0k8yu"), SubResource("Resource_hiucn"), SubResource("Resource_k6its"), SubResource("Resource_2dw41"), SubResource("Resource_ykxp3"), SubResource("Resource_g6y4b"), SubResource("Resource_pvxhv")])
+metadata/_custom_type_script = "uid://7dpbpu188ln"
+
+[node name="Customer Spawner" type="Node3D" parent="." unique_id=570201367 node_paths=PackedStringArray("objective_manager")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.66, 1, 0.427)
+script = ExtResource("18_8y4m5")
+objective_manager = NodePath("../ObjectiveManager")
+entity_scene = ExtResource("19_upi1d")
+Objective_triggers = Array[ExtResource("10_irovg")]([SubResource("Resource_vr1i5")])
+metadata/_custom_type_script = "uid://brjggofdmchc"
+
+[node name="Turkey Spawner" type="Node3D" parent="." unique_id=1705929737 node_paths=PackedStringArray("objective_manager")]
+transform = Transform3D(-0.07957267, 0, -0.9968291, 0, 1, 0, 0.9968291, 0, -0.07957267, 3.7793374, 2.031886, 0.624033)
+script = ExtResource("18_8y4m5")
+objective_manager = NodePath("../ObjectiveManager")
+entity_scene = ExtResource("20_0ufai")
+Objective_triggers = Array[ExtResource("10_irovg")]([SubResource("Resource_hiucn")])
+metadata/_custom_type_script = "uid://brjggofdmchc"
+
+[node name="Jump Pad Spawner" type="Node3D" parent="." unique_id=344087592 node_paths=PackedStringArray("objective_manager")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13559073, 0.5, -5.431467)
+script = ExtResource("18_8y4m5")
+objective_manager = NodePath("../ObjectiveManager")
+entity_scene = ExtResource("21_yty4u")
+Objective_triggers = Array[ExtResource("10_irovg")]([SubResource("Resource_2dw41")])
+metadata/_custom_type_script = "uid://brjggofdmchc"
+
+[node name="ContinuousObjectiveTriggeredEntitySpawner" type="Node3D" parent="." unique_id=1537381580 node_paths=PackedStringArray("objective_manager")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.548006, 0.7673147, 0)
+script = ExtResource("22_x8epo")
+objective_manager = NodePath("../ObjectiveManager")
+entity_scene = ExtResource("23_j4kyv")
+Objective_triggers = Array[ExtResource("10_irovg")]([SubResource("Resource_g6y4b")])
+metadata/_custom_type_script = "uid://dxs745ujbj8qy"
+
+[node name="Environment" type="Node" parent="." unique_id=994666188]
+script = ExtResource("24_va2ii")
+
+[node name="SpawnPoints" type="Node" parent="Environment" unique_id=164492427]
+unique_name_in_owner = true
+
+[node name="Marker3D" type="Marker3D" parent="Environment/SpawnPoints" unique_id=1770519629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="Killbox" type="Area3D" parent="Environment" unique_id=1385919392 node_paths=PackedStringArray("spawn_points")]
+unique_name_in_owner = true
+script = ExtResource("25_pe0p4")
+spawn_points = NodePath("../SpawnPoints")
+metadata/_custom_type_script = "uid://2mpjksevpep4"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Killbox" unique_id=750447046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 4.05, 0)
+shape = SubResource("BoxShape3D_gx0k5")
+
+[node name="NavigableMeshes" type="NavigationRegion3D" parent="Environment" unique_id=389267344]
+unique_name_in_owner = true
+navigation_mesh = SubResource("NavigationMesh_xw4ln")
+
+[node name="GridMap" type="GridMap" parent="Environment/NavigableMeshes" unique_id=731581280]
+mesh_library = ExtResource("26_buyy5")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65521, 65521, 1441865, 65521, 65522, 655362, 65521, 65523, 655362, 65521, 65524, 655362, 65521, 65525, 655362, 65521, 65526, 655362, 65521, 65527, 655362, 65521, 65528, 655362, 65521, 65529, 655362, 65521, 65530, 655362, 65521, 65531, 655362, 65521, 65532, 655362, 65521, 65533, 655362, 65521, 65534, 655362, 65521, 65535, 655362, 65521, 0, 655362, 65521, 1, 655362, 65521, 2, 655362, 65521, 3, 655362, 65521, 4, 655362, 65521, 5, 655362, 65521, 6, 655362, 65521, 7, 655362, 65521, 8, 655362, 65521, 9, 655362, 65521, 10, 655362, 65521, 11, 655362, 65521, 12, 655362, 65521, 13, 655362, 65521, 14, 655363, 65522, 65521, 1441865, 65522, 14, 1441794, 65523, 65521, 1441865, 65523, 14, 1441794, 65524, 65521, 1441865, 65524, 14, 1441794, 65525, 65521, 1441865, 65525, 14, 1441794, 65526, 65521, 1441865, 65526, 14, 1441794, 65527, 65521, 1441865, 65527, 14, 1441794, 65528, 65521, 1441865, 65528, 14, 1441794, 65529, 65521, 1441865, 65529, 14, 1441794, 65530, 65521, 1441865, 65530, 14, 1441794, 65531, 65521, 1441865, 65531, 14, 1441794, 65532, 65521, 1441865, 65532, 14, 1441794, 65533, 65521, 1441865, 65533, 14, 1441794, 65534, 65521, 1441865, 65534, 14, 1441794, 65535, 65521, 1441865, 65535, 14, 1441794, 0, 65521, 1441865, 0, 14, 1441794, 1, 65521, 1441865, 1, 14, 1441794, 2, 65521, 1441865, 2, 14, 1441794, 3, 65521, 1441865, 3, 14, 1441794, 4, 65521, 1441865, 4, 14, 1441794, 5, 65521, 1441865, 5, 14, 1441794, 6, 65521, 1441865, 6, 14, 1441794, 7, 65521, 1441865, 7, 14, 1441794, 8, 65521, 1441865, 8, 14, 1441794, 9, 65521, 1441865, 9, 14, 1441794, 10, 65521, 1441865, 10, 14, 1441794, 11, 65521, 1441865, 11, 14, 1441794, 12, 65521, 1441865, 12, 14, 1441794, 13, 65521, 1441865, 13, 14, 1441794, 14, 65521, 1441865, 14, 65522, 2, 14, 65523, 2, 14, 65524, 2, 14, 65525, 2, 14, 65526, 2, 14, 65527, 2, 14, 65528, 2, 14, 65529, 2, 14, 65530, 2, 14, 65531, 2, 14, 65532, 2, 14, 65533, 2, 14, 65534, 2, 14, 65535, 2, 14, 0, 2, 14, 1, 2, 14, 2, 2, 14, 3, 2, 14, 4, 2, 14, 5, 2, 14, 6, 2, 14, 7, 2, 14, 8, 2, 14, 9, 2, 14, 10, 2, 14, 11, 2, 14, 12, 2, 14, 13, 2, 14, 14, 1441795, 131071, 65522, 1441798, 65536, 65522, 1441798, 65538, 65522, 1441798, 131070, 65522, 1441798, 131069, 65522, 1441798, 131068, 65522, 1441798, 65539, 65522, 1441798, 131068, 65523, 1441798, 131068, 65524, 1441798, 131069, 65523, 1441798, 131069, 65524, 1441798, 131070, 65523, 1441798, 131070, 65524, 1441798, 131071, 65523, 1441798, 131071, 65524, 1441798, 65536, 65523, 1441798, 65536, 65524, 1441798, 65537, 65523, 1441798, 65537, 65524, 1441798, 65538, 65523, 1441798, 65538, 65524, 1441798, 65539, 65523, 1441798, 65539, 65524, 1441798, 65532, 65524, 655397, 65532, 65522, 655397, 65533, 65524, 1441829, 65534, 65524, 1441829, 65535, 65524, 1441829, 0, 65524, 1441829, 1, 65524, 1441829, 2, 65524, 1441829, 65532, 65523, 655397, 65532, 65525, 1048613, 65533, 65525, 1048613, 65534, 65525, 1048613, 65535, 65525, 1048613, 0, 65525, 1048613, 1, 65525, 1048613, 2, 65525, 1048613, 3, 65525, 1048613, 4, 65524, 655397, 4, 65523, 655397, 4, 65522, 655397, 131057, 65521, 655410, 131058, 65521, 1441842, 131059, 65521, 1441856, 131060, 65521, 1441842, 131061, 65521, 1441856, 131062, 65521, 1441842, 131063, 65521, 1441842, 131064, 65521, 1441842, 131065, 65521, 1441842, 131066, 65521, 1441842, 131067, 65521, 1441842, 131068, 65521, 1441842, 131069, 65521, 1441842, 196606, 65521, 1441832, 131070, 65521, 1441830, 65548, 65521, 1441856, 65546, 65521, 1441856, 65550, 65521, 1441842, 65549, 65521, 1441842, 65547, 65521, 1441842, 65545, 65521, 1441842, 65544, 65521, 1441842, 65543, 65521, 1441842, 65542, 65521, 1441842, 65541, 65521, 1441842, 65540, 65521, 1441842, 65539, 65521, 1441842, 65538, 65521, 1441842, 131074, 65521, 1441842, 131075, 65521, 1441842, 131076, 65521, 1441842, 131077, 65521, 1441842, 131078, 65521, 1441842, 131079, 65521, 1441842, 131080, 65521, 1441842, 131081, 65521, 1441842, 131082, 65521, 1441842, 131084, 65521, 1441842, 131083, 65521, 1441842, 131085, 65521, 1441842, 131086, 65521, 1441842, 196605, 65521, 1441842, 196604, 65521, 1441842, 196603, 65521, 1441842, 196602, 65521, 1441842, 196601, 65521, 1441842, 196600, 65521, 1441842, 196599, 65521, 1441842, 196598, 65521, 1441842, 196597, 65521, 1441842, 196596, 65521, 1441842, 196595, 65521, 1441842, 196594, 65521, 1441842, 196593, 65521, 655410, 65537, 65522, 1441798, 262129, 65521, 1048602, 262130, 65521, 1048602, 262131, 65521, 1048602, 262132, 65521, 1048602, 262133, 65521, 1048602, 262134, 65521, 1048602, 262135, 65521, 1048602, 262136, 65521, 1048602, 262137, 65521, 1048602, 262138, 65521, 1048602, 262139, 65521, 1048602, 262140, 65521, 1048602, 262141, 65521, 1048602, 262142, 65521, 1048602, 262143, 65521, 1048602, 196608, 65521, 1048602, 196609, 65521, 1048602, 196610, 65521, 1048602, 196611, 65521, 1048602, 196612, 65521, 1048602, 196613, 65521, 1048602, 196614, 65521, 1048602, 196615, 65521, 1048602, 196616, 65521, 1048602, 196617, 65521, 1048602, 196619, 65521, 1048602, 196618, 65521, 1048602, 196620, 65521, 1048602, 196621, 65521, 1048602, 196622, 65521, 1048602, 131057, 65520, 655410, 131057, 65519, 655410, 131057, 65518, 655410, 131057, 65517, 655410, 131057, 65516, 655410, 196593, 65520, 655410, 196593, 65519, 655410, 196593, 65518, 655410, 196593, 65517, 655410, 196593, 65516, 655410, 262129, 65520, 655410, 262129, 65519, 655410, 262129, 65518, 655410, 262129, 65517, 655410, 262129, 65516, 655410, 327665, 65516, 655381, 327665, 65517, 655381, 327665, 65518, 655381, 327665, 65519, 655381, 327665, 65520, 655381, 327666, 65516, 655381, 327666, 65517, 655381, 327666, 65518, 655381, 327666, 65519, 655381, 327666, 65520, 655381, 327667, 65516, 655381, 327667, 65517, 655381, 327667, 65518, 655381, 327667, 65519, 655381, 327667, 65520, 655381, 327668, 65516, 655381, 327668, 65517, 655381, 327668, 65518, 655381, 327668, 65519, 655381, 327668, 65520, 655381, 327669, 65516, 655381, 327669, 65517, 655381, 327669, 65518, 655381, 327669, 65519, 655381, 327669, 65520, 655381, 327670, 65516, 655381, 327670, 65517, 655381, 327670, 65518, 655381, 327670, 65519, 655381, 327670, 65520, 655381, 327671, 65516, 655381, 327671, 65517, 655381, 327671, 65518, 655381, 327671, 65519, 655381, 327671, 65520, 655381, 327672, 65516, 655381, 327672, 65517, 655381, 327672, 65518, 655381, 327672, 65519, 655381, 327672, 65520, 655381, 327673, 65516, 655381, 327673, 65517, 655381, 327673, 65518, 655381, 327673, 65519, 655381, 327673, 65520, 655381, 327674, 65516, 655381, 327674, 65517, 655381, 327674, 65518, 655381, 327674, 65519, 655381, 327674, 65520, 655381, 327675, 65516, 655381, 327675, 65517, 655381, 327675, 65518, 655381, 327675, 65519, 655381, 327675, 65520, 655381, 327676, 65516, 655381, 327676, 65517, 655381, 327676, 65518, 655381, 327676, 65519, 655381, 327676, 65520, 655381, 327677, 65516, 655381, 327677, 65517, 655381, 327677, 65518, 655381, 327677, 65519, 655381, 327677, 65520, 655381, 327678, 65516, 655381, 327678, 65517, 655381, 327678, 65518, 655381, 327678, 65519, 655381, 327678, 65520, 655381, 327679, 65516, 655381, 327679, 65517, 655381, 327679, 65518, 655381, 327679, 65519, 655381, 327679, 65520, 655381, 262144, 65516, 655381, 262144, 65517, 655381, 262144, 65518, 655381, 262144, 65519, 655381, 262144, 65520, 655381, 262145, 65516, 655381, 262145, 65517, 655381, 262145, 65518, 655381, 262145, 65519, 655381, 262145, 65520, 655381, 262146, 65516, 655381, 262146, 65517, 655381, 262146, 65518, 655381, 262146, 65519, 655381, 262146, 65520, 655381, 262147, 65516, 655381, 262147, 65517, 655381, 262147, 65518, 655381, 262147, 65519, 655381, 262147, 65520, 655381, 262148, 65516, 655381, 262148, 65517, 655381, 262148, 65518, 655381, 262148, 65519, 655381, 262148, 65520, 655381, 262149, 65516, 655381, 262149, 65517, 655381, 262149, 65518, 655381, 262149, 65519, 655381, 262149, 65520, 655381, 262150, 65516, 655381, 262150, 65517, 655381, 262150, 65518, 655381, 262150, 65519, 655381, 262150, 65520, 655381, 262151, 65516, 655381, 262151, 65517, 655381, 262151, 65518, 655381, 262151, 65519, 655381, 262151, 65520, 655381, 262152, 65516, 655381, 262152, 65517, 655381, 262152, 65518, 655381, 262152, 65519, 655381, 262152, 65520, 655381, 262153, 65516, 655381, 262153, 65517, 655381, 262153, 65518, 655381, 262153, 65519, 655381, 262153, 65520, 655381, 262154, 65516, 655381, 262154, 65517, 655381, 262154, 65518, 655381, 262154, 65519, 655381, 262154, 65520, 655381, 262155, 65516, 655381, 262155, 65517, 655381, 262155, 65518, 655381, 262155, 65519, 655381, 262155, 65520, 655381, 262156, 65516, 655381, 262156, 65517, 655381, 262156, 65518, 655381, 262156, 65519, 655381, 262156, 65520, 655381, 262157, 65516, 655381, 262157, 65517, 655381, 262157, 65518, 655381, 262157, 65519, 655381, 262157, 65520, 655381, 262158, 65516, 655381, 262158, 65517, 655381, 262158, 65518, 655381, 262158, 65519, 655381, 262158, 65520, 655381, 65551, 65521, 655410, 65551, 65520, 655410, 65551, 65519, 655410, 65551, 65518, 655410, 65551, 65517, 655410, 65551, 65516, 655410, 131087, 65516, 655410, 131087, 65517, 655410, 131087, 65518, 655410, 131087, 65519, 655410, 131087, 65520, 655410, 131087, 65521, 655410, 196623, 65520, 655410, 196623, 65519, 655410, 196623, 65518, 655410, 196623, 65517, 655410, 196623, 65516, 655410, 14, 65520, 655401, 65521, 65516, 655401, 65521, 65517, 655401, 65521, 65518, 655401, 65521, 65519, 655401, 65521, 65520, 655401, 65522, 65516, 655401, 65522, 65517, 655401, 65522, 65518, 655401, 65522, 65519, 655401, 65522, 65520, 655401, 65523, 65516, 655401, 65523, 65517, 655401, 65523, 65518, 655401, 65523, 65519, 655401, 65523, 65520, 655401, 65524, 65516, 655401, 65524, 65517, 655401, 65524, 65518, 655401, 65524, 65519, 655401, 65524, 65520, 655401, 65525, 65516, 655401, 65525, 65517, 655401, 65525, 65518, 655401, 65525, 65519, 655401, 65525, 65520, 655401, 65526, 65516, 655401, 65526, 65517, 655401, 65526, 65518, 655401, 65526, 65519, 655401, 65526, 65520, 655401, 65527, 65516, 655401, 65527, 65517, 655401, 65527, 65518, 655401, 65527, 65519, 655401, 65527, 65520, 655401, 65528, 65516, 655401, 65528, 65517, 655401, 65528, 65518, 655401, 65528, 65519, 655401, 65528, 65520, 655401, 65529, 65516, 655401, 65529, 65517, 655401, 65529, 65518, 655401, 65529, 65519, 655401, 65529, 65520, 655401, 65530, 65516, 655401, 65530, 65517, 655401, 65530, 65518, 655401, 65530, 65519, 655401, 65530, 65520, 655401, 65531, 65516, 655401, 65531, 65517, 655401, 65531, 65518, 655401, 65531, 65519, 655401, 65531, 65520, 655401, 65532, 65516, 655401, 65532, 65517, 655401, 65532, 65518, 655401, 65532, 65519, 655401, 65532, 65520, 655401, 65533, 65516, 655401, 65533, 65517, 655401, 65533, 65518, 655401, 65533, 65519, 655401, 65533, 65520, 655401, 65534, 65516, 655401, 65534, 65517, 655401, 65534, 65518, 655401, 65534, 65519, 655401, 65534, 65520, 655401, 65535, 65516, 655401, 65535, 65517, 655401, 65535, 65518, 655401, 65535, 65519, 655401, 65535, 65520, 655401, 0, 65516, 655401, 0, 65517, 655401, 0, 65518, 655401, 0, 65519, 655401, 0, 65520, 655401, 1, 65516, 655401, 1, 65517, 655401, 1, 65518, 655401, 1, 65519, 655401, 1, 65520, 655401, 2, 65516, 655401, 2, 65517, 655401, 2, 65518, 655401, 2, 65519, 655401, 2, 65520, 655401, 3, 65516, 655401, 3, 65517, 655401, 3, 65518, 655401, 3, 65519, 655401, 3, 65520, 655401, 4, 65516, 655401, 4, 65517, 655401, 4, 65518, 655401, 4, 65519, 655401, 4, 65520, 655401, 5, 65516, 655401, 5, 65517, 655401, 5, 65518, 655401, 5, 65519, 655401, 5, 65520, 655401, 6, 65516, 655401, 6, 65517, 655401, 6, 65518, 655401, 6, 65519, 655401, 6, 65520, 655401, 7, 65516, 655401, 7, 65517, 655401, 7, 65518, 655401, 7, 65519, 655401, 7, 65520, 655401, 8, 65516, 655401, 8, 65517, 655401, 8, 65518, 655401, 8, 65519, 655401, 8, 65520, 655401, 9, 65516, 655401, 9, 65517, 655401, 9, 65518, 655401, 9, 65519, 655401, 9, 65520, 655401, 10, 65516, 655401, 10, 65517, 655401, 10, 65518, 655401, 10, 65519, 655401, 10, 65520, 655401, 11, 65516, 655401, 11, 65517, 655401, 11, 65518, 655401, 11, 65519, 655401, 11, 65520, 655401, 12, 65516, 655401, 12, 65517, 655401, 12, 65518, 655401, 12, 65519, 655401, 12, 65520, 655401, 13, 65516, 655401, 13, 65517, 655401, 13, 65518, 655401, 13, 65519, 655401, 13, 65520, 655401, 14, 65516, 655401, 14, 65517, 655401, 14, 65518, 655401, 14, 65519, 655401, 65549, 65516, 1048613, 131058, 65516, 1048613, 65550, 65516, 1048613, 65548, 65516, 1048613, 65547, 65516, 1048613, 65546, 65516, 1048613, 65545, 65516, 1048613, 65544, 65516, 1048613, 65543, 65516, 1048613, 65542, 65516, 1048613, 65541, 65516, 1048613, 65540, 65516, 1048613, 65539, 65516, 1048613, 65538, 65516, 1048613, 65537, 65516, 1048613, 65536, 65516, 1048613, 131071, 65516, 1048613, 131070, 65516, 1048613, 131069, 65516, 1048613, 131068, 65516, 1048613, 131067, 65516, 1048613, 131066, 65516, 1048613, 131065, 65516, 1048613, 131064, 65516, 1048613, 131062, 65516, 1048613, 131063, 65516, 1048613, 131061, 65516, 1048613, 131060, 65516, 1048613, 131059, 65516, 1048613, 196594, 65516, 1048613, 196595, 65516, 1048613, 196596, 65516, 1048613, 196597, 65516, 1048613, 196598, 65516, 1048613, 196599, 65516, 1048613, 196600, 65516, 1048613, 196601, 65516, 1048613, 196602, 65516, 1048613, 196604, 65516, 1048613, 196603, 65516, 1048613, 196605, 65516, 1048613, 196606, 65516, 1048613, 196607, 65516, 1048613, 131072, 65516, 1048613, 131073, 65516, 1048613, 131074, 65516, 1048613, 131075, 65516, 1048613, 131076, 65516, 1048613, 131077, 65516, 1048613, 131078, 65516, 1048613, 131079, 65516, 1048613, 131080, 65516, 1048613, 131081, 65516, 1048613, 131082, 65516, 1048613, 131083, 65516, 1048613, 131084, 65516, 1048613, 131085, 65516, 1048613, 131086, 65516, 1048613, 196622, 65516, 1048613, 196621, 65516, 1048613, 196620, 65516, 1048613, 196619, 65516, 1048613, 196618, 65516, 1048613, 196617, 65516, 1048613, 196616, 65516, 1048613, 196615, 65516, 1048613, 196614, 65516, 1048613, 196613, 65516, 1048613, 196612, 65516, 1048613, 196611, 65516, 1048613, 196610, 65516, 1048613, 196609, 65516, 1048613, 196608, 65516, 1048613, 262143, 65516, 1048613, 262142, 65516, 1048613, 262141, 65516, 1048613, 262140, 65516, 1048613, 262139, 65516, 1048613, 262138, 65516, 1048613, 262137, 65516, 1048613, 262136, 65516, 1048613, 262135, 65516, 1048613, 262134, 65516, 1048613, 262133, 65516, 1048613, 262131, 65516, 1048613, 262132, 65516, 1048613, 262130, 65516, 1048613, 131070, 65520, 1048581, 65537, 65520, 1048581, 131073, 65520, 1048581, 196606, 65520, 1048581, 196606, 65517, 1048581, 131073, 65517, 1048581, 131070, 65517, 1048581, 65537, 65517, 1048581, 262142, 65520, 1048581, 262142, 65517, 1048581, 196609, 65517, 1048581, 196609, 65520, 1048581)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="WallArch" type="MeshInstance3D" parent="Environment/NavigableMeshes" unique_id=900984228]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.5, 1.5, -13.6)
+mesh = ExtResource("27_o4wb0")
+skeleton = NodePath("../../..")
+
+[node name="WallArchTopDetail" type="MeshInstance3D" parent="Environment/NavigableMeshes" unique_id=2029264311]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.5000001, 2.5, -13.6)
+mesh = ExtResource("28_ifhf3")
+skeleton = NodePath("../../..")
+
+[node name="WallArch2" type="MeshInstance3D" parent="Environment/NavigableMeshes" unique_id=1573540096]
+transform = Transform3D(1.9106855e-15, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 1, -1, 0, -4.371139e-08, 0, 3, -13.599999)
+mesh = ExtResource("27_o4wb0")
+skeleton = NodePath("../../..")
+
+[node name="WallArch3" type="MeshInstance3D" parent="Environment/NavigableMeshes" unique_id=347774803]
+transform = Transform3D(1.9106855e-15, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 1, -1, 0, -4.371139e-08, 1, 3, -13.599999)
+mesh = ExtResource("27_o4wb0")
+skeleton = NodePath("../../..")
+
+[node name="RoofHighLeft" type="MeshInstance3D" parent="Environment/NavigableMeshes" unique_id=490336738]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, -1, 0, 4.371139e-08, 14.5, 3.5, -14.500001)
+mesh = ExtResource("29_547ft")
+skeleton = NodePath("../../..")
+
+[node name="WallDetailCross" type="MeshInstance3D" parent="Environment/NavigableMeshes" unique_id=737363776]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.5, 1.5000001, -13.6)
+mesh = ExtResource("30_sk7e3")
+skeleton = NodePath("../../..")
+
+[node name="WallDetailCross2" type="MeshInstance3D" parent="Environment/NavigableMeshes" unique_id=537219402]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.5, 2.5, -13.6)
+mesh = ExtResource("30_sk7e3")
+skeleton = NodePath("../../..")
+
+[connection signal="all_objectives_completed" from="ObjectiveManager" to="." method="_on_objective_manager_all_objectives_completed"]
+[connection signal="body_exited" from="Environment/Killbox" to="Environment/Killbox" method="_on_body_exited"]

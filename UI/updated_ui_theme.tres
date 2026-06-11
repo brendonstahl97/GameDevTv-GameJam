@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=68 format=3 uid="uid://bj1yf8r6vkpu4"]
+[gd_resource type="Theme" format=3 uid="uid://bj1yf8r6vkpu4"]
 
 [ext_resource type="StyleBox" uid="uid://c1armcyyr0t2u" path="res://UI/ButtonBrownHighlightStyleBox.tres" id="1_fefs2"]
 [ext_resource type="Texture2D" uid="uid://bp5smbxoy8oj" path="res://Assets/UI/Adventure UI Pack/button_brown.png" id="1_hkx0t"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=4 uid="uid://srpk4wkg14dc"]
+[gd_scene format=4 uid="uid://srpk4wkg14dc"]
 
 [ext_resource type="Script" uid="uid://w5lr7k7dywgf" path="res://Components/bump_component.gd" id="1_d74w6"]
 [ext_resource type="Script" uid="uid://dp3lfbq5ly5cw" path="res://Entities/Skewer/skewer.gd" id="1_l17sy"]
+[ext_resource type="AudioStream" uid="uid://35vn83pywt4x" path="res://Assets/Audio/Impacts/CartoonPunch.wav" id="3_2h6bj"]
 [ext_resource type="Script" uid="uid://cvmbxxmeqwih4" path="res://Components/entity_detector_component.gd" id="3_shk6t"]
 [ext_resource type="Script" uid="uid://b02dexygwwdjs" path="res://Components/rotation_component.gd" id="4_f6n2u"]
 
@@ -493,69 +494,70 @@ _data = {
 &"deflect": SubResource("Animation_f6n2u")
 }
 
-[node name="Skewer" type="RigidBody3D"]
+[node name="Skewer" type="RigidBody3D" unique_id=1948320177]
 mass = 0.8
 gravity_scale = 0.0
 script = ExtResource("1_l17sy")
 metadata/_custom_type_script = "uid://doylhbsg6shpe"
 
-[node name="skewerVegetables" type="MeshInstance3D" parent="."]
+[node name="skewerVegetables" type="MeshInstance3D" parent="." unique_id=1069541897]
 transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -0.013007781, 0, 0.013690582)
 mesh = SubResource("ArrayMesh_dq51v")
 skeleton = NodePath("")
 
-[node name="meat" type="MeshInstance3D" parent="skewerVegetables"]
+[node name="meat" type="MeshInstance3D" parent="skewerVegetables" unique_id=708780321]
 transform = Transform3D(9.7558384e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 1.2487473e-07, -0.05055, 0.006833956, 2.0442326e-09)
 mesh = SubResource("ArrayMesh_i3iu1")
 skeleton = NodePath("")
 
-[node name="meat2" type="MeshInstance3D" parent="skewerVegetables"]
+[node name="meat2" type="MeshInstance3D" parent="skewerVegetables" unique_id=1907886497]
 transform = Transform3D(9.7558384e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 1.2487473e-07, 0.086633995, 0.006833956, 0)
 mesh = SubResource("ArrayMesh_i3iu1")
 skeleton = NodePath("")
 
-[node name="meat3" type="MeshInstance3D" parent="skewerVegetables"]
+[node name="meat3" type="MeshInstance3D" parent="skewerVegetables" unique_id=975452421]
 transform = Transform3D(9.7558384e-08, 0, -1.654016, 0, 1.2922, 0, 1.2922, 0, 1.2487473e-07, 0.223818, 0.006833956, -2.0442326e-09)
 mesh = SubResource("ArrayMesh_i3iu1")
 skeleton = NodePath("")
 
-[node name="vegetables" type="MeshInstance3D" parent="skewerVegetables"]
+[node name="vegetables" type="MeshInstance3D" parent="skewerVegetables" unique_id=1312895192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.155226, 0, -1.0221175e-09)
 mesh = SubResource("ArrayMesh_cudc0")
 skeleton = NodePath("")
 
-[node name="vegetables2" type="MeshInstance3D" parent="skewerVegetables"]
+[node name="vegetables2" type="MeshInstance3D" parent="skewerVegetables" unique_id=2048236570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018042, 0, -1.0221175e-09)
 mesh = SubResource("ArrayMesh_jberr")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=49001944]
 transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, -0.015109945, 0.11283548, 0.023443285)
 shape = SubResource("BoxShape3D_vuh75")
 
-[node name="BumpComponent" type="Area3D" parent="."]
+[node name="BumpComponent" type="Area3D" parent="." unique_id=1994203048]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.013007781, 0, 0.013690582)
 collision_layer = 2
 script = ExtResource("1_d74w6")
+collision_sound_effects = Array[AudioStream]([ExtResource("3_2h6bj")])
 metadata/_custom_type_script = "uid://w5lr7k7dywgf"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpComponent" unique_id=2076233420]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.034283962, 0.11283548, 2.7939677e-09)
 shape = SubResource("BoxShape3D_yawni")
 debug_color = Color(0.8920837, 0.14451979, 0.709596, 0.41960785)
 
-[node name="EntityDetectorComponent" type="Node" parent="."]
+[node name="EntityDetectorComponent" type="Node" parent="." unique_id=585241195]
 unique_name_in_owner = true
 script = ExtResource("3_shk6t")
 entity_group_name = "Bumpable"
 metadata/_custom_type_script = "uid://cvmbxxmeqwih4"
 
-[node name="RotationComponent" type="Node" parent="."]
+[node name="RotationComponent" type="Node" parent="." unique_id=7755229]
 unique_name_in_owner = true
 script = ExtResource("4_f6n2u")
 metadata/_custom_type_script = "uid://b02dexygwwdjs"
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1042101373]
 transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 0, 0.12582347, -0.8945724)
 amount = 100
 lifetime = 0.5
@@ -566,11 +568,9 @@ trail_lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_ptby1")
 draw_pass_1 = SubResource("RibbonTrailMesh_yvpd3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=614660447]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_yvpd3")
-}
+libraries/ = SubResource("AnimationLibrary_yvpd3")
 speed_scale = 0.5
 
 [connection signal="body_entered" from="BumpComponent" to="BumpComponent" method="_on_body_entered"]
